@@ -36,6 +36,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 ## Magento 2 SimpleNews Module Step By Step (BDCrops)
 
+###Part 1: New Module for Front End
 - Step 2.1: Create a directory for the module like above format.
 - Step 2.2: Declare module by using configuration file module.xml
 - Step 2.3: Register module by registration.php
@@ -68,6 +69,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 - Step 2.30:  Create a Block for positioning the latest news: Left or Right
 - Step 2.31:  Create the template file for Latest News
 - Step 2.32:  Frontend view for the module
+#### Part 2: News Module for Back End
 - Step 2.33:  Create the menu for Magento backend
 - Step 2.34:  Create backend route file
 - Step 2.35:  Update the acl.xml to add more roles
@@ -472,11 +474,125 @@ After define the Controller, the URL path to our module will be: `http://example
 
 
 
-- Step 2.13: Setup Module's backend configuration
-- Step 2.14:  Create a custom source model
-- Step 2.15:  Create a role for this config section
-- Step 2.16:  Set some default value for configuration options
+### Step 2.13: Setup Module's backend configuration
+
+- Create file: app/code/BDC/SimpleNews/etc/adminhtml/system.xml (Purpose: This file will declare your configurations in Stores > Settings > Configuration section) and insert this following code into it:
+
+```
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
+    <system>
+        <tab id="bdc" translate="label" sortOrder="1">
+            <label>BDC</label>
+        </tab>
+        <section id="simplenews" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Simple News</label>
+            <tab>bdc</tab>
+            <resource>BDC_SimpleNews::system_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enable_in_frontend" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable in frontend</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="head_title" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Head title</label>
+                    <comment>Fill head title of news list page at here</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="lastest_news_block_position" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Lastest news block position</label>
+                    <source_model>BDC\SimpleNews\Model\System\Config\LastestNews\Position</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+
+```
+
+### Step 2.14:  Create a custom source model
+
+- Create file: app/code/BDC/SimpleNews/Model/System/Config/LastestNews/Position.php and insert this following code into it:
+
+```
+<?php
+
+namespace BDC\SimpleNews\Model\System\Config\LastestNews;
+
+use Magento\Framework\Option\ArrayInterface;
+
+class Position implements ArrayInterface{
+    const LEFT      = 1;
+    const RIGHT     = 2;
+    const DISABLED  = 0;
+
+    /**
+     * Get positions of lastest news block
+     *
+     * @return array
+     */
+    public function toOptionArray(){
+        return [
+            self::LEFT => __('Left'),
+            self::RIGHT => __('Right'),
+            self::DISABLED => __('Disabled')
+        ];
+    }
+}
+
+```
+
+### Step 2.15:  Create a role for this config section
+
+- Create file: app/code/BDC/SimpleNews/etc/acl.xml (Purpose: This file will create a role for your configuration section) and insert this following code into it:
+
+```
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="BDC_SimpleNews::system_config" title="Simple News Section" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
+
+
+```
+
+### Step 2.16:  Set some default value for configuration options
+
+- Create file: app/code/BDC/SimpleNews/etc/config.xml and insert this following code into it:
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
+    <default>
+        <simplenews>
+            <general>
+                <enable_in_frontend>1</enable_in_frontend>
+                <head_title>BDC - Simple News</head_title>
+                <lastest_news_position>1</lastest_news_position>
+            </general>
+        </simplenews>
+    </default>
+</config>
+
+```
+
 - Step 2.17:  Create a Helper Data class
+
 - Step 2.18:  Create Layout file for page handle
 - Step 2.19:  Create another layout file by update the previous layout
 - Step 2.20:  Create Block NewList file
@@ -492,29 +608,155 @@ After define the Controller, the URL path to our module will be: `http://example
 - Step 2.30:  Create a Block for positioning the latest news: Left or Right
 - Step 2.31:  Create the template file for Latest News
 - Step 2.32:  Frontend view for the module
-- Step 2.33:  Create the menu for Magento backend
-- Step 2.34:  Create backend route file
-- Step 2.35:  Update the acl.xml to add more roles
-- Step 2.36:  Create layout for grid
-- Step 2.37:  Create layout for Grid Container
-- Step 2.38:  Create layout for ajax load
-- Step 2.39:  Create news status option file
-- Step 2.40:  Create News Block for backend
-- Step 2.41:  Create Grid block file for Ajax load
-- Step 2.42:  Create a backend controller file for child action class to extend
-- Step 2.43:  Create Backend Action file Index.php
-- Step 2.44:  Create another Action for ajax
-- Step 2.45:  Create layout file simplenews_news_edit.xml for edit form
-- Step 2.46:  Create the layout for create form
-- Step 2.47:  Create a form container block
-- Step 2.48:  create a block for the left-side tabs
-- Step 2.49:  Create a block for Form information
-- Step 2.50:  Create a block to declare the fields for the edit form
-- Step 2.51:  Create a controller action for create a new News
-- Step 2.52:  Create Edit Action for the Edit form
-- Step 2.53:  A Save Action for the edit form
-- Step 2.54:  Delete Action for the edit Form
-- Step 2.55:  The mass delete action the grid list
+
+## Part 2: News Module for Back End
+
+###Step 2.33:  Create the menu for Magento backend
+
+Create file: app/code/BDC/SimpleNews/etc/adminhtml/menu.xml (Purpose: The menu item of your module will be declared here) and insert this following code into it:
+```
+```
+### Step 2.34:  Create backend route file
+
+- Create file: app/code/BDC/SimpleNews/etc/adminhtml/routes.xml (Purpose: The router of your module for backend will be declared here) and insert this following code into it:
+
+```
+
+```
+
+### Step 2.35:  Update the acl.xml to add more roles
+
+- Open this file: app/code/BDC/SimpleNews/etc/acl.xml and modify the source code into here like this:
+```
+
+```
+
+### Step 2.36:  Create layout for grid
+
+
+- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/bdcsimplenews_news_index.xml (Purpose: This file is used to declare grid container block) and insert this following code into it:
+
+```
+```
+
+### Step 2.37:  Create layout for Grid Container
+
+
+- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/bdcsimplenews_news_grid_block.xml (Purpose: This file is used to declare the content of grid block) and insert this following code into it:
+```
+```
+
+
+### Step 2.38:  Create layout for ajax load
+
+- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_grid.xml (Purpose: This file is used to declare the content of grid when you use ajax to reload the grid) and insert this following code into it:
+```
+```
+
+
+### Step 2.39:  Create news status option file
+
+- Create file: app/code/BDC/SimpleNews/Model/System/Config/Status.php (Purpose: This file is used to get News status options) and insert this following code into it:
+```
+
+```
+
+### Step 2.40:  Create News Block for backend
+- Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News.php (Purpose: This is the block file of grid container) and insert this following code into it:
+
+```
+```
+
+
+
+### Step 2.41:  Create Grid block file for Ajax load
+- Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Grid.php (Purpose: This is the block file of grid) and insert this following code into it:
+```
+```
+
+### Step 2.42:  Create a backend controller file for child action class to extend
+
+- Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News.php (Purpose: I use this file as a root controller and the action classes will be extended this controller) and insert this following code into it:
+```
+
+```
+
+
+### Step 2.43:  Create Backend Action file Index.php
+
+- Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Index.php (Purpose: This is the index action) and insert this following code into it:
+```
+```
+
+
+### Step 2.44:  Create another Action for ajax
+- Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Grid.php (Purpose: This is the grid action which is used for loading grid by ajax) and insert this following code into it:
+```
+```
+
+### Step 2.45:  Create layout file simplenews_news_edit.xml for edit form
+- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_edit.xml (Purpose: This file is used to declare blocks which used on editing page) and insert this following code into it:
+```
+
+```
+
+### Step 2.46:  Create the layout for create form
+
+- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_create.xml and insert this following code into it:
+```
+```
+
+
+### Step 2.47:  Create a form container block
+
+- Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit.php (Purpose: This is the block file of form container) and insert this following code into it:
+```
+```
+
+
+### Step 2.48:  create a block for the left-side tabs
+
+- Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit/Tabs.php (Purpose: This file will declare tabs at left column of the editing page) and insert this following code into it:
+```
+
+```
+
+### Step 2.49:  Create a block for Form information
+
+- Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit/Form.php (Purpose: This file will declare form information) and insert this following code into it:
+```
+
+```
+
+### Step 2.50:  Create a block to declare the fields for the edit form
+- Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit/Tab/Info.php (Purpose: This file will declare fields in form) and insert this following code into it:
+
+
+### Step 2.51:  Create a controller action for create a new News
+- Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/NewAction.php (Purpose: This is the new action) and insert this following code into it:
+```
+```
+
+### Step 2.52:  Create Edit Action for the Edit form
+  - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Edit.php (Purpose: This is the edit action for editing news page) and insert this following code into it:
+
+
+### Step 2.53:  A Save Action for the edit form
+
+- Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Save.php (Purpose: This is the save action) and insert this following code into it:
+```
+```
+
+### Step 2.54:  Delete Action for the edit Form
+
+- Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Delete.php (Purpose: This is the delete action) and insert this following code into it:
+
+
+### Step 2.55:  The mass delete action the grid list
+
+- Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/MassDelete.php (Purpose: This file is used for deleting multi items on grid) and insert this following code into it:
+
+
 - Step 2.56:  Backend Menu and Grid List
 
 

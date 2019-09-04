@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
+    <default>
+        <simplenews>
+            <general>
+                <enable_in_frontend>1</enable_in_frontend>
+                <head_title>BDC - Simple News</head_title>
+                <lastest_news_position>1</lastest_news_position>
+            </general>
+        </simplenews>
+    </default>
+</config>

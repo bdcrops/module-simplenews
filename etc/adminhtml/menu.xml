@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="BDC_SimpleNews::main_menu" title="Simple News"
+            module="BDC_SimpleNews" sortOrder="20"
+            resource="BDC_SimpleNews::simplenews" />
+        <add id="BDC_SimpleNews::add_news" title="Add News"
+            module="BDC_SimpleNews" sortOrder="1" parent="BDC_SimpleNews::main_menu"
+            action="simplenews/news/new" resource="BDC_SimpleNews::manage_news" />
+        <add id="BDC_SimpleNews::manage_news" title="Manage News"
+            module="BDC_SimpleNews" sortOrder="2" parent="BDC_SimpleNews::main_menu"
+            action="simplenews/news/index" resource="BDC_SimpleNews::manage_news" />
+        <add id="BDC_SimpleNews::configuration" title="Configurations"
+            module="BDC_SimpleNews" sortOrder="3" parent="BDC_SimpleNews::main_menu"
+            action="adminhtml/system_config/edit/section/simplenews"
+            resource="BDC_SimpleNews::configuration" />
+    </menu>
+</config>
