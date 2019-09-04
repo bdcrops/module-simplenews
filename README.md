@@ -150,6 +150,8 @@ php bin/magento setup:upgrade
 
 Now you can check under `Stores -> Configuration -> Advanced -> Advanced` that the module is present.
 
+Also  you can check Database Table from PhpMyAdmin or Your Favorite tools: 
+
 ![Table db_schema](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/dbTableCreatedDeclarativeSchema.png)
 
 
