@@ -15,19 +15,15 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 - Step 1: Create a directory for the module like above format.
 - Step 2: Declare module by using configuration file module.xml
 - Step 3: Register module by registration.php
-- Step 5: Configure declarative schema (create table etc/db_schema.xml schema Installation file)
-- Step 6: Schema whitelist (etc/db_schema_whitelist.json)
-- Step : Enable the module
-- Step : Develop data and schema patches (Insert data Installing and upgrading data)
-- Step :  
-- Step :  
-- Step :  
+- Step 4: Configure declarative schema (create table etc/db_schema.xml schema Installation file)
+- Step 5: Schema whitelist (etc/db_schema_whitelist.json)
+- Step 6: Enable the module
+- Step 7: Develop data and schema patches (Insert data Installing and upgrading data)
+- Step 8:  
+- Step 9:  
+- Step 10:  
 
-1.1-
 
-1.2-
-
-1.3-
 
 
 ### Step 1. Create a directory for the module like above format.
@@ -73,7 +69,51 @@ And it’s content for our module is:
 );
 ~~~
 
-### Step 4. Enable the module
+
+### Step 4. Configure declarative schema (create table etc/db_schema.xml schema Installation file)
+
+```
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+  <table name="bdc_simplenews" resource="default" engine="innodb" comment="SimpleNews Table">
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="varchar" name="summary" nullable="false" length="255" comment="Summary"/>
+        <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Descrition"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created Datetime"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated Datetime"/>
+        <column xsi:type="smallint" name="status"  padding="2" unsigned="false" nullable="false" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">   <column name="id"/> </constraint>
+    </table>
+</schema>
+```
+
+### Step 5. Schema whitelist (etc/db_schema_whitelist.json)
+
+You will not be able to run a declarative mode without creating a schema whitelist.
+Note: it is recommended to generate a new whitelist for every release for the double-check purposes.
+
+Before running the upgrade command you need to add your schema to db_whitelist_schema.json file by running the following command.
+
+For that, you need a //etc/db_schema_whitelist.json file that will store all the content added with declarative schema. To generate this file, run:
+
+
+![db_schema](https://github.com/bdcrops/BDC_Declarative/blob/master/view/adminhtml/web/images/whitelist.png)
+
+
+php bin/magento setup:db-declaration:generate-whitelist [options]
+php bin/magento setup:db-declaration:generate-whitelist --module-name=vendor_module
+
+php bin/magento setup:db-declaration:generate-whitelist --module-name=BDC_SimpleNews
+
+
+Now, there are db_whitelist_schema.json file will be create in /vendor/module/etc folder.
+
+
+### Step 6. Enable the module
+
+
 
 By finish above step, you have created an empty module. Now we will enable it in Magento environment.
 Before enable the module, we must check to make sure Magento has recognize our module or not by enter the following at the command line:
@@ -110,26 +150,7 @@ php bin/magento setup:upgrade
 
 Now you can check under `Stores -> Configuration -> Advanced -> Advanced` that the module is present.
 
-### Step 5. Schema Whitelist
 
-You will not be able to run a declarative mode without creating a schema whitelist.
-Note: it is recommended to generate a new whitelist for every release for the double-check purposes.
-
-Before running the upgrade command you need to add your schema to db_whitelist_schema.json file by running the following command.
-
-For that, you need a //etc/db_schema_whitelist.json file that will store all the content added with declarative schema. To generate this file, run:
-
-
-![db_schema](https://github.com/bdcrops/BDC_Declarative/blob/master/view/adminhtml/web/images/whitelist.png)
-
-
-php bin/magento setup:db-declaration:generate-whitelist [options]
-php bin/magento setup:db-declaration:generate-whitelist --module-name=vendor_module
-
-php bin/magento setup:db-declaration:generate-whitelist --module-name=BDC_SimpleNews
-
-
-Now, there are db_whitelist_schema.json file will be create in /vendor/module/etc folder.
 
 ### Step 5. Create a Routers for the module.
 
