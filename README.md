@@ -4,6 +4,10 @@
 **Magento 2 Module development** or **Magento 2 SimpleNews Module** trends is increase rapidly while Magento release official version. That why we - **BDCrops** - are wring about a topic that introduces how to create a  **SimpleNews module in Magento 2**.
 As you know, the module is a  directory that contains `blocks, controllers, models, helper`, etc - that are related to a specific business feature. In Magento 2, modules will be live in `app/code` directory of a Magento installation, with this format: `app/code/<Vendor>/<ModuleName>`. Now we will follow this steps to create a SimpleNews module which work on Magento 2 and display `Simple News`.
 
+```
+Create a full-fledged Module Step by Step. You could just follow my code to create this module from the scratch. Or you can directly download the compressed tar file and install it and play it. The Link to download is at the github of this tutorial.
+```
+
 
 ## Goal:
 
