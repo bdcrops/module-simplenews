@@ -7,34 +7,34 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 ## Goal:
 
-1.1- Create Magento 2 Simple Module
-1.2- Using Declarative Schema
-1.3- Using Model , resource Model, collection Model
+-1.1: Create Magento 2 Simple Module
+-1.2: Using Declarative Schema
+-1.3:  Using Model , resource Model, collection Model
 
 
 
 ## Magento 2 SimpleNews module by Bdcrops.com
 
-- Step 1: Create a directory for the module like above format.
-- Step 2: Declare module by using configuration file module.xml
-- Step 3: Register module by registration.php
-- Step 4: Configure declarative schema (create table etc/db_schema.xml schema Installation file)
-- Step 5: Schema whitelist (etc/db_schema_whitelist.json)
-- Step 6: Enable the module
-- Step 7: Develop data and schema patches (Insert data Installing and upgrading data)
-- Step 8:  
-- Step 9:  
-- Step 10:  
+- Step 2.1: Create a directory for the module like above format.
+- Step 2.2: Declare module by using configuration file module.xml
+- Step 2.3: Register module by registration.php
+- Step 2.4: Configure declarative schema (create table etc/db_schema.xml schema Installation file)
+- Step 2.5: Schema whitelist (etc/db_schema_whitelist.json)
+- Step 2.6: Enable the module
+- Step 2.7: Develop data and schema patches (Insert data Installing and upgrading data)
+- Step 2.8:  
+- Step 2.9:  
+- Step 2.10:  
 
 
 
 
-### Step 1. Create a directory for the module like above format.
+### Step 2.1: Create a directory for the module like above format.
 
 In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for ModuleName. So we need to make this folder:
 `app/code/BDC/SimpleNews`
 
-### Step 2. Declare module by using configuration file module.xml
+### Step 2.2: Declare module by using configuration file module.xml
 
 Magento 2 looks for configuration information for each module in that module’s etc directory. We need to create folder etc and add module.xml:
 
@@ -53,7 +53,7 @@ And the content for this file:
 
 In this file, we register a module with name `BDC_SimpleNews` and the version is `1.0.0`.
 
-### Step 3. Register module by registration.php
+### Step 2.3: Register module by registration.php
 
 All Magento 2 module must be registered in the Magento system through the magento ComponentRegistrar class. This file will be placed in module root directory.
 In this step, we need to create this file:
@@ -73,7 +73,7 @@ And it’s content for our module is:
 ~~~
 
 
-### Step 4. Configure declarative schema (create table etc/db_schema.xml schema Installation file)
+### Step 2.4: Configure declarative schema (create table etc/db_schema.xml schema Installation file)
 
 ```
 <?xml version="1.0"?>
@@ -92,7 +92,7 @@ And it’s content for our module is:
 </schema>
 ```
 
-### Step 5. Schema whitelist (etc/db_schema_whitelist.json)
+### Step 2.5: Schema whitelist (etc/db_schema_whitelist.json)
 
 You will not be able to run a declarative mode without creating a schema whitelist.
 Note: it is recommended to generate a new whitelist for every release for the double-check purposes.
@@ -116,7 +116,7 @@ Now, there are db_whitelist_schema.json file will be create in /vendor/module/et
 
 
 
-### Step 6. Enable the module
+### Step 2.6: Enable the module
 
 
 
@@ -161,7 +161,7 @@ Also  you can check Database Table from PhpMyAdmin or Your Favorite tools:
 
 
 
-### Step 7.  Develop data and schema patches (Insert data Installing and upgrading data)
+### Step 2.7:  Develop data and schema patches (Insert data Installing and upgrading data)
 
 
 Since in the old method, we used to write scripts in Install Schema or Upgrade schema when a table was created, but now in the new version, this will be done through Patch system.
