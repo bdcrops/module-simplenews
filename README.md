@@ -30,15 +30,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 - 1.18: create Helper file, it will contain functions for getting the configuration values
 - 1.19: Create frontend template file
 - 1.20: Create CSS file
-- 1.21:
-- 1.22:
-- 1.23:
-- 1.24:
-- 1.25:
-- 1.2:
-- 1.2:
-- 1.2:
-- 1.2:
+
 
 
 
@@ -100,8 +92,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 - Step 2.54:  Delete Action for the edit Form
 - Step 2.55:  The mass delete action the grid list
 - Step 2.56:  Backend Menu and Grid List
-- Step 2.5:  
-- Step 2.5:  
+
 
 
 
@@ -372,7 +363,7 @@ class News extends AbstractDb {
 
 ### Step 2.10: Create Model's collection class
 
-- Create collection file: app/code/Tutorial/SimpleNews/Model/Resource/News/Collection.php and insert this following code into it:
+- Create collection file: app/code/BDC/SimpleNews/Model/Resource/News/Collection.php and insert this following code into it:
 
 ```
 <?php
@@ -475,6 +466,10 @@ class Index extends Action {
 }
 
 ```
+After define the Controller, the URL path to our module will be: `http://example.com/news/` below data
+
+![NewsDataFrontend](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/newsFrontendData.png)
+
 
 
 - Step 2.13: Setup Module's backend configuration
