@@ -150,9 +150,64 @@ php bin/magento setup:upgrade
 
 Now you can check under `Stores -> Configuration -> Advanced -> Advanced` that the module is present.
 
+![Table db_schema](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/dbTableCreatedDeclarativeSchema.png)
 
 
-### Step 5. Create a Routers for the module.
+
+### Step 7.  Develop data and schema patches (Insert data Installing and upgrading data)
+
+
+Since in the old method, we used to write scripts in Install Schema or Upgrade schema when a table was created, but now in the new version, this will be done through Patch system.
+
+A data patch is a class that contains data modification instructions. It is defined in a <Namespace>/<Module_Name>/Setup/Patch/Data/<Patch_Name>.php file and implements \Magento\Setup\Model\Patch\DataPatchInterface.
+
+A schema patch contains custom schema modification instructions. These modifications can be complex.
+
+It is defined in a<Vendor>/<Module_Name>/Setup/Patch/Schema/<Patch_Name>.php file and implements \Magento\Setup\Model\Patch\SchemaPatchInterface.
+
+
+So to add data to the bdc_simplenews table create AddData.php file inside folder BDC/SimpleNews/Setup/Patch/Data and write the following code
+
+app/code/BDC/SimpleNews/Setup/Patch/Data/AddData.php
+
+```
+<?php
+
+namespace BDC\SimpleNews\Setup\Patch\Data;
+
+use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Setup\Patch\PatchVersionInterface;
+use Magento\Framework\Module\Setup\Migration;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
+
+class AddData implements DataPatchInterface, PatchVersionInterface {
+    private $news;
+    public function __construct( \BDC\SimpleNews\Model\News $news ) {
+        $this->news = $news;
+    }
+    public function apply(){
+    	$newsData = [];
+    	$newsData['title'] = "BDC News Head1";
+    	$newsData['summary'] = "BDC News Summary";
+    	$newsData['description'] = "BDCrops Inc description evulation of bangladesh";
+    	//$newsData['status'] = 1;
+
+    	$this->news->addData($newsData);
+    	$this->news->getResource()->save($this->news);
+
+    }
+    public static function getDependencies() {   return []; }
+    public static function getVersion() { return '2.0.0'; }
+    public function getAliases() {   return []; }
+
+}
+
+
+```
+
+
+
+### Step . Create a Routers for the module.
 
 In the Magento system, a request URL has the following format:
 
