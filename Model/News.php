@@ -3,26 +3,12 @@
 // These files to insert, update, delete and get data in the database.
 
 namespace BDC\SimpleNews\Model;
-use Magento\Framework\Model\AbstractModel;
-/*
 
-class News extends AbstractModel
-*/
-//class News extends AbstractModel  //\Magento\Framework\Model\
-//{
-    /**
-     * Define resource model
-     */
-    //protected function _construct(){
-    	//parent::_construct();
-      //  $this->_init('BDC\SimpleNews\Model\Resource\News');
-  //  }
-//}
-//extends \Magento\Framework\Model\AbstractModel{
+use Magento\Framework\Model\AbstractModel;
 
 class News extends AbstractModel{
     /**
-     * Author constructor.
+     * News constructor.
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
@@ -49,14 +35,13 @@ class News extends AbstractModel{
     }
 
     /**
-     * Loading Book data
+     * Loading news data
      *
      * @param   mixed $key
      * @param   string $field
      * @return  $this
      */
-    public function load($key, $field = null)
-    {
+    public function load($key, $field = null) {
     	if ($field === null) {
     		$this->_getResource()->load($this, $key, 'id');
     		return $this;

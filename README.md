@@ -1,18 +1,44 @@
 
-# Magento 2 SimpleNews module Tutorial
+# Magento 2 SimpleNews module  
 
 **Magento 2 Module development** or **Magento 2 SimpleNews Module** trends is increase rapidly while Magento release official version. That why we - **BDCrops** - are wring about a topic that introduces how to create a  **SimpleNews module in Magento 2**.
 As you know, the module is a  directory that contains `blocks, controllers, models, helper`, etc - that are related to a specific business feature. In Magento 2, modules will be live in `app/code` directory of a Magento installation, with this format: `app/code/<Vendor>/<ModuleName>`. Now we will follow this steps to create a SimpleNews module which work on Magento 2 and display `Simple News`.
 
 
-`Create a full-fledged Module Step by Step. You could just follow my code to create this module from the scratch. Or you can directly download the compressed tar file and install it and play it. The Link to download is at the github of this tutorial. `
+`Create a full-fledged Module Step by Step. You could just follow my code to create this module from the scratch. Or you can directly download the compressed tar file and install it and play it. The Link to download is at the github of this  . `
 
 
 ## Goal:
 
 - 1.1: Create Magento 2 Simple Module
-- 1.2: Using Declarative Schema
-- 1.3:  Using Model , resource Model, collection Model
+- 1.2: Using Declarative Schema & Schema Patches
+- 1.3: Using  Create Model, Resource Model and Collection
+- 1.4: Get data from the database and display them at the frontend
+- 1.5: Create configuration in Magento system configuration
+- 1.6: Create a custom source model.
+- 1.7: Create a role(ACL) for this configuration section.
+- 1.8: Set default values for the configurations.
+- 1.9:  Create menu ..
+- 1.10: Create frontend & route .
+- 1.11: Add role for each menu item
+- 1.12: Create frontend layout
+- 1.13: Create frontend block
+- 1.14: Create  frontend controller
+- 1.15: Create  Adminhtml layout
+- 1.16: Create Adminhtml block
+- 1.17: Create Adminhtml controller
+- 1.18: create Helper file, it will contain functions for getting the configuration values
+- 1.19: Create frontend template file
+- 1.20: Create CSS file
+- 1.21:
+- 1.22:
+- 1.23:
+- 1.24:
+- 1.25:
+- 1.2:
+- 1.2:
+- 1.2:
+- 1.2:
 
 
 
@@ -25,9 +51,57 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 - Step 2.5: Schema whitelist (etc/db_schema_whitelist.json)
 - Step 2.6: Enable the module
 - Step 2.7: Develop data and schema patches (Insert data Installing and upgrading data)
-- Step 2.8:  
-- Step 2.9:  
-- Step 2.10:  
+- Step 2.8: Create Model News for business Logic
+- Step 2.9: Create Model's ResourceModel to handle real database transaction
+- Step 2.10: Create Model's collection class
+- Step 2.11: Setup the frontend route
+- Step 2.12: Create IndexController
+- Step 2.13: Setup Module's backend configuration
+- Step 2.14:  Create a custom source model
+- Step 2.15:  Create a role for this config section
+- Step 2.16:  Set some default value for configuration options
+- Step 2.17:  Create a Helper Data class
+- Step 2.18:  Create Layout file for page handle
+- Step 2.19:  Create another layout file by update the previous layout
+- Step 2.20:  Create Block NewList file
+- Step 2.21:  Create frontend template file list.phtml
+- Step 2.22:  Create an abstract class by extending Magento Core Action class
+- Step 2.23:  Update Index Controller by extends the abstract class 'New.php'
+- Step 2.24:  Create a layout file for news detail page
+- Step 2.25:  Create News view action
+- Step 2.26:  create view news block
+- Step 2.27:  Create news view template file
+- Step 2.28:  Create CSS file for styling the frontend Page
+- Step 2.29:  Create Latest New Block
+- Step 2.30:  Create a Block for positioning the latest news: Left or Right
+- Step 2.31:  Create the template file for Latest News
+- Step 2.32:  Frontend view for the module
+- Step 2.33:  Create the menu for Magento backend
+- Step 2.34:  Create backend route file
+- Step 2.35:  Update the acl.xml to add more roles
+- Step 2.36:  Create layout for grid
+- Step 2.37:  Create layout for Grid Container
+- Step 2.38:  Create layout for ajax load
+- Step 2.39:  Create news status option file
+- Step 2.40:  Create News Block for backend
+- Step 2.41:  Create Grid block file for Ajax load
+- Step 2.42:  Create a backend controller file for child action class to extend
+- Step 2.43:  Create Backend Action file Index.php
+- Step 2.44:  Create another Action for ajax
+- Step 2.45:  Create layout file simplenews_news_edit.xml for edit form
+- Step 2.46:  Create the layout for create form
+- Step 2.47:  Create a form container block
+- Step 2.48:  create a block for the left-side tabs
+- Step 2.49:  Create a block for Form information
+- Step 2.50:  Create a block to declare the fields for the edit form
+- Step 2.51:  Create a controller action for create a new News
+- Step 2.52:  Create Edit Action for the Edit form
+- Step 2.53:  A Save Action for the edit form
+- Step 2.54:  Delete Action for the edit Form
+- Step 2.55:  The mass delete action the grid list
+- Step 2.56:  Backend Menu and Grid List
+- Step 2.5:  
+- Step 2.5:  
 
 
 
@@ -215,9 +289,112 @@ class AddData implements DataPatchInterface, PatchVersionInterface {
 
 ```
 
+### Step 2.8: Create Model News for business Logic
+
+We need to create these files to insert, update, delete and get data in the database.
+
+- Create model file: app/code/BDC/SimpleNews/Model/News.php and insert this following code into it:
+```
+<?php
+// These files to insert, update, delete and get data in the database.
+namespace BDC\SimpleNews\Model;
+use Magento\Framework\Model\AbstractModel;
+
+class News extends AbstractModel{
+    /**
+     * News constructor.
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+    }
+
+   /**
+    * (non-PHPdoc)
+    * @see \Magento\Framework\Model\AbstractModel::_construct()
+    */
+    public function _construct()
+    {
+        $this->_init('BDC\SimpleNews\Model\Resource\News');
+    }
+
+    /**
+     * Loading news data
+     *
+     * @param   mixed $key
+     * @param   string $field
+     * @return  $this
+     */
+    public function load($key, $field = null) {
+    	if ($field === null) {
+    		$this->_getResource()->load($this, $key, 'id');
+    		return $this;
+    	}
+    	$this->_getResource()->load($this, $key, $field);
+    	return $this;
+    }
+}
+
+```
+
+### Step 2.9: Create Model's ResourceModel to handle real database transaction
+
+- Create resource model file: app/code/BDC/SimpleNews/Model/Resource/News.php and insert this following code into it:
+```
+<?php
+
+namespace BDC\SimpleNews\Model\Resource;
+
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+
+class News extends AbstractDb {
+    /**
+     * Define main table
+     */
+    protected function _construct()
+    {
+        $this->_init('bdc_simplenews', 'id');
+    }
+}
+
+```
 
 
-### Step . Create a Routers for the module.
+### Step 2.10: Create Model's collection class
+
+- Create collection file: app/code/Tutorial/SimpleNews/Model/Resource/News/Collection.php and insert this following code into it:
+
+```
+<?php
+namespace BDC\SimpleNews\Model\Resource\News;
+
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+class Collection extends AbstractCollection {
+    /**
+     * Define model & resource model
+     */
+    protected function _construct(){
+        $this->_init(
+            'BDC\SimpleNews\Model\News',
+            'BDC\SimpleNews\Model\Resource\News'
+        );
+    }
+}
+
+```
+
+
+### Step 2.11: Setup the frontend route
 
 In the Magento system, a request URL has the following format:
 
@@ -235,50 +412,117 @@ And content for this file:
 
 ~~~
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/
+App/etc/routes.xsd">
     <router id="standard">
-        <route id="simplenews" frontName="news">
+        <route id="bdcnews" frontName="news">
             <module name="BDC_SimpleNews" />
         </route>
     </router>
 </config>
 ~~~
 
-After define the route, the URL path to our module will be: `http://example.com/helloworld/*`
+After define the route, the URL path to our module will be: `http://example.com/news/`
 
-### Step 6. Create controller and action.
 
-In this step, we will create controller and action to display `Hello World`.
-Now we will choose the url for this action. Let assume that the url will be:
-`http://example.com/helloworld/index/display`
+### Step 2.12: Create IndexController
 
-So the file we need to create is:
 
-~~~
-app/code/BDC/SimpleNews/Controller/Index/Display.php
-~~~
+- Create controller file: app/code/BDC/SimpleNews/Controller/Index/Index.php and insert this following code into it:
 
-And we will put this content:
-
-~~~ php
+```
 <?php
+
 namespace BDC\SimpleNews\Controller\Index;
 
-class Display extends \Magento\Framework\App\Action\Action
-{
-  public function __construct(
-\Magento\Framework\App\Action\Context $context)
-  {
-    return parent::__construct($context);
-  }
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use BDC\SimpleNews\Model\NewsFactory;
 
-  public function execute()
-  {
-    echo 'Hello SimpleNews!';
-    exit;
-  }
+class Index extends Action {
+    /**
+     * @var \BDC\SimpleNews\Model\NewsFactory
+     */
+    protected $_modelNewsFactory;
+    /**
+     * @param Context $context
+     * @param NewsFactory $modelNewsFactory
+     */
+    public function __construct(
+        Context $context,
+        NewsFactory $modelNewsFactory ) {
+        parent::__construct($context);
+        $this->_modelNewsFactory = $modelNewsFactory;
+    }
+    public function execute(){
+        /**
+         * When Magento get your model, it will generate a Factory class
+         * for your model at var/generaton folder and we can get your
+         * model by this way
+         */
+        $newsModel = $this->_modelNewsFactory->create();
+
+        // Load the item with ID is 1
+        $item = $newsModel->load(1);
+        var_dump($item->getData());
+
+        // Get news collection
+        $newsCollection = $newsModel->getCollection();
+        // Load all data of collection
+        var_dump($newsCollection->getData());
+    }
 }
-~~~
+
+```
+
+
+- Step 2.13: Setup Module's backend configuration
+- Step 2.14:  Create a custom source model
+- Step 2.15:  Create a role for this config section
+- Step 2.16:  Set some default value for configuration options
+- Step 2.17:  Create a Helper Data class
+- Step 2.18:  Create Layout file for page handle
+- Step 2.19:  Create another layout file by update the previous layout
+- Step 2.20:  Create Block NewList file
+- Step 2.21:  Create frontend template file list.phtml
+- Step 2.22:  Create an abstract class by extending Magento Core Action class
+- Step 2.23:  Update Index Controller by extends the abstract class 'New.php'
+- Step 2.24:  Create a layout file for news detail page
+- Step 2.25:  Create News view action
+- Step 2.26:  create view news block
+- Step 2.27:  Create news view template file
+- Step 2.28:  Create CSS file for styling the frontend Page
+- Step 2.29:  Create Latest New Block
+- Step 2.30:  Create a Block for positioning the latest news: Left or Right
+- Step 2.31:  Create the template file for Latest News
+- Step 2.32:  Frontend view for the module
+- Step 2.33:  Create the menu for Magento backend
+- Step 2.34:  Create backend route file
+- Step 2.35:  Update the acl.xml to add more roles
+- Step 2.36:  Create layout for grid
+- Step 2.37:  Create layout for Grid Container
+- Step 2.38:  Create layout for ajax load
+- Step 2.39:  Create news status option file
+- Step 2.40:  Create News Block for backend
+- Step 2.41:  Create Grid block file for Ajax load
+- Step 2.42:  Create a backend controller file for child action class to extend
+- Step 2.43:  Create Backend Action file Index.php
+- Step 2.44:  Create another Action for ajax
+- Step 2.45:  Create layout file simplenews_news_edit.xml for edit form
+- Step 2.46:  Create the layout for create form
+- Step 2.47:  Create a form container block
+- Step 2.48:  create a block for the left-side tabs
+- Step 2.49:  Create a block for Form information
+- Step 2.50:  Create a block to declare the fields for the edit form
+- Step 2.51:  Create a controller action for create a new News
+- Step 2.52:  Create Edit Action for the Edit form
+- Step 2.53:  A Save Action for the edit form
+- Step 2.54:  Delete Action for the edit Form
+- Step 2.55:  The mass delete action the grid list
+- Step 2.56:  Backend Menu and Grid List
+
+
 
 
 
@@ -293,4 +537,4 @@ https://www.mage-world.com/blog/create-a-module-with-custom-database-table-in-ma
 
 http://techjeffyu.com/blog/magento-2-a-full-magento-2-module
 
-https://github.com/codingarrow/M2/tree/master/Tutorial/SimpleNews
+https://github.com/codingarrow/M2/tree/master/BDC/SimpleNews
