@@ -13,7 +13,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 
 
-## Magento 2 SimpleNews module by Bdcrops.com
+## Magento 2 SimpleNews Module Step By Step (BDCrops)
 
 - Step 2.1: Create a directory for the module like above format.
 - Step 2.2: Declare module by using configuration file module.xml
