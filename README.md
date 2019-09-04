@@ -1,5 +1,5 @@
 
-# Magento 2 SimpleNews module
+# Magento 2 SimpleNews module Tutorial
 
 **Magento 2 Module development** or **Magento 2 SimpleNews Module** trends is increase rapidly while Magento release official version. That why we - **BDCrops** - are wring about a topic that introduces how to create a  **SimpleNews module in Magento 2**.
 As you know, the module is a  directory that contains `blocks, controllers, models, helper`, etc - that are related to a specific business feature. In Magento 2, modules will be live in `app/code` directory of a Magento installation, with this format: `app/code/<Vendor>/<ModuleName>`. Now we will follow this steps to create a SimpleNews module which work on Magento 2 and display `Simple News`.
@@ -7,7 +7,10 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 ## Goal:
 
-1.1-
+1.1- Create Magento 2 Simple Module
+1.2- Using Declarative Schema
+1.3- Using Model , resource Model, collection Model
+
 
 
 ## Magento 2 SimpleNews module by Bdcrops.com
@@ -109,6 +112,8 @@ php bin/magento setup:db-declaration:generate-whitelist --module-name=BDC_Simple
 
 
 Now, there are db_whitelist_schema.json file will be create in /vendor/module/etc folder.
+![db_whitelist_schema](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/db_schema_whitelist.png)
+
 
 
 ### Step 6. Enable the module
@@ -150,7 +155,7 @@ php bin/magento setup:upgrade
 
 Now you can check under `Stores -> Configuration -> Advanced -> Advanced` that the module is present.
 
-Also  you can check Database Table from PhpMyAdmin or Your Favorite tools: 
+Also  you can check Database Table from PhpMyAdmin or Your Favorite tools:
 
 ![Table db_schema](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/dbTableCreatedDeclarativeSchema.png)
 
