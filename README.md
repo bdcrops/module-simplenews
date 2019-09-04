@@ -7,9 +7,9 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 ## Goal:
 
--1.1: Create Magento 2 Simple Module
--1.2: Using Declarative Schema
--1.3:  Using Model , resource Model, collection Model
+- 1.1: Create Magento 2 Simple Module
+- 1.2: Using Declarative Schema
+- 1.3:  Using Model , resource Model, collection Model
 
 
 
