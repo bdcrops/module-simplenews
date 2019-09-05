@@ -600,6 +600,77 @@ xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
 - Create file: app/code/BDC/SimpleNews/Helper/Data.php and insert this following code into it:
 
 ```
+<?php
+
+namespace BDC\SimpleNews\Helper;
+
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Helper\Context;
+use Magento\Store\Model\ScopeInterface;
+
+class Data extends AbstractHelper
+{
+   const XML_PATH_ENABLED      = 'simplenews/general/enable_in_frontend';
+   const XML_PATH_HEAD_TITLE   = 'simplenews/general/head_title';
+   const XML_PATH_LASTEST_NEWS = 'simplenews/general/lastest_news_block_position';
+
+   /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $_scopeConfig;
+
+    /**
+     * @param Context $context
+     * @param ScopeConfigInterface $scopeConfig
+     */
+    public function __construct(
+       Context $context,
+       ScopeConfigInterface $scopeConfig ) {
+       parent::__construct($context);
+       $this->_scopeConfig = $scopeConfig;
+    }
+
+   /**
+     * Check for module is enabled in frontend
+     *
+     * @return bool
+     */
+   public function isEnabledInFrontend($store = null)
+   {
+      return $this->_scopeConfig->getValue(
+         self::XML_PATH_ENABLED,
+         ScopeInterface::SCOPE_STORE
+      );
+   }
+
+   /**
+     * Get head title for news list page
+     *
+     * @return string
+     */
+   public function getHeadTitle()
+   {
+      return $this->_scopeConfig->getValue(
+         self::XML_PATH_HEAD_TITLE,
+         ScopeInterface::SCOPE_STORE
+      );
+   }
+
+   /**
+     * Get lastest news block position (Left, Right, Disabled)
+     *
+     * @return int
+     */
+   public function getLastestNewsBlockPosition()
+   {
+      return $this->_scopeConfig->getValue(
+         self::XML_PATH_LASTEST_NEWS,
+         ScopeInterface::SCOPE_STORE
+      );
+   }
+}
+
 ```
 
 
@@ -607,13 +678,47 @@ xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
 ### Step 2B.6:  Create the menu for Magento backend
 
 Create file: app/code/BDC/SimpleNews/etc/adminhtml/menu.xml (Purpose: The menu item of your module will be declared here) and insert this following code into it:
+
 ```
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="BDC_SimpleNews::main_menu" title="Simple News"
+            module="BDC_SimpleNews" sortOrder="20"
+            resource="BDC_SimpleNews::simplenews" />
+        <add id="BDC_SimpleNews::add_news" title="Add News"
+            module="BDC_SimpleNews" sortOrder="1" parent="BDC_SimpleNews::main_menu"
+            action="simplenews/news/new" resource="BDC_SimpleNews::manage_news" />
+        <add id="BDC_SimpleNews::manage_news" title="Manage News"
+            module="BDC_SimpleNews" sortOrder="2" parent="BDC_SimpleNews::main_menu"
+            action="simplenews/news/index" resource="BDC_SimpleNews::manage_news" />
+        <add id="BDC_SimpleNews::configuration" title="Configurations"
+            module="BDC_SimpleNews" sortOrder="3" parent="BDC_SimpleNews::main_menu"
+            action="adminhtml/system_config/edit/section/simplenews"
+            resource="BDC_SimpleNews::configuration" />
+    </menu>
+</config>
+
 ```
+
 ### Step 2B.7:  Create backend route file
 
 - Create file: app/code/BDC/SimpleNews/etc/adminhtml/routes.xml (Purpose: The router of your module for backend will be declared here) and insert this following code into it:
 
 ```
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/
+Framework/App/etc/routes.xsd">
+    <router id="admin">
+        <route id="simplenews" frontName="simplenews">
+            <module name="BDC_SimpleNews" />
+        </route>
+    </router>
+</config>
 
 ```
 
@@ -621,22 +726,158 @@ Create file: app/code/BDC/SimpleNews/etc/adminhtml/menu.xml (Purpose: The menu i
 
 - Open this file: app/code/BDC/SimpleNews/etc/acl.xml and modify the source code into here like this:
 ```
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/
+Framework/Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="BDC_SimpleNews::simplenews" title="Simple News" sortOrder="100">
+                    <resource id="BDC_SimpleNews::add_news" title="Add News" sortOrder="1" />
+                    <resource id="BDC_SimpleNews::manage_news" title="Manage News" sortOrder="2" />
+                    <resource id="BDC_SimpleNews::configuration" title="Configurations" sortOrder="3" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="BDC_SimpleNews::system_config" title="Simple News Section" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
 
 ```
 
 ### Step 2B.9:  Create layout for grid
 
 
-- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/bdcsimplenews_news_index.xml (Purpose: This file is used to declare grid container block) and insert this following code into it:
+- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_index.xml (Purpose: This file is used to declare grid container block) and insert this following code into it:
 
 ```
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+   <update handle="formkey"/>
+   <update handle="simplenews_news_grid_block"/>
+   <body>
+       <referenceContainer name="content">
+           <block class="BDC\SimpleNews\Block\Adminhtml\News"
+               name="bdc_simplenews_news.grid.container" />
+       </referenceContainer>
+   </body>
+</page>
+
 ```
 
 ### Step 2B.10:  Create layout for Grid Container
 
 
-- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/bdcsimplenews_news_grid_block.xml (Purpose: This file is used to declare the content of grid block) and insert this following code into it:
+- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_grid_block.xml (Purpose: This file is used to declare the content of grid block) and insert this following code into it:
+
 ```
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+      <referenceBlock name="bdc_simplenews_news.grid.container">
+         <block class="Magento\Backend\Block\Widget\Grid" name="bdc_simplenews_news.grid"
+             as="grid">
+             <arguments>
+                 <argument name="id" xsi:type="string">newsGrid</argument>
+                 <argument name="dataSource" xsi:type="object">BDC\SimpleNews\Model\Resource\News\Collection</argument>
+                 <argument name="default_sort" xsi:type="string">id</argument>
+                 <argument name="default_dir" xsi:type="string">desc</argument>
+                 <argument name="save_parameters_in_session" xsi:type="boolean">true</argument>
+                 <argument name="use_ajax" xsi:type="boolean">true</argument>
+                 <argument name="grid_url" xsi:type="url" path="*/*/grid">
+                     <param name="_current">1</param>
+                 </argument>
+             </arguments>
+                <block class="Magento\Backend\Block\Widget\Grid\Massaction"
+                    name="bdc_simplenews_news.grid.massaction" as="grid.massaction">
+                    <arguments>
+                        <argument name="massaction_id_field" xsi:type="string">id</argument>
+                        <argument name="form_field_name" xsi:type="string">news</argument>
+                        <argument name="options" xsi:type="array">
+                            <item name="delete" xsi:type="array">
+                                <item name="label" xsi:type="string" translate="true">Delete</item>
+                                <item name="url" xsi:type="string">*/*/massDelete</item>
+                                <item name="confirm" xsi:type="string" translate="true">Are you sure you want to delete?</item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet"
+                    name="bdc_simplenews_news.grid.columnSet" as="grid.columnSet">
+                    <arguments>
+                        <argument name="rowUrl" xsi:type="array">
+                            <item name="path" xsi:type="string">*/*/edit</item>
+                            <item name="extraParamsTemplate" xsi:type="array">
+                                <item name="id" xsi:type="string">getId</item>
+                            </item>
+                        </argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">ID</argument>
+                            <argument name="type" xsi:type="string">number</argument>
+                            <argument name="id" xsi:type="string">id</argument>
+                            <argument name="index" xsi:type="string">id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="title">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Title</argument>
+                            <argument name="index" xsi:type="string">title</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="summary">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Summary</argument>
+                            <argument name="index" xsi:type="string">summary</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="status">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Status</argument>
+                            <argument name="index" xsi:type="string">status</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="options" xsi:type="options" model="BDC\SimpleNews\Model\System\Config\Status"/>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="action" acl="BDC_SimpleNews::manage_news">
+                        <arguments>
+                            <argument name="id" xsi:type="string">action</argument>
+                            <argument name="header" xsi:type="string" translate="true">Action</argument>
+                            <argument name="type" xsi:type="string">action</argument>
+                            <argument name="getter" xsi:type="string">getId</argument>
+                            <argument name="filter" xsi:type="boolean">false</argument>
+                            <argument name="sortable" xsi:type="boolean">false</argument>
+                            <argument name="index" xsi:type="string">stores</argument>
+                            <argument name="is_system" xsi:type="boolean">true</argument>
+                            <argument name="actions" xsi:type="array">
+                                <item name="view_action" xsi:type="array">
+                                    <item name="caption" xsi:type="string" translate="true">Edit</item>
+                                    <item name="url" xsi:type="array">
+                                        <item name="base" xsi:type="string">*/*/edit</item>
+                                    </item>
+                                    <item name="field" xsi:type="string">id</item>
+                                </item>
+                            </argument>
+                            <argument name="header_css_class" xsi:type="string">col-actions</argument>
+                            <argument name="column_css_class" xsi:type="string">col-actions</argument>
+                        </arguments>
+                    </block>
+                </block>
+         </block>
+      </referenceBlock>
+    </body>
+</page>
+
 ```
 
 
@@ -644,6 +885,15 @@ Create file: app/code/BDC/SimpleNews/etc/adminhtml/menu.xml (Purpose: The menu i
 
 - Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_grid.xml (Purpose: This file is used to declare the content of grid when you use ajax to reload the grid) and insert this following code into it:
 ```
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/layout_generic.xsd">
+    <update handle="formkey" />
+    <update handle="simplenews_news_grid_block" />
+    <container name="root">
+        <block class="Magento\Backend\Block\Widget\Grid\Container" name="bdc_simplenews_news.grid.container" template="Magento_Backend::widget/grid/container/empty.phtml"/>
+    </container>
+</page>
+
 ```
 
 
@@ -755,7 +1005,7 @@ Create file: app/code/BDC/SimpleNews/etc/adminhtml/menu.xml (Purpose: The menu i
 
 
 
-## Part C : News Module for Front End
+## Part C : News Module for  Front End
 
 ***
 
