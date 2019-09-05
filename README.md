@@ -36,7 +36,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 ## Magento 2 SimpleNews Module Step By Step (BDCrops)
 
-###Part 1: New Module for Front End
+## Part 1: New Module for Basic
 - Step 2.1: Create a directory for the module like above format.
 - Step 2.2: Declare module by using configuration file module.xml
 - Step 2.3: Register module by registration.php
@@ -45,6 +45,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 - Step 2.6: Enable the module
 - Step 2.7: Develop data and schema patches (Insert data Installing and upgrading data)
 - Step 2.8: Create Model News for business Logic
+## Part 2: News Module for Front End
 - Step 2.9: Create Model's ResourceModel to handle real database transaction
 - Step 2.10: Create Model's collection class
 - Step 2.11: Setup the frontend route
@@ -98,6 +99,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 
 
+## Part 1: New Module for Basic
 
 ### Step 2.1: Create a directory for the module like above format.
 
@@ -339,6 +341,8 @@ class News extends AbstractModel{
 }
 
 ```
+
+## Part 2: New Module for Front End
 
 ### Step 2.9: Create Model's ResourceModel to handle real database transaction
 
@@ -590,26 +594,117 @@ xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
 </config>
 
 ```
+## Part 1: News Module for Front End
 
-- Step 2.17:  Create a Helper Data class
+### Step 2.17:  Create a Helper Data class
 
-- Step 2.18:  Create Layout file for page handle
-- Step 2.19:  Create another layout file by update the previous layout
-- Step 2.20:  Create Block NewList file
-- Step 2.21:  Create frontend template file list.phtml
-- Step 2.22:  Create an abstract class by extending Magento Core Action class
-- Step 2.23:  Update Index Controller by extends the abstract class 'New.php'
-- Step 2.24:  Create a layout file for news detail page
-- Step 2.25:  Create News view action
-- Step 2.26:  create view news block
-- Step 2.27:  Create news view template file
-- Step 2.28:  Create CSS file for styling the frontend Page
-- Step 2.29:  Create Latest New Block
-- Step 2.30:  Create a Block for positioning the latest news: Left or Right
-- Step 2.31:  Create the template file for Latest News
-- Step 2.32:  Frontend view for the module
+- Create file: app/code/BDC/SimpleNews/Helper/Data.php and insert this following code into it:
 
-## Part 2: News Module for Back End
+```
+```
+
+
+### Step 2.18:  Create Layout file for page handle
+
+- Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_news.xml (we will use this layout file as default in our module) and insert this following code into it:
+```
+```
+
+### Step 2.19:  Create another layout file by update the previous layout
+- Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_index_index.xml (this file will declare blocks for using in the news list page) and insert this following code into it:
+```
+```
+
+
+### Step 2.20:  Create Block NewList file
+
+- Create file: app/code/BDC/SimpleNews/Block/NewsList.php (this file will set the news data collection and declare pagination for them) and insert this following code into it:
+```
+```
+
+### Step 2.21:  Create frontend template file list.phtml
+
+- Create file: app/code/BDC/SimpleNews/view/frontend/templates/list.phtml (this file will set the news data collection and declare pagination for them) and insert this following code into it:
+```
+```
+
+
+### Step 2.22:  Create an abstract class by extending Magento Core Action class
+
+- Create file: app/code/BDC/SimpleNews/Controller/News.php and insert this following code into it:
+```
+
+```
+
+
+### Step 2.23:  Update Index Controller by extends the abstract class 'New.php'
+
+- Create/Edit file: app/code/BDC/SimpleNews/Controller/Index/Index.php and insert this following code into it:
+
+```
+```
+
+
+### Step 2.24:  Create a layout file for news detail page
+- Create file: app/code/BDC/SimpleNews/view/frontend/web/css/style.css and insert this following code into it:
+```
+```
+
+### Step 2.25:  Create News view action
+
+- Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_index_view.xml and insert this following code into it:
+```
+```
+
+
+### Step 2.26:  create view news block
+
+- Create file: app/code/BDC/SimpleNews/Controller/Index/View.php and insert this following code into it:
+
+```
+```
+
+
+### Step 2.27:  Create news view template file
+
+- Create file: app/code/BDC/SimpleNews/Block/View.php (this file will get the news data) and insert this following code into it:
+```
+```
+
+
+### Step 2.28:  Create CSS file for styling the frontend Page
+
+- Create file: app/code/BDC/SimpleNews/view/frontend/templates/view.phtml (this file will set the news data collection and declare pagination for them) and insert this following code into it
+
+
+### Step 2.29:  Create Latest New Block
+
+- Open file: app/code/BDC/SimpleNews/view/frontend/layout/news_news.xml (we will add 2 blocks to the page body) and insert this following code into it:
+
+
+### Step 2.30:  Create a Block for positioning the latest news: Left or Right
+- Create file: app/code/BDC/SimpleNews/Block/Lastest.php (this file will get the news data) and insert this following code into it:
+
+### Step 2.31:  Create the template file for Latest News
+
+- Create file: app/code/BDC/SimpleNews/Block/Lastest/Left.php (This file will check the left position and set template file) and insert this following code into it:
+
+```
+```
+
+- Create file: app/code/BDC/SimpleNews/Block/Lastest/Right.php (This file will check the right position and set template file) and insert this following code into it:
+
+```
+```
+
+
+### Step 2.32:  Frontend view for the module
+- Create file: app/code/BDC/SimpleNews/view/frontend/templates/lastest.phtml (This file will display 5 lastest news on the page) and insert this following code into it:
+
+
+
+
+## Part 3: News Module for Back End
 
 ###Step 2.33:  Create the menu for Magento backend
 

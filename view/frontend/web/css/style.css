@@ -1,0 +1,34 @@
+.simplenews > ul {
+   list-style: none;
+   padding: 0;
+}
+.simplenews > ul li {
+   padding: 10px 5px;
+   margin: 0;
+   background-color: #fff;
+   border-bottom: 1px #c4c1bc solid;
+   display: inline-block;
+   width: 100%;
+}
+.simplenews > ul li:last-child {
+   border-bottom: none;
+}
+.simplenews-list {
+   float: left;
+   position: relative;
+   margin-left: 10px;
+   width: 100%;
+}
+.simplenews-list a.news-title {
+   font-weight: bold;
+}
+.simplenews-list a.news-title:hover {
+   text-decoration: none;
+}
+.block-simplenews .block-title {
+   margin: 0px 0px 20px;
+}
+.block-simplenews-heading {
+   font-size: 18px;
+   font-weight: 300;
+}

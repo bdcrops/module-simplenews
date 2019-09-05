@@ -14,12 +14,10 @@
         <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
         <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
         <column xsi:type="varchar" name="summary" nullable="false" length="255" comment="Summary"/>
-        <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Descrition"/>
+        <column xsi:type="text" name="description" nullable="false" comment="Descrition"/>
         <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created Datetime"/>
         <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated Datetime"/>
-        <column xsi:type="smallint" name="status"  padding="2" unsigned="false" nullable="false" comment="Status"/>
+        <column xsi:type="smallint" name="status"  padding="2" unsigned="true" nullable="false"  default="0" comment="Status"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">   <column name="id"/> </constraint>
     </table>
-
-     
-</schema>
+ </schema>
