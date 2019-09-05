@@ -12,7 +12,7 @@
 ## Goal:
 
 - Develop Full-fledged Module Step by Step .
-- Magento 2 Certified [Associate](mcad.md) / Professional Developer exam Preparation hands on practice.
+- Magento 2 Certified [Associate](mcad.md) / [Professional](mcpd.md) Developer exam Preparation hands on practice.
 
 
 
