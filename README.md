@@ -23,7 +23,7 @@
 ## Part A : News Module for Basic
 - Step 2A.1: Create a directory for the module like above format.
 - Step 2A.2: Declare module by using configuration file module.xml
-- Step 2A.3: Register module by registration.php
+- Step 2A.3: Register module by registration.php & composer.json
 - Step 2A.4: Configure declarative schema (create table etc/db_schema.xml schema Installation file)
 - Step 2A.5: Schema whitelist (etc/db_schema_whitelist.json)
 - Step 2A.6: Enable the module
@@ -121,6 +121,37 @@ Create  app/code/BDC/SimpleNews/registration.php and insert this following code 
     __DIR__
 );
 ~~~
+
+Create  app/code/BDC/SimpleNews/composer.json  and insert this following code into it:
+
+```
+{
+    "name": "bdc/module-simplenews",
+    "description": "BDCrops SimpleNews module for Magento 2 extensions.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+	"authors": [{
+            "name": "Abdul Matin",
+            "email": "matinict@gmail.com",
+			      "company": "BDCrops Inc"
+        }
+    ],
+	"homepage": "https://www.bdcrops.com",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "BDC\\SimpleNews\\": ""
+        }
+    }
+}
+
+```
 
 
 ### Step 2A.4: Configure declarative schema (create table  schema Installation file)
