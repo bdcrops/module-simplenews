@@ -1739,7 +1739,7 @@ class MassDelete extends News
 
 ![addNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/addNews.png)
 
- 
+
 
 
 
@@ -2019,6 +2019,9 @@ class Index extends News
 
 ```
 
+![frontEndNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/frontEndNews.png)
+
+
 ### Step 2C.8:  Create News view action
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_index_view.xml and insert this following code into it:
@@ -2168,6 +2171,8 @@ class View extends News
 </div>
 
 ```
+
+![FrontendNewsDetails](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/FrontendNewsDetails.png)
 
 
 ### Step 2C.12:  Create Latest New Block
@@ -2342,12 +2347,7 @@ class Right extends Lastest
 
 ```
 
-### Step 2C.16: Final Frontend view for the module News Page & News Details Page with latestnews block
-
-![frontEndNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/frontEndNews.png)
-
-![FrontendNewsDetails](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/FrontendNewsDetails.png)
-
+ 
 
 
 
