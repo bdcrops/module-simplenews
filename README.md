@@ -757,7 +757,7 @@ Create file: app/code/BDC/SimpleNews/etc/adminhtml/menu.xml (Purpose: The menu i
 
 ## Part C : News Module for Front End
 
-
+***
 
 ### Step 2C.1:  Create Layout file for page handle
 
