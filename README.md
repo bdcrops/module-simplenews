@@ -122,6 +122,8 @@ Create  app/code/BDC/SimpleNews/registration.php and insert this following code 
 );
 ~~~
 
+Modules in vendor folder would update using composer And all the modules in app/code would not be updated through composer That's why when you need to override any module you add it in app/code
+
 Create  app/code/BDC/SimpleNews/composer.json  and insert this following code into it:
 
 ```

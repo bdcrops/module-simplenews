@@ -20,11 +20,11 @@
 
       Describe module architecture.
 
-      What are the significant steps to add a new module?
+      What are the significant steps to add a new module? [Step 2A.2-3]
 
-      What are the different Composer package types?
+      What are the different Composer package types? [Step 2A.3]
 
-      When would you place a module in the app/code folder versus another location?
+      When would you place a module in the app/code folder versus another location? [Step 2A.3]
 
 - 1.2 Describe the Magento directory structure
 
