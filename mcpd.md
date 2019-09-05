@@ -27,14 +27,14 @@
 - 1.1 Describe Magento’s module-based architecture
 
       Describe module limitations.
-      How do different modules interact with each other? What side effects can come from this
-      interaction?
+      How do different modules interact with each other?
+      What side effects can come from this interaction?
 
 - 1.2 Describe Magento’s directory structure
 
       Determine how to locate different types of files in Magento.
-      Where are the files containing JavaScript, HTML, and
-      PHP located? How do you find the files responsible for certain functionality?
+      Where are the files containing JavaScript, HTML, and PHP located?
+      How do you find the files responsible for certain functionality?
 
 - 1.3 Utilize configuration XML and variables scope
 
@@ -95,8 +95,9 @@
       How would you design a customization that should act on every request
       and capture output data regardless of the controller?
       Describe how to use Magento modes.
-      What are pros and cons of using developer mode/production mode? When do
-      you use default mode? How do you enable/disable maintenance mode?
+      What are pros and cons of using developer mode/production mode?
+      When do you use default mode?
+      How do you enable/disable maintenance mode?
       Describe front controller responsibilities.
       In which situations will the front controller be involved in execution, and
       how can it be used in the scope of customizations?
