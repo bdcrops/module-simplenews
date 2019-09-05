@@ -703,6 +703,9 @@ xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
 
 ```
 
+![MenuLinkAdmin](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/adminhtmlMenu.png)
+
+
 ### Step 2B.7:  Create backend route file
 
 - Create file: app/code/BDC/SimpleNews/etc/adminhtml/routes.xml (Purpose: The router of your module for backend will be declared here) and insert this following code into it:
@@ -1742,8 +1745,12 @@ class MassDelete extends News
 
 ### Step 2B.29:  Backend Menu and Grid List
 
-```
-```
+![allNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/allNews.png)
+
+![addNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/addNews.png)
+
+![EditNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/EditNews.png)
+**
 
 
 
