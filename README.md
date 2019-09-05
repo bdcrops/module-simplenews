@@ -901,6 +901,28 @@ Framework/Acl/etc/acl.xsd">
 
 - Create file: app/code/BDC/SimpleNews/Model/System/Config/Status.php (Purpose: This file is used to get News status options) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Model\System\Config;
+
+use Magento\Framework\Option\ArrayInterface;
+
+class Status implements ArrayInterface {
+    const ENABLED  = 1;
+    const DISABLED = 0;
+    /**
+     * @return array
+     */
+    public function toOptionArray(){
+        $options = [
+            self::ENABLED => __('Enabled'),
+            self::DISABLED => __('Disabled')
+        ];
+
+        return $options;
+    }
+}
+
 
 ```
 
@@ -908,6 +930,28 @@ Framework/Acl/etc/acl.xsd">
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News.php (Purpose: This is the block file of grid container) and insert this following code into it:
 
 ```
+<?php
+
+namespace BDC\SimpleNews\Model\System\Config;
+
+use Magento\Framework\Option\ArrayInterface;
+
+class Status implements ArrayInterface {
+    const ENABLED  = 1;
+    const DISABLED = 0;
+    /**
+     * @return array
+     */
+    public function toOptionArray(){
+        $options = [
+            self::ENABLED => __('Enabled'),
+            self::DISABLED => __('Disabled')
+        ];
+
+        return $options;
+    }
+}
+
 ```
 
 
@@ -915,12 +959,55 @@ Framework/Acl/etc/acl.xsd">
 ### Step 2B.14:  Create Grid block file for Ajax load
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Grid.php (Purpose: This is the block file of grid) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Model\System\Config;
+
+use Magento\Framework\Option\ArrayInterface;
+
+class Status implements ArrayInterface {
+    const ENABLED  = 1;
+    const DISABLED = 0;
+    /**
+     * @return array
+     */
+    public function toOptionArray(){
+        $options = [
+            self::ENABLED => __('Enabled'),
+            self::DISABLED => __('Disabled')
+        ];
+
+        return $options;
+    }
+}
+
 ```
 
 ### Step 2B.15:  Create a backend controller file for child action class to extend
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News.php (Purpose: I use this file as a root controller and the action classes will be extended this controller) and insert this following code into it:
+
 ```
+<?php
+
+namespace BDC\SimpleNews\Block\Adminhtml;
+
+use Magento\Backend\Block\Widget\Grid\Container;
+
+class News extends Container{
+   /**
+     * Constructor
+     *
+     * @return void
+     */
+   protected function _construct(){
+        $this->_controller = 'adminhtml_news';
+        $this->_blockGroup = 'BDC_SimpleNews';
+        $this->_headerText = __('Manage News');
+        $this->_addButtonLabel = __('Add News');
+        parent::_construct();
+    }
+}
 
 ```
 
@@ -928,18 +1015,72 @@ Framework/Acl/etc/acl.xsd">
 ### Step 2B.16:  Create Backend Action file Index.php
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Index.php (Purpose: This is the index action) and insert this following code into it:
+
 ```
+<?php
+
+namespace BDC\SimpleNews\Block\Adminhtml;
+
+use Magento\Backend\Block\Widget\Grid\Container;
+
+class News extends Container{
+   /**
+     * Constructor
+     *
+     * @return void
+     */
+   protected function _construct(){
+        $this->_controller = 'adminhtml_news';
+        $this->_blockGroup = 'BDC_SimpleNews';
+        $this->_headerText = __('Manage News');
+        $this->_addButtonLabel = __('Add News');
+        parent::_construct();
+    }
+}
+
 ```
 
 
 ### Step 2B.17:  Create another Action for ajax
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Grid.php (Purpose: This is the grid action which is used for loading grid by ajax) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Controller\Adminhtml\News;
+
+use BDC\SimpleNews\Controller\Adminhtml\News;
+
+class Grid extends News
+{
+   /**
+     * @return void
+     */
+   public function execute()
+   {
+      return $this->_resultPageFactory->create();
+   }
+}
+
 ```
 
 ### Step 2B.18:  Create layout file simplenews_news_edit.xml for edit form
 - Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_edit.xml (Purpose: This file is used to declare blocks which used on editing page) and insert this following code into it:
 ```
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <block class="BDC\SimpleNews\Block\Adminhtml\News\Edit\Tabs"
+                name="bdc_simplenews_news.edit.tabs"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="BDC\SimpleNews\Block\Adminhtml\News\Edit"
+                name="bdc_simplenews_news.edit"/>
+        </referenceContainer>
+    </body>
+</page>
 
 ```
 
@@ -947,6 +1088,13 @@ Framework/Acl/etc/acl.xsd">
 
 - Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_create.xml and insert this following code into it:
 ```
+<?xml version="1.0"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="../../../../../Magento/Core/etc/layout_single.xsd">
+    <update handle="simplenews_news_edit"/>
+</layout>
+
 ```
 
 
@@ -954,6 +1102,107 @@ Framework/Acl/etc/acl.xsd">
 
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit.php (Purpose: This is the block file of form container) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Block\Adminhtml\News;
+
+use Magento\Backend\Block\Widget\Form\Container;
+use Magento\Backend\Block\Widget\Context;
+use Magento\Framework\Registry;
+
+class Edit extends Container
+{
+   /**
+     * Core registry
+     *
+     * @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry = null;
+
+    /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        array $data = []
+    ) {
+        $this->_coreRegistry = $registry;
+        parent::__construct($context, $data);
+    }
+
+    /**
+     * Class constructor
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_objectId = 'id';
+        $this->_controller = 'adminhtml_news';
+        $this->_blockGroup = 'BDC_SimpleNews';
+
+        parent::_construct();
+
+        $this->buttonList->update('save', 'label', __('Save'));
+        $this->buttonList->add(
+            'saveandcontinue',
+            [
+                'label' => __('Save and Continue Edit'),
+                'class' => 'save',
+                'data_attribute' => [
+                    'mage-init' => [
+                        'button' => [
+                            'event' => 'saveAndContinueEdit',
+                            'target' => '#edit_form'
+                        ]
+                    ]
+                ]
+            ],
+            -100
+        );
+        $this->buttonList->update('delete', 'label', __('Delete'));
+    }
+
+    /**
+     * Retrieve text for header element depending on loaded news
+     *
+     * @return string
+     */
+    public function getHeaderText()
+    {
+        $newsRegistry = $this->_coreRegistry->registry('simplenews_news');
+        if ($newsRegistry->getId()) {
+            $newsTitle = $this->escapeHtml($newsRegistry->getTitle());
+            return __("Edit News '%1'", $newsTitle);
+        } else {
+            return __('Add News');
+        }
+    }
+
+    /**
+     * Prepare layout
+     *
+     * @return \Magento\Framework\View\Element\AbstractBlock
+     */
+    protected function _prepareLayout()
+    {
+        $this->_formScripts[] = "
+            function toggleEditor() {
+                if (tinyMCE.getInstanceById('post_content') == null) {
+                    tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                } else {
+                    tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                }
+            };
+        ";
+
+        return parent::_prepareLayout();
+    }
+}
+
 ```
 
 
@@ -961,6 +1210,106 @@ Framework/Acl/etc/acl.xsd">
 
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit/Tabs.php (Purpose: This file will declare tabs at left column of the editing page) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Block\Adminhtml\News;
+
+use Magento\Backend\Block\Widget\Form\Container;
+use Magento\Backend\Block\Widget\Context;
+use Magento\Framework\Registry;
+
+class Edit extends Container
+{
+   /**
+     * Core registry
+     *
+     * @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry = null;
+
+    /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        array $data = []
+    ) {
+        $this->_coreRegistry = $registry;
+        parent::__construct($context, $data);
+    }
+
+    /**
+     * Class constructor
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_objectId = 'id';
+        $this->_controller = 'adminhtml_news';
+        $this->_blockGroup = 'BDC_SimpleNews';
+
+        parent::_construct();
+
+        $this->buttonList->update('save', 'label', __('Save'));
+        $this->buttonList->add(
+            'saveandcontinue',
+            [
+                'label' => __('Save and Continue Edit'),
+                'class' => 'save',
+                'data_attribute' => [
+                    'mage-init' => [
+                        'button' => [
+                            'event' => 'saveAndContinueEdit',
+                            'target' => '#edit_form'
+                        ]
+                    ]
+                ]
+            ],
+            -100
+        );
+        $this->buttonList->update('delete', 'label', __('Delete'));
+    }
+
+    /**
+     * Retrieve text for header element depending on loaded news
+     *
+     * @return string
+     */
+    public function getHeaderText()
+    {
+        $newsRegistry = $this->_coreRegistry->registry('simplenews_news');
+        if ($newsRegistry->getId()) {
+            $newsTitle = $this->escapeHtml($newsRegistry->getTitle());
+            return __("Edit News '%1'", $newsTitle);
+        } else {
+            return __('Add News');
+        }
+    }
+
+    /**
+     * Prepare layout
+     *
+     * @return \Magento\Framework\View\Element\AbstractBlock
+     */
+    protected function _prepareLayout()
+    {
+        $this->_formScripts[] = "
+            function toggleEditor() {
+                if (tinyMCE.getInstanceById('post_content') == null) {
+                    tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                } else {
+                    tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                }
+            };
+        ";
+
+        return parent::_prepareLayout();
+    }
+}
 
 ```
 
@@ -968,36 +1317,427 @@ Framework/Acl/etc/acl.xsd">
 
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit/Form.php (Purpose: This file will declare form information) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Block\Adminhtml\News;
+
+use Magento\Backend\Block\Widget\Form\Container;
+use Magento\Backend\Block\Widget\Context;
+use Magento\Framework\Registry;
+
+class Edit extends Container
+{
+   /**
+     * Core registry
+     *
+     * @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry = null;
+
+    /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        array $data = []
+    ) {
+        $this->_coreRegistry = $registry;
+        parent::__construct($context, $data);
+    }
+
+    /**
+     * Class constructor
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_objectId = 'id';
+        $this->_controller = 'adminhtml_news';
+        $this->_blockGroup = 'BDC_SimpleNews';
+
+        parent::_construct();
+
+        $this->buttonList->update('save', 'label', __('Save'));
+        $this->buttonList->add(
+            'saveandcontinue',
+            [
+                'label' => __('Save and Continue Edit'),
+                'class' => 'save',
+                'data_attribute' => [
+                    'mage-init' => [
+                        'button' => [
+                            'event' => 'saveAndContinueEdit',
+                            'target' => '#edit_form'
+                        ]
+                    ]
+                ]
+            ],
+            -100
+        );
+        $this->buttonList->update('delete', 'label', __('Delete'));
+    }
+
+    /**
+     * Retrieve text for header element depending on loaded news
+     *
+     * @return string
+     */
+    public function getHeaderText()
+    {
+        $newsRegistry = $this->_coreRegistry->registry('simplenews_news');
+        if ($newsRegistry->getId()) {
+            $newsTitle = $this->escapeHtml($newsRegistry->getTitle());
+            return __("Edit News '%1'", $newsTitle);
+        } else {
+            return __('Add News');
+        }
+    }
+
+    /**
+     * Prepare layout
+     *
+     * @return \Magento\Framework\View\Element\AbstractBlock
+     */
+    protected function _prepareLayout()
+    {
+        $this->_formScripts[] = "
+            function toggleEditor() {
+                if (tinyMCE.getInstanceById('post_content') == null) {
+                    tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                } else {
+                    tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                }
+            };
+        ";
+
+        return parent::_prepareLayout();
+    }
+}
 
 ```
 
 ### Step 2B.23:  Create a block to declare the fields for the edit form
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit/Tab/Info.php (Purpose: This file will declare fields in form) and insert this following code into it:
 
+```
+<?php
+
+namespace BDC\SimpleNews\Block\Adminhtml\News;
+
+use Magento\Backend\Block\Widget\Form\Container;
+use Magento\Backend\Block\Widget\Context;
+use Magento\Framework\Registry;
+
+class Edit extends Container
+{
+   /**
+     * Core registry
+     *
+     * @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry = null;
+
+    /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        array $data = []
+    ) {
+        $this->_coreRegistry = $registry;
+        parent::__construct($context, $data);
+    }
+
+    /**
+     * Class constructor
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_objectId = 'id';
+        $this->_controller = 'adminhtml_news';
+        $this->_blockGroup = 'BDC_SimpleNews';
+
+        parent::_construct();
+
+        $this->buttonList->update('save', 'label', __('Save'));
+        $this->buttonList->add(
+            'saveandcontinue',
+            [
+                'label' => __('Save and Continue Edit'),
+                'class' => 'save',
+                'data_attribute' => [
+                    'mage-init' => [
+                        'button' => [
+                            'event' => 'saveAndContinueEdit',
+                            'target' => '#edit_form'
+                        ]
+                    ]
+                ]
+            ],
+            -100
+        );
+        $this->buttonList->update('delete', 'label', __('Delete'));
+    }
+
+    /**
+     * Retrieve text for header element depending on loaded news
+     *
+     * @return string
+     */
+    public function getHeaderText()
+    {
+        $newsRegistry = $this->_coreRegistry->registry('simplenews_news');
+        if ($newsRegistry->getId()) {
+            $newsTitle = $this->escapeHtml($newsRegistry->getTitle());
+            return __("Edit News '%1'", $newsTitle);
+        } else {
+            return __('Add News');
+        }
+    }
+
+    /**
+     * Prepare layout
+     *
+     * @return \Magento\Framework\View\Element\AbstractBlock
+     */
+    protected function _prepareLayout()
+    {
+        $this->_formScripts[] = "
+            function toggleEditor() {
+                if (tinyMCE.getInstanceById('post_content') == null) {
+                    tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                } else {
+                    tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                }
+            };
+        ";
+
+        return parent::_prepareLayout();
+    }
+}
+
+```
+
 
 ### Step 2B.24:  Create a controller action for create a new News
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/NewAction.php (Purpose: This is the new action) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Controller\Adminhtml\News;
+
+use BDC\SimpleNews\Controller\Adminhtml\News;
+
+class NewAction extends News
+{
+   /**
+     * Create new news action
+     *
+     * @return void
+     */
+   public function execute()
+   {
+      $this->_forward('edit');
+   }
+}
+
 ```
 
 ### Step 2B.25:  Create Edit Action for the Edit form
   - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Edit.php (Purpose: This is the edit action for editing news page) and insert this following code into it:
+
+  ```
+  <?php
+
+  namespace BDC\SimpleNews\Controller\Adminhtml\News;
+
+  use BDC\SimpleNews\Controller\Adminhtml\News;
+
+  class Edit extends News
+  {
+     /**
+       * @return void
+       */
+     public function execute()
+     {
+        $newsId = $this->getRequest()->getParam('id');
+          /** @var \BDC\SimpleNews\Model\News $model */
+          $model = $this->_newsFactory->create();
+
+          if ($newsId) {
+              $model->load($newsId);
+              if (!$model->getId()) {
+                  $this->messageManager->addError(__('This news no longer exists.'));
+                  $this->_redirect('*/*/');
+                  return;
+              }
+          }
+
+          // Restore previously entered form data from session
+          $data = $this->_session->getNewsData(true);
+          if (!empty($data)) {
+              $model->setData($data);
+          }
+          $this->_coreRegistry->register('simplenews_news', $model);
+
+          /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+          $resultPage = $this->_resultPageFactory->create();
+          $resultPage->setActiveMenu('BDC_SimpleNews::main_menu');
+          $resultPage->getConfig()->getTitle()->prepend(__('Simple News'));
+
+          return $resultPage;
+     }
+  }
+
+  ```
 
 
 ### Step 2B.26:  A Save Action for the edit form
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Save.php (Purpose: This is the save action) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Controller\Adminhtml\News;
+
+use BDC\SimpleNews\Controller\Adminhtml\News;
+
+class Edit extends News
+{
+   /**
+     * @return void
+     */
+   public function execute()
+   {
+      $newsId = $this->getRequest()->getParam('id');
+        /** @var \BDC\SimpleNews\Model\News $model */
+        $model = $this->_newsFactory->create();
+
+        if ($newsId) {
+            $model->load($newsId);
+            if (!$model->getId()) {
+                $this->messageManager->addError(__('This news no longer exists.'));
+                $this->_redirect('*/*/');
+                return;
+            }
+        }
+
+        // Restore previously entered form data from session
+        $data = $this->_session->getNewsData(true);
+        if (!empty($data)) {
+            $model->setData($data);
+        }
+        $this->_coreRegistry->register('simplenews_news', $model);
+
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $resultPage = $this->_resultPageFactory->create();
+        $resultPage->setActiveMenu('BDC_SimpleNews::main_menu');
+        $resultPage->getConfig()->getTitle()->prepend(__('Simple News'));
+
+        return $resultPage;
+   }
+}
+
 ```
 
 ### Step 2B.27:  Delete Action for the edit Form
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Delete.php (Purpose: This is the delete action) and insert this following code into it:
 
+```
+<?php
+
+namespace BDC\SimpleNews\Controller\Adminhtml\News;
+
+use BDC\SimpleNews\Controller\Adminhtml\News;
+
+class Delete extends News
+{
+   /**
+    * @return void
+    */
+   public function execute()
+   {
+      $newsId = (int) $this->getRequest()->getParam('id');
+
+      if ($newsId) {
+         /** @var $newsModel \Mageworld\SimpleNews\Model\News */
+         $newsModel = $this->_newsFactory->create();
+         $newsModel->load($newsId);
+
+         // Check this news exists or not
+         if (!$newsModel->getId()) {
+            $this->messageManager->addError(__('This news no longer exists.'));
+         } else {
+               try {
+                  // Delete news
+                  $newsModel->delete();
+                  $this->messageManager->addSuccess(__('The news has been deleted.'));
+
+                  // Redirect to grid page
+                  $this->_redirect('*/*/');
+                  return;
+               } catch (\Exception $e) {
+                   $this->messageManager->addError($e->getMessage());
+                   $this->_redirect('*/*/edit', ['id' => $newsModel->getId()]);
+               }
+            }
+      }
+   }
+}
+
+```
 
 ### Step 2B.28:  The mass delete action the grid list
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/MassDelete.php (Purpose: This file is used for deleting multi items on grid) and insert this following code into it:
+```
+<?php
+
+namespace BDC\SimpleNews\Controller\Adminhtml\News;
+
+use BDC\SimpleNews\Controller\Adminhtml\News;
+
+class MassDelete extends News
+{
+   /**
+    * @return void
+    */
+   public function execute()
+   {
+      // Get IDs of the selected news
+      $newsIds = $this->getRequest()->getParam('news');
+
+        foreach ($newsIds as $newsId) {
+            try {
+               /** @var $newsModel \Mageworld\SimpleNews\Model\News */
+                $newsModel = $this->_newsFactory->create();
+                $newsModel->load($newsId)->delete();
+            } catch (\Exception $e) {
+                $this->messageManager->addError($e->getMessage());
+            }
+        }
+
+        if (count($newsIds)) {
+            $this->messageManager->addSuccess(
+                __('A total of %1 record(s) were deleted.', count($newsIds))
+            );
+        }
+
+        $this->_redirect('*/*/index');
+   }
+}
+
+```
 
 
 ### Step 2B.29:  Backend Menu and Grid List
