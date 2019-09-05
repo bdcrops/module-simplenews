@@ -206,9 +206,11 @@
 
 - 4.2 Demonstrate an ability to use declarative schema
 
-      Demonstrate use of schema. How to manipulate columns and keys using declarative schema?
+      Demonstrate use of schema.
+      How to manipulate columns and keys using declarative schema?
       What is the purpose of whitelisting?
-      How to use Data and Schema patches? How to manage dependencies between patch files?
+      How to use Data and Schema patches?
+      How to manage dependencies between patch files?
 
 
 ### 5 Using the Entity-Attribute-Value (EAV) Model
@@ -379,21 +381,21 @@
 
 ### 10 Customer Management
 
-- 10.1 Demonstrate ability to customize My Account
+#### 10.1 Demonstrate ability to customize My Account
 
-      Describe how to customize the “My Account” section.
-      How do you add a menu item?
-      How would you customize the “Order History” page?
+- Describe how to customize the “My Account” section.
+- How do you add a menu item?
+- How would you customize the “Order History” page?
 
-- 10.2 Demonstrate ability to customize customer functionality
+#### 10.2 Demonstrate ability to customize customer functionality
 
-      Describe how to add or modify customer attributes.
-      Describe how to extend the customer entity.
-      How would you extend the customer entity using the extension attributes mechanism?
-      Describe how to customize the customer address.
-      How would you add another field into the customer address?
-      Describe customer groups and their role in different business processes.
-      What is the role of customer groups?
-      What functionality do they affect?
-      Describe Magento functionality related to VAT.
-      How do you customize VAT functionality?
+-  Describe how to add or modify customer attributes.
+-  Describe how to extend the customer entity.
+-  How would you extend the customer entity using the extension attributes mechanism?
+-  Describe how to customize the customer address.
+-  How would you add another field into the customer address?
+-  Describe customer groups and their role in different business processes.
+-  What is the role of customer groups?
+-  What functionality do they affect?
+-  Describe Magento functionality related to VAT.
+-  How do you customize VAT functionality?
