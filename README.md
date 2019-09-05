@@ -36,7 +36,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 ## Magento 2 SimpleNews Module Step By Step (BDCrops)
 
-## Part 1: New Module for Basic
+## Part 1: News Module for Basic
 - Step 2.1: Create a directory for the module like above format.
 - Step 2.2: Declare module by using configuration file module.xml
 - Step 2.3: Register module by registration.php
@@ -45,9 +45,9 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 - Step 2.6: Enable the module
 - Step 2.7: Develop data and schema patches (Insert data Installing and upgrading data)
 - Step 2.8: Create Model News for business Logic
-## Part 2: News Module for Front End
 - Step 2.9: Create Model's ResourceModel to handle real database transaction
 - Step 2.10: Create Model's collection class
+## Part 2: News Module for Front End
 - Step 2.11: Setup the frontend route
 - Step 2.12: Create IndexController
 - Step 2.13: Setup Module's backend configuration
@@ -70,7 +70,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 - Step 2.30:  Create a Block for positioning the latest news: Left or Right
 - Step 2.31:  Create the template file for Latest News
 - Step 2.32:  Frontend view for the module
-#### Part 2: News Module for Back End
+### Part 3: News Module for Back End
 - Step 2.33:  Create the menu for Magento backend
 - Step 2.34:  Create backend route file
 - Step 2.35:  Update the acl.xml to add more roles
@@ -99,7 +99,7 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 
 
-## Part 1: New Module for Basic
+## Part 1: News Module for Basic
 
 ### Step 2.1: Create a directory for the module like above format.
 
@@ -109,12 +109,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 ### Step 2.2: Declare module by using configuration file module.xml
 
 Magento 2 looks for configuration information for each module in that module’s etc directory. We need to create folder etc and add module.xml:
-
-~~~
-app/code/BDC/SimpleNews/etc/module.xml
-~~~
-
-And the content for this file:
+ Create app/code/BDC/SimpleNews/etc/module.xml And the content for this file:
 
 ~~~ xml
 <?xml version="1.0"?>
@@ -129,12 +124,7 @@ In this file, we register a module with name `BDC_SimpleNews` and the version is
 
 All Magento 2 module must be registered in the Magento system through the magento ComponentRegistrar class. This file will be placed in module root directory.
 In this step, we need to create this file:
-
-~~~
-app/code/BDC/SimpleNews/registration.php
-~~~
-
-And it’s content for our module is:
+Create  app/code/BDC/SimpleNews/registration.php and insert this following code into it:
 
 ~~~
 \Magento\Framework\Component\ComponentRegistrar::register(
@@ -145,7 +135,9 @@ And it’s content for our module is:
 ~~~
 
 
-### Step 2.4: Configure declarative schema (create table etc/db_schema.xml schema Installation file)
+### Step 2.4: Configure declarative schema (create table  schema Installation file)
+
+Create  app/code/BDC/SimpleNews/etc/db_schema.xml &  insert this following code into it:
 
 ```
 <?xml version="1.0"?>
@@ -171,7 +163,7 @@ Note: it is recommended to generate a new whitelist for every release for the do
 
 Before running the upgrade command you need to add your schema to db_whitelist_schema.json file by running the following command.
 
-For that, you need a //etc/db_schema_whitelist.json file that will store all the content added with declarative schema. To generate this file, run:
+For that, you need a /etc/db_schema_whitelist.json file that will store all the content added with declarative schema. To generate this file, run:
 
 
 ![db_schema](https://github.com/bdcrops/BDC_Declarative/blob/master/view/adminhtml/web/images/whitelist.png)
@@ -189,7 +181,6 @@ Now, there are db_whitelist_schema.json file will be create in /vendor/module/et
 
 
 ### Step 2.6: Enable the module
-
 
 
 By finish above step, you have created an empty module. Now we will enable it in Magento environment.
@@ -342,7 +333,6 @@ class News extends AbstractModel{
 
 ```
 
-## Part 2: New Module for Front End
 
 ### Step 2.9: Create Model's ResourceModel to handle real database transaction
 
@@ -389,7 +379,7 @@ class Collection extends AbstractCollection {
 }
 
 ```
-
+## Part 2: News Module for Front End
 
 ### Step 2.11: Setup the frontend route
 
@@ -401,11 +391,8 @@ http://example.com/<router_name>/<controller_name>/<action_name>
 
 The Router is used to assign a URL to a corresponding controller and action. In this module, we need to create a route for frontend area. So we need to add this file:
 
-~~~
-app/code/BDC/SimpleNews/etc/frontend/routes.xml
-~~~
+Create  app/code/BDC/SimpleNews/etc/frontend/routes.xml and insert this following code into it:
 
-And content for this file:
 
 ~~~
 <?xml version="1.0"?>
@@ -594,7 +581,7 @@ xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
 </config>
 
 ```
-## Part 1: News Module for Front End
+
 
 ### Step 2.17:  Create a Helper Data class
 
