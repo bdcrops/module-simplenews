@@ -109,35 +109,35 @@
 - 2.2 Demonstrate the ability to create a frontend controller with different response types
 (HTML / JSON / redirect)
 
-How do you identify which module/controller corresponds to a given URL? What would you do to create a given URL?
+      How do you identify which module/controller corresponds to a given URL? What would you do to create a given URL?
 
 - 2.3 Demonstrate how to use URL rewrites for a catalog product view to a different URL
 
-    How is the user-friendly URL of a product or category defined?
+      How is the user-friendly URL of a product or category defined?
 
-    How can you change it? How do you determine which page corresponds to a given user-friendly URL?
+      How can you change it? How do you determine which page corresponds to a given user-friendly URL?
 
 
 ### 3 Customizing the Magento UI
 
 - 3.1 Demonstrate the ability to customize the Magento UI using themes
 
-    Demonstrate the ability to customize the Magento UI using themes.
+      Demonstrate the ability to customize the Magento UI using themes.
 
-    When would you create a new theme?
+      When would you create a new theme?
 
-    How do you define theme hierarchy for a project?
+      How do you define theme hierarchy for a project?
 
 - 3.2 Demonstrate an ability to create UI customizations using a combination of a block and
 template
 
-    How do you assign a template to a block?
+      How do you assign a template to a block?
 
-    How do you assign a different template to a native block?
+      How do you assign a different template to a native block?
 
 - 3.3 Identify the uses of different types of blocks
 
-    When would you use non-template block types?
+      When would you use non-template block types?
 
 - 3.4 Describe the elements of the Magento layout XML schema, including the major XML
 directives
@@ -161,11 +161,11 @@ directives
 
 - 4.2 Describe how entity load and save occurs
 
-    How do you use the native Magento save/load process in the development process?
+      How do you use the native Magento save/load process in the development process?
 
 - 4.3 Describe how to filter, sort, and specify the selected values for collections and repositories
 
-    How do you select a subset of records from the database?
+      How do you select a subset of records from the database?
 
 - 4.4 Demonstrate an ability to use declarative schema
 
@@ -184,33 +184,33 @@ directives
 
 - 5.1 Create a controller for an admin router
 
-    How would you create an admin controller?
+      How would you create an admin controller?
 
-    How do you ensure the right level of security for a new controller?
+      How do you ensure the right level of security for a new controller?
 
 - 5.2 Define basic terms and elements of system configuration, including scopes, website,
 store, store view
-    How would you add a new system configuration option?
+      How would you add a new system configuration option?
 
-    What is the difference in this process for different option types (secret, file)?
+      What is the difference in this process for different option types (secret, file)?
 
 - 5.3 Define / identify basic terms and elements of ACL
 
-    How would you add a new ACL resource to a new entity?
+      How would you add a new ACL resource to a new entity?
 
-    How do you manage the existing ACL hierarchy?
+      How do you manage the existing ACL hierarchy?
 
 
 
 - 5.4 Set up a menu item
 
-    How do you add a new menu item to a given tab? How do you add a new tab to the Admin menu?
+     How do you add a new menu item to a given tab? How do you add a new tab to the Admin menu?
 
 - 5.5 Create appropriate permissions for users
 
-    How are menu items related to ACL permissions?
+      How are menu items related to ACL permissions?
 
-    How do you add a new user with given set of permissions?
+      How do you add a new user with given set of permissions?
 
 ###  6 Customizing Magento Business Logic
 
@@ -220,33 +220,33 @@ store, store view
 
 - 6.2 Describe category properties in Magento
 
-    How do you create and manage categories?
+      How do you create and manage categories?
 
 - 6.3 Define how products are related to the category
 
-    How do you assign and unassign products to categories?
+      How do you assign and unassign products to categories?
 
 - 6.4 Describe the difference in behavior of different product types in the cart
 
-    How are configurable and bundle products rendered?
+      How are configurable and bundle products rendered?
 
-    How can you create a custom shopping cart renderer?
+      How can you create a custom shopping cart renderer?
 
 - 6.5 Describe native shipment functionality in Magento
 
-    How do you customize the shipment step of order management?
+      How do you customize the shipment step of order management?
 
 - 6.6 Describe and customize operations available in the customer account area
 
-    How would you add another tab in the “My Account” section? How do you customize the order history page?
+      How would you add another tab in the “My Account” section? How do you customize the order history page?
 
 - 6.7 Add or modify customer attributes
 
-    How do you add or modify customer attributes in a setup script?
+      How do you add or modify customer attributes in a setup script?
 
 - 6.8 Customize the customer address
 
-    How do you add another field to the customer address entity using a setup script?
+      How do you add another field to the customer address entity using a setup script?
 
 
 
