@@ -2352,6 +2352,8 @@ class Right extends Lastest
 
 ```
 
+### Step 2C.16: Final Frontend view for the module News Page & News Details Page with latestnews block 
+
 ![frontEndNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/frontEndNews.png)
 
 ![FrontendNewsDetails](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/FrontendNewsDetails.png)
