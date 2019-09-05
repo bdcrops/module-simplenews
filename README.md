@@ -1050,6 +1050,9 @@ class Grid extends News
 
 ```
 
+![allNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/allNews.png)
+
+
 ### Step 2B.18:  Create layout file simplenews_news_edit.xml for edit form
 - Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_edit.xml (Purpose: This file is used to declare blocks which used on editing page) and insert this following code into it:
 ```
@@ -1070,6 +1073,7 @@ layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../..
 </page>
 
 ```
+
 
 ### Step 2B.19:  Create the layout for create form
 
@@ -1726,6 +1730,8 @@ class MassDelete extends News
 
 ```
 
+![EditNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/EditNews.png)
+
 
 ### Step 2B.29:  Backend Menu and Grid List
 
@@ -1733,7 +1739,7 @@ class MassDelete extends News
 
 ![addNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/addNews.png)
 
-![EditNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/EditNews.png)
+ 
 
 
 
