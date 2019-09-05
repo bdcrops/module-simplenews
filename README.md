@@ -2324,7 +2324,33 @@ class Right extends Lastest
 
 
 ### Step 2C.15:  Frontend view for the module
+
 - Create file: app/code/BDC/SimpleNews/view/frontend/templates/lastest.phtml (This file will display 5 lastest news on the page) and insert this following code into it:
+```
+<?php
+   $latestNews = $block->getLatestNews();
+   if ($latestNews->getSize() > 0) :
+?>
+   <div class="block block-simplenews">
+      <div class="block-title">
+         <strong class="block-simplenews-heading"><?php echo __('Latest News') ?></strong>
+      </div>
+
+      <div class="block-content">
+         <?php foreach ($latestNews as $news) : ?>
+            <div>
+               <span>+ </span>
+               <a href="<?php echo $this->getUrl('news/index/view', ['id' => $news->getId()])
+?>">
+                  <span><?php echo $news->getTitle() ?></span>
+               </a>
+            </div>
+         <?php endforeach; ?>
+      </div>
+   </div>
+<?php endif; ?>
+
+```
 
 ![frontEndNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/frontEndNews.png)
 
