@@ -5,7 +5,6 @@ xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framewo
    <head>
       <css src="BDC_SimpleNews::css/style.css" />
    </head>
-
     <body>
        <referenceContainer name="sidebar.main">
          <block class="BDC\SimpleNews\Block\Lastest\Left" name="lestest.news.left"

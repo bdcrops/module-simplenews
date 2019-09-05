@@ -1750,7 +1750,7 @@ class MassDelete extends News
 ![addNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/addNews.png)
 
 ![EditNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/EditNews.png)
-**
+
 
 
 
@@ -1763,24 +1763,156 @@ class MassDelete extends News
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_news.xml (we will use this layout file as default in our module) and insert this following code into it:
 ```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="3columns"
+xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+   <head>
+      <css src="BDC_SimpleNews::css/style.css" />
+   </head>
+    <body>
+       <referenceContainer name="sidebar.main">
+         <block class="BDC\SimpleNews\Block\Lastest\Left" name="lestest.news.left"
+             before="-" />
+       </referenceContainer>
+
+       <referenceContainer name="sidebar.additional">
+         <block class="BDC\SimpleNews\Block\Lastest\Right" name="lestest.news.right"
+             before="-" />
+       </referenceContainer>
+    </body>
+</page>
+
 ```
 
 ### Step 2C.2:  Create another layout file by update the previous layout
 - Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_index_index.xml (this file will declare blocks for using in the news list page) and insert this following code into it:
 ```
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="3columns" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="news_news" />
+    <body>
+        <referenceBlock name="content">
+            <block template="BDC_SimpleNews::list.phtml" class="BDC\SimpleNews\Block\NewsList" name="jeff_simplenews_block_news_list"/>
+        </referenceBlock>
+    </body>
+</page>
+
 ```
 
 
-### Step 2C.3:  Create Block NewList file
+### Step 2C.3:  Create Block News List file
 
 - Create file: app/code/BDC/SimpleNews/Block/NewsList.php (this file will set the news data collection and declare pagination for them) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Block;
+
+use Magento\Framework\View\Element\Template;
+use BDC\SimpleNews\Model\NewsFactory;
+
+class NewsList extends Template
+{
+   /**
+    * @var \BDC\SimpleNews\Model\NewsFactory
+    */
+   protected $_newsFactory;
+
+   /**
+    * @param Template\Context $context
+    * @param NewsFactory $newsFactory
+    * @param array $data
+    */
+   public function __construct(
+      Template\Context $context,
+      NewsFactory $newsFactory,
+      array $data = []
+   ) {
+        $this->_newsFactory = $newsFactory;
+        parent::__construct($context, $data);
+   }
+
+   /**
+     * Set news collection
+     */
+    protected  function _construct()
+    {
+        parent::_construct();
+        $collection = $this->_newsFactory->create()->getCollection()
+            ->setOrder('id', 'DESC');
+        $this->setCollection($collection);
+    }
+
+   /**
+     * @return $this
+     */
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        /** @var \Magento\Theme\Block\Html\Pager */
+        $pager = $this->getLayout()->createBlock(
+           'Magento\Theme\Block\Html\Pager','simplenews.news.list.pager'
+        );
+        $pager->setLimit(5)
+            ->setShowAmounts(false)
+            ->setCollection($this->getCollection());
+        $this->setChild('pager', $pager);
+        $this->getCollection()->load();
+
+        return $this;
+    }
+
+   /**
+     * @return string
+     */
+    public function getPagerHtml()
+    {
+        return $this->getChildHtml('pager');
+    }
+}
+
 ```
 
 ### Step 2C.4:  Create frontend template file list.phtml
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/templates/list.phtml (this file will set the news data collection and declare pagination for them) and insert this following code into it:
 ```
+<div class="simplenews">
+   <?php
+      $newsCollection = $block->getCollection();
+      if ($newsCollection->getSize() > 0) :
+   ?>
+      <div class="toolbar top">
+         <?php echo $block->getPagerHtml(); ?>
+      </div>
+
+      <ul>
+         <?php foreach ($newsCollection as $news) : ?>
+            <li>
+               <div class="simplenews-list">
+                  <a class="news-title" href="<?php echo $this->getUrl('news/index/view',
+ ['id' => $news->getId()]) ?>"><?php echo $news->getTitle() ?></a>
+                  <div class="simplenews-list-content">
+                     <?php echo $news->getSummary() ?>
+                  </div>
+               </div>
+            </li>
+         <?php endforeach; ?>
+      </ul>
+
+      <div style="clear: both"></div>
+
+      <div class="toolbar-bottom">
+         <div class="toolbar bottom">
+            <?php echo $block->getPagerHtml(); ?>
+         </div>
+      </div>
+   <?php else : ?>
+      <p><?php echo __('Have no article!') ?></p>
+   <?php endif; ?>
+</div>
+
 ```
 
 
@@ -1788,27 +1920,132 @@ class MassDelete extends News
 
 - Create file: app/code/BDC/SimpleNews/Controller/News.php and insert this following code into it:
 ```
+<div class="simplenews">
+   <?php
+      $newsCollection = $block->getCollection();
+      if ($newsCollection->getSize() > 0) :
+   ?>
+      <div class="toolbar top">
+         <?php echo $block->getPagerHtml(); ?>
+      </div>
+
+      <ul>
+         <?php foreach ($newsCollection as $news) : ?>
+            <li>
+               <div class="simplenews-list">
+                  <a class="news-title" href="<?php echo $this->getUrl('news/index/view',
+ ['id' => $news->getId()]) ?>"><?php echo $news->getTitle() ?></a>
+                  <div class="simplenews-list-content">
+                     <?php echo $news->getSummary() ?>
+                  </div>
+               </div>
+            </li>
+         <?php endforeach; ?>
+      </ul>
+
+      <div style="clear: both"></div>
+
+      <div class="toolbar-bottom">
+         <div class="toolbar bottom">
+            <?php echo $block->getPagerHtml(); ?>
+         </div>
+      </div>
+   <?php else : ?>
+      <p><?php echo __('Have no article!') ?></p>
+   <?php endif; ?>
+</div>
 
 ```
 
 
 ### Step 2C.6:  Update Index Controller by extends the abstract class 'New.php'
 
-- Create/Edit file: app/code/BDC/SimpleNews/Controller/Index/Index.php and insert this following code into it:
+- update/Edit file: app/code/BDC/SimpleNews/Controller/Index/Index.php and insert this following code into it:
 
 ```
+<?php
+
+namespace BDC\SimpleNews\Controller\Index;
+
+use BDC\SimpleNews\Controller\News;
+
+class Index extends News
+{
+
+    public function execute()
+    {
+        $pageFactory = $this->_pageFactory->create();
+
+        $pageFactory->getConfig()->getTitle()->set($this->_dataHelper->getHeadTitle());
+
+        //Add breadcrumb
+        $breadcrumbs = $pageFactory->getLayout()->getBlock('breadcrumbs');
+        $breadcrumbs->addCrumb('home', ['label'=>__('Home'), 'title'=>__('Home'), 'link'=>$this->_url->getUrl('')]);
+        $breadcrumbs->addCrumb('simplenews', ['label'=>__('Simple News'), 'title'=>__('Simple News')]);
+
+        return $pageFactory;
+    }
+}
 ```
 
 
 ### Step 2C.7:  Create a layout file for news detail page
 - Create file: app/code/BDC/SimpleNews/view/frontend/web/css/style.css and insert this following code into it:
 ```
+.simplenews > ul {
+   list-style: none;
+   padding: 0;
+}
+.simplenews > ul li {
+   padding: 10px 5px;
+   margin: 0;
+   background-color: #fff;
+   border-bottom: 1px #c4c1bc solid;
+   display: inline-block;
+   width: 100%;
+}
+.simplenews > ul li:last-child {
+   border-bottom: none;
+}
+.simplenews-list {
+   float: left;
+   position: relative;
+   margin-left: 10px;
+   width: 100%;
+}
+.simplenews-list a.news-title {
+   font-weight: bold;
+}
+.simplenews-list a.news-title:hover {
+   text-decoration: none;
+}
+.block-simplenews .block-title {
+   margin: 0px 0px 20px;
+}
+.block-simplenews-heading {
+   font-size: 18px;
+   font-weight: 300;
+}
+
 ```
 
 ### Step 2C.8:  Create News view action
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_index_view.xml and insert this following code into it:
 ```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="3columns"
+xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="news_news" />
+    <body>
+        <referenceContainer name="content">
+            <block class="BDC\SimpleNews\Block\View" name="bdc_simplenews_news_view"
+                template="BDC_SimpleNews::view.phtml" />
+        </referenceContainer>
+    </body>
+</page>
+
 ```
 
 
@@ -1817,6 +2054,57 @@ class MassDelete extends News
 - Create file: app/code/BDC/SimpleNews/Controller/Index/View.php and insert this following code into it:
 
 ```
+<?php
+
+namespace BDC\SimpleNews\Controller\Index;
+
+use BDC\SimpleNews\Controller\News;
+
+class View extends News
+{
+    public function execute()
+    {
+	// Get news ID
+        $newsId = $this->getRequest()->getParam('id');
+	// Get news data
+        $news = $this->_newsFactory->create()->load($newsId);
+	// Save news data into the registry
+        $this->_objectManager->get('Magento\Framework\Registry')
+            ->register('newsData', $news);
+
+        $pageFactory = $this->_pageFactory->create();
+
+        // Add title
+        $pageFactory->getConfig()->getTitle()->set($news->getTitle());
+
+        // Add breadcrumb
+        /** @var \Magento\Theme\Block\Html\Breadcrumbs */
+        $breadcrumbs = $pageFactory->getLayout()->getBlock('breadcrumbs');
+        $breadcrumbs->addCrumb('home',
+            [
+                'label' => __('Home'),
+                'title' => __('Home'),
+                'link' => $this->_url->getUrl('')
+            ]
+        );
+        $breadcrumbs->addCrumb('simplenews',
+            [
+                'label' => __('Simple News'),
+                'title' => __('Simple News'),
+                'link' => $this->_url->getUrl('news')
+            ]
+        );
+        $breadcrumbs->addCrumb('news',
+            [
+                'label' => $news->getTitle(),
+                'title' => $news->getTitle()
+            ]
+        );
+
+        return $pageFactory;
+    }
+}
+
 ```
 
 
@@ -1824,44 +2112,229 @@ class MassDelete extends News
 
 - Create file: app/code/BDC/SimpleNews/Block/View.php (this file will get the news data) and insert this following code into it:
 ```
+<?php
+
+namespace BDC\SimpleNews\Controller\Index;
+
+use BDC\SimpleNews\Controller\News;
+
+class View extends News
+{
+    public function execute()
+    {
+	// Get news ID
+        $newsId = $this->getRequest()->getParam('id');
+	// Get news data
+        $news = $this->_newsFactory->create()->load($newsId);
+	// Save news data into the registry
+        $this->_objectManager->get('Magento\Framework\Registry')
+            ->register('newsData', $news);
+
+        $pageFactory = $this->_pageFactory->create();
+
+        // Add title
+        $pageFactory->getConfig()->getTitle()->set($news->getTitle());
+
+        // Add breadcrumb
+        /** @var \Magento\Theme\Block\Html\Breadcrumbs */
+        $breadcrumbs = $pageFactory->getLayout()->getBlock('breadcrumbs');
+        $breadcrumbs->addCrumb('home',
+            [
+                'label' => __('Home'),
+                'title' => __('Home'),
+                'link' => $this->_url->getUrl('')
+            ]
+        );
+        $breadcrumbs->addCrumb('simplenews',
+            [
+                'label' => __('Simple News'),
+                'title' => __('Simple News'),
+                'link' => $this->_url->getUrl('news')
+            ]
+        );
+        $breadcrumbs->addCrumb('news',
+            [
+                'label' => $news->getTitle(),
+                'title' => $news->getTitle()
+            ]
+        );
+
+        return $pageFactory;
+    }
+}
+
 ```
 
 
-### Step 2C.11:  Create CSS file for styling the frontend Page
+### Step 2C.11:  Create View file for News details the frontend Page
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/templates/view.phtml (this file will set the news data collection and declare pagination for them) and insert this following code into it
+```
+<?php
+   $news = $block->getNewsInformation();
+?>
+<div class="mw-simplenews">
+   <?php echo $news->getDescription() ?>
+</div>
+
+```
 
 
 ### Step 2C.12:  Create Latest New Block
 
 - Open file: app/code/BDC/SimpleNews/view/frontend/layout/news_news.xml (we will add 2 blocks to the page body) and insert this following code into it:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="3columns"
+xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+   <head>
+      <css src="BDC_SimpleNews::css/style.css" />
+   </head>
+    <body>
+       <referenceContainer name="sidebar.main">
+         <block class="BDC\SimpleNews\Block\Lastest\Left" name="lestest.news.left"
+             before="-" />
+       </referenceContainer>
+
+       <referenceContainer name="sidebar.additional">
+         <block class="BDC\SimpleNews\Block\Lastest\Right" name="lestest.news.right"
+             before="-" />
+       </referenceContainer>
+    </body>
+</page>
+
+```
 
 
 ### Step 2C.13:  Create a Block for positioning the latest news: Left or Right
 - Create file: app/code/BDC/SimpleNews/Block/Lastest.php (this file will get the news data) and insert this following code into it:
+
+```
+<?php
+
+namespace BDC\SimpleNews\Block;
+
+use Magento\Framework\View\Element\Template;
+use BDC\SimpleNews\Helper\Data;
+use BDC\SimpleNews\Model\NewsFactory;
+use BDC\SimpleNews\Model\System\Config\Status;
+
+class Lastest extends Template
+{
+   /**
+    * @var \BDC\SimpleNews\Helper\Data
+    */
+   protected $_dataHelper;
+
+   /**
+    * @var \BDC\SimpleNews\Model\NewsFactory
+    */
+   protected $_newsFactory;
+
+   /**
+    * @param Template\Context $context
+    * @param Data $dataHelper
+    * @param NewsFactory $newsFactory
+    */
+   public function __construct(
+      Template\Context $context,
+      Data $dataHelper,
+      NewsFactory $newsFactory
+   ) {
+      $this->_dataHelper = $dataHelper;
+      $this->_newsFactory = $newsFactory;
+      parent::__construct($context);
+   }
+
+   /**
+    * Get five latest news
+    *
+    * @return \BDC\SimpleNews\Model\Resource\News\Collection
+    */
+   public function getLatestNews()
+   {
+      // Get news collection
+      $collection = $this->_newsFactory->create()->getCollection();
+      $collection->addFieldToFilter(
+         'status',
+         ['eq' => Status::ENABLED]
+      );
+      $collection->getSelect()
+         ->order('id DESC')
+         ->limit(5);
+
+      return $collection;
+   }
+}
+
+
+```
+
 
 ### Step 2C.14:  Create the template file for Latest News
 
 - Create file: app/code/BDC/SimpleNews/Block/Lastest/Left.php (This file will check the left position and set template file) and insert this following code into it:
 
 ```
+<?php
+
+namespace BDC\SimpleNews\Block\Lastest;
+
+use BDC\SimpleNews\Block\Lastest;
+use BDC\SimpleNews\Model\System\Config\LastestNews\Position;
+
+class Left extends Lastest
+{
+   public function _construct()
+   {
+      $position = $this->_dataHelper->getLastestNewsBlockPosition();
+      // Check this position is applied or not
+      if ($position == Position::LEFT) {
+         $this->setTemplate('BDC_SimpleNews::lastest.phtml');
+      }
+   }
+}
+
 ```
 
 - Create file: app/code/BDC/SimpleNews/Block/Lastest/Right.php (This file will check the right position and set template file) and insert this following code into it:
 
 ```
+<?php
+
+namespace BDC\SimpleNews\Block\Lastest;
+
+use BDC\SimpleNews\Block\Lastest;
+use BDC\SimpleNews\Model\System\Config\LastestNews\Position;
+
+class Right extends Lastest
+{
+   public function _construct()
+   {
+      $position = $this->_dataHelper->getLastestNewsBlockPosition();
+      // Check this position is applied or not
+      if ($position == Position::RIGHT) {
+         $this->setTemplate('BDC_SimpleNews::lastest.phtml');
+      }
+   }
+}
+
 ```
 
 
 ### Step 2C.15:  Frontend view for the module
 - Create file: app/code/BDC/SimpleNews/view/frontend/templates/lastest.phtml (This file will display 5 lastest news on the page) and insert this following code into it:
 
+![frontEndNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/frontEndNews.png)
+
+![FrontendNewsDetails](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/FrontendNewsDetails.png)
 
 
 
 
 ## Ref
-
+***
 https://devdocs.magento.com/guides/v2.3/extension-dev-guide/declarative-schema/
 
 https://onilab.com/blog/declarative-schema-magento-2-3-and-higher/
