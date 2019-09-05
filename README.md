@@ -1,35 +1,19 @@
 
 # Magento 2 SimpleNews module  
 
-**Magento 2 Module development** or **Magento 2 SimpleNews Module** trends is increase rapidly while Magento release official version. That why we - **BDCrops** - are wring about a topic that introduces how to create a  **SimpleNews module in Magento 2**.
-As you know, the module is a  directory that contains `blocks, controllers, models, helper`, etc - that are related to a specific business feature. In Magento 2, modules will be live in `app/code` directory of a Magento installation, with this format: `app/code/<Vendor>/<ModuleName>`. Now we will follow this steps to create a SimpleNews module which work on Magento 2 and display `Simple News`.
+**Magento 2 Module development** or **Magento 2 SimpleNews Module**  Create a full-fledged Module Step by Step. You could just follow my code to create this module from the scratch. Or you can directly download the compressed tar file and install it and play it.  
 
-
-`Create a full-fledged Module Step by Step. You could just follow my code to create this module from the scratch. Or you can directly download the compressed tar file and install it and play it. The Link to download is at the github of this  . `
+## PREREQUISITES
+- No prerequisites
+- May be More benefited Who are know Magento 2 Basic frontend , backend & install local/server .
+- Fundamentals of Magento 2 Development or Module Development  as a first step.
 
 
 ## Goal:
 
-- 1.1: Create Magento 2 Simple Module
-- 1.2: Using Declarative Schema & Schema Patches
-- 1.3: Using  Create Model, Resource Model and Collection
-- 1.4: Get data from the database and display them at the frontend
-- 1.5: Create configuration in Magento system configuration
-- 1.6: Create a custom source model.
-- 1.7: Create a role(ACL) for this configuration section.
-- 1.8: Set default values for the configurations.
-- 1.9:  Create menu ..
-- 1.10: Create frontend & route .
-- 1.11: Add role for each menu item
-- 1.12: Create frontend layout
-- 1.13: Create frontend block
-- 1.14: Create  frontend controller
-- 1.15: Create  Adminhtml layout
-- 1.16: Create Adminhtml block
-- 1.17: Create Adminhtml controller
-- 1.18: create Helper file, it will contain functions for getting the configuration values
-- 1.19: Create frontend template file
-- 1.20: Create CSS file
+- Develop Full-fledged Module Step by Step .
+- Magento 2 Certified Associate/Professional Developer exam Preparation hands on practice.
+
 
 
 
@@ -2352,7 +2336,7 @@ class Right extends Lastest
 
 ```
 
-### Step 2C.16: Final Frontend view for the module News Page & News Details Page with latestnews block 
+### Step 2C.16: Final Frontend view for the module News Page & News Details Page with latestnews block
 
 ![frontEndNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/frontEndNews.png)
 
