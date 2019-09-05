@@ -103,6 +103,8 @@ As you know, the module is a  directory that contains `blocks, controllers, mode
 
 ## Part A : News Module for Basic
 
+***
+
 ### Step 2A.1: Create a directory for the module like above format.
 
 In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for ModuleName. So we need to make this folder:
@@ -469,7 +471,10 @@ After define the Controller, the URL path to our module will be: `http://example
 
 
 
+
+
 ### Part B: News Module for Back End
+***
 
 
 ### Step 2B.1: Setup Module's backend configuration
