@@ -104,16 +104,16 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 
 - Api or Api/Datat: Service contracts, defining service interfaces & data interfaces
 - Block:  ViewModels of our MVVM architecture
+- CONSOLE: directory is used for storing the PHP files that are responsible for console programs execution. In our case, Console/Command/ImagesResizeCommand.php processes commands for product images resizing.
 - Controller: Responsible for handling the user’s flow while interacting with the system
 - CRON: We use the directory to store the files, which are later executed on the Cron launching.
-
-- CUSTOMERDATA
-The directory contains PHP files responsible for processing information for sections. Magento 2 has a special functionality, which allows for processing, updating and transferring the information asynchronously.
+- CUSTOMERDAT: directory contains PHP files responsible for processing information for sections. Magento 2 has a special functionality, which allows for processing, updating and transferring the information asynchronously.
 - etc: Configuration XML files—The module defines itself and its parts (routes, models, blocks, observers, and cron jobs) within this folder. The etc files can also be used by non-core modules to override the functionality of core modules.
 - Helper: Classes that hold code used in more than one application layer. For example, in the Cms module, helper classes are responsible for preparing HTML for presentation to the browser.
 - i18n: Holds internationalization CSV files, used for translation
 - Model: For Models and ResourceModels
 - Observer: Holds Observers, or Models which are “observing” system events. Usually, when such an event is fired, the observer instantiates a Model to handle the necessary business logic for such an event.
+- PLUGIN: directory comprises plugin files  allow us to modify certain module’s functions if necessary described in the configuration file: vendor/magento/module-catalog/etc/di.xml
 - Setup: Migration classes, responsible for schema & data creation
 - Test: Unit tests
 - Ui: Elements such as grids & forms used in  admin application
