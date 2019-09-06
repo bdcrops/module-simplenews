@@ -12,7 +12,7 @@
 ## Goal:
 
 - Develop Full-fledged Module Step by Step .
-- Magento 2 Certified [Associate](mcad.md) / [Professional](mcpd.md) Developer exam Preparation hands on practice.
+- Magento 2 Certified [Associate](mcad.md)/[Professional](mcpd.md) Developer exam Preparation hands-on practice.
 
 
 
@@ -91,8 +91,29 @@
 
 ### Step 2A.1: Create a directory for the module like above format.
 
-In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for ModuleName. So we need to make this folder:
-`app/code/BDC/SimpleNews`
+In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for ModuleName. So we need to make this folder: `app/code/BDC/SimpleNews`
+
+#### Notes[u can skip]:
+
+##### Magento 2  Model View ViewModel (MVVM) Architecture
+- Model: Holds business logic of  application & depends on an associated class—the ResourceModel—for database access. Models rely on service contracts to expose their functionality to  other layers of  application.
+- View: Structure & layout of what a user sees on a screen - the actual HTML. This is achieved in the PHTML files distributed with modules. PHTML files are associated to each ViewModel in the Layout XML files, which would be referred to as binders in the MVVM dialect. The layout files might also assign JavaScript files to be used in the final page.
+- ViewModel: Interacts with  Model layer, exposing only  necessary information to  View layer handled by the module’s Block classes. Note that this was usually part of the Controller role of an MVC system. On MVVM, the controller is only responsible for handling the user flow, meaning that it receives requests and either tells the system to render a view or to redirect the user to another route.
+
+##### Module  folder holds one part of the architecture, as follows:
+
+- Api or Api/Datat: Service contracts, defining service interfaces & data interfaces
+- Block:  ViewModels of our MVVM architecture
+- Controller: Responsible for handling the user’s flow while interacting with the system
+- etc: Configuration XML files—The module defines itself and its parts (routes, models, blocks, observers, and cron jobs) within this folder. The etc files can also be used by non-core modules to override the functionality of core modules.
+- Helper: Classes that hold code used in more than one application layer. For example, in the Cms module, helper classes are responsible for preparing HTML for presentation to the browser.
+- i18n: Holds internationalization CSV files, used for translation
+- Model: For Models and ResourceModels
+- Observer: Holds Observers, or Models which are “observing” system events. Usually, when such an event is fired, the observer instantiates a Model to handle the necessary business logic for such an event.
+- Setup: Migration classes, responsible for schema & data creation
+- Test: Unit tests
+- Ui: Elements such as grids & forms used in  admin application
+- view: Layout (XML) files & template (PHTML) files for  front-end & admin application
 
 ### Step 2A.2: Declare module by using configuration file module.xml
 
@@ -105,8 +126,10 @@ Magento 2 looks for configuration information for each module in that module’s
     <module name="BDC_SimpleNews" setup_version="1.0.0" />
 </config>
 ~~~
-
 In this file, we register a module with name `BDC_SimpleNews` and the version is `1.0.0`.
+
+#### Notes[u can skip]:
+- Magento 2 need  Two Mandatory File to  run/activate Module etc/module.xml & registration.php
 
 ### Step 2A.3: Register module by registration.php
 
