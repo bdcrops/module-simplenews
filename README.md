@@ -103,21 +103,37 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 ##### Module  folder holds one part of the architecture, as follows:
 
 - Api or Api/Datat: Service contracts, defining service interfaces & data interfaces
+- Adapter:Classes follow  adapter pattern & wrap around classes from third-party libraries allow  to use functionality from third-party libraries in  code by converting the third-party class interfaces into an interface that is expected by  native code.( module-search/Adapter/)
 - Block:  ViewModels of our MVVM architecture
-- CONSOLE: directory is used for storing the PHP files that are responsible for console programs execution. In our case, Console/Command/ImagesResizeCommand.php processes commands for product images resizing.
+- Collector: module-deploy/Collector/Collector.php
+- Command: directory is used for storing the PHP files that are responsible for console programs execution. In our case, Console/Command/ImagesResizeCommand.php processes commands for product images resizing.
 - Controller: Responsible for handling the user’s flow while interacting with the system
-- CRON: We use the directory to store the files, which are later executed on the Cron launching.
-- CUSTOMERDAT: directory contains PHP files responsible for processing information for sections. Magento 2 has a special functionality, which allows for processing, updating and transferring the information asynchronously.
+- Config: module-deploy/Config/BundleConfig.php
+- Cron: We use the directory to store the files, which are later executed on the Cron launching.
+- CustomerData: directory contains PHP files responsible for processing information for sections. Magento 2 has a special functionality, which allows for processing, updating and transferring the information asynchronously.
 - etc: Configuration XML files—The module defines itself and its parts (routes, models, blocks, observers, and cron jobs) within this folder. The etc files can also be used by non-core modules to override the functionality of core modules.
+- Exception: (module-sales/Exception/)
+- Files: Sample file  (module-inventory-import-export/Files/)
+- fixtures: Sample Data module (module-sales-sample-data/fixtures/orders.csv)
+- Gateway: (module-paypal/Gateway)
 - Helper: Classes that hold code used in more than one application layer. For example, in the Cms module, helper classes are responsible for preparing HTML for presentation to the browser.
 - i18n: Holds internationalization CSV files, used for translation
+- Indexer: IndexHandler  (module-inventory-indexer/Indexer)
 - Model: For Models and ResourceModels
 - Observer: Holds Observers, or Models which are “observing” system events. Usually, when such an event is fired, the observer instantiates a Model to handle the necessary business logic for such an event.
-- PLUGIN: directory comprises plugin files  allow us to modify certain module’s functions if necessary described in the configuration file: vendor/magento/module-catalog/etc/di.xml
+- Package: module-deploy/Package
+- Pricing: Final price model  (module-msrp-grouped-product/Pricing)
+- Process: module-deploy/Process
+- Plugin: directory comprises plugin files  allow us to modify certain module’s functions if necessary described in the configuration file: vendor/magento/module-catalog/etc/di.xml
 - Setup: Migration classes, responsible for schema & data creation
+- Service: static files service ,Create resized images of different sizes from an original image[exam] (module-media-storage/Service/ImageResize.php,module-deploy/ )
+- src : vendor/magento/magento2-functional-testing-framework/src/Magento/
+- Strategy: module-deploy/Strategy
+- Source: module-deploy/Source
 - Test: Unit tests
 - Ui: Elements such as grids & forms used in  admin application
 - view: Layout (XML) files & template (PHTML) files for  front-end & admin application
+- ViewModel: (module-sales/ViewModel)
 
 ### Step 2A.2: Declare module by using configuration file module.xml
 
