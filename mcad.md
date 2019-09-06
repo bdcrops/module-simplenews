@@ -25,7 +25,9 @@
 
 #### 1.2 Describe the Magento directory structure
 
--  Describe the Magento directory structure.
+-  Describe the Magento directory structure. [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/build/module-file-structure.html) 
+[mageplaza](https://www.mageplaza.com/devdocs/file-structure-magento-2.html)
+
 -  What are the naming conventions, and how are namespaces established?
 -  How can you identify the files responsible for some functionality?
 
