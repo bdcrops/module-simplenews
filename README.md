@@ -105,6 +105,10 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 - Api or Api/Datat: Service contracts, defining service interfaces & data interfaces
 - Block:  ViewModels of our MVVM architecture
 - Controller: Responsible for handling the user’s flow while interacting with the system
+- CRON: We use the directory to store the files, which are later executed on the Cron launching.
+
+- CUSTOMERDATA
+The directory contains PHP files responsible for processing information for sections. Magento 2 has a special functionality, which allows for processing, updating and transferring the information asynchronously.
 - etc: Configuration XML files—The module defines itself and its parts (routes, models, blocks, observers, and cron jobs) within this folder. The etc files can also be used by non-core modules to override the functionality of core modules.
 - Helper: Classes that hold code used in more than one application layer. For example, in the Cms module, helper classes are responsible for preparing HTML for presentation to the browser.
 - i18n: Holds internationalization CSV files, used for translation
