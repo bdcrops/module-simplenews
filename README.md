@@ -125,8 +125,10 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 - Pricing: Final price model  (module-msrp-grouped-product/Pricing)
 - Process: module-deploy/Process
 - Plugin: directory comprises plugin files  allow us to modify certain module’s functions if necessary described in the configuration file: vendor/magento/module-catalog/etc/di.xml
+- SearchAdapter: module-elasticsearch/SearchAdapter
+- ReportXml :vendor/magento/module-analytics/ReportXml
 - Setup: Migration classes, responsible for schema & data creation
-- Service: static files service ,Create resized images of different sizes from an original image[exam] (module-media-storage/Service/ImageResize.php,module-deploy/ )
+- Service: [exam] (module-media-storage/Service/ImageResize.php,module-deploy/ or module-catalog-url-rewrite/Service/V1/StoreViewService.php )
 - src : vendor/magento/magento2-functional-testing-framework/src/Magento/
 - Strategy: module-deploy/Strategy
 - Source: module-deploy/Source
