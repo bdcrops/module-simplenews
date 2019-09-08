@@ -37,7 +37,7 @@
 
 #### 1.3 Utilize configuration and configuration variables scope
 
-- Determine how to use configuration files in Magento.
+- Determine how to use configuration files in Magento. [Step 2B.5]
 - Which configuration files are important in the development cycle?
 - Describe development in the context of website and store scopes.
 - How do you identify the configuration scope for a given variable?
@@ -146,10 +146,12 @@
 
 #### 4.4 Demonstrate an ability to use declarative schema
 
-- How do you add a column using declarative schema?
-- How do you modify a table added by another module? How do you delete a column?
-- How do you add an index or foreign key using declarative schema?
-- How do you manipulate data using data patches? What is the purpose of schema patches?
+- How do you add a column using declarative schema? [Step 2A.4 -5] [BDC_Declarative](https://github.com/bdcrops/BDC_Declarative)
+- How do you modify a table added by another module? ||
+- How do you delete a column?  ||
+- How do you add an index or foreign key using declarative schema? ||
+- How do you manipulate data using data patches?  [Step 2A.7]
+- What is the purpose of schema patches? [Step 2A.7] [BDC_Declarative](https://github.com/bdcrops/BDC_Declarative)
 
 
 ### 5 Developing with Adminhtml

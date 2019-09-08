@@ -221,6 +221,7 @@ Create  app/code/BDC/SimpleNews/etc/db_schema.xml &  insert this following code 
     </table>
 </schema>
 ```
+#### Note:
 
 ### Step 2A.5: Schema whitelist (etc/db_schema_whitelist.json)
 
