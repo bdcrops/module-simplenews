@@ -32,7 +32,7 @@
 [devdocs1](https://devdocs.magento.com/guides/v2.3/coding-standards/code-standard-php.html)
 [devdocs2](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/build/create_component.html)
 [devdocs3](https://devdocs.magento.com/guides/v2.3/ext-best-practices/extension-coding/common-programming-bp.html)
--  How can you identify the files responsible for some functionality?
+-  How can you identify the files responsible for some functionality? [Step 2A.1]
 
 
 #### 1.3 Utilize configuration and configuration variables scope
