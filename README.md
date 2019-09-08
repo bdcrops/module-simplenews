@@ -20,7 +20,7 @@
 
 ## Magento 2 SimpleNews Module Step By Step (BDCrops)
 
-##  <a name="PartA">Part A : News Module for Basic </a>
+##  [Part A : News Module for Basic](#PartA)
 
 
 - Step 2A.1: Create a directory for the module like above format.
@@ -87,7 +87,7 @@
 
 
 
-##  [Part A : News Module for Basic](#PartA)
+##  <a name="PartA">Part A : News Module for Basic </a>
 
 ***
 
