@@ -102,7 +102,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 
 ##### Module  folder holds one part of the architecture, as follows:
 
-- Api or Api/Datat: Service contracts, defining service interfaces & data interfaces
+- Api or Api/Data: Service contracts, defining service interfaces & data interfaces
 - Adapter:Classes follow  adapter pattern & wrap around classes from third-party libraries allow  to use functionality from third-party libraries in  code by converting the third-party class interfaces into an interface that is expected by  native code.( module-search/Adapter/)
 - Block:  ViewModels of our MVVM architecture
 - Collector: module-deploy/Collector/Collector.php
