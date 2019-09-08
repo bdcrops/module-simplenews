@@ -37,7 +37,7 @@
 - Step 2A.12: Create IndexController
 
 
-### [Part B: News Module for Back End] (#PartB)
+### [Part B: News Module for Back End](#PartB)
 - Step 2B.1: Setup Module's backend configuration
 - Step 2B.2:  Create a custom source model
 - Step 2B.3:  Create a role for this config section
@@ -68,7 +68,7 @@
 - Step 2B.28:  The mass delete action the grid list
 - Step 2B.29:  Backend Menu and Grid List
 
-## [Part C : News Module for Front End] (#PartC)
+## [Part C : News Module for Front End](#PartC)
 - Step 2C.1:  Create Layout file for page handle
 - Step 2C.2:  Create another layout file by update the previous layout
 - Step 2C.3:  Create Block NewList file
