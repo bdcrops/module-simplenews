@@ -20,7 +20,9 @@
 
 ## Magento 2 SimpleNews Module Step By Step (BDCrops)
 
-## Part A : News Module for Basic
+##  <a name="PartA">Part A : News Module for Basic </a>
+
+
 - Step 2A.1: Create a directory for the module like above format.
 - Step 2A.2: Declare module by using configuration file module.xml
 - Step 2A.3: Register module by registration.php & composer.json
@@ -85,7 +87,7 @@
 
 
 
-## Part A : News Module for Basic
+##  [Part A : News Module for Basic](#PartA)
 
 ***
 
