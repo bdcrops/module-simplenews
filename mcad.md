@@ -18,7 +18,7 @@
 
 #### 1.1 Describe the Magento module-based architecture
 
--  Describe module architecture. [Step 2A.1 Notes]
+-  Describe module architecture. [Step 2A.1 Notes](#Step2A1)
 -  What are the significant steps to add a new module? [Step 2A.2-3]
 -  What are the different Composer package types? [Step 2A.3]
 -  When would you place a module in the app/code folder versus another location? [Step 2A.3]
