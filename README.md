@@ -87,7 +87,7 @@
 
 
 
-##  <a name="PartA">Part A : News Module for Basic </a>
+##  <a name="PartA">Part A : News Module for Basic </a> [Go to Top](#top)
 
 ***
 
@@ -538,7 +538,7 @@ After define the Controller, the URL path to our module will be: `http://example
 
 
 
-### <a name="PartB">Part B: News Module for Back End </a>
+### <a name="PartB">Part B: News Module for Back End </a>   [Go to Top](#top)
 ***
 
 
@@ -1826,7 +1826,7 @@ class MassDelete extends News
 
 
 
-## <a name="PartC"> Part C : News Module for  Front End </a>
+## <a name="PartC"> Part C : News Module for  Front End </a>  [Go to Top](#top)
 
 ***
 
@@ -2427,7 +2427,7 @@ class Right extends Lastest
 <?php endif; ?>
 
 ```
-[Go to Top](top)
+[Go to Top](#top)
 
 
 
