@@ -401,6 +401,19 @@ class News extends AbstractModel{
 }
 
 ```
+#### <a name="Step2A9Note1"> Note: basic concepts of models, resource models, and collections</a>
+CRUD Models in Magento 2 can manage data in database easily, you don’t need to write many line of code to create a CRUD. CRUD is stand for Create, Read, Update and Delete.
+The Magento ORM is used by the Repository implementations that are part of the Magento 2 service contracts. This is an important variation from Magento 1, as a module should no longer rely on other modules using a specific ORM, and instead of it use only the entity repositories. The service contracts will be covered in more details in the second part of the article.The Magento ORM is built around models, resource models, and resource collections. The Magento ORM elements are following:
+
+-  Models are data and behavior, representing entities.
+- Resource Models are data mappers for the storage structure.
+- Collections are encapsulating sets of models and related functionality, such as filtering, sorting, and paging.
+- Resources include database connections via adapters.
+#### <a name="Step2A9Note2">Note:native Magento save/load </a>
+The ORM gives you a possibility to create, load, update, and delete data in a database. A collection in Magento is a class that implements both the IteratorAggregate and the Countable PHP5 SPL interfaces. Collections are widely used in Magento to store a set of objects of a specific type.
+
+#### NOte: Models
+Models are like a black box which provides a layer of abstraction on top of the resource models. The fetching, extraction, and manipulation of data occur through models. As a rule of thumb, every entity we create (i.e. every table we create in our database) should have its own model class. Every model extends the Magento\Framework\Model\AbstractModelclass, which inherits the \Magento\Framework\DataObjectclass, hence, we can call the setDataand getData functions on our model, to get or set the data of a model respectively.
 
 
 ### <a name="Step2A9">Step 2A.9: Create Model's ResourceModel to handle real database transaction</a>
