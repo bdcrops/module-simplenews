@@ -105,7 +105,8 @@ magento maintenance:status
 
 #### 2.3 Demonstrate how to use URL rewrites for a catalog product view to a different URL
 
-- How is the user-friendly URL of a product or category defined?
+- How is the user-friendly URL of a product or category defined? [mageplaza](https://www.mageplaza.com/kb/how-to-create-product-url-rewrites-magento-2.html)
+[firebearstudio](https://firebearstudio.com/blog/regenerate-url-rewrites-magento-2.html)
 - How can you change it?
 - How do you determine which page corresponds to a given user-friendly URL?
 
