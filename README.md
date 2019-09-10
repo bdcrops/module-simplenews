@@ -516,6 +516,11 @@ App/etc/routes.xsd">
 
 After define the route, the URL path to our module will be: `http://example.com/news/`
 
+#### <a name="Step2A11Note1">Note: Controllers, Routers and Responses</a>
+- Routers: define name for a module which we can use in the url to find the module and execute the controller action.
+- Controllers:Controllers in Magento 2 differ from typical controllers in MVC applications. Magento 2 controllers are responsible for only one specific URL and contain only one execute method. This method is responsible for returning result object and occasional processing of input POST data. All controllers inherit \Magento\Framework\App\Action\Action class. The required controller is searched in the Base Router, and then it’s called in the Front Controller.
+- Responses: The controller in Magento 2 can return several response types depending on the purpose and the necessary result.
+
 
 ### <a name="Step2A12">Step 2A.12: Create IndexController</a>
 
@@ -572,7 +577,63 @@ After define the Controller, the URL path to our module will be: `http://example
 
 
 
+#### <a name="Step2A12Note1"> Responses: create a frontend controller with different response types</a>
+- Page Result (\Magento\Framework\View\Result\Page) is the most common type of response. By returning this object, the controller starts the standard page rendering based on the corresponding XML layout handle.
+```
+public function __construct(
+   $pageFactory Magento\Framework\View\Result\PageFactory
+) {
+   $this->pageResultFactory = $pageFactory
+}
+public function execute()
+{
+   return $this->pageResultFactory->create();
+}
+```
+- Raw Result (\Magento\Framework\Controller\Result\Raw) is used if you want to return a string to the browser without using Magento layout and view rendering.
+```
+public function __construct(
+   Magento\Framework\Controller\Result\Raw $rawResultFactory ,
+) {
+   $this->rawResultFactory = $rawResultFactory;
+}
+public function execute()
+{
+   $result = $this->rawResultFactory->create();
+   $result->setHeader('Content-Type', 'text/xml');
+   $result->setContents('<root><block></block></root>);
+   return $result;
+}
+```
 
+- Forward Result (\Magento\Framework\Controller\Result\Forward) allows to call another method/controller without changing the URL or redirecting.
+```
+public function __construct(
+   Magento\Framework\Controller\Result\Forward\Factory $resultForwardFactory    
+) {
+   $this->resultForwardFactory = $resultForwardFactory;
+}
+public function execute()
+{
+   $result = $this->resultForwardFactory->create();
+   $result->forward('noroute');    
+   return $result;
+}
+```
+- Redirect Result (\Magento\Framework\Controller\Result\Redirect) is used when a user needs to be redirected to a different URL.
+```
+public function __construct(
+   Magento\Framework\Controller\Result\Redirect\Factory $resultRedirectFactory
+) {
+   $this->resultRedirectFactory = $resultRedirectFactory;
+}
+public function execute()
+{
+   $result = $this->resultRedirectFactory->create();
+   $result->setPath('*/*/index');
+   return $result;
+}
+```
 
 
 
@@ -712,8 +773,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
 
-class Data extends AbstractHelper
-{
+class Data extends AbstractHelper {
    const XML_PATH_ENABLED      = 'simplenews/general/enable_in_frontend';
    const XML_PATH_HEAD_TITLE   = 'simplenews/general/head_title';
    const XML_PATH_LASTEST_NEWS = 'simplenews/general/lastest_news_block_position';
