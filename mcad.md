@@ -19,9 +19,9 @@
 #### 1.1 Describe the Magento module-based architecture
 
 -  Describe module architecture. [Step 2A.1 Notes](README.md#Step2A1)
--  What are the significant steps to add a new module? [Step 2A.2-3]
--  What are the different Composer package types? [Step 2A.3]
--  When would you place a module in the app/code folder versus another location? [Step 2A.3]
+-  What are the significant steps to add a new module? [Step 2A.2-3](README.md#Step2A2)
+-  What are the different Composer package types? [Step 2A.3](README.md#Step2A3)
+-  When would you place a module in the app/code folder versus another location? [Step 2A.3](README.md#Step2A3)
 
 #### 1.2 Describe the Magento directory structure
 
@@ -32,12 +32,12 @@
 [devdocs1](https://devdocs.magento.com/guides/v2.3/coding-standards/code-standard-php.html)
 [devdocs2](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/build/create_component.html)
 [devdocs3](https://devdocs.magento.com/guides/v2.3/ext-best-practices/extension-coding/common-programming-bp.html)
--  How can you identify the files responsible for some functionality? [Step 2A.1]
+-  How can you identify the files responsible for some functionality? [Step 2A.1](README.md#Step2A1)
 
 
 #### 1.3 Utilize configuration and configuration variables scope
 
-- Determine how to use configuration files in Magento. [Step 2B.5]
+- Determine how to use configuration files in Magento. [Step 2B.5](README.md#Step2B5)
 - Which configuration files are important in the development cycle?
 - Describe development in the context of website and store scopes.
 - How do you identify the configuration scope for a given variable?
