@@ -143,7 +143,7 @@
 
 #### 4.3 Describe how to filter, sort, and specify the selected values for collections and repositories
 
-- How do you select a subset of records from the database?
+- [How do you select a subset of records from the database?](README.md#Step2A10Note1)
 
 #### 4.4 Demonstrate an ability to use declarative schema
 

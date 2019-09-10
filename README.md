@@ -480,6 +480,13 @@ Collections are used when we want to fetch multiple rows from our table. Meaning
 
 With a model and resource model, you have everything you need to fetch and save individual models into the database. However, there are times where you’ll want to fetch multiple models of a particular type. To solve this problem, every CRUD model in Magento 2 has a corresponding resource model collection. A collection collects individual models. It’s considered a resource model since it builds the SQL code necessary to pull information from a database table.
 All collections in Magento 2 extend the base \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection collection class. Like a model and resource model, a collection resource model must call the _ init method. A collection resource model’s _ init method accepts two arguments. The first is the model that this collection collects. The second is that collected model’s resource model.
+We create a new Magento 2 block an inject \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory class. This is needed to get a collection from factory. A getProductCollection returns a new product collection. This method does the following:
+
+- create a new collection from collection factory
+- filter attributes (collumns)
+- This time we want to load all data (* ), you can also add a comma seperated list of attribute names. Only this attributes get loaded – lazy loading optimizes your database select statement.
+- filter by attribute values
+It is possible to filter your collection by loaded attribute values. For example all products with price small than 1000 $. My example use setPageSize() to only load a given number of products.
 
 ### <a name="Step2A11">Step 2A.11: Setup the frontend route</a>
 
