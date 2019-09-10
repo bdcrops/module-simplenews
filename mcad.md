@@ -188,7 +188,8 @@ magento maintenance:status
 
 
 #### 5.4 Set up a menu item
-- How do you add a new menu item to a given tab? How do you add a new tab to the Admin menu?
+- How do you add a new menu item to a given tab?
+- How do you add a new tab to the Admin menu?
 
 #### 5.5 Create appropriate permissions for users
 - How are menu items related to ACL permissions?
@@ -213,7 +214,8 @@ magento maintenance:status
 - How do you customize the shipment step of order management?
 
 #### 6.6 Describe and customize operations available in the customer account area
-- How would you add another tab in the “My Account” section? How do you customize the order history page?
+- How would you add another tab in the “My Account” section?
+- How do you customize the order history page?
 
 #### 6.7 Add or modify customer attributes
 - How do you add or modify customer attributes in a setup script?
