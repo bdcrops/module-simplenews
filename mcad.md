@@ -141,13 +141,11 @@ magento maintenance:status
 
 - How do you add new content to existing pages using layout XML?
 
-
-
 ### 4 Working with Databases in Magento
 
 #### 4.1 Describe the basic concepts of [models](README.md#Step2A8Note3), resource models, and collections
 
-- [What are the responsibilities of each of the ORM object types? ](README.md#Step2A9Note1)
+- What are the responsibilities of each of the ORM object types? [Step2A9Note1](README.md#Step2A9Note1)
 - How do they relate to one another?
 
 #### 4.2 Describe how entity load and save occurs
