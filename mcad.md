@@ -132,9 +132,9 @@
 
 ### 4 Working with Databases in Magento
 
-#### [4.1 Describe the basic concepts of models, resource models, and collections](README.md#Step2A9Note1)
+#### 4.1 Describe the basic concepts of [models](README.md#Step2A8Note3), resource models, and collections
 
-- What are the responsibilities of each of the ORM object types?
+- [What are the responsibilities of each of the ORM object types? ](README.md#Step2A9Note1)
 - How do they relate to one another?
 
 #### 4.2 Describe how entity load and save occurs
