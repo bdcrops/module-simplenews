@@ -150,7 +150,7 @@ magento maintenance:status
 
 #### 4.2 Describe how entity load and save occurs
 
-- [How do you use the native Magento save/load process in the development process?](README.md#Step2A9Note2)
+- How do you use the native Magento save/load process in the development process?[save/load process](README.md#Step2A9Note2)
 
 #### 4.3 Describe how to filter, sort, and specify the selected values for collections and repositories
 
