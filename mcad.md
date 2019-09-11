@@ -182,7 +182,24 @@ magento maintenance:status
 #### 5.2 Define basic
 - terms and elements of system configuration, including scopes, website, store, store view
 - How would you add a new system configuration option?
+[belvg](https://belvg.com/blog/magento-2-custom-system-configuration.html),
+[inviqa](https://inviqa.com/blog/how-use-system-configuration-and-helpers-magento-2),
+[magecomp](https://magecomp.com/blog/create-system-xml-configuration-magento-2/)
+
 - What is the difference in this process for different option types (secret, file)?
+Secret Field
+```
+<field id="custom_secret" type="obscure" translate="label" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+   <label>Custom Secret Field</label>
+<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+</field>
+```
+
+type=”obscure” hides the field value from the frontend, but in this case, the data will still be stored as plain text.
+
+Setting Magento\Config\Model\Config\Backend\Encrypted as a backend model allows you to encrypt the data in the database.
+
+Most of the source models are located in app/code/Magento/Config/Model/Config/Source and backend models are located in app/code/Magento/Config/Model/Config/Backend.
 
 #### 5.3 Define / identify basic terms and elements of ACL
 
@@ -208,6 +225,7 @@ magento maintenance:status
 
 #### 6.1 Identify/describe standard product types (simple, configurable, bundled, etc.)
 - How would you obtain a product of a specific type, and what tools (in general) does a product type model provide?
+[belvg](https://belvg.com/blog/using-products-and-standard-product-types-simple-configurable-bundled-etc-in-magento-2.html), [mageplaza](https://www.mageplaza.com/kb/6-types-product-types-magento-2.html)
 
 #### 6.2 Describe category properties in Magento
 - How do you create and manage categories?
