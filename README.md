@@ -85,6 +85,13 @@
 - [Step 2C.14:  Create the template file for Latest News](#Step2C14)
 - [Step 2C.15:  Frontend view for the module](#Step2C15)
 
+## [Part D : News Console/Command](#PartD)
+- [Step 2D.1:  Adding a new command Dependency Injection](#Step2D1)
+- [Step 2D.2:  Adding a new command class](#Step2D3)
+- [Step 2D.3:  Adding a new command Helper class](#Step2D3)
+
+
+
 
 
 ##  <a name="PartA">Part A : News Module for Basic </a> [Go to Top](#top)
@@ -2526,12 +2533,179 @@ class Right extends Lastest
 
 ```
 
-PartD:
+## <a name="PartD"> Part D : News Console Command </a>  [Go to Top](#top)
 
 
+### <a name="Step2D1"> Step 2D.1: Adding a new command  Dependency Injection</a>
 
+Adding a new command to CLI is based on passing on the argument from the XML level to the class Magento\Framework\Console\CommandList. Dependency Injection comes in handy here. Let’s  
+
+Edit/Create  app/code/BDC/SimpleNews/etc/di.xml and insert this following code into it:
+
+
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <type name="Magento\Framework\Console\CommandList">
+       <arguments>
+           <argument name="commands" xsi:type="array">
+             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+           </argument>
+       </arguments>
+   </type>
+</config>
+
+```
+### <a name="Step2D2"> Step 2D.2: Adding a new command  class</a>
+We add the object responsible for executing the script to the class Magento\Framework\Console\CommandList. The constructor of this class is simply an array where class objects are passed on in a similar manner as in the above example.
+
+Let’s proceed to the next step – creating a class for our new command and a helper responsible for adding a new user:
+
+Create  app/code/BDC/SimpleNews/Console/Command/NewsCreate.php and insert this following code into it:
+
+```
+<?php
+namespace BDC\SimpleNews\Console\Command;
+
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use BDC\SimpleNews\Helper\News;
+
+class NewsCreate extends Command {
+    protected $newsHelper;
+
+    public function __construct(News $newsHelper)
+    {
+        $this->newsHelper = $newsHelper;
+        parent::__construct();
+    }
+
+    protected function configure()
+    {
+        $this->setName('bdcrops:news:create')
+            ->setDescription('Create New News')
+            ->setDefinition($this->getOptionsList());
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $output->writeln('<info>Creating new news...</info>');
+        $this->newsHelper->setData($input);
+        $this->newsHelper->execute();
+
+        $output->writeln('');
+        $output->writeln('<info>News created with the following data:</info>');
+        $output->writeln('<comment>News ID: ' . $this->newsHelper->getNewsId());
+        $output->writeln('<comment>Title: ' . $input->getOption(News::KEY_TITLE));
+        $output->writeln('<comment>Summary: ' . $input->getOption(News::KEY_SUMMARY));
+        $output->writeln('<comment>Description: ' . $input->getOption(News::KEY_DESC));
+
+       }
+
+    protected function getOptionsList(){
+        return [
+            new InputOption(News::KEY_TITLE, null, InputOption::VALUE_REQUIRED, '(Required) News Title'),
+            new InputOption(News::KEY_SUMMARY, null, InputOption::VALUE_REQUIRED, '(Required) News Summary'),
+            new InputOption(News::KEY_DESC, null, InputOption::VALUE_REQUIRED, '(Required) News Description'),
+
+            ];
+    }
+}
+
+
+```
+
+### <a name="Step2D3"> Step 2D.3: Helper  </a>
+
+
+Create  app/code/BDC/SimpleNews/Helper/News.php and insert this following code into it:
+
+```
+<?php
+namespace BDC\SimpleNews\Helper;
+
+use \Magento\Framework\App\Helper\Context;
+use \Magento\Store\Model\StoreManagerInterface;
+use \Magento\Framework\App\State;
+use \BDC\SimpleNews\Model\NewsFactory;
+use \Symfony\Component\Console\Input\Input;
+
+class News extends \Magento\Framework\App\Helper\AbstractHelper
+{
+    const KEY_TITLE = 'news-title';
+    const KEY_SUMMARY = 'news-summary';
+    const KEY_DESC = 'news-description';
+
+
+    protected $storeManager;
+    protected $state;
+    protected $newsFactory;
+    protected $data;
+    protected $newsId;
+
+    public function __construct(
+        Context $context,
+        StoreManagerInterface $storeManager,
+        State $state,
+        NewsFactory $newsFactory
+    ) {
+        $this->storeManager = $storeManager;
+        $this->state = $state;
+        $this->newsFactory = $newsFactory;
+
+        parent::__construct($context);
+    }
+
+    public function setData(Input $input)
+    {
+        $this->data = $input;
+        return $this;
+    }
+
+    public function execute()
+    {
+        $this->state->setAreaCode('frontend');
+
+        $news = $this->newsFactory->create();
+        $news
+            ->setTitle($this->data->getOption(self::KEY_TITLE))
+            ->setSummary($this->data->getOption(self::KEY_SUMMARY))
+            ->setDescription($this->data->getOption(self::KEY_DESC))
+
+            ;
+        $news->save();
+
+        $this->newsId = $news->getId();
+
+        // if($this->data->getOption(self::KEY_SENDEMAIL)) {
+        //     $news->sendNewAccountEmail();
+        // }
+    }
+
+    public function getNewsId()
+    {
+        return (int)$this->newsId;
+    }
+}
+
+
+```
+
+The execute() method adds a new user. If any data is incorrect at this stage (i.e. too short password), the script will stop and the console will show an Exception.
+
+### <a name="Step2D4"> Step 2D.4: Results  </a>
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/checkCliList.png)
+
+```
 php bin/magento bdcrops:news:create --news-title="Matin Cli News" --news-summary="summary 1" --news-description="News Description 1"
+```
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/CliImgAddNews.png)
 
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/CliAddNewsDB.png)
 
 
 [Go to Top](#top)
