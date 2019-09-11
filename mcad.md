@@ -72,13 +72,14 @@
 
 #### 1.7 Utilize the CLI
 
-- Describe the usage of bin/magento commands in the development cycle.
-- Which commands are available?
-- How are commands used in the development cycle?
+- Describe the usage of bin/magento commands in the development cycle. [BDC_Mycli](https://github.com/bdcrops/BDC_Mycli),[Step 2D.1](README.md#Step2D1)
+- Which commands are available? ||
+- How are commands used in the development cycle? ||
 
 #### 1.8 Describe how extensions are installed and configured
 
-- How would you install and verify an extension by a customer’s request?
+- How would you install and verify an extension by a customer’s request? [belvg blog](https://belvg.com/blog/how-to-install-module-manually-on-magento-2.html),
+[devdocs](https://devdocs.magento.com/guides/v2.3/comp-mgr/extens-man/extensman-main-pg.html)
 
 ### 2 Request Flow Processing
 
