@@ -118,8 +118,12 @@ magento maintenance:status
 #### 3.1 Demonstrate the ability to customize the Magento UI using themes
 
 - Demonstrate the ability to customize the Magento UI using themes.
+[devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/css-topics/theme-ui-lib.html), [inchoo](https://inchoo.net/magento-2/not-start-using-magento2-ui-library-easy-fun/)
 - When would you create a new theme?
+[devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/themes/theme-create.html)
+[magestore](https://www.magestore.com/magento-2-tutorial/3171-2/)
 - How do you define theme hierarchy for a project?
+[mageplaza](https://www.mageplaza.com/devdocs/how-to-create-magento-2-theme.html)
 
 #### 3.2 Demonstrate an ability to
 - create UI customizations using a combination of a block and template
@@ -207,26 +211,41 @@ magento maintenance:status
 
 #### 6.2 Describe category properties in Magento
 - How do you create and manage categories?
+[mageplaza](https://www.mageplaza.com/kb/how-to-create-a-new-category-in-magento-2.html),
+[tigren](https://www.tigren.com/create-manage-categories-in-magento-2/)
 
 #### 6.3 Define how products are related to the category
 - How do you assign and unassign products to categories?
+[magestore](https://www.magestore.com/magento-2-tutorial/add-and-remove-products-from-category-in-magento-2/),
+[blogtreat](http://www.blogtreat.com/programmatically-assign-remove-products-from-category-in-magento-2/)
 
 #### 6.4 Describe the difference in behavior of different product types in the cart
 - How are configurable and bundle products rendered?
+[belvg](https://belvg.com/blog/how-to-use-and-customize-magento-2-catalog-products-and-categories-price-and-price-rules.html)
 - How can you create a custom shopping cart renderer?
+[mage2](https://mage2.pro/t/topic/1312), [sherocommerce](https://sherocommerce.com/technical-overview-customize-magento-2-checkout/)
 
 #### 6.5 Describe native shipment functionality in Magento
 - How do you customize the shipment step of order management?
-
+[devdocs](https://devdocs.magento.com/guides/v2.3/howdoi/checkout/checkout_overview.html),
+[magestore](https://www.magestore.com/magento-2-tutorial/magento-2-checkout-customization/)
+[mageworx](https://www.mageworx.com/wiki/cat/magento-order/)
 #### 6.6 Describe and customize operations available in the customer account area
 - How would you add another tab in the “My Account” section?
+[magecomp](https://magecomp.com/blog/add-custom-tab-in-customer-account-section-magento-2/),[mageplaza](https://www.mageplaza.com/devdocs/add-custom-tab-customer-account-magento-2.html), [webkul](https://webkul.com/blog/account-navigation-link-magento2/)
+
 - How do you customize the order history page?
+[belvg](https://belvg.com/blog/customer-management-in-magento-2-customize-my-account-order-history-and-functionality.html)
+
 
 #### 6.7 Add or modify customer attributes
 - How do you add or modify customer attributes in a setup script?
+[mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-add-customer-attribute-programmatically.html), [coolblueweb](https://coolblueweb.com/blog/adding-a-customer-attribute-programmatically-in-magento-2/) [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/attributes.html)
 
 #### 6.8 Customize the customer address
 - How do you add another field to the customer address entity using a setup script?
+[webkul](https://webkul.com/blog/how-to-create-custom-customer-address-attribute-in-magento-2/), [web4pro](https://web4pro.net/blog-news/magento-2-add-custom-attribute-customers-address/),
+[devdocs](https://devdocs.magento.com/guides/v2.3/howdoi/checkout/checkout_new_field.html)
 
 
 
