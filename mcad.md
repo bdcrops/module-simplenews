@@ -181,18 +181,23 @@ magento maintenance:status
 
 #### 5.3 Define / identify basic terms and elements of ACL
 
-- How would you add a new ACL resource to a new entity?
-- How do you manage the existing ACL hierarchy?
+- How would you add a new ACL resource to a new entity? [Step 2B.3](README.md#Step2B3)
+- How do you manage the existing ACL hierarchy? [Step 2B.8](README.md#Step2B8)
 
 
 
 #### 5.4 Set up a menu item
 - How do you add a new menu item to a given tab? [Step 2B.6](README.md#Step2B6)
 - How do you add a new tab to the Admin menu?
+[dckap](https://www.dckap.com/blog/tab-in-customer-admin-in-magento-2/),
+[chapagain](http://blog.chapagain.com.np/magento-2-add-custom-link-tab-page-to-customer-account-sidebar/)
 
 #### 5.5 Create appropriate permissions for users
-- How are menu items related to ACL permissions?
+- How are menu items related to ACL permissions? [mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-acl-access-control-lists.html), [belvg blog](https://belvg.com/blog/magento-2-backend-menu-and-acl.html)
 - How do you add a new user with given set of permissions?
+[mageworx](https://www.mageworx.com/wiki/magento-2-permissions/),
+[mageplaza](https://www.mageplaza.com/kb/how-to-create-new-admin-user-magento-2.html)
+
 
 ###  6 Customizing Magento Business Logic
 
