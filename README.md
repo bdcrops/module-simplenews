@@ -2525,6 +2525,15 @@ class Right extends Lastest
 <?php endif; ?>
 
 ```
+
+PartD:
+
+
+
+php bin/magento bdcrops:news:create --news-title="Matin Cli News" --news-summary="summary 1" --news-description="News Description 1"
+
+
+
 [Go to Top](#top)
 
 
