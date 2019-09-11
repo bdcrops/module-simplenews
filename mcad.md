@@ -42,8 +42,8 @@
 - Describe development in the context of website and store scopes.
 - How do you identify the configuration scope for a given variable?
 - How do native Magento scopes (for example, price or inventory) affect development and decision-making processes?
-- Demonstrate an ability to add different values for different scopes.
-- How can you fetch a system configuration value programmatically?
+- Demonstrate an ability to add different values for different scopes. [Step 2B.1](README.md#Step2B1)
+- How can you fetch a system configuration value programmatically?[Step 2B.5](README.md#Step2B5)
 - How can you override system configuration values for a given store using XML configuration?
 
 #### 1.4 Demonstrate how to use dependency injection (DI)
@@ -187,7 +187,7 @@ magento maintenance:status
 
 
 #### 5.4 Set up a menu item
-- How do you add a new menu item to a given tab?
+- How do you add a new menu item to a given tab? [Step 2B.6](README.md#Step2B6)
 - How do you add a new tab to the Admin menu?
 
 #### 5.5 Create appropriate permissions for users
