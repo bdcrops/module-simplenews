@@ -171,8 +171,9 @@ magento maintenance:status
 
 #### 5.1 Create a controller for an admin router
 
-- How would you create an admin controller?
+- How would you create an admin controller?  [Step 2B.15-17](README.md#Step2B15)
 - How do you ensure the right level of security for a new controller?
+[andresa](https://andresa.dev/en/magento-2-how-to-create-an-admin-controller-and-a-new-acl/)
 
 #### 5.2 Define basic
 - terms and elements of system configuration, including scopes, website, store, store view
