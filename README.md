@@ -2881,9 +2881,9 @@ Schedule is the time the cron will run. In this example, it run in each minute.
 | +---------- Hour              (range: 0-23)
 +------------ Minute            (range: 0-59)
 ```
-* * * * * : it is the time the script autorun (each 1 minute)
-www-data: it is the user will run this cript
-php /home/eden/public_html/magento2/bin/magento cron:run : the command
+- * * * * * : it is the time the script autorun (each 1 minute)
+- www-data: it is the user will run this cript
+- php /home/eden/public_html/magento2/bin/magento cron:run : the command
 
 
 
