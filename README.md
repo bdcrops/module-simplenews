@@ -2719,12 +2719,7 @@ php bin/magento bdcrops:news:create --news-title="Matin Cli News" --news-summary
 
 ### <a name="Step2E1">Step 2E.1:Create crontab.xml </a>
 
-Create a crontab.xml file in the following file path and set a time schedule to run the custom cron code which is defined in the CronFile.php(Here use Core).
-```
-<job name="custom_cronjob" instance="BlogTreat\CustomCron\Cron\CronFile" method="execute">
-            <schedule>* * * * *</schedule>
-        </job>
-```
+Create a crontab.xml file in the following file path and set a time schedule to run the custom cron code which is defined  default.
 
 Create  app/code/BDC/SimpleNews/etc/crontab.xml and insert this following code into it:
 
@@ -2740,7 +2735,7 @@ Create  app/code/BDC/SimpleNews/etc/crontab.xml and insert this following code i
 </config>
 
 ```
-The above code runs the “execute” method in BlogTreat\CustomCron\Cron\CronFile.php class once per minute, resulting in a row being added to the cron_schedule table.
+Here when defining the crontab for the module we need to define the group name too. Here group_name is the name of the cron group. The group name doesn’t have to be unique and we can run the cron for one group at a time.
 
 Here,
 
@@ -2805,6 +2800,8 @@ SELECT * FROM `cron_schedule` where `job_code` LIKE "%bdc%"
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/cron_cli.png)
 
 ### <a name="Step2E4">Step 2E.4:Create custom cron group  </a>
+Declare a new group and specify its configuration options (all of which run in the store’s view scope) through the cron_groups.xml file, located at:
+<your component base dir>/<vendorname>/module-<name>/etc/cron_groups.xml
 
 Create  app/code/BDC/SimpleNews/etc/cron_groups.xml and insert this following code into it:
 
@@ -2822,6 +2819,19 @@ Create  app/code/BDC/SimpleNews/etc/cron_groups.xml and insert this following co
 </config>
 
 ```
+Where:
+
+- group_name – Name of the custom group.
+- schedule_generate_every – Frequency (in minutes) that schedules are written to the cron_schedule table.
+- schedule_ahead_for – Time (in minutes) in advance that schedules are written to the cron_schedule table.
+- schedule_lifetime – Window of time (in minutes) that cron job must start or will be considered missed (“too late” to run).
+- history_cleanup_every – Time (in minutes) that cron history is kept in the database.
+- history_success_lifetime – Time (in minutes) that the record of successfully completed cron jobs is kept in the database.
+- history_failure_lifetime – Time (in minutes) that the record of failed cron jobs is kept in the database.
+- use_separate_process – This feature is available only for Magento 2.1 and later.
+
+You can check your new cron group in admin panel at:
+Stores -> Configuration -> Advanced -> System -> Cron (Scheduled Tasks)
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/cronGroupAdmin.png)
 
@@ -2858,7 +2868,23 @@ Cron job is a great feature which is used to do the specific task automatically 
 - Customer Alerts and Notifications.
 - Private sales (Magento Enterprise Edition only) & more..
 In Magento 2, we can create crons easily and it will be listed in the database table (table name: cron_schedule) to process our tasks in scheduled time.
-#### Explain <schedule>* * * * * </schedule>?
+#### Explain <schedule>* * * * * </schedule> ?
+
+Schedule is the time the cron will run. In this example, it run in each minute.
+```
+* * * * * *
+| | | | | |
+| | | | | +-- Year              (range: 1900-3000)
+| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)
+| | | +------ Month of the Year (range: 1-12)
+| | +-------- Day of the Month  (range: 1-31)
+| +---------- Hour              (range: 0-23)
++------------ Minute            (range: 0-59)
+```
+* * * * * : it is the time the script autorun (each 1 minute)
+www-data: it is the user will run this cript
+php /home/eden/public_html/magento2/bin/magento cron:run : the command
+
 
 
 [Go to Top](#top)
