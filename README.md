@@ -2719,6 +2719,13 @@ php bin/magento bdcrops:news:create --news-title="Matin Cli News" --news-summary
 
 ### <a name="Step2E1">Step 2E.1:Create crontab.xml </a>
 
+Create a crontab.xml file in the following file path and set a time schedule to run the custom cron code which is defined in the CronFile.php(Here use Core).
+```
+<job name="custom_cronjob" instance="BlogTreat\CustomCron\Cron\CronFile" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+```
+
 Create  app/code/BDC/SimpleNews/etc/crontab.xml and insert this following code into it:
 
 ```
@@ -2733,9 +2740,30 @@ Create  app/code/BDC/SimpleNews/etc/crontab.xml and insert this following code i
 </config>
 
 ```
+The above code runs the “execute” method in BlogTreat\CustomCron\Cron\CronFile.php class once per minute, resulting in a row being added to the cron_schedule table.
+
+Here,
+
+group id: is a cron group name.
+job name: is a Unique ID for this cron job.
+instance: is a class to be instantiated (classpath).
+method: is a method in job instance to call.
+schedule: is a schedule in cron format.
+```
+* * * * * command to be executed
+| | | | |
+| | | | +----- Day of week (0 - 7) (Sunday=0 or 7)
+| | | +------- Month (1 - 12)
+| | +--------- Day of month (1 - 31)
+| +----------- Hour (0 - 23)
++------------- Minute (0 - 59)
+```
 
 
 ### <a name="Step2E2">Step 2E.2:Defined to run the execute method of class</a>
+
+This file contains the custom cron code and which will be executed while the cron runs in Magento 2.
+
 Create  app/code/BDC/SimpleNews/Cron/AddNews.php and insert this following code into it:
 
 ```
@@ -2762,12 +2790,19 @@ class AddNews {
 ```
 
 ### <a name="Step2E3">Step 2E.3: Run all cron jobs </a>
+After completing the above steps run the below SSH command in your Magento 2 installed root directory to run the Magento 2 cron jobs
+
 ```
 php bin/magento cache:flush
 php bin/magento cron:run
+```
+To check whether the cron is working properly, go to db
+```
 SELECT * FROM `cron_schedule`
 SELECT * FROM `cron_schedule` where `job_code` LIKE "%bdc%"
 ```
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/cron_cli.png)
 
 ### <a name="Step2E4">Step 2E.4:Create custom cron group  </a>
 
@@ -2788,12 +2823,42 @@ Create  app/code/BDC/SimpleNews/etc/cron_groups.xml and insert this following co
 
 ```
 
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/cronGroupAdmin.png)
+
 ### <a name="Step2E5">Step 2E.5:  Run new cron group cron jobs </a>
+
+After completing the above steps run the below SSH command in your Magento 2 installed root directory to run the Magento 2 specific group of  cron jobs only.
+
 
 ```
 php bin/magento cron:run --group="bdc_crongroup"
-SELECT * FROM `cron_schedule` where `job_code` LIKE "%bdc%"
 ```
+To check whether the cron is working properly, go to Database & run below query.
+```
+SELECT * FROM `cron_schedule` where `job_code` LIKE "%bdc%"
+
+SELECT * FROM `bdc_simplenews` ORDER BY `id` DESC
+```
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/cron_cli.png)
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/cron_sampleNews.png)
+
+
+### <a name="Step2E6">Step 2E.6: Cron Job FAQ </a>
+
+#### What is cron Job & Where use in magento 2x?
+Cron job is a great feature which is used to do the specific task automatically in exact time and date without manual working. The cron job is the perfect choice to do the repeated action every date or every week.Magento 2 uses cron jobs for,
+- Catalog price rules
+- Newsletters
+- Generating Google sitemaps
+- Reindexing
+- Automatic updating of currency rates
+- All Magento emails (including order confirmation and transactional)
+- Customer Alerts and Notifications.
+- Private sales (Magento Enterprise Edition only) & more..
+In Magento 2, we can create crons easily and it will be listed in the database table (table name: cron_schedule) to process our tasks in scheduled time.
+#### Explain <schedule>* * * * * </schedule>?
 
 
 [Go to Top](#top)
