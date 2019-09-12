@@ -2868,7 +2868,7 @@ Cron job is a great feature which is used to do the specific task automatically 
 - Customer Alerts and Notifications.
 - Private sales (Magento Enterprise Edition only) & more..
 In Magento 2, we can create crons easily and it will be listed in the database table (table name: cron_schedule) to process our tasks in scheduled time.
-#### Explain <schedule>* * * * * </schedule> ?
+#### Explain ``<schedule>* * * * * </schedule>`` ?
 
 Schedule is the time the cron will run. In this example, it run in each minute.
 ```
