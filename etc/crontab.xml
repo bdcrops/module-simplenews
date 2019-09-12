@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="bdc_crongroup">
+        <job name="bdcAddNews" instance="BDC\SimpleNews\Cron\AddNews" method="execute">
+            <!-- <config_path>bdc/general/cron_expression</config_path> -->
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
+</config>

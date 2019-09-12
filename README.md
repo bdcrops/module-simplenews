@@ -90,6 +90,12 @@
 - [Step 2D.2:  Adding a new command class](#Step2D3)
 - [Step 2D.3:  Adding a new command Helper class](#Step2D3)
 
+## [Part E : Set / Configure Custom Cron Jobs](#PartE)
+- [Step 2E.1:  Create crontab.xml ](#Step2E1)
+- [Step 2E.2:  defined to run the execute method of class](#Step2E3)
+- [Step 2E.3:  Run all cron jobs ](#Step2E3)
+- [Step 2E.4:  Create custom cron group ](#Step2E4)
+- [Step 2E.5:  Run new cron group cron jobs ](#Step2E5)
 
 
 
@@ -2706,6 +2712,88 @@ php bin/magento bdcrops:news:create --news-title="Matin Cli News" --news-summary
 
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/CliAddNewsDB.png)
+
+
+
+## <a name="PartE">Part E : Set / Configure Custom Cron Jobs </a>  [Go to Top](#top)
+
+### <a name="Step2E1">Step 2E.1:Create crontab.xml </a>
+
+Create  app/code/BDC/SimpleNews/etc/crontab.xml and insert this following code into it:
+
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="bdc_crongroup">
+        <job name="bdcAddNews" instance="BDC\SimpleNews\Cron\AddNews" method="execute">
+            <!-- <config_path>bdc/general/cron_expression</config_path> -->
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
+</config>
+
+```
+
+
+### <a name="Step2E2">Step 2E.2:Defined to run the execute method of class</a>
+Create  app/code/BDC/SimpleNews/Cron/AddNews.php and insert this following code into it:
+
+```
+<?php
+
+namespace BDC\SimpleNews\Cron;
+
+use BDC\SimpleNews\Model\NewsFactory;
+//use BDC\SimpleNews\Model\Config;
+class AddNews {
+    private $newsFactory;
+    public function __construct(NewsFactory $newsFactory) {
+        $this->newsFactory = $newsFactory;
+    }
+    public function execute(){
+        $this->newsFactory->create()
+            ->setTitle('Scheduled News')
+            ->setSummary('Scheduled News setSummary ' . date('Ymd'))
+            ->setDescription('Scheduled News setDescription ' . date('Ymd'))
+            ->save();
+    }
+}
+
+```
+
+### <a name="Step2E3">Step 2E.3: Run all cron jobs </a>
+```
+php bin/magento cache:flush
+php bin/magento cron:run
+SELECT * FROM `cron_schedule`
+SELECT * FROM `cron_schedule` where `job_code` LIKE "%bdc%"
+```
+
+### <a name="Step2E4">Step 2E.4:Create custom cron group  </a>
+
+Create  app/code/BDC/SimpleNews/etc/cron_groups.xml and insert this following code into it:
+
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:BlogTreat_CustomCron:etc/cron_groups.xsd">
+    <group id="bdc_crongroup">
+        <schedule_generate_every>1</schedule_generate_every>
+        <schedule_ahead_for>4</schedule_ahead_for>
+        <schedule_lifetime>2</schedule_lifetime>
+        <history_cleanup_every>10</history_cleanup_every>
+        <history_success_lifetime>60</history_success_lifetime>
+        <history_failure_lifetime>600</history_failure_lifetime>
+    </group>
+</config>
+
+```
+
+### <a name="Step2E5">Step 2E.5:  Run new cron group cron jobs </a>
+
+```
+php bin/magento cron:run --group="bdc_crongroup"
+SELECT * FROM `cron_schedule` where `job_code` LIKE "%bdc%"
+```
 
 
 [Go to Top](#top)

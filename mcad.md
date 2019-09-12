@@ -163,12 +163,12 @@ magento maintenance:status
 
 #### 4.4 Demonstrate an ability to use declarative schema
 
-- How do you add a column using declarative schema? [Step 2A.4 -5] [BDC_Declarative](https://github.com/bdcrops/BDC_Declarative)
+- How do you add a column using declarative schema? [Step 2A.4 -5](README.md#Step2A5) [BDC_Declarative](https://github.com/bdcrops/BDC_Declarative)
 - How do you modify a table added by another module? ||
 - How do you delete a column?  ||
 - How do you add an index or foreign key using declarative schema? ||
-- How do you manipulate data using data patches?  [Step 2A.7]
-- What is the purpose of schema patches? [Step 2A.7] [BDC_Declarative](https://github.com/bdcrops/BDC_Declarative)
+- How do you manipulate data using data patches?  [Step 2A.7](README.md#Step2A7)
+- What is the purpose of schema patches? [Step 2A.7](README.md#Step2A7) [BDC_Declarative](https://github.com/bdcrops/BDC_Declarative)
 
 
 ### 5 Developing with Adminhtml
@@ -180,7 +180,7 @@ magento maintenance:status
 [andresa](https://andresa.dev/en/magento-2-how-to-create-an-admin-controller-and-a-new-acl/)
 
 #### 5.2 Define basic
-- terms and elements of system configuration, including scopes, website, store, store view
+- terms and elements of system configuration, including scopes, website, store, store view? ||
 - How would you add a new system configuration option?
 [belvg](https://belvg.com/blog/magento-2-custom-system-configuration.html),
 [inviqa](https://inviqa.com/blog/how-use-system-configuration-and-helpers-magento-2),
