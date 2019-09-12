@@ -68,7 +68,7 @@
 - How are observers registered?
 - How are they scoped for frontend or backend?
 - How are automatic events created, and how should they be used?
-- How are scheduled jobs configured?
+- How are scheduled jobs configured? [PartE](README.md#PartE)
 
 #### 1.7 Utilize the CLI
 
