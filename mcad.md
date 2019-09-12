@@ -209,7 +209,7 @@ Most of the source models are located in app/code/Magento/Config/Model/Config/So
 
 
 #### 5.4 Set up a menu item
-- How do you add a new menu item to a given tab? [Step 2B.6](README.md#Step2B6)
+- How do you add a new menu item to a given tab? [Step 2B.1](README.md#Step2B1)
 - How do you add a new tab to the Admin menu?
 [dckap](https://www.dckap.com/blog/tab-in-customer-admin-in-magento-2/),
 [chapagain](http://blog.chapagain.com.np/magento-2-add-custom-link-tab-page-to-customer-account-sidebar/)

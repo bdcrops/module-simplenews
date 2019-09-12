@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<routes>
+    <route url="/V1/news" method="GET">
+        <service class="BDC\SimpleNews\Api\NewsRepositoryInterface" method="getList"/>
+        <resources> <resource ref="anonymous"/> </resources>
+    </route>
+</routes>

@@ -90,12 +90,15 @@
 - [Step 2D.2:  Adding a new command class](#Step2D3)
 - [Step 2D.3:  Adding a new command Helper class](#Step2D3)
 
-## [Part E : Set / Configure Custom Cron Jobs](#PartE)
+## [Part E : Create/Set / Configure Custom Cron Jobs](#PartE)
 - [Step 2E.1:  Create crontab.xml ](#Step2E1)
 - [Step 2E.2:  defined to run the execute method of class](#Step2E3)
 - [Step 2E.3:  Run all cron jobs ](#Step2E3)
 - [Step 2E.4:  Create custom cron group ](#Step2E4)
 - [Step 2E.5:  Run new cron group cron jobs ](#Step2E5)
+
+## [Part F : Create  REST WEB API](#PartF)
+- [Step 2F.1:  Create webapi.xml ](#Step2F1)
 
 
 
@@ -691,6 +694,9 @@ public function execute()
 </config>
 
 ```
+#### Note:- MCAD: 5.4 Set up a menu item
+- How do you add a new menu item to a given tab?
+- How do you add a new tab to the Admin menu?
 
 ### <a name="Step2B2">Step 2B.2:  Create a custom source model</a>
 
@@ -750,6 +756,11 @@ xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Acl
 
 
 ```
+
+#### Note:- 5.3 Define / identify basic terms and elements of ACL
+
+- How would you add a new ACL resource to a new entity?  
+- How do you manage the existing ACL hierarchy?  
 
 ### <a name="Step2B4">Step 2B.4:  Set some default value for configuration options</a>
 
