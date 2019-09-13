@@ -2897,13 +2897,76 @@ Schedule is the time the cron will run. In this example, it run in each minute.
 - php /home/eden/public_html/magento2/bin/magento cron:run : the command
 
 
-## [](#PartF)
-
-- [ ](#Step2F1)
 
 ## <a name="PartF">Part F : Create  REST WEB API </a>  [Go to Top](#top)
 
-### <a name="Step2F1">Step 2F.1:  Create webapi.xml </a>
+Magento 2 API framework allows developers to create new services for communicating with Magento 2 stores. It supports REST and SOAP web services and is based on CRUD operations (Create, Read, Update, Delete) and a Search Model.
+#### What is Magento 2 REST API?
+At the moment, Magento 2 uses the following three authentication methods as is described in Magento 2 REST API documentation.
+- OAuth 1.0a authentication for third-party applications.
+- Tokens to authenticate mobile applications.
+- Admins and customers authentication with login credentials.
+According to the Magento 2 API documentation, these authentication methods can only access the resources assigned to them. Magento 2 API framework first checks whether the call has appropriate authorization to perform the request. The API framework also supports field filtering of API responses to preserve cellular bandwidth.
+Developers use Magento 2 APIs for a wide range of tasks. For instance, you can create a shopping app and integrate it with your Magento 2 store. You can also build a web app which your employee could use to help customers make purchases. With the help of APIs, you can integrate your Magento 2 store with CRMs, ERPs or POS systems.
+#### How Using Magento 2 REST API?
+Using REST API in Magento 2 is a piece of cake. But for that, you need to understand the flow to call APIs in PHP.
+If you want to use token-based Magento 2 REST API, first you will need to authenticate and get the token from Magento 2. Then, you will have to pass it in the header of every request you perform.
+To get started with the REST API in Magento 2 using token-based authentication, you will need to create a web service User Role and register that role to a new Magento 2 Admin User. Keep in mind that creating a new role and user is necessary because it’s not a good practice to use Magento Owner User in a web service.
+#### How Create Web Service Role in Magento 2?
+To create a web service role in Magento 2, follow these steps:
+- Login to the Magento 2 Admin Panel.
+- Go to System >> User Roles and tap the Add New Role
+- Enter the Role Name.
+- In Your Password field, enter the current password of your Magento 2 Admin.
+- Now, on the left side, click Role Resources.
+- In the Resource Access, select only those that are required for your web service.
+- Once done, hit the Save Role
+#### How Create Web Service User in Magento 2?
+Now, create a new user for the newly created role through these steps:
+- Go to System >> All Users and hit the Add New User
+- Enter the required information including User Name, First and Last Name, Email, Password, etc.
+- Now, on the left side, click User Role and select the newly created role.
+- Once done, click the Save User
+#### How Magento 2 REST API Authentication?
+As I mentioned earlier, I will authenticate REST API through Token authentication. This means that I will pass a username and password in the initial connection and receive the token . This token will be saved in a variable, which will be passed in the header for further calls.
+#### How Get Modules Using REST API in Magento 2?<?php
+You can fetch almost everything using Magento 2 REST API. The List of REST APIs for Magento EE and CE is a good guide on this topic.To demonstrate the API, I am going to get all the installed modules on a Magento 2 store. Here is the script:
+
+```
+<?php
+//API URL for authentication
+$apiURL="http://www.magento.lan/rest/V1/news/admin/token";
+//parameters passing with URL
+$data = array("username" => "apiaccess", "password" => "api@123");
+$data_string = json_encode($data);
+$ch = curl_init($apiURL);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($data_string)));
+$token = curl_exec($ch);
+//decoding generated token and saving it in a variable
+$token=  json_decode($token);
+//******************************************//
+//Using above token into header
+$headers = array("Authorization: Bearer ".$token);
+//API URL to get all Magento 2 modules
+$requestUrl='http://www.magento.lan/rest/V1/news';
+$ch = curl_init($requestUrl);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$result = curl_exec($ch);
+//decoding result
+$result=  json_decode($result);
+//printing result
+print_r($result);
+
+```
+
+### <a name="Step2F1">Step 2F.1: Web API Routes/Configuration – etc/webapi.xml </a>
+
+Defining Web API routes in Magento 2 is much simpler when compared with Magento 1. The routes are defined in etc/webapi.xml within a module, and although the structure of the definition xml is directed by the requirements of the REST API, the SOAP API uses the same definitions.
+There are two more additional configurations we need to add API capability to module, webapi.xml and di.xml. In webapi.xml we are configuring access rights and API Interface that specified method will use.
 Create app/code/BDC/SimpleNews/etc/webapi.xml and insert this following code into it:
 
 ```
@@ -2915,8 +2978,12 @@ Create app/code/BDC/SimpleNews/etc/webapi.xml and insert this following code int
     </route>
 </routes>
 ```
+In the route tag the url attribute defines the route as /V1/cmsBlock/:blockId where the :blockId part represents an id parameter to be supplied. The method attribute defines the HTTP verb the route uses as ‘GET’ (other available verbs are PUT, POST and DELETE).
 
-### <a name="Step2F2">Step 2F.2:    </a>
+In the service tag the class attribute associates the service contract Magento\Cms\Api\BlockRepositoryInterface with the route, and the method attribute defines the method to call upon the object provided by the service contract.
+
+### <a name="Step2F2">Step 2F.2: Define Interface – etc/di.xml   </a>
+Now, create a di.xml file to define an interface and model that defines which model will be called by the defined interface.
 Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code into it:
 
 ```
@@ -2943,7 +3010,29 @@ Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code in
 
 ```
 
-### <a name="Step2F3">Step 2F.3:    </a>
+### <a name="Step2F3">Step2F.3:Declare API Interface – Api/NewsRepositoryInterface.php </a>
+Now, we need to create an interface and model, please note that you need to take care of the comments as well.
+
+Create app/code/BDC/SimpleNews/Api/NewsRepositoryInterface.php & insert this following code into it:
+```
+<?php
+
+namespace BDC\SimpleNews\Api;
+
+interface NewsRepositoryInterface {
+    /**
+     * @return \BDC\SimpleNews\Api\Data\NewsInterface[]
+     */
+    public function getList();
+}
+
+```
+
+
+### <a name="Step2F5">Step 2F.5:Data Interface – Api/Data/NewsInterface.php    </a>
+
+
+Now, we need to create an interface and model, please note that you need to take care of the comments as well.
 Create app/code/BDC/SimpleNews/Api/Data/NewsInterface.php & insert this following code into it:
 
 ```
@@ -2969,23 +3058,7 @@ interface NewsInterface {
 }
 
 ```
-
-### <a name="Step2F5">Step 2F.5:    </a>
-Create app/code/BDC/SimpleNews/Api/NewsRepositoryInterface.php & insert this following code into it:
-```
-<?php
-
-namespace BDC\SimpleNews\Api;
-
-interface NewsRepositoryInterface {
-    /**
-     * @return \BDC\SimpleNews\Api\Data\NewsInterface[]
-     */
-    public function getList();
-}
-
-```
-### <a name="Step2F6">Step 2F.6:    </a>
+### <a name="Step2F6">Step 2F.6:Create Model – Model/NewsRepository.php  </a>
 Create app/code/BDC/SimpleNews/Model/NewsRepository.php & insert this following code into it:
 ```
 <?php
@@ -3006,17 +3079,52 @@ class NewsRepository implements NewsRepositoryInterface {
 
 ```
 
-### <a name="Step2F7">Step 2F.7: Final Result:  </a>
+### <a name="Step2F7">Step 2F.7: Communicating with new API call  </a>
+Testing as guest:
+To test REST you can go to http://{domain_name}/rest/V1/{method}/{attribute}/{value}.
 
+Example: http://magento2.loc/rest/V1/hello/name/Matin.
+
+This is how response should look like for this example:
 
 http://www.magento.lan/rest/V1/news
 
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/webapi_restV1News.png)
-[Go to Top](#top)
+
+
+Here is small code that will test same API call but with SOAP(Not implements):
+```
+<?php
+$proxy = new SoapClient('http://www.magento.lan/index.php/soap/default?wsdl&services=/V1/news');
+$result = $proxy->bdcSimpleNewsV1();
+var_dump($result);
+```
+Response for SOAP
+```
+object(stdClass)#2 (1) {
+  ["result"]=>
+  string(10) "..."
+}
+```
 
 
 
+### <a name="Step2F8">Step 2F.8: Adding ACL  </a>
+
+
+If we don’t set anonymous in resource of webapi.xml, we need to set existing Magento resource or create our own. We can do that by adding acl.xml to etc.
+
+ACL – etc/acl.xml
+
+```
+<resource id="Magento_Backend::admin">
+ <resource id="BDC_SimpleNews::news" title="News API" translate="title" sortOrder="110" />
+</resource>
+```
+In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead anonymous.
+
+#### [Go to Top](#top)
 
 ## Ref
 ***
