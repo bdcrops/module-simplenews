@@ -3012,10 +3012,7 @@ class NewsRepository implements NewsRepositoryInterface {
 ### <a name="Step2F8">Step 2F.8: Final Result:  </a>
 
 
-
-
-
-WebAPI:
+http://www.magento.lan/rest/V1/news
 
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/webapi_restV1News.png)
