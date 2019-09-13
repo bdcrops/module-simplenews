@@ -2917,9 +2917,6 @@ Create app/code/BDC/SimpleNews/etc/webapi.xml and insert this following code int
 ```
 
 ### <a name="Step2F2">Step 2F.2:    </a>
-Create  app/code/BDC/SimpleNews/etc/cron_groups.xml and insert this following code into it:
-
-### <a name="Step2F3">Step 2F.3:    </a>
 Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code into it:
 
 ```
@@ -2927,7 +2924,7 @@ Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code in
 <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
 
 ```
-  final file look like as below:
+  Final file look like as below:
 
 ```
 <?xml version="1.0"?>
@@ -2946,7 +2943,7 @@ Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code in
 
 ```
 
-### <a name="Step2F4">Step 2F.4:    </a>
+### <a name="Step2F3">Step 2F.3:    </a>
 Create app/code/BDC/SimpleNews/Api/Data/NewsInterface.php & insert this following code into it:
 
 ```
@@ -2973,7 +2970,7 @@ interface NewsInterface {
 
 ```
 
-### <a name="Step2F6">Step 2F.6:    </a>
+### <a name="Step2F5">Step 2F.5:    </a>
 Create app/code/BDC/SimpleNews/Api/NewsRepositoryInterface.php & insert this following code into it:
 ```
 <?php
@@ -2988,7 +2985,7 @@ interface NewsRepositoryInterface {
 }
 
 ```
-### <a name="Step2F7">Step 2F.7:    </a>
+### <a name="Step2F6">Step 2F.6:    </a>
 Create app/code/BDC/SimpleNews/Model/NewsRepository.php & insert this following code into it:
 ```
 <?php
@@ -3009,7 +3006,7 @@ class NewsRepository implements NewsRepositoryInterface {
 
 ```
 
-### <a name="Step2F8">Step 2F.8: Final Result:  </a>
+### <a name="Step2F7">Step 2F.7: Final Result:  </a>
 
 
 http://www.magento.lan/rest/V1/news
