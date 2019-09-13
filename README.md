@@ -98,7 +98,13 @@
 - [Step 2E.5:  Run new cron group cron jobs ](#Step2E5)
 
 ## [Part F : Create  REST WEB API](#PartF)
-- [Step 2F.1:  Create webapi.xml ](#Step2F1)
+- [Step2F.1: Web API Routes/Configuration](#Step2F1)
+- [Step2F.2: Define Interface– etc/di.xml](#Step2F2)
+- [Step2F.3: Declare API Interface](#Step2F3)
+- [Step2F.4: Declare Data API Interface](#Step2F4)
+- [Step2F.5: Create Model](#Step2F5)
+- [Step2F.6: Communicating with new API call](#Step2F6)
+- [Step2F.7: Adding ACL Web API](#Step2F7)
 
 
 
@@ -2912,6 +2918,8 @@ Developers use Magento 2 APIs for a wide range of tasks. For instance, you can c
 Using REST API in Magento 2 is a piece of cake. But for that, you need to understand the flow to call APIs in PHP.
 If you want to use token-based Magento 2 REST API, first you will need to authenticate and get the token from Magento 2. Then, you will have to pass it in the header of every request you perform.
 To get started with the REST API in Magento 2 using token-based authentication, you will need to create a web service User Role and register that role to a new Magento 2 Admin User. Keep in mind that creating a new role and user is necessary because it’s not a good practice to use Magento Owner User in a web service.
+#### Why SOAP for eCommerce?
+When it comes to e-Commerce websites, APIs play the big role of reading and writing information from and to the server. Be it a customer’s name or his already saved credit card details, every piece of information shown to the end user has to either read from or written to the web server. This is taken care by REST and SOAP APIs. REST and SOAP are models for web services, however, one that’s most recommend for eCommerce websites. Though REST is fast, efficient and simple, SOAP is standardized, secure and apt for payments.  
 #### How Create Web Service Role in Magento 2?
 To create a web service role in Magento 2, follow these steps:
 - Login to the Magento 2 Admin Panel.
@@ -2963,7 +2971,7 @@ print_r($result);
 
 ```
 
-### <a name="Step2F1">Step 2F.1: Web API Routes/Configuration – etc/webapi.xml </a>
+### <a name="Step2F1">Step2F.1: Web API Routes/Configuration – etc/webapi.xml </a>
 
 Defining Web API routes in Magento 2 is much simpler when compared with Magento 1. The routes are defined in etc/webapi.xml within a module, and although the structure of the definition xml is directed by the requirements of the REST API, the SOAP API uses the same definitions.
 There are two more additional configurations we need to add API capability to module, webapi.xml and di.xml. In webapi.xml we are configuring access rights and API Interface that specified method will use.
@@ -2982,7 +2990,7 @@ In the route tag the url attribute defines the route as /V1/cmsBlock/:blockId wh
 
 In the service tag the class attribute associates the service contract Magento\Cms\Api\BlockRepositoryInterface with the route, and the method attribute defines the method to call upon the object provided by the service contract.
 
-### <a name="Step2F2">Step 2F.2: Define Interface – etc/di.xml   </a>
+### <a name="Step2F2">Step2F.2: Define Interface – etc/di.xml   </a>
 Now, create a di.xml file to define an interface and model that defines which model will be called by the defined interface.
 Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code into it:
 
@@ -3029,7 +3037,7 @@ interface NewsRepositoryInterface {
 ```
 
 
-### <a name="Step2F5">Step 2F.5:Data Interface – Api/Data/NewsInterface.php    </a>
+### <a name="Step2F4">Step2F.4:Data Interface – Api/Data/NewsInterface.php    </a>
 
 
 Now, we need to create an interface and model, please note that you need to take care of the comments as well.
@@ -3058,7 +3066,7 @@ interface NewsInterface {
 }
 
 ```
-### <a name="Step2F6">Step 2F.6:Create Model – Model/NewsRepository.php  </a>
+### <a name="Step2F5">Step2F.5: Create Model – Model/NewsRepository.php  </a>
 Create app/code/BDC/SimpleNews/Model/NewsRepository.php & insert this following code into it:
 ```
 <?php
@@ -3079,7 +3087,7 @@ class NewsRepository implements NewsRepositoryInterface {
 
 ```
 
-### <a name="Step2F7">Step 2F.7: Communicating with new API call  </a>
+### <a name="Step2F6">Step2F.6: Communicating with new API call  </a>
 Testing as guest:
 To test REST you can go to http://{domain_name}/rest/V1/{method}/{attribute}/{value}.
 
@@ -3110,7 +3118,7 @@ object(stdClass)#2 (1) {
 
 
 
-### <a name="Step2F8">Step 2F.8: Adding ACL  </a>
+### <a name="Step2F7">Step2F.7: Adding ACL Web API  </a>
 
 
 If we don’t set anonymous in resource of webapi.xml, we need to set existing Magento resource or create our own. We can do that by adding acl.xml to etc.
