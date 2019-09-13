@@ -12,6 +12,9 @@ interface NewsInterface {
      * @return string|null
      */
     public function getSummary();
-
+    
+    /**
+     * @return string|null
+     */
     public function getDescription();
 }

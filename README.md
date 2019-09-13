@@ -52,7 +52,7 @@
 - [Step 2B.12:  Create news status option file](#Step2B12)
 - [Step 2B.13:  Create News Block for backend](#Step2B13)
 - [Step 2B.14:  Create Grid block file for Ajax load](#Step2B14)
-- [Step 2B.15:  Create a backend controller file for child action class to extend](#Step2B15)
+- [Step 2B.15:  Create backend controller for child action class to extend](#Step2B15)
 - [Step 2B.16:  Create Backend Action file Index.php](#Step2B16)
 - [Step 2B.17:  Create another Action for ajax](#Step2B17)
 - [Step 2B.18:  Create layout file simplenews_news_edit.xml for edit form](#Step2B18)
@@ -2897,7 +2897,128 @@ Schedule is the time the cron will run. In this example, it run in each minute.
 - php /home/eden/public_html/magento2/bin/magento cron:run : the command
 
 
+## [](#PartF)
 
+- [ ](#Step2F1)
+
+## <a name="PartF">Part F : Create  REST WEB API </a>  [Go to Top](#top)
+
+### <a name="Step2F1">Step 2F.1:  Create webapi.xml </a>
+Create app/code/BDC/SimpleNews/etc/webapi.xml and insert this following code into it:
+
+```
+<?xml version="1.0"?>
+<routes>
+    <route url="/V1/news" method="GET">
+        <service class="BDC\SimpleNews\Api\NewsRepositoryInterface" method="getList"/>
+        <resources> <resource ref="anonymous"/> </resources>
+    </route>
+</routes>
+```
+
+### <a name="Step2F2">Step 2F.2:    </a>
+Create  app/code/BDC/SimpleNews/etc/cron_groups.xml and insert this following code into it:
+
+### <a name="Step2F3">Step 2F.3:    </a>
+Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code into it:
+
+```
+<preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
+<preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+
+```
+  final file look like as below:
+
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <type name="Magento\Framework\Console\CommandList">
+       <arguments>
+           <argument name="commands" xsi:type="array">
+             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+           </argument>
+       </arguments>
+   </type>
+  <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
+  <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+
+</config>
+
+```
+
+### <a name="Step2F4">Step 2F.4:    </a>
+Create app/code/BDC/SimpleNews/Api/Data/NewsInterface.php & insert this following code into it:
+
+```
+<?php
+
+namespace BDC\SimpleNews\Api\Data;
+
+interface NewsInterface {
+    /**
+     * @return string
+     */
+    public function getTitle();
+
+    /**
+     * @return string|null
+     */
+    public function getSummary();
+
+    /**
+     * @return string|null
+     */
+    public function getDescription();
+}
+
+```
+
+### <a name="Step2F6">Step 2F.6:    </a>
+Create app/code/BDC/SimpleNews/Api/NewsRepositoryInterface.php & insert this following code into it:
+```
+<?php
+
+namespace BDC\SimpleNews\Api;
+
+interface NewsRepositoryInterface {
+    /**
+     * @return \BDC\SimpleNews\Api\Data\NewsInterface[]
+     */
+    public function getList();
+}
+
+```
+### <a name="Step2F7">Step 2F.7:    </a>
+Create app/code/BDC/SimpleNews/Model/NewsRepository.php & insert this following code into it:
+```
+<?php
+namespace BDC\SimpleNews\Model;
+
+use BDC\SimpleNews\Api\NewsRepositoryInterface;
+use BDC\SimpleNews\Model\Resource\News\CollectionFactory;
+
+class NewsRepository implements NewsRepositoryInterface {
+    private $collectionFactory;
+    public function __construct(CollectionFactory $collectionFactory){
+        $this->collectionFactory = $collectionFactory;
+    }
+    public function getList() {
+        return $this->collectionFactory->create()->getItems();
+    }
+}
+
+```
+
+### <a name="Step2F8">Step 2F.8: Final Result:  </a>
+
+
+
+
+
+WebAPI:
+
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/webapi_restV1News.png)
 [Go to Top](#top)
 
 
