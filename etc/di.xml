@@ -10,4 +10,23 @@
   <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
   <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
 
+  <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
+      <arguments>
+          <argument name="handlers"  xsi:type="array">
+              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+          </argument>
+      </arguments>
+  </virtualType>
+  <type name="BDC\SimpleNews\Helper\News">
+       <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+   </type>
+   <type name="BDC\SimpleNews\Observer\Logger">
+        <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+    </type>
+
+    <type name="BDC\SimpleNews\Console\Command\NewsCreate">
+            <plugin name="bdcLoggerp" type="BDC\SimpleNews\Plugin\Logger"/>
+        </type>
+
+
 </config>

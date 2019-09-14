@@ -10,21 +10,18 @@ use BDC\SimpleNews\Helper\News;
 class NewsCreate extends Command {
     protected $newsHelper;
 
-    public function __construct(News $newsHelper)
-    {
+    public function __construct(News $newsHelper) {
         $this->newsHelper = $newsHelper;
         parent::__construct();
     }
 
-    protected function configure()
-    {
+    protected function configure(){
         $this->setName('bdcrops:news:create')
             ->setDescription('Create New News')
             ->setDefinition($this->getOptionsList());
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
+    protected function execute(InputInterface $input, OutputInterface $output){
         $output->writeln('<info>Creating new news...</info>');
         $this->newsHelper->setData($input);
         $this->newsHelper->execute();

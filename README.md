@@ -29,7 +29,7 @@
 - [Step 2A.4: Configure declarative schema (create table etc/db_schema.xml)](#Step2A4)
 - [Step 2A.5: Schema whitelist (etc/db_schema_whitelist.json) ](#Step2A15)
 - [Step 2A.6: Enable the module](#Step2A6)
-- [Step 2A.7: Develop data and schema patches (Insert Installing and upgrading data)](#Step2A7)
+- [Step 2A.7: Develop data & schema patches(Installing & upgrading data)](#Step2A7)
 - [Step 2A.8: Create Model News for business Logic](#Step2A8)
 - [Step 2A.9: Create Model's ResourceModel to handle real database transaction](#Step2A9)
 - [Step 2A.10: Create Model's collection class](#Step2A10)
@@ -106,7 +106,10 @@
 - [Step2F.6: Communicating with new API call](#Step2F6)
 - [Step2F.7: Adding ACL Web API](#Step2F7)
 
+## [PartG: DI Configuration Preferences, Arguments & Virtual Types ](#PartG)
+- [Step2G.1:  ...](#Step2G1)
 
+## [PartH : DI Observers & Plugins ](#PartH)
 
 
 ##  <a name="PartA">Part A : News Module for Basic </a> [Go to Top](#top)
@@ -3131,6 +3134,16 @@ ACL – etc/acl.xml
 </resource>
 ```
 In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead anonymous.
+
+
+
+## <a name="PartG">PartG: DI Configuration Preferences, Arguments & Virtual Types</a> [Go to Top](#top)
+
+Preference:  One class over another, which allows you to specify which class/type is selected by Magento’s object manager.This means that you can override which method you want from the class, along with the methods that this class extends.
+Arguments: 
+Virtual Types: way to inject different dependencies into existing classes without affecting other classes.
+
+### <a name="Step2G1">Step2G1: Adding ACL Web API  </a>
 
 #### [Go to Top](#top)
 

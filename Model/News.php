@@ -7,6 +7,7 @@ namespace BDC\SimpleNews\Model;
 use Magento\Framework\Model\AbstractModel;
 
 class News extends AbstractModel{
+  protected $_eventPrefix = 'bdc_simplenews';
     /**
      * News constructor.
      * @param \Magento\Framework\Model\Context $context
