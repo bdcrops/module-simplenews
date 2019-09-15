@@ -9,6 +9,7 @@
    </type>
   <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
   <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+  <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Monolog"/> -->
 
   <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
       <arguments>

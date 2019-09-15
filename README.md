@@ -3140,10 +3140,115 @@ In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead 
 ## <a name="PartG">PartG: DI Configuration Preferences, Arguments & Virtual Types</a> [Go to Top](#top)
 
 Preference:  One class over another, which allows you to specify which class/type is selected by Magento’s object manager.This means that you can override which method you want from the class, along with the methods that this class extends.
-Arguments: 
+Arguments:
 Virtual Types: way to inject different dependencies into existing classes without affecting other classes.
 
-### <a name="Step2G1">Step2G1: Adding ACL Web API  </a>
+### <a name="Step2G1">Step2G1: Preference Implements  </a>
+We write  log after news item save .
+Edit app/code/BDC/SimpleNews/Helper/News.php & insert code look like:
+```
+<?php
+namespace BDC\SimpleNews\Helper;
+
+use \Magento\Framework\App\Helper\Context;
+use \Magento\Store\Model\StoreManagerInterface;
+use \Magento\Framework\App\State;
+use \BDC\SimpleNews\Model\NewsFactory;
+use \Symfony\Component\Console\Input\Input;
+use \Psr\Log\LoggerInterface;
+
+
+class News extends \Magento\Framework\App\Helper\AbstractHelper {
+    const KEY_TITLE = 'news-title';
+    const KEY_SUMMARY = 'news-summary';
+    const KEY_DESC = 'news-description';
+
+    protected $storeManager;
+    protected $state;
+    protected $newsFactory;
+    protected $data;
+    protected $newsId;
+    protected $logger;
+
+
+    public function __construct(
+        Context $context,
+        StoreManagerInterface $storeManager,
+        State $state,
+        NewsFactory $newsFactory,
+        LoggerInterface $logger ) {
+            $this->storeManager = $storeManager;
+            $this->state = $state;
+            $this->logger = $logger;
+
+            $this->newsFactory = $newsFactory;
+
+        parent::__construct($context);
+    }
+
+    public function setData(Input $input){
+        $this->data = $input;
+        return $this;
+    }
+
+    public function execute() {
+        $this->state->setAreaCode('frontend');
+        $news = $this->newsFactory->create();
+        $news->setTitle($this->data->getOption(self::KEY_TITLE))
+            ->setSummary($this->data->getOption(self::KEY_SUMMARY))
+            ->setDescription($this->data->getOption(self::KEY_DESC));
+        $news->save();
+        $this->logger->debug('DI: '.$news->getTitle());
+
+    }
+
+    public function getNewsId(){
+        return (int)$this->newsId;
+    }
+}
+
+
+```
+
+Create app/code/BDC/SimpleNews/Helper/BdcDebug.php Insert :
+```
+<?php
+namespace BDC\SimpleNews\Helper;
+
+use Monolog\Logger;
+use Magento\Framework\Logger\Handler\Base;
+
+class BdcDebug extends Base{
+    /**
+     * @var string
+     */
+    protected $fileName = '/var/log/bdc_debug.log';
+
+    /**
+     * @var int
+     */
+    protected $loggerType = Logger::DEBUG;
+}
+
+```
+app/code/BDC/SimpleNews/etc/di.xml add below code  :
+```
+<preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Monolog"/>
+```
+Run
+
+```
+php bin/magento bdcrops:news:create --news-title="News" --news-summary="summary 1" --news-description="News Description 1"
+
+```
+Now  check var/log/bdc_debug.log  all log are write there
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/bdc_debug.png)
+
+### <a name="Step2G1">Step2G1:   </a>
+### <a name="Step2G1">Step2G1:   </a>
+### <a name="Step2G1">Step2G1:   </a>
+### <a name="Step2G1">Step2G1:   </a>
 
 #### [Go to Top](#top)
 

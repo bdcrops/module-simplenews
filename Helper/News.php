@@ -14,7 +14,6 @@ class News extends \Magento\Framework\App\Helper\AbstractHelper {
     const KEY_SUMMARY = 'news-summary';
     const KEY_DESC = 'news-description';
 
-
     protected $storeManager;
     protected $state;
     protected $newsFactory;
@@ -53,11 +52,9 @@ class News extends \Magento\Framework\App\Helper\AbstractHelper {
             ->setSummary($this->data->getOption(self::KEY_SUMMARY))
             ->setDescription($this->data->getOption(self::KEY_DESC));
         $news->save();
-
         $this->logger->debug('DI: '.$news->getTitle());
         // EventCode...
         $this->eventManager->dispatch('bdc_simplenews_save_after', ['object' => $news]);
-
         $this->newsId = $news->getId();
 
         // if($this->data->getOption(self::KEY_SENDEMAIL)) {
@@ -65,8 +62,7 @@ class News extends \Magento\Framework\App\Helper\AbstractHelper {
         // }
     }
 
-    public function getNewsId()
-    {
+    public function getNewsId(){
         return (int)$this->newsId;
     }
 }
