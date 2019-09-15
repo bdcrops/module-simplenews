@@ -12,10 +12,9 @@ class Logger implements ObserverInterface {
     public function __construct(LoggerInterface $logger){
         $this->logger = $logger;
     }
-
     public function execute(Observer $observer){
         $this->logger->debug("Observer:".
-            $observer->getEvent()->getObject()->getTitle() 
+            $observer->getEvent()->getObject()->getTitle()
         );
     }
 }

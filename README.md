@@ -3137,13 +3137,15 @@ In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead 
 
 
 
-## <a name="PartG">PartG: DI Configuration Preferences, Arguments & Virtual Types</a> [Go to Top](#top)
+## <a name="PartG">PartG:Dependency Injection configuration </a> [Go to Top](#top)
 
-Preference:  One class over another, which allows you to specify which class/type is selected by Magento’s object manager.This means that you can override which method you want from the class, along with the methods that this class extends.
-Arguments:
-Virtual Types: way to inject different dependencies into existing classes without affecting other classes.
+- Preference:  One class over another, which allows you to specify which class/type is selected by Magento’s object manager.This means that you can override which method you want from the class, along with the methods that this class extends.
+- Arguments:
+- Virtual Types: way to inject different dependencies into existing classes without affecting other classes.
+- Plugins:
+- Observers:
 
-### <a name="Step2G1">Step2G1: Preference Implements  </a>
+### <a name="Step2G1">Step2G1: Preference Arguments & Virtual Types Implements  </a>
 We write  log after news item save .
 Edit app/code/BDC/SimpleNews/Helper/News.php & insert code look like:
 ```
@@ -3231,21 +3233,232 @@ class BdcDebug extends Base{
 }
 
 ```
+as preference which override all DEBUG log
 app/code/BDC/SimpleNews/etc/di.xml add below code  :
 ```
-<preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Monolog"/>
+<preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/>
 ```
+OR  Arguments which override specific class Monolog
+
+```
+<type name="Magento\Framework\Logger\Monolog">
+    <arguments>
+        <argument name="handlers"  xsi:type="array">
+            <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+        </argument>
+    </arguments>
+</type>
+```
+
+OR virtualType which override specific class only work specific module
+
+```
+<virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
+    <arguments>
+        <argument name="handlers"  xsi:type="array">
+            <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+        </argument>
+    </arguments>
+</virtualType>
+<type name="BDC\SimpleNews\Helper\News">
+     <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+ </type>
+```
+
 Run
 
 ```
-php bin/magento bdcrops:news:create --news-title="News" --news-summary="summary 1" --news-description="News Description 1"
+php bin/magento cache:flush
+php bin/magento bdcrops:news:create --news-title="News preference" --news-summary="summary preference 1" --news-description="News preference Description 1"
 
 ```
 Now  check var/log/bdc_debug.log  all log are write there
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/bdc_debug.png)
 
-### <a name="Step2G1">Step2G1:   </a>
+### <a name="Step2G2">Step2G2: Observer Implements   </a>
+
+Edit app/code/BDC/SimpleNews/Helper/News.php & insert code look like:
+```
+<?php
+namespace BDC\SimpleNews\Helper;
+
+use \Magento\Framework\App\Helper\Context;
+use \Magento\Store\Model\StoreManagerInterface;
+use \Magento\Framework\App\State;
+use \BDC\SimpleNews\Model\NewsFactory;
+use \Symfony\Component\Console\Input\Input;
+use \Psr\Log\LoggerInterface;
+use \Magento\Framework\Event\ManagerInterface;
+
+class News extends \Magento\Framework\App\Helper\AbstractHelper {
+    const KEY_TITLE = 'news-title';
+    const KEY_SUMMARY = 'news-summary';
+    const KEY_DESC = 'news-description';
+
+    protected $storeManager;
+    protected $state;
+    protected $newsFactory;
+    protected $data;
+    protected $newsId;
+    protected $logger;
+    protected $eventManager;
+    // $eventManager
+
+
+    public function __construct(
+        Context $context,
+        StoreManagerInterface $storeManager,
+        State $state,
+        NewsFactory $newsFactory,
+        LoggerInterface $logger,
+        ManagerInterface $eventManager) {
+            $this->storeManager = $storeManager;
+            $this->state = $state;
+            $this->logger = $logger;
+            $this->eventManager = $eventManager;
+            $this->newsFactory = $newsFactory;
+
+        parent::__construct($context);
+    }
+
+    public function setData(Input $input){
+        $this->data = $input;
+        return $this;
+    }
+
+    public function execute() {
+        $this->state->setAreaCode('frontend');
+        $news = $this->newsFactory->create();
+        $news->setTitle($this->data->getOption(self::KEY_TITLE))
+            ->setSummary($this->data->getOption(self::KEY_SUMMARY))
+            ->setDescription($this->data->getOption(self::KEY_DESC));
+        $news->save();
+        $this->logger->debug('DI: '.$news->getTitle());
+        // EventCode...
+        $this->eventManager->dispatch('bdc_simplenews_save_after', ['object' => $news]);
+        $this->newsId = $news->getId();
+
+        // if($this->data->getOption(self::KEY_SENDEMAIL)) {
+        //     $news->sendNewAccountEmail();
+        // }
+    }
+
+    public function getNewsId(){
+        return (int)$this->newsId;
+    }
+}
+
+```
+OR app/code/BDC/SimpleNews/Model/News.php just add protected $_ eventPrefix = 'bdc_simplenews';
+Finaly script look like below:
+```
+<?php
+
+// These files to insert, update, delete and get data in the database.
+
+namespace BDC\SimpleNews\Model;
+
+use Magento\Framework\Model\AbstractModel;
+
+class News extends AbstractModel{
+  protected $_eventPrefix = 'bdc_simplenews';
+    /**
+     * News constructor.
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+    }
+
+   /**
+    * (non-PHPdoc)
+    * @see \Magento\Framework\Model\AbstractModel::_construct()
+    */
+    public function _construct()
+    {
+        $this->_init('BDC\SimpleNews\Model\Resource\News');
+    }
+
+    /**
+     * Loading news data
+     *
+     * @param   mixed $key
+     * @param   string $field
+     * @return  $this
+     */
+    public function load($key, $field = null) {
+    	if ($field === null) {
+    		$this->_getResource()->load($this, $key, 'id');
+    		return $this;
+    	}
+    	$this->_getResource()->load($this, $key, $field);
+    	return $this;
+    }
+}
+
+```
+app/code/BDC/SimpleNews/Observer/Logger.php
+```
+<?php
+
+namespace BDC\SimpleNews\Observer;
+
+use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
+use Psr\Log\LoggerInterface;
+
+class Logger implements ObserverInterface {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger){
+        $this->logger = $logger;
+    }
+    public function execute(Observer $observer){
+        $this->logger->debug("Observer:".
+            $observer->getEvent()->getObject()->getTitle()
+        );
+    }
+}
+
+```
+create app/code/BDC/SimpleNews/etc/events.xml
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="bdc_simplenews_save_after">
+        <observer name="bdcLogger" instance="BDC\SimpleNews\Observer\Logger" />
+    </event>
+</config>
+
+```
+add code app/code/BDC/SimpleNews/etc/di.xml
+```
+<type name="BDC\SimpleNews\Observer\Logger">
+     <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+ </type>
+```
+Run
+
+```
+php bin/magento cache:flush
+php bin/magento bdcrops:news:create --news-title="News Observer" --news-summary="summary Observer 1" --news-description="News Observer Description 1"
+
+```
+Now  check var/log/bdc_debug.log  all log are write there
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/bdc_debug.png)
+
 ### <a name="Step2G1">Step2G1:   </a>
 ### <a name="Step2G1">Step2G1:   </a>
 ### <a name="Step2G1">Step2G1:   </a>
