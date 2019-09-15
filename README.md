@@ -3443,7 +3443,7 @@ class News extends AbstractModel{
 }
 
 ```
-- app/code/BDC/SimpleNews/Observer/Logger.php
+- Create app/code/BDC/SimpleNews/Observer/Logger.php
 ```
 <?php
 
@@ -3536,7 +3536,112 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/bdc_debug.png)
 
-### <a name="Step2G1">Step2G1:   </a>
+### <a name="Step2G3">Step2G3: DI Plugins  </a>
+
+-  create app/code/BDC/SimpleNews/Plugin/Logger.php
+
+```
+<?php
+
+namespace BDC\SimpleNews\Plugin;
+
+use BDC\SimpleNews\Console\Command\NewsCreate;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+class Logger{
+    /**
+     * @var OutputInterface
+     */
+    private $output;
+    public function beforeRun(
+        NewsCreate $command,
+        InputInterface $input,
+        OutputInterface $output) {
+            $output->writeln('beforeExecute');
+    }
+    public function aroundRun(
+        NewsCreate $command,
+        \Closure $proceed,
+        InputInterface $input,
+        OutputInterface $output) {
+            $output->writeln('aroundExecute before call');
+            $proceed->call($command, $input, $output);
+            $output->writeln('aroundExecute after call');
+            $this->output = $output;
+    }
+
+    //public function afterRun(NewsCreate $command){
+        //$this->output->writeln('afterExecute');
+    //}
+}
+
+```
+
+- add code app/code/BDC/SimpleNews/etc/di.xml
+```
+<type name="BDC\SimpleNews\Console\Command\NewsCreate">
+        <plugin name="bdcLoggerp" type="BDC\SimpleNews\Plugin\Logger"/>
+    </type>
+```
+- Finally app/code/BDC/SimpleNews/etc/di.xml look like:
+
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <type name="Magento\Framework\Console\CommandList">
+       <arguments>
+           <argument name="commands" xsi:type="array">
+             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+           </argument>
+       </arguments>
+   </type>
+  <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
+  <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+  <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/> -->
+
+  <!-- <type name="Magento\Framework\Logger\Monolog">
+      <arguments>
+          <argument name="handlers"  xsi:type="array">
+              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+          </argument>
+      </arguments>
+  </type> -->
+
+  <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
+      <arguments>
+          <argument name="handlers"  xsi:type="array">
+              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+          </argument>
+      </arguments>
+  </virtualType>
+  <type name="BDC\SimpleNews\Helper\News">
+       <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+   </type>
+
+   <type name="BDC\SimpleNews\Observer\Logger">
+        <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+    </type>
+
+    <type name="BDC\SimpleNews\Console\Command\NewsCreate">
+            <plugin name="bdcLoggerp" type="BDC\SimpleNews\Plugin\Logger"/>
+        </type>
+
+</config>
+```
+
+- Run
+
+```
+php bin/magento cache:flush
+php bin/magento bdcrops:news:create --news-title="News Plugin" --news-summary="summary Plugin 1" --news-description="News Plugin Description 1"
+
+```
+Now  check var/log/bdc_debug.log  all log are write there
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/plugin_cli.png)
+
+
 ### <a name="Step2G1">Step2G1:   </a>
 ### <a name="Step2G1">Step2G1:   </a>
 
