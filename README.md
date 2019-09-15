@@ -3711,6 +3711,94 @@ Change as below:
 
 ### <a name="Step2H2">Step2H2:Customization JavaScript  </a>
 
+####  What  is RequireJS?
+RequireJS is a javascript module system. It implements the Asynchronous Module Definition (AMD) standard for javascript modules. In the terms of AMD, a javascript module provides a way to
+Run a javascript program that doesn’t default to the global namespace
+Share javascript code and data between named modules and programs
+That’s all RequireJS does. You may use a RequireJS module that implements some special bit of functionality, but its not RequireJS that provides that functionality. RequireJS is the pneumatic tube that ensures the functionality is delivered to you.
+#### Explain RequireJS term "map","shim","deps" ?
+- Map: Replace a default JS component To use a custom implementation of an existing Magento JS component: Place the custom component source file in one of the following locations:
+Your theme JS files: /web/js or /_ /web/js Your module view JS files: /view/frontend/web/js Create a RequireJS configuration file requirejs-config.js, having specified the following:
+```
+var config = {
+  "map": {
+    "*": { "<default_component>": "<custom_component>" }
+  }
+};
+```
+- Shim:To build a dependency on the third-party plugin, specify a [shim] in the following configuration files: requirejs-config.js
+```
+ var config = {
+     "shim": {
+     "3-rd-party-plugin": ["jquery"]
+     }
+ };
+ ```
+
+- Deps:Is used when your require js configurations depends upon some dependencies, i.e. you want to load some dependencies before your requires js define()’d is called. example:
+```
+var config = {
+    "deps": [
+        "jquery"
+    ]
+};
+```
+Here, It loads the [jquery] as soon as the require define()’d is called.
+- baseUrl: Is used when we want to define the url to load the js files for all the modules used in require js.
+baseUrl applied on all the files which defined with name starting with a slash”/”, have any url like “http://” or having .js extension.example:
+```
+var config = {
+	"baseUrl": "webkul/test"
+};
+
+require( ["sample/sample1", "https://code.jquery.com/jquery-3.1.1.min.js", "sample2.js"],
+    function(samplemodule) {
+    }
+);
+```
+Here, samplemodule is reffered to webkul/test/sample/sample1.js,
+“https://code.jquery.com/jquery-3.1.1.min.js” is loaded from the url which is specified
+and sample2.js is loaded from the same directory.
+
+- paths: Paths is used when you want to relate your base url path the your module path.
+Path have the same properties as the baseUrl.If the path is started from “/” or any url “http://” then it will not relate to the base url.example:
+
+```
+var config = {
+	"baseUrl": "webkul/test",
+	"paths": {
+        "sample": "web/js"
+    },
+};
+
+require( ["sample/sample1"],
+    function(samplemodule) {
+    }
+);
+```
+Now, samplemodule is reffered to the file at path “webkul/test/web/js/sample1.js”
+
+- config: Is used when you want to pass some configurations to all the modules.
+These values are the common for all the modules.example:
+```
+var config = {
+    "map": {
+        '*': {
+			'sample': 'sample1.js'
+		}
+    }
+    config: {
+        "testData":{
+            "color":'red'
+        }
+    }
+};
+```
+Now in your js file you can access this value by using :console.log(require.s.contexts._ .config.testData.color);It will gives you the “red” in output.
+
+#### What is RequireJS “mixin”?
+A Magento 2 RequireJS “mixin” allows you to programmatically listen for the initial instantiation of any RequireJS module and manipulate that module before returning it.
+
 - requireJS configuration
 create app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
 
