@@ -6,8 +6,7 @@ use BDC\SimpleNews\Console\Command\NewsCreate;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Logger
-{
+class Logger{
     /**
      * @var OutputInterface
      */
@@ -19,7 +18,6 @@ class Logger
         OutputInterface $output) {
             $output->writeln('beforeExecute');
     }
-
     public function aroundRun(
         NewsCreate $command,
         \Closure $proceed,

@@ -3641,13 +3641,12 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/plugin_cli.png)
 
+## <a name="PartH">PartH:  </a> [Go to Top](#top)
 
-### <a name="Step2G1">Step2G1:   </a>
-### <a name="Step2G1">Step2G1:   </a>
 
-#### [Go to Top](#top)
+### <a name="Step2H1">Step2H1:  </a>
 
-## Ref
+## Ref   [Go to Top](#top)
 ***
 https://devdocs.magento.com/guides/v2.3/extension-dev-guide/declarative-schema/
 
