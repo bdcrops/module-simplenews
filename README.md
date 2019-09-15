@@ -3572,6 +3572,8 @@ You must specify these elements:
 - 2. around - aroundDispatch()
 - 3. after - afterDispatch()
 
+#### Plugin Implementation:
+
 -  create app/code/BDC/SimpleNews/Plugin/Logger.php
 
 ```
