@@ -3386,8 +3386,7 @@ class News extends \Magento\Framework\App\Helper\AbstractHelper {
 }
 
 ```
-- OR app/code/BDC/SimpleNews/Model/News.php just add protected $_ eventPrefix = 'bdc_simplenews';
-
+- OR app/code/BDC/SimpleNews/Model/News.php just add protected $_ eventPrefix = 'bdc_simplenews'; This event eventPrefix is used by abstract model to generate events automatically.
 Finaly script look like below:
 ```
 <?php
