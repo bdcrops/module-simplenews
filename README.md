@@ -3536,7 +3536,41 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/bdc_debug.png)
 
-### <a name="Step2G3">Step2G3: DI Plugins  </a>
+### <a name="Step2G3">Step2G3: DI Plugins (Interceptors) </a>
+
+A plugin is a great way to expand or edit a public method’s behavior by using code before, after or around method. First of all, please get an object that provides permission to all public methods of the observed method’s class.
+
+#### Limitations: Plugins can not be used on following:
+- Final methods
+- Final classes
+- Non-public methods
+- Class methods (such as static methods)
+- __ construct
+- Virtual types
+- Objects that are instantiated before Magento\Framework\Interception is bootstrapped
+
+#### Declaring a plugin
+ di.xml file in your module declares a plugin for a class object:
+```
+<config>
+    <type name="{ObservedType}">
+      <plugin name="{pluginName}" type="{PluginClassName}" sortOrder="1" disabled="false" />
+    </type>
+</config>
+```
+You must specify these elements:
+- type name: A class or interface which the plugin observes.
+- plugin name: An arbitrary plugin name that identifies a plugin. Also used to merge the configurations for the plugin.
+- plugin type:  name of a plugin’s class or its virtual type. Use the following naming convention when you specify this element: \Vendor\Module\Plugin\<ClassName>.
+#### The following elements are optional:
+
+- plugin sortOrder: Plugins that call the same method run them using this order.
+- plugin disabled:  To disable a plugin, set this element to true. The default value is false.
+
+#### 3 methods in Plugin:
+- 1. before - beforeDispatch()
+- 2. around - aroundDispatch()
+- 3. after - afterDispatch()
 
 -  create app/code/BDC/SimpleNews/Plugin/Logger.php
 
