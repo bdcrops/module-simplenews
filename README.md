@@ -106,10 +106,15 @@
 - [Step2F.6: Communicating with new API call](#Step2F6)
 - [Step2F.7: Adding ACL Web API](#Step2F7)
 
-## [PartG: DI Configuration Preferences, Arguments & Virtual Types ](#PartG)
-- [Step2G.1:  ...](#Step2G1)
+## [PartG: Dependency Injection configuration ](#PartG)
+- [Step2G.1: DI Preference,Arguments & Virtual Types Implements](#Step2G1)
+- [Step2G.2: DI Observer Implements](#Step2G2)
+- [Step2G.3: DI Plugins (Interceptors)](#Step2G3)
 
-## [PartH : DI Observers & Plugins ](#PartH)
+## [PartH : Customization Layout Configuration & JavaScript ](#PartH)
+- [Step2H.1: Layout Configuration](#Step2H1)
+- [Step2H.2: Customization JavaScript Map & Mixin](#Step2H2)
+
 
 
 ##  <a name="PartA">Part A : News Module for Basic </a> [Go to Top](#top)
