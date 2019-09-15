@@ -1995,7 +1995,7 @@ xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framewo
     <update handle="news_news" />
     <body>
         <referenceBlock name="content">
-            <block template="BDC_SimpleNews::list.phtml" class="BDC\SimpleNews\Block\NewsList" name="jeff_simplenews_block_news_list"/>
+            <block template="BDC_SimpleNews::list.phtml" class="BDC\SimpleNews\Block\NewsList" name="bdc_simplenews_block_news_list"/>
         </referenceBlock>
     </body>
 </page>
@@ -3677,10 +3677,36 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/plugin_cli.png)
 
-## <a name="PartH">PartH:  </a> [Go to Top](#top)
+## <a name="PartH">PartH: Customization Layout Configuration & JavaScript  </a> [Go to Top](#top)
 
 
-### <a name="Step2H1">Step2H1:  </a>
+### <a name="Step2H1">Step2H1: Layout Configuration </a>
+- edit app/code/BDC/SimpleNews/view/frontend/layout/news_index_index.xml
+
+```
+<block template="BDC_SimpleNews::list.phtml" class="BDC\SimpleNews\Block\NewsList" name="bdc_simplenews_block_news_list"/>
+```
+Change as below:
+```
+<block template="BDC_SimpleNews::list.phtml" class="BDC\SimpleNews\Block\NewsList" name="bdc_simplenews_block_news_list">
+  <arguments>
+      <argument name="label" xsi:type="string">Head Line: </argument>
+  </arguments>
+</block>
+```
+
+- Edit app/code/BDC/SimpleNews/view/frontend/templates/list.phtml
+
+```
+<?php echo $block->getLabel(); ?>
+```
+- Output
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/custLayout.png)
+
+### <a name="Step2H2">Step2H2:Customization JavaScript  </a>
+
+
 
 ## Ref   [Go to Top](#top)
 ***

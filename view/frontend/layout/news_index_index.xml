@@ -3,7 +3,11 @@
     <update handle="news_news" />
     <body>
         <referenceBlock name="content">
-            <block template="BDC_SimpleNews::list.phtml" class="BDC\SimpleNews\Block\NewsList" name="jeff_simplenews_block_news_list"/>
+            <block template="BDC_SimpleNews::list.phtml" class="BDC\SimpleNews\Block\NewsList" name="bdc_simplenews_block_news_list">
+              <arguments>
+                  <argument name="label" xsi:type="string">Head Line: </argument>
+              </arguments>
+            </block>
         </referenceBlock>
     </body>
 </page>
