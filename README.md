@@ -3706,6 +3706,52 @@ Change as below:
 
 ### <a name="Step2H2">Step2H2:Customization JavaScript  </a>
 
+- requireJS configuration
+create app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
+
+- copy validation lib to mododule
+lib/web/mage/validation.js ==>app/code/BDC/SimpleNews/view/frontend/web/js/validation.js
+ Change massages about 1684 line as
+ ```
+ $.validator.messages = $.extend($.validator.messages, {
+     required: $.mage.__('This is a required field Custome.'),
+ ```
+- overwriting  JS component using map
+app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
+```
+var config = {
+    'map': {
+        '*': {
+            'mage/validation': 'BDC_SimpleNews/js/validation'
+        }
+    }
+};
+```
+
+- Clean cache try to login button  without fill filed
+
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/RequireJsValidationJS.png)
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/RequireJsLoginsms.png)
+
+- overwriting  JS component using mixin
+app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
+```
+var config = {
+    'map': {
+        '*': {
+            'mage/validation': 'BDC_SimpleNews/js/validation'
+        }
+    },
+    config: {
+        mixins: {
+            'BDC_SimpleNews/js/validation': {
+                'BDC_SimpleNews/js/validation-mixin': true
+            }
+        }
+    }
+};
+```
+
 
 
 ## Ref   [Go to Top](#top)
