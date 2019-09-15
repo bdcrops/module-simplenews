@@ -3751,6 +3751,25 @@ var config = {
     }
 };
 ```
+- app/code/BDC/SimpleNews/view/frontend/web/js/validation-mixin.js
+
+```
+define(function () {
+    'use strict';
+
+    var extension = {
+        isValid: function () {
+            return true;
+        }
+    };
+
+    return function (target) {
+        return target.extend(extension);
+    };
+});
+```
+- Check again login without fill value all validation gone
+
 
 
 
