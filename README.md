@@ -3147,7 +3147,8 @@ In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead 
 
 ### <a name="Step2G1">Step2G1: Preference Arguments & Virtual Types Implements  </a>
 We write  log after news item save .
-Edit app/code/BDC/SimpleNews/Helper/News.php & insert code look like:
+
+- Edit app/code/BDC/SimpleNews/Helper/News.php & insert code look like:
 ```
 <?php
 namespace BDC\SimpleNews\Helper;
@@ -3212,7 +3213,7 @@ class News extends \Magento\Framework\App\Helper\AbstractHelper {
 
 ```
 
-Create app/code/BDC/SimpleNews/Helper/BdcDebug.php Insert :
+- Create app/code/BDC/SimpleNews/Helper/BdcDebug.php Insert :
 ```
 <?php
 namespace BDC\SimpleNews\Helper;
@@ -3233,12 +3234,12 @@ class BdcDebug extends Base{
 }
 
 ```
-as preference which override all DEBUG log
+- as preference which override all DEBUG log
 app/code/BDC/SimpleNews/etc/di.xml add below code  :
 ```
 <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/>
 ```
-OR  Arguments which override specific class Monolog
+- OR  Arguments which override specific class Monolog
 
 ```
 <type name="Magento\Framework\Logger\Monolog">
@@ -3250,7 +3251,7 @@ OR  Arguments which override specific class Monolog
 </type>
 ```
 
-OR virtualType which override specific class only work specific module
+- OR virtualType which override specific class only work specific module
 
 ```
 <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
@@ -3264,8 +3265,43 @@ OR virtualType which override specific class only work specific module
      <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
  </type>
 ```
+- Finaly app/code/BDC/SimpleNews/etc/di.xml look like ;
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <type name="Magento\Framework\Console\CommandList">
+       <arguments>
+           <argument name="commands" xsi:type="array">
+             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+           </argument>
+       </arguments>
+   </type>
+  <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
+  <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+  <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/> -->
 
-Run
+  <!-- <type name="Magento\Framework\Logger\Monolog">
+      <arguments>
+          <argument name="handlers"  xsi:type="array">
+              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+          </argument>
+      </arguments>
+  </type> -->
+
+  <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
+      <arguments>
+          <argument name="handlers"  xsi:type="array">
+              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+          </argument>
+      </arguments>
+  </virtualType>
+  <type name="BDC\SimpleNews\Helper\News">
+       <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+   </type>
+</config>
+```
+
+- Run
 
 ```
 php bin/magento cache:flush
