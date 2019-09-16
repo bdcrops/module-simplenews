@@ -38,5 +38,11 @@
             <plugin name="bdcLoggerp" type="BDC\SimpleNews\Plugin\Logger"/>
         </type>
 
-
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="bdc_news_grid_data_source" xsi:type="string">BDC\SimpleNews\Model\Resource\News\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
