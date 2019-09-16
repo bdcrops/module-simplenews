@@ -4039,7 +4039,300 @@ http://www.magento.lan/cadmin/simplenews/
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/GridViewNewsListAdmin.png)
 
-### <a name="Step2I2">Step2I2:  </a>
+### <a name="Step2I2">Step2I2: Rendering Form  </a>
+
+- New & save controllers
+
+- UI data provider form
+
+- Form ui component configuration
+
+- Create app/code/BDC/SimpleNews/Ui/DataProvider.php
+```
+<?php
+
+namespace BDC\SimpleNews\Ui;
+
+use Magento\Ui\DataProvider\AbstractDataProvider;
+
+class DataProvider extends AbstractDataProvider{
+    protected $collection;
+    public function __construct(
+        $name,
+        $primaryFieldName,
+        $requestFieldName,
+        $collectionFactory,
+        array $meta = [],
+        array $data = [] ) {
+        parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
+        $this->collection = $collectionFactory->create();
+    }
+
+    public function getData() {
+        $result = [];
+        foreach ($this->collection->getItems() as $item) {
+            $result[$item->getId()]['general'] = $item->getData();
+        }
+        return $result;
+    }
+}
+
+```
+- Create app/code/BDC/SimpleNews/Controller/Adminhtml/Index/Index.php
+```
+<?php
+
+namespace BDC\SimpleNews\Controller\Adminhtml\Index;
+
+use Magento\Framework\Controller\ResultFactory;
+
+class Index extends \Magento\Backend\App\Action {
+    public function execute() {
+        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+    }
+}
+
+```
+- Create app/code/BDC/SimpleNews/Controller/Adminhtml/Index/NewAction.php
+```
+<?php
+
+namespace BDC\SimpleNews\Controller\Adminhtml\Index;
+
+use Magento\Framework\Controller\ResultFactory;
+
+class NewAction extends \Magento\Backend\App\Action{
+    public function execute() {
+        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+    }
+}
+
+```
+- Create app/code/BDC/SimpleNews/Controller/Adminhtml/Index/Save.php
+```
+<?php
+
+namespace BDC\SimpleNews\Controller\Adminhtml\Index;
+
+use BDC\SimpleNews\Model\NewsFactory;
+
+class Save extends \Magento\Backend\App\Action {
+    private $newsFactory;
+
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        NewsFactory $newsFactory
+    ) {
+        $this->newsFactory = $newsFactory;
+        parent::__construct($context);
+    }
+
+    public function execute(){
+        $this->newsFactory->create()
+            ->setData($this->getRequest()->getPostValue()['general'])->save();
+        return $this->resultRedirectFactory->create()->setPath('simplenews/index/index');
+    }
+}
+
+```
+- create app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_index_index.xml
+```
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="bdc_news_grid"/>
+        </referenceContainer>
+    </body>
+</page>
+```
+
+- createapp/code/BDC/SimpleNews/view/adminhtml/ui_component/bdc_news_grid.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">bdc_news_grid.bdc_news_grid_data_source</item>
+            <item name="deps" xsi:type="string">bdc_news_grid.bdc_news_grid_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">bdc_news_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add News</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/index/new</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="bdc_news_grid_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">bdc_news_grid_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+        <!-- <frontendLink name="frontend_link"/> -->
+    </listingToolbar>
+    <columns name="bdc_news_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">bdc_news_grid.bdc_news_grid.bdc_news_columns.actions</item>
+                        <item name="target" xsi:type="string">applyAction</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">view</item>
+                            <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Title</item>
+                </item>
+            </argument>
+        </column>
+        <column name="summary">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Summary</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>
+
+```
+- check admin panel as
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/GridNewsList.png)
+
+- create app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_index_new.xml
+```
+<?xml version="1.0"?>
+<page layout="admin-2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="bdc_news_form"/>
+        </referenceContainer>
+    </body>
+</page>
+```
+- createapp/code/BDC/SimpleNews/view/adminhtml/ui_component/bdc_news_form.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">bdc_news_form.bdc_news_form_data_source</item>
+            <item name="deps" xsi:type="string">bdc_news_form.bdc_news_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General</item>
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+            <item name="navContainerName" xsi:type="string">left</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="array">
+                <item name="name" xsi:type="string">save</item>
+                <item name="label" xsi:type="string" translate="true">Save</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/save</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="bdc_news_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">BDC\SimpleNews\Ui\DataProvider</argument>
+            <argument name="name" xsi:type="string">bdc_news_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="collectionFactory" xsi:type="object">BDC\SimpleNews\Model\Resource\News\CollectionFactory</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="simplenews/index/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General</item>
+            </item>
+        </argument>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Title</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="summary">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Summary</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>
+
+```
+
+
+- edit app/code/BDC/SimpleNews/etc/adminhtml/menu.xml add below code
+
+```
+<add id="BDC_SimpleNews::manage_newsui" title="Manage News UI Grid"
+    module="BDC_SimpleNews" sortOrder="3" parent="BDC_SimpleNews::main_menu"
+    action="simplenews" resource="BDC_SimpleNews::manage_newsui" />
+```
+
+- Check Output on Admin as below
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/GridCollectionNew.png)
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/gridCollectionList.png)
+
+
 
 ## Ref   [Go to Top](#top)
 ***

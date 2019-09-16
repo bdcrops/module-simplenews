@@ -12,8 +12,11 @@ xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
         <add id="BDC_SimpleNews::manage_news" title="Manage News"
             module="BDC_SimpleNews" sortOrder="2" parent="BDC_SimpleNews::main_menu"
             action="simplenews/news/index" resource="BDC_SimpleNews::manage_news" />
-        <add id="BDC_SimpleNews::configuration" title="Configurations"
+        <add id="BDC_SimpleNews::manage_newsui" title="Manage News UI Grid"
             module="BDC_SimpleNews" sortOrder="3" parent="BDC_SimpleNews::main_menu"
+            action="simplenews" resource="BDC_SimpleNews::manage_newsui" />
+        <add id="BDC_SimpleNews::configuration" title="Configurations"
+            module="BDC_SimpleNews" sortOrder="4" parent="BDC_SimpleNews::main_menu"
             action="adminhtml/system_config/edit/section/simplenews"
             resource="BDC_SimpleNews::configuration" />
     </menu>
