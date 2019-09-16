@@ -3799,6 +3799,8 @@ Now in your js file you can access this value by using :console.log(require.s.co
 #### What is RequireJS “mixin”?
 A Magento 2 RequireJS “mixin” allows you to programmatically listen for the initial instantiation of any RequireJS module and manipulate that module before returning it.
 
+### overwriting  JS component using map
+
 - requireJS configuration
 create app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
 
@@ -3826,8 +3828,9 @@ var config = {
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/RequireJsValidationJS.png)
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/RequireJsLoginsms.png)
 
-- overwriting  JS component using mixin
-app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
+### overwriting  JS component using mixin
+
+- app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
 ```
 var config = {
     'map': {
