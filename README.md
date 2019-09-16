@@ -4041,12 +4041,15 @@ http://www.magento.lan/cadmin/simplenews/
 
 ### <a name="Step2I2">Step2I2: Rendering Form  </a>
 
+#### Goal
 - New & save controllers
 
 - UI data provider form
 
 - Form ui component configuration
 
+#### Implement Procedure:
+ 
 - Create app/code/BDC/SimpleNews/Ui/DataProvider.php
 ```
 <?php
