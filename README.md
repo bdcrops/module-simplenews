@@ -4049,7 +4049,7 @@ http://www.magento.lan/cadmin/simplenews/
 - Form ui component configuration
 
 #### Implement Procedure:
- 
+
 - Create app/code/BDC/SimpleNews/Ui/DataProvider.php
 ```
 <?php
@@ -4335,8 +4335,57 @@ class Save extends \Magento\Backend\App\Action {
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/GridCollectionNew.png)
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/gridCollectionList.png)
 
+### <a name="Step2I3">Step2I3: Extending UI Component</a>
+
+#### Goal
+- Extending XML Configuration [Magento_Sales]
+- Adding New Column to Grid [Magento_Sales]
+- Customizing Existing Column [Magento_Sales]
+
+#### Implementation
+
+-  Copy To app/code/BDC/SimpleNews/view/adminhtml/layout/sales_order_index.xml <==vendor/magento/module-sales/view/adminhtml/layout/sales_order_grid.xml
+
+- Create app/code/BDC/SimpleNews/view/adminhtml/ui_component/sales_order_grid.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+        <column name="created_at">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dateFormat" xsi:type="string">MMM dd, YYYY</item>
+                </item>
+            </argument>
+        </column>
+        <!-- <column name="base_tax_amount" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Base Tax Amount</item>
+                </item>
+            </argument>
+        </column> -->
+    </columns>
+</listing>
+
+```
+- Edit app/code/BDC/SimpleNews/etc/di.xml
+```
+<virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+    <arguments>
+        <argument name="columns" xsi:type="array">
+            <item name="base_tax_amount" xsi:type="string">sales_order.base_tax_amount</item>
+        </argument>
+    </arguments>
+</virtualType>
+```
+
+- Add new field 'base_tax_amount' on table sales_order_grid
 
 
+
+***
 ## Ref   [Go to Top](#top)
 ***
 https://devdocs.magento.com/guides/v2.3/extension-dev-guide/declarative-schema/
