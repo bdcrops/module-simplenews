@@ -115,6 +115,11 @@
 - [Step2H.1: Layout Configuration](#Step2H1)
 - [Step2H.2: Customization JavaScript Map & Mixin](#Step2H2)
 
+## [PartI : UI Components Library](#PartI)
+- [Step2HI1: Rendering Grid(collections & listing component configuration)](#Step2I1)
+- [Step2I.2: Rendering Form ()](#Step2I2)
+
+
 
 
 ##  <a name="PartA">Part A : News Module for Basic </a> [Go to Top](#top)
