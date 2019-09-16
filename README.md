@@ -4381,9 +4381,9 @@ class Save extends \Magento\Backend\App\Action {
 </virtualType>
 ```
 
-- Add new field 'base_tax_amount' on table sales_order_grid
+- Add new field 'base_tax_amount' on table sales_order_grid(add filed PhpMyAdmin)
 
-
+![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/ExtendingXML.png)
 
 ***
 ## Ref   [Go to Top](#top)

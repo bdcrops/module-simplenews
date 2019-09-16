@@ -46,12 +46,12 @@
         </arguments>
     </type>
 
-    <!-- <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
         <arguments>
             <argument name="columns" xsi:type="array">
                 <item name="base_tax_amount" xsi:type="string">sales_order.base_tax_amount</item>
             </argument>
         </arguments>
-    </virtualType> -->
+    </virtualType>
 
 </config>

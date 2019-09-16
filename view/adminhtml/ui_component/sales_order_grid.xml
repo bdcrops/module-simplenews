@@ -8,13 +8,13 @@
                 </item>
             </argument>
         </column>
-        <!-- <column name="base_tax_amount" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+        <column name="base_tax_amount" class="Magento\Sales\Ui\Component\Listing\Column\Price">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
                     <item name="label" xsi:type="string" translate="true">Base Tax Amount</item>
                 </item>
             </argument>
-        </column> -->
+        </column>
     </columns>
 </listing>
