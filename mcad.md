@@ -116,8 +116,13 @@
 
 - Describe the usage of bin/magento commands in the development cycle.
 [ConsoleCommand](https://github.com/bdcrops/module-simplenews#PartD), [BDC_Mycli](https://github.com/bdcrops/BDC_Mycli),[Step 2D.1](README.md#Step2D1)
-- Which commands are available? ||
-- How are commands used in the development cycle? ||
+- Which commands are available?
+[emiprotechnologies](https://www.emiprotechnologies.com/technical_notes/magento-technical-notes-60/post/magento-2-useful-commands-list-391),
+[meetanshi](https://meetanshi.com/blog/magento-2-ssh-commands/),
+[mage2.pro](https://mage2.pro/t/topic/175)
+
+- How are commands used in the development cycle?
+[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/cli-cmds/cli-howto.html)
 
 #### 1.8 Describe how extensions are installed and configured
 
