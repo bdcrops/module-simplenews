@@ -59,6 +59,8 @@
 #### 1.4 Demonstrate how to use dependency injection (DI)
 
 - Demonstrate the ability to use the dependency injection concept in Magento development.
+[DIconfiguration](https://github.com/bdcrops/module-simplenews#PartG),
+[amastyBlog](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/)
 - How are objects realized in code?
 - Why is it important to have a centralized object creation process?
 - Identify how to use DI configuration files for customizing Magento.
@@ -69,20 +71,30 @@
 #### 1.5 Demonstrate ability to use plugins
 
 - Demonstrate an understanding of plugins.
+[DI Plugins](https://github.com/bdcrops/module-simplenews#Step2G3)
+
 - How are plugins used in core code?
+
 - How can they be used for customizations?
+
 
 #### 1.6 Configure event observers and scheduled jobs
 
 - Demonstrate how to create a customization using an event observer.
+[DI Observer](https://github.com/bdcrops/module-simplenews#Step2G2)
+
 - How are observers registered?
+
 - How are they scoped for frontend or backend?
+
 - How are automatic events created, and how should they be used?
+
 - How are scheduled jobs configured? [PartE](README.md#PartE)
 
 #### 1.7 Utilize the CLI
 
-- Describe the usage of bin/magento commands in the development cycle. [BDC_Mycli](https://github.com/bdcrops/BDC_Mycli),[Step 2D.1](README.md#Step2D1)
+- Describe the usage of bin/magento commands in the development cycle.
+[ConsoleCommand](https://github.com/bdcrops/module-simplenews#PartD), [BDC_Mycli](https://github.com/bdcrops/BDC_Mycli),[Step 2D.1](README.md#Step2D1)
 - Which commands are available? ||
 - How are commands used in the development cycle? ||
 
