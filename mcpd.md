@@ -24,13 +24,16 @@
 
 ### 1 Magento Architecture and Customization Techniques
 
-- 1.1 Describe Magento’s module-based architecture
+#### 1.1 Describe Magento’s module-based architecture
 
-      Describe module limitations.
-      How do different modules interact with each other?
-      What side effects can come from this interaction?
+- Describe module limitations?
 
-- 1.2 Describe Magento’s directory structure
+- How do different modules interact with each other?
+
+- What side effects can come from this interaction?
+
+
+#### 1.2 Describe Magento’s directory structure
 
       Determine how to locate different types of files in Magento.
       Where are the files containing JavaScript, HTML, and PHP located?
@@ -175,13 +178,19 @@
       Describe how to create a new layout XML file.
       Describe how to pass variables from layout to block.
 
-- 3.4 Utilize JavaScript in Magento
+#### 3.4 Utilize JavaScript in Magento
 
-      Describe different types and uses of JavaScript modules.
-      Which JavaScript modules are suited for which tasks?
-      Describe UI components.
-      In which situation would you use UiComponent versus a regular JavaScript module?
-      Describe the use of requirejs-config.js, x-magento-init, and data-mage-init.
+- Describe different types and uses of JavaScript modules?
+
+- Which JavaScript modules are suited for which tasks?
+
+- Describe UI components.
+
+- In which situation would you use UiComponent versus a regular JavaScript module?
+
+- Describe the use of requirejs-config.js, x-magento-init, and data-mage-init?
+[firebearstudio](https://firebearstudio.com/blog/advanced-development-with-requirejs-magento-2-tutorial.html),
+
 
 
 ### 4 Working with Databases in Magento
