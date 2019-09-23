@@ -18,15 +18,24 @@
 
 #### 1.1 Describe the Magento module-based architecture
 
--  Describe module architecture. [Step 2A.1 Notes](README.md#Step2A1)
+-  Describe module architecture. [Step 2A.1 Notes](README.md#Step2A1),
+[amasty](https://amasty.com/blog/magento-2-certification-module-based-architecture/),
+[magento-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/1.%20Describe%20Magento’s%20module-based%20architecture.md)
+
 -  What are the significant steps to add a new module? [Step 2A.2-3](README.md#Step2A2)
--  What are the different Composer package types? [Step 2A.3](README.md#Step2A3)
+[mageplaza](https://www.mageplaza.com/kb/how-create-hello-world-module-magento-2.html),
+[magestore](https://www.magestore.com/magento-2-tutorial/magento-2-modules/)
+
+-  What are the different Composer package types? [Step 2A.3](README.md#Step2A3),
+[amasty](https://amasty.com/blog/magento-2-certification-module-based-architecture/)
+
 -  When would you place a module in the app/code folder versus another location? [Step 2A.3](README.md#Step2A3)
 
 #### 1.2 Describe the Magento directory structure
 
--  Describe the Magento directory structure. [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/build/module-file-structure.html)
-[mageplaza](https://www.mageplaza.com/devdocs/file-structure-magento-2.html)
+-  Describe the Magento directory structure. [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/build/module-file-structure.html),
+[mageplaza](https://www.mageplaza.com/devdocs/file-structure-magento-2.html),
+[amasty](https://amasty.com/blog/magento-2-certification-directory-structure/)
 
 -  What are the naming conventions, and how are namespaces established?
 [devdocs1](https://devdocs.magento.com/guides/v2.3/coding-standards/code-standard-php.html)
