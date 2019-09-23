@@ -91,7 +91,7 @@
 [yireo](https://www.yireo.com/blog/2018-02-09-magent-2-observer-or-plugin)
 
 - How can they be used for customizations?
-[](https://www.eglobeits.com/blog/how-to-customize-a-functionality-using-magento-2-plugins-interceptor/)
+[eglobeits](https://www.eglobeits.com/blog/how-to-customize-a-functionality-using-magento-2-plugins-interceptor/)
 
 
 #### 1.6 Configure event observers and scheduled jobs
