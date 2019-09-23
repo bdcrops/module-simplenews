@@ -64,24 +64,34 @@
 #### 1.4 Demonstrate how to use dependency injection
 
 - Describe Magento’s dependency injection approach and architecture.
+[amasty](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/), [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/depend-inj.html)
 
-- How are objects realized in Magento?
+- How are objects realized in Magento 2?
+[amasty](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/), [bigbridge](https://www.bigbridge.nl/blog/development-english/the-beauty-dependency-injection-magento-2/)
 
 - Why is it important to have a centralized process creating object instances?
-
+[amasty](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/)
 - Identify how to use DI configuration files for customizing Magento.
+[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/depend-inj.html)
 
 - How can you override a native class, inject your class into another object, and use other techniques available in di.xml (such as virtualTypes)?
+[amasty](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/), [mageplaza](https://www.mageplaza.com/devdocs/using-virtual-type-magento-2.html)
 
 
 #### 1.5 Demonstrate ability to use plugins
 
-- Demonstrate how to design complex solutions using the plugin’s life cycle.
-- How do multiple plugins interact, and
-- how can their execution order be controlled?
+- Demonstrate how to design complex solutions using the plugin’s life cycle?
+
+- How do multiple plugins interact?
+
+- how can multiple plugins execution order be controlled?
+
 - How do you debug a plugin if it doesn’t work?
-- Identify strengths and weaknesses of plugins.
+
+- Identify strengths and weaknesses of plugins?
+
 - What are the limitations of using plugins for customization?
+
 - In which cases should plugins be avoided?
 
 #### 1.6 Configure event observers and scheduled jobs
