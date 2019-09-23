@@ -75,42 +75,56 @@
 [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/depend-inj.html)
 
 - How can you override a native class, inject your class into another object, and use other techniques available in di.xml (such as virtualTypes)?
-[amasty](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/), [mageplaza](https://www.mageplaza.com/devdocs/using-virtual-type-magento-2.html)
+[amasty](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/), [mageplaza](https://www.mageplaza.com/devdocs/using-virtual-type-magento-2.html),
+[sudhanshubajaj](https://www.sudhanshubajaj.com/virtual-type-in-magento-2/), [mage2.pro](https://mage2.pro/t/topic/154)
 
 
 #### 1.5 Demonstrate ability to use plugins
 
 - Demonstrate how to design complex solutions using the plugin’s life cycle?
+[mageplaza](https://www.mageplaza.com/devdocs/how-use-plugin-preference-rewrite-block-model-controller-helper-magento-2.html), [](https://belvg.com/blog/designing-complex-solutions-using-plugins-in-magento-2.html)
 
 - How do multiple plugins interact?
+[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/plugins.html),
+[packtpub](https://subscription.packtpub.com/book/web_development/9781785886584/6/ch06lvl1sec41/the-plugin-sort-order)
 
 - how can multiple plugins execution order be controlled?
+[elightwalk](https://www.elightwalk.com/blog/ability-of-plugins-in-magento-2),
+[inchoo](https://inchoo.net/magento-2/overriding-classes-magento-2/)
 
 - How do you debug a plugin if it doesn’t work?
+[stackexchange](https://magento.stackexchange.com/questions/179738/how-can-i-debug-variables-inside-plugin), [stackexchange](https://magento.stackexchange.com/questions/179738/how-can-i-debug-variables-inside-plugin)
 
 - Identify strengths and weaknesses of plugins?
+[devdocs](https://magento-devdocs.github.io/devdocs-for-tests/guides/v2.3/extension-dev-guide/plugins.html),[magestore](https://www.magestore.com/magento-2-tutorial/magento-2-product-price-change-with-plugin/)
 
-- What are the limitations of using plugins for customization?
+- What are the limitations of using plugins for customization? [devdocs]
+(), [stackexchange](https://magento.stackexchange.com/questions/153761/plugins-is-it-bad-habit-to-inherit-from-modified-class-in-order-to-use-protect)
 
-- In which cases should plugins be avoided?
+- In which cases should plugins be avoided? [devdocs](https://magento-devdocs.github.io/devdocs-for-tests/guides/v2.3/extension-dev-guide/plugins.html),[dckap](https://www.dckap.com/blog/magento-2-plugin-and-preference/)
 
 #### 1.6 Configure event observers and scheduled jobs
 
 - Demonstrate how to configure observers.
+
 - How do you make your observer only be active on the frontend or backend?
-- Demonstrate how to configure a scheduled job.
-- Which parameters are used in configuration, and
+
+- Demonstrate how to configure a scheduled job?
+
+- Which parameters are used in configuration?
+
 - how can configuration interact with server configuration?
+
 - Identify the function and proper use of automatically available events, for example _ load_after, etc.
 
 #### 1.7 Utilize the CLI
 
-Describe the usage of bin/magento commands in the development cycle.
-Which commands are available?
-How are commands used in the development cycle?
-Demonstrate an ability to create a deployment process.
-How does the application behave in different deployment modes, and
-how do these behaviors impact the deployment approach for PHP code, frontend assets, etc.?
+- Describe the usage of bin/magento commands in the development cycle?
+- Which commands are available magento 2?
+- How are commands used in the development cycle?
+- Demonstrate an ability to create a deployment process.
+- How does the application behave in different deployment modes, and
+- how do these behaviors impact the deployment approach for PHP code, frontend assets, etc.?
 
 #### 1.8 Demonstrate the ability to manage the cache
 
