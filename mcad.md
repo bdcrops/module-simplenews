@@ -62,11 +62,23 @@
 [DIconfiguration](https://github.com/bdcrops/module-simplenews#PartG),
 [amastyBlog](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/)
 - How are objects realized in code?
+[amastyBlog](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/)
+
 - Why is it important to have a centralized object creation process?
+[amasty](https://amasty.com/blog/magento-2-certification-dependency-injection-approach-and-architecture/)
+
 - Identify how to use DI configuration files for customizing Magento.
+[amasty](https://amasty.com/blog/magento-2-certification-configuration-files-visibility-areas/)
 - How can you override a native class, inject your class into another object, and use other techniques available in di.xml (for example, virtualTypes)?
+[yireo](https://www.yireo.com/blog/2018-05-06-magento-2-virtual-types-with-namespaces),
+[mageplaza](https://www.mageplaza.com/devdocs/using-virtual-type-magento-2.html)
+
 - Given a scenario, determine how to obtain an object using the ObjectManager object.
+[mageplaza](https://www.mageplaza.com/devdocs/magento-2-dependency-injection.html) ,
+[michiel](https://www.michiel-gerritsen.com/swapping-instances-in-the-object-manager/)
+
 - How would you obtain a class instance from different places in the code?
+[atwix](https://www.atwix.com/development/how-to-use-object-manager-in-unit-tests/)
 
 #### 1.5 Demonstrate ability to use plugins
 
