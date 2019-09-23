@@ -38,13 +38,23 @@
 #### 1.3 Utilize configuration and configuration variables scope
 
 - Determine how to use configuration files in Magento. [Step 2B.5](README.md#Step2B5)
-- Which configuration files are important in the development cycle?
+- Which configuration files are important in the development cycle?[amastyBlog](https://amasty.com/blog/magento-2-certification-configuration-files-visibility-areas/),
+[](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/3.%20Utilize%20configuration%20XML%20and%20variables%20scope.md)
+[belvg](https://belvg.com/blog/configuration-files-and-variables-scope-in-magento-2.html)
 - Describe development in the context of website and store scopes.
+[magestore](https://www.magestore.com/magento-2-tutorial/magento-2-configuration-scope-tutorial/) , [mage2-blog](https://mage2-blog.com/magento-2-write-and-get-config-values-by-scope/)
 - How do you identify the configuration scope for a given variable?
-- How do native Magento scopes (for example, price or inventory) affect development and decision-making processes?
+[docs.magento](https://docs.magento.com/m2/ce/user_guide/configuration/scope.html)
+- How do native Magento scopes (for example, price or inventory) affect development and decision-making processes? [magestandard](http://magestandard.com/configure-price-scope-magento-2/) ,
+[bsscommerceBlog](https://bsscommerce.com/blog/how-to-set-up-different-prices-of-products-per-magento-2-store-view/)
+
 - Demonstrate an ability to add different values for different scopes. [Step 2B.1](README.md#Step2B1)
+
 - How can you fetch a system configuration value programmatically?[Step 2B.5](README.md#Step2B5)
+
+
 - How can you override system configuration values for a given store using XML configuration?
+[stackexchange](https://magento.stackexchange.com/questions/141077/how-to-override-system-xml-core-file-in-magento2), [webkulBlog](https://webkul.com/blog/set-default-configuration-values-magento-2/)
 
 #### 1.4 Demonstrate how to use dependency injection (DI)
 
