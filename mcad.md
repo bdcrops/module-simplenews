@@ -86,8 +86,12 @@
 [DI Plugins](https://github.com/bdcrops/module-simplenews#Step2G3)
 
 - How are plugins used in core code?
+[mageplaza](https://www.mageplaza.com/devdocs/how-use-plugin-preference-rewrite-block-model-controller-helper-magento-2.html),
+[magecomp](https://magecomp.com/blog/override-core-code-using-custom-plugin-magento-2/)
+[yireo](https://www.yireo.com/blog/2018-02-09-magent-2-observer-or-plugin)
 
 - How can they be used for customizations?
+[](https://www.eglobeits.com/blog/how-to-customize-a-functionality-using-magento-2-plugins-interceptor/)
 
 
 #### 1.6 Configure event observers and scheduled jobs
