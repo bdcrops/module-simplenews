@@ -41,16 +41,18 @@
 
 #### 1.2 Describe Magento’s directory structure
 
-      Determine how to locate different types of files in Magento.
-      Where are the files containing JavaScript, HTML, and PHP located?
-      How do you find the files responsible for certain functionality?
+- Determine how to locate different types of files in Magento.
 
-- 1.3 Utilize configuration XML and variables scope
+- Where are the files containing JavaScript, HTML, and PHP located?
 
-      Determine how to use configuration files in Magento.
-      Which configuration files correspond to different features and functionality?
+- How do you find the files responsible for certain functionality?
 
-- 1.4 Demonstrate how to use dependency injection
+#### 1.3 Utilize configuration XML and variables scope
+- Determine how to use configuration files in Magento.
+
+- Which configuration files correspond to different features and functionality?
+
+#### 1.4 Demonstrate how to use dependency injection
 
       Describe Magento’s dependency injection approach and architecture.
       How are objects realized in Magento?
