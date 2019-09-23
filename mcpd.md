@@ -5,16 +5,16 @@
 
 ### Exam topics and the approximate percentage covered in the test:
 
-- Magento Architecture & Customization Techniques 18%
-- Request Flow Processing 12%
-- Customizing the Magento UI 10%
-- Working with Databases in Magento 7%
-- Using the Entity-Attribute-Value (EAV) Model 8%
-- Developing with Adminhtml 10%
-- Customizing the Catalog 12%
-- Customizing the Checkout Process 13%
-- Sales Operations 5%
-- Customer Management 5%
+- [Magento Architecture & Customization Techniques 18%](#Architecture)
+- [Request Flow Processing 12%](#RequestFlow)
+- [Customizing the Magento UI 10%](#MagentoUI)
+- [Working with Databases in Magento 7%](#Databases)
+- [Using the Entity-Attribute-Value (EAV) Model 8%](#EAV)
+- [Developing with Adminhtml 10%](#Adminhtml)
+- [Customizing the Catalog 12%](#Catalog)
+- [Customizing the Checkout Process 13%](#Checkout)
+- [Sales Operations 5%](#Sales)
+- [Customer Management 5%](#Customer)
 
 ***
 
@@ -22,7 +22,7 @@
 ## Topics and Objectives
 ***
 
-### 1 Magento Architecture and Customization Techniques
+### <a name="Architecture">1. Magento Architecture and Customization Techniques</a>
 
 #### 1.1 Describe Magento’s module-based architecture
 
@@ -90,7 +90,7 @@
       Describe how to clear the cache programmatically.
       What mechanisms are available for clearing all or part of the cache?
 
-### 2 Request Flow Processing
+### <a name="RequestFlow"> 2 Request Flow Processing</a>
 
 - 2.1 Utilize modes and application initialization
 
@@ -145,7 +145,7 @@
       In which situations would you create a new block or a new template?
 
 
-### 3 Customizing the Magento UI
+### <a name="MagentoUI"> 3 Customizing the Magento UI</a>
 
 - 3.1 Demonstrate ability to utilize themes and the template structure
 
@@ -193,7 +193,7 @@
 
 
 
-### 4 Working with Databases in Magento
+### <a name="Databases"> 4 Working with Databases in Magento</a>
 
 - 4.1 Demonstrate ability to use data-related classes
 
@@ -222,7 +222,7 @@
       How to manage dependencies between patch files?
 
 
-### 5 Using the Entity-Attribute-Value (EAV) Model
+### <a name="EAV">5 Using the Entity-Attribute-Value (EAV) Model</a>
 
 - 5.1 Demonstrate ability to use EAV model concepts
 
@@ -261,7 +261,7 @@
       What is the difference between adding a new attribute and modifying an existing one?
 
 
-### 6 Developing with Adminhtml
+### <a name="Adminhtml">6 Developing with Adminhtml</a>
 
 - 6.1 Describe common structure/architecture
 
@@ -297,7 +297,7 @@
       How can you do that programmatically?
 
 
-### 7 Customizing the Catalog
+### <a name="Catalog"> 7 Customizing the Catalog</a>
 
 - 7.1 Demonstrate ability to use products and product types
 
@@ -331,7 +331,7 @@
       How do they impact performance?
       How would you debug problems with catalog price rules?
 
-### 8 Customizing the Checkout Process
+### <a name="Checkout"> 8 Customizing the Checkout Process</a>
 
 - 8.1 Demonstrate ability to use quote, quote item, address, and shopping cart rules in checkout
 
@@ -374,7 +374,7 @@
       What types of payment methods exist?
       What are the different payment flows?
 
-### 9 Sales Operations
+### <a name="Sales"> 9 Sales Operations</a>
 
 - 9.1 Demonstrate ability to customize sales operations
 
@@ -388,7 +388,7 @@
       Which refund types are available, and how are they used?
 
 
-### 10 Customer Management
+### <a name="Customer"> 10 Customer Management</a>
 
 #### 10.1 Demonstrate ability to customize My Account
 
