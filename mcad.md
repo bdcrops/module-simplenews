@@ -121,15 +121,19 @@ magento maintenance:status
 
 #### 2.2 Demonstrate the ability to
 
-- create a frontend controller with different response types (HTML / JSON / redirect) [Responses](README.md#Step2A12Note1)
+- create a frontend controller with different response types (HTML / JSON / redirect)
+[SetupFrontendRoute](https://github.com/bdcrops/module-simplenews#step-2a11-setup-the-frontend-route), [Responses](README.md#Step2A12Note1)
 
 - How do you identify which module/controller corresponds to a given URL? [Step2A12](README.md#Step2A12)
+
 - What would you do to create a given URL? [Step2A11](README.md#Step2A11) [chapagain](http://blog.chapagain.com.np/magento-2-return-json-xml-html-raw-text-data-response-from-controller/)
 
 #### 2.3 Demonstrate how to use URL rewrites for a catalog product view to a different URL
 
-- How is the user-friendly URL of a product or category defined? [mageplaza](https://www.mageplaza.com/kb/how-to-create-product-url-rewrites-magento-2.html)
+- How is the user-friendly URL of a product or category defined? [mageplaza](https://www.mageplaza.com/kb/how-to-create-product-url-rewrites-magento-2.html),
+
 [firebearstudio](https://firebearstudio.com/blog/regenerate-url-rewrites-magento-2.html)
+
 - How can you change it?
 - How do you determine which page corresponds to a given user-friendly URL?
 [fastcomet](https://www.fastcomet.com/tutorials/magento2/sef-urls)
