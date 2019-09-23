@@ -178,25 +178,38 @@ magento maintenance:status
 [mageplaza](https://www.mageplaza.com/devdocs/how-to-create-magento-2-theme.html)
 
 #### 3.2 Demonstrate an ability to
-- create UI customizations using a combination of a block and template
+- create UI customizations using a combination of a block and template?
+[mageplaza](https://www.mageplaza.com/magento-2-module-development/view-block-layout-template-magento-2.html),
+[amasty](https://amasty.com/blog/how-to-use-ui-components-in-magento-2/)
+
 - How do you assign a template to a block?
+[webnexs](https://www.webnexs.com/blog/kb/include-custom-template-ui-component-fieldset-magento-2/) , [magenticians](https://magenticians.com/using-magento-2-layouts-blocks-templates/)
+
 - How do you assign a different template to a native block?
+[cloudways](https://www.cloudways.com/blog/magento-2-layouts-blocks-templates/)
 
 #### 3.3 Identify the uses of different types of blocks
 
 - When would you use non-template block types?
+[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
 
 #### 3.4 Describe the elements of the
 
-- Magento layout XML schema, including the major XML directives
+- Magento layout XML schema, including the major XML directives?
+[belvg](https://belvg.com/blog/layout-xml-directives-and-their-arguments-in-magento-2.html),
+[magestore](https://www.magestore.com/magento-2-tutorial/magento-2-block-create-template-block/)
+[magefoo](http://magefoo.com/magento-2-theming-part-1/)
 
 - How do you use layout XML directives in your customizations?
+[magento-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/3.%20Customizing%20the%20Magento%20UI/3.%20Demonstrate%20ability%20to%20use%20layout%20and%20XML%20schema.md)
 
 - How do you register a new layout file?
+[webkul](https://webkul.com/blog/how-to-create-custom-layout-page/)
 
 #### 3.5 Create and add code and markup to a given page
 
 - How do you add new content to existing pages using layout XML?
+[knowband](https://www.knowband.com/blog/magento-tutorials/create-custom-layout-cms-pages-magento-2/) , [belvg](https://belvg.com/blog/using-layout-and-xml-schema-in-magento-2.html)
 
 ### <a name="Databases">4 Working with Databases in Magento</a>
 
