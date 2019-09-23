@@ -100,10 +100,15 @@
 [DI Observer](https://github.com/bdcrops/module-simplenews#Step2G2)
 
 - How are observers registered?
+[magenticians](https://magenticians.com/magento-2-events-observers/),
+[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/events-and-observers.html)
 
 - How are they scoped for frontend or backend?
+[belvg](https://belvg.com/blog/declaring-observers-in-magento-2-0.html),
+[magenest](https://store.magenest.com/blog/write-magento-2-event-observers/)
 
 - How are automatic events created, and how should they be used?
+[meetanshi](https://meetanshi.com/blog/create-new-observer-on-trigger-of-magento-2-event-catalog_product_save_before/)
 
 - How are scheduled jobs configured? [PartE](README.md#PartE)
 
