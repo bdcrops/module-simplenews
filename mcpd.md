@@ -41,62 +41,76 @@
 
 #### 1.2 Describe Magento’s directory structure
 
-- Determine how to locate different types of files in Magento.
+- Determine how to locate different types of files in Magento?
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/2.%20Describe%20Magento’s%20directory%20structure.md),
+[sudhanshubajaj](https://www.sudhanshubajaj.com/determine-how-to-locate-different-types-of-files-in-magento-2/),
 
 - Where are the files containing JavaScript, HTML, and PHP located?
+[belvg](https://belvg.com/blog/directory-structure-and-locating-different-files-in-magento2.html), [amasty](https://amasty.com/knowledge-base/magento-2-file-and-folder-structure.html)
 
 - How do you find the files responsible for certain functionality?
+[amasty](https://amasty.com/blog/magento-2-certification-directory-structure/),[belvg](https://belvg.com/blog/magento-2-directory-module-theme-catalogue-structure.html),[devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/themes/debug-theme.html)
+
+
 
 #### 1.3 Utilize configuration XML and variables scope
-- Determine how to use configuration files in Magento.
+
+- Determine how to use configuration files in Magento?
+[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/build/required-configuration-files.html), [amasty](https://amasty.com/blog/magento-2-certification-configuration-files-visibility-areas/), [belvg](https://belvg.com/blog/configuration-files-and-variables-scope-in-magento-2.html)
 
 - Which configuration files correspond to different features and functionality?
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/3.%20Utilize%20configuration%20XML%20and%20variables%20scope.md), [devdocs](https://devdocs.magento.com/guides/v2.3/config-guide/config/config-files.html)
 
 #### 1.4 Demonstrate how to use dependency injection
 
-      Describe Magento’s dependency injection approach and architecture.
-      How are objects realized in Magento?
-      Why is it important to have a centralized process creating object instances?
-      Identify how to use DI configuration files for customizing Magento.
-      How can you override a native class, inject your class into another object, and use other techniques available in di.xml (such as virtualTypes)?
+- Describe Magento’s dependency injection approach and architecture.
 
-- 1.5 Demonstrate ability to use plugins
+- How are objects realized in Magento?
 
-      Demonstrate how to design complex solutions using the plugin’s life cycle.
-      How do multiple plugins interact, and
-      how can their execution order be controlled?
-      How do you debug a plugin if it doesn’t work?
-      Identify strengths and weaknesses of plugins.
-      What are the limitations of using plugins for customization?
-      In which cases should plugins be avoided?
+- Why is it important to have a centralized process creating object instances?
 
-- 1.6 Configure event observers and scheduled jobs
+- Identify how to use DI configuration files for customizing Magento.
 
-      Demonstrate how to configure observers.
-      How do you make your observer only be active on the frontend or backend?
-      Demonstrate how to configure a scheduled job.
-      Which parameters are used in configuration, and
-      how can configuration interact with server configuration?
-      Identify the function and proper use of automatically available events, for example _ load_after, etc.
+- How can you override a native class, inject your class into another object, and use other techniques available in di.xml (such as virtualTypes)?
 
-- 1.7 Utilize the CLI
 
-      Describe the usage of bin/magento commands in the development cycle.
-      Which commands are available?
-      How are commands used in the development cycle?
-      Demonstrate an ability to create a deployment process.
-      How does the application behave in different deployment modes, and
-      how do these behaviors impact the deployment approach for PHP code, frontend assets, etc.?
+#### 1.5 Demonstrate ability to use plugins
 
-- 1.8 Demonstrate the ability to manage the cache
+- Demonstrate how to design complex solutions using the plugin’s life cycle.
+- How do multiple plugins interact, and
+- how can their execution order be controlled?
+- How do you debug a plugin if it doesn’t work?
+- Identify strengths and weaknesses of plugins.
+- What are the limitations of using plugins for customization?
+- In which cases should plugins be avoided?
 
-      Describe cache types and the tools used to manage caches.
-      How do you add dynamic content to pages served from the full page cache?
-      Describe how to operate with cache clearing.
-      How would you clean the cache?
-      In which case would you refresh cache/flash cache storage?
-      Describe how to clear the cache programmatically.
-      What mechanisms are available for clearing all or part of the cache?
+#### 1.6 Configure event observers and scheduled jobs
+
+- Demonstrate how to configure observers.
+- How do you make your observer only be active on the frontend or backend?
+- Demonstrate how to configure a scheduled job.
+- Which parameters are used in configuration, and
+- how can configuration interact with server configuration?
+- Identify the function and proper use of automatically available events, for example _ load_after, etc.
+
+#### 1.7 Utilize the CLI
+
+Describe the usage of bin/magento commands in the development cycle.
+Which commands are available?
+How are commands used in the development cycle?
+Demonstrate an ability to create a deployment process.
+How does the application behave in different deployment modes, and
+how do these behaviors impact the deployment approach for PHP code, frontend assets, etc.?
+
+#### 1.8 Demonstrate the ability to manage the cache
+
+Describe cache types and the tools used to manage caches.
+How do you add dynamic content to pages served from the full page cache?
+Describe how to operate with cache clearing.
+How would you clean the cache?
+In which case would you refresh cache/flash cache storage?
+Describe how to clear the cache programmatically.
+What mechanisms are available for clearing all or part of the cache?
 
 ### <a name="RequestFlow"> 2 Request Flow Processing</a>
 
