@@ -105,25 +105,35 @@
 
 #### 1.6 Configure event observers and scheduled jobs
 
-- Demonstrate how to configure observers.
+- Demonstrate how to configure observers? [exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/6.%20Configure%20event%20observers%20and%20scheduled%20jobs.md), [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/events-and-observers.html)
+,[cloudways](https://www.cloudways.com/blog/magento-2-events-observers/),[mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-create-events.html),[magenticians](https://magenticians.com/magento-2-events-observers/),[divisionlab](https://www.divisionlab.com/solvingmagento/events-and-observers-a-magento-tutorial/)
 
 - How do you make your observer only be active on the frontend or backend?
+[codexpedia](https://www.codexpedia.com/magento/magento-observer-examples/),[magefoo](http://magefoo.com/creating-a-magento-2-observer/)
 
 - Demonstrate how to configure a scheduled job?
+[devdocs](https://devdocs.magento.com/guides/v2.3/config-guide/cli/config-cli-subcommands-cron.html)
 
-- Which parameters are used in configuration?
+- Which parameters are used in configuration scheduled job? [amasty](https://amasty.com/blog/magento-2-cron-job-starter-guide/),[magestore](https://www.magestore.com/magento-2-tutorial/how-to-setup-magento-2-cron-job/)
 
-- how can configuration interact with server configuration?
+- how can configuration interact with server configuration scheduled job?
+[devdocs](https://devdocs.magento.com/guides/v2.3/config-guide/cron/custom-cron-ref.html),[kiwicommerce](https://kiwicommerce.co.uk/docs/cron-scheduler/)
 
-- Identify the function and proper use of automatically available events, for example _ load_after, etc.
+- Identify the function and proper use of automatically available events, for example _ load_after, etc? [atwix](https://www.atwix.com/magento-2/choose-your-perfect-event/),
+[magenest](https://store.magenest.com/blog/write-magento-2-event-observers/)
 
 #### 1.7 Utilize the CLI
 
 - Describe the usage of bin/magento commands in the development cycle?
+
 - Which commands are available magento 2?
+
 - How are commands used in the development cycle?
-- Demonstrate an ability to create a deployment process.
-- How does the application behave in different deployment modes, and
+
+- Demonstrate an ability to create a deployment process?
+
+- How does the application behave in different deployment modes?
+
 - how do these behaviors impact the deployment approach for PHP code, frontend assets, etc.?
 
 #### 1.8 Demonstrate the ability to manage the cache
