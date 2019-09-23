@@ -27,10 +27,16 @@
 #### 1.1 Describe Magento’s module-based architecture
 
 - Describe module limitations?
+[amasty](https://amasty.com/blog/magento-2-certification-module-based-architecture/),
+[magento2-exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/1.%20Describe%20Magento’s%20module-based%20architecture.md)
 
 - How do different modules interact with each other?
+[belvg](https://belvg.com/blog/magento-2-module-based-architecture.html),
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/1.%20Describe%20Magento’s%20module-based%20architecture.md#how-do-different-modules-interact-with-each-other),
+[devdocs](https://devdocs.magento.com/guides/v2.3/architecture/archi_perspectives/components/modules/mod_intro.html)
 
 - What side effects can come from this interaction?
+[belvg](https://belvg.com/blog/magento-2-module-based-architecture.html)
 
 
 #### 1.2 Describe Magento’s directory structure
