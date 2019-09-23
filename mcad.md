@@ -2,19 +2,19 @@
 
 
 ### Exam topics and the percentage covered in the test:
-- Magento Architecture & Customization Techniques 33%
-- Request Flow Processing 7%
-- Customizing the Magento UI 15%
-- Working with Databases in Magento 18%
-- Developing with Adminhtml 11%
-- Customizing Magento Business Logic 16%
+- [Magento Architecture & Customization Techniques 33%](#Architecture)
+- [Request Flow Processing 7%](#RequestFlow)
+- [Customizing the Magento UI 15%](#UI)
+- [Working with Databases in Magento 18%](#Databases)
+- [Developing with Adminhtml 11%](#Adminhtml)
+- [Customizing Magento Business Logic 16%](#BusinessLogic)
 ***
 
 
 ## Topics and Objectives
 ***
 
-### 1 Magento Architecture and Customization Techniques
+### <a name="Architecture"> 1 Magento Architecture and Customization Techniques</a>
 
 #### 1.1 Describe the Magento module-based architecture
 
@@ -81,7 +81,7 @@
 - How would you install and verify an extension by a customer’s request? [belvg blog](https://belvg.com/blog/how-to-install-module-manually-on-magento-2.html),
 [devdocs](https://devdocs.magento.com/guides/v2.3/comp-mgr/extens-man/extensman-main-pg.html)
 
-### 2 Request Flow Processing
+### <a name="RequestFlow"> 2 Request Flow Processing</a>
 
 #### 2.1 Describe how to use Magento modes
 
@@ -113,7 +113,7 @@ magento maintenance:status
 [fastcomet](https://www.fastcomet.com/tutorials/magento2/sef-urls)
 
 
-### 3 Customizing the Magento UI
+### <a name="MagentoUI"> 3 Customizing the Magento UI</a>
 
 #### 3.1 Demonstrate the ability to customize the Magento UI using themes
 
@@ -146,7 +146,7 @@ magento maintenance:status
 
 - How do you add new content to existing pages using layout XML?
 
-### 4 Working with Databases in Magento
+### <a name="Databases">4 Working with Databases in Magento</a>
 
 #### 4.1 Describe the basic concepts of [models](README.md#Step2A8Note3), resource models, and collections
 
@@ -171,7 +171,7 @@ magento maintenance:status
 - What is the purpose of schema patches? [Step 2A.7](README.md#Step2A7) [BDC_Declarative](https://github.com/bdcrops/BDC_Declarative)
 
 
-### 5 Developing with Adminhtml
+### <a name="Adminhtml"> 5 Developing with Adminhtml</a>
 
 #### 5.1 Create a controller for an admin router
 
@@ -221,7 +221,7 @@ Most of the source models are located in app/code/Magento/Config/Model/Config/So
 [mageplaza](https://www.mageplaza.com/kb/how-to-create-new-admin-user-magento-2.html)
 
 
-###  6 Customizing Magento Business Logic
+### <a name="BusinessLogic"> 6 Customizing Magento Business Logic</a>
 
 #### 6.1 Identify/describe standard product types (simple, configurable, bundled, etc.)
 - How would you obtain a product of a specific type, and what tools (in general) does a product type model provide?
