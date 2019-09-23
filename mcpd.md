@@ -125,26 +125,37 @@
 #### 1.7 Utilize the CLI
 
 - Describe the usage of bin/magento commands in the development cycle?
+[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/cli-cmds/cli-howto.html),[]
 
 - Which commands are available magento 2?
+(https://www.emiprotechnologies.com/technical_notes/magento-technical-notes-60/post/magento-2-useful-commands-list-391)
 
 - How are commands used in the development cycle?
 
 - Demonstrate an ability to create a deployment process?
+[cloudways](https://www.cloudways.com/blog/custom-cli-command-magento-2/)
 
-- How does the application behave in different deployment modes?
-
+- How does the application behave in different deployment modes?[mageplaza](https://www.mageplaza.com/devdocs/magento-2-command-line-interface-cli.html),
+[belvg](https://belvg.com/blog/magento-2-console-commands.html)
 - how do these behaviors impact the deployment approach for PHP code, frontend assets, etc.?
+[devdocs](https://devdocs.magento.com/guides/v2.3/cloud/reference/discover-deploy.html)
 
 #### 1.8 Demonstrate the ability to manage the cache
 
-Describe cache types and the tools used to manage caches.
-How do you add dynamic content to pages served from the full page cache?
-Describe how to operate with cache clearing.
-How would you clean the cache?
-In which case would you refresh cache/flash cache storage?
-Describe how to clear the cache programmatically.
-What mechanisms are available for clearing all or part of the cache?
+- Describe cache types and the tools used to manage caches.
+
+- How do you add dynamic content to pages served from the full page cache?
+
+- Describe how to operate with cache clearing.
+
+- How would you clean the cache?
+
+- In which case would you refresh cache/flash cache storage?
+
+- Describe how to clear the cache programmatically.
+
+- What mechanisms are available for clearing all or part of the cache?
+
 
 ### <a name="RequestFlow"> 2 Request Flow Processing</a>
 
