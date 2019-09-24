@@ -142,19 +142,26 @@
 
 #### 1.8 Demonstrate the ability to manage the cache
 
-- Describe cache types and the tools used to manage caches.
+- Describe cache types and the tools used to manage caches?
+[devdocs](https://devdocs.magento.com/guides/v2.3/config-guide/cli/config-cli-subcommands-cache.html),[belvg](https://belvg.com/blog/how-to-manage-the-cache-types-in-magento-2.html)
 
 - How do you add dynamic content to pages served from the full page cache?
+[trellis](https://trellis.co/blog/magento2-fpc-hole-punching/),[magenticians](https://magenticians.com/amasty-magento-full-page-cache-extension-review/)
 
 - Describe how to operate with cache clearing.
+[fmeextensions](https://www.fmeextensions.com/blog/magento-clear-cache/),[](https://www.mageplaza.com/kb/how-flush-enable-disable-cache.html)
 
-- How would you clean the cache?
+- How would you clean the cache? [amasty](https://amasty.com/knowledge-base/magento-2-clear-cache.html)
 
 - In which case would you refresh cache/flash cache storage?
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/8.%20Demonstrate%20the%20ability%20to%20manage%20the%20cache.md)
 
 - Describe how to clear the cache programmatically.
+[mageplaza](https://www.mageplaza.com/devdocs/clear-cache-programmically-magento-2.html),
+[magecomp](https://magecomp.com/blog/how-to-clean-and-flush-cache-programmatically-in-magento2/),[metagento](https://www.metagento.com/blog/magento-2-clear-flush-cache-programmatically)
 
 - What mechanisms are available for clearing all or part of the cache?
+[belvg](https://belvg.com/blog/how-to-manage-the-cache-types-in-magento-2.html)
 
 
 ### <a name="RequestFlow"> 2 Request Flow Processing</a>
