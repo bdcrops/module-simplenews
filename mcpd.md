@@ -170,32 +170,45 @@
 
 - How would you design a customization that should act on every request
 and capture output data regardless of the controller?
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/1.%20Utilize%20modes%20and%20application%20initialization.md),[belvg](https://belvg.com/blog/utilizing-modes-and-application-initialization-in-magento-2.html)
 
-- Describe how to use Magento modes.
+- Describe how to use Magento modes. [devdocs](https://devdocs.magento.com/guides/v2.3/config-guide/bootstrap/magento-modes.html)
+[cloudways](https://www.cloudways.com/blog/magento-2-modes/)
 
-- What are pros and cons of using developer mode/production mode?
+- What are pros and cons of using developer mode/production mode? [customerparadigm](https://www.customerparadigm.com/difference-between-magento-2-modes/),
 
 - When do you use default mode?
+[meetanshi](https://meetanshi.com/blog/magento-2-modes/)
 
-- How do you enable/disable maintenance mode?
+- How do you enable/disable maintenance mode? [simicart](https://www.simicart.com/blog/magento-maintenance-mode/),[magestore](https://www.magestore.com/magento-2-tutorial/run-enabledisable-maintenance-mode-magento-2/)
 
 - Describe front controller responsibilities?
+[belvg](https://belvg.com/blog/front-controller-in-magento-1-and-2-magento-developer-certification.html),[devlineagency](https://www.devlineagency.com/blog/creating-admin-and-frontend-controllers-in-magento-2.html)
 
 - In which situations will the front controller be involved in execution?
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/1.%20Utilize%20modes%20and%20application%20initialization.md)
 
 - how can front controller be used in the scope of customizations?
+[devdocs](https://devdocs.magento.com/guides/v2.3/architecture/archi_perspectives/components/modules/mod_and_areas.html)
 
 ### 2.2 Demonstrate ability to process URLs in Magento
 
 - Describe how Magento processes a given URL.
-- How do you identify which module and controller corresponds to a
-given URL?
+
+- How do you identify which module and controller corresponds to a given URL?
+
 - What is necessary to create a custom URL structure?
+
 - Describe the URL rewrite process and its role in creating user-friendly URLs.
+
 - How are user-friendly URLs established?
+
 - how are user-friendly URLs customized?
+
 - Describe how action controllers and results function.
+
 - How do controllers interact with another?
+
 - How are different response types generated?
 
 ### 2.3 Demonstrate ability to customize request routing
