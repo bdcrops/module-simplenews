@@ -193,53 +193,72 @@ and capture output data regardless of the controller?
 
 ### 2.2 Demonstrate ability to process URLs in Magento
 
-- Describe how Magento processes a given URL.
+- Describe how Magento processes a given URL.[belvg](https://belvg.com/blog/url-rewrites-in-magento-2-developer-certification.html),[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/2.%20Demonstrate%20ability%20to%20process%20URLs%20in%20Magento.md)
 
-- How do you identify which module and controller corresponds to a given URL?
+- How do you identify which module and controller corresponds to a given URL? [mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-routing.html)
 
 - What is necessary to create a custom URL structure?
+[alanstorm](https://alanstorm.com/magento_2_advanced_routing/)
 
-- Describe the URL rewrite process and its role in creating user-friendly URLs.
+- Describe the URL rewrite process and its role in creating user-friendly URLs.[](https://bsscommerce.com/blog/an-easy-guide-to-configure-url-rewrites-in-magento-2/)
 
-- How are user-friendly URLs established?
+- How are user-friendly URLs established? [mageplaza](https://www.mageplaza.com/kb/how-to-configure-url-rewrite-magento-2.html)
 
 - how are user-friendly URLs customized?
+[meetanshi](https://meetanshi.com/blog/magento-2-url-rewrite/),[amasty](https://amasty.com/knowledge-base/magento-2-url-rewrite.html)
 
-- Describe how action controllers and results function.
+- Describe how action controllers and results function.[pierrefay](https://www.pierrefay.com/magento2-training/create-controller-action-magento2.html), [mage2-blog](https://mage2-blog.com/magento-2-frontend-controller/)
 
 - How do controllers interact with another?
+[amasty](https://amasty.com/blog/magento-2-certification-module-based-architecture/)
 
 - How are different response types generated?
+[belvg](https://belvg.com/blog/controllers-routers-and-responses-in-magento-2.html)
+[notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/2.%20Demonstrate%20ability%20to%20process%20URLs%20in%20Magento.md)
 
 ### 2.3 Demonstrate ability to customize request routing
 
-- Describe request routing and flow in Magento.
+- Describe request routing and flow in Magento.[atwix](https://www.atwix.com/magento-2/request-flow-overview/),[belvg](https://belvg.com/blog/request-routing-flow-in-magento-2.html)
 
-- When is it necessary to create a new router or to customize existing routers?
+- When is it necessary to create a new router or to customize existing routers? [notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/3.%20Demonstrate%20ability%20to%20customize%20request%20routing.md)
 
 - How do you handle custom 404 pages?
+[mageplaza](https://www.mageplaza.com/kb/create-custom-404-page-in-magento-2.html)
 
 
 ### 2.4 Determine the layout initialization process
 
 - Determine how layout is compiled.
+
 - How would you debug your layout.xml files and verify that the right layout instructions are used?
 - Determine how HTML output is rendered.
+
 - How does Magento flush output, and what mechanisms exist to access and customize output?
+
 - Determine module layout XML schema.
+
 - How do you add new elements to the pages introduced by a given module?
+
 - Demonstrate the ability to use layout fallback for customizations and debugging.
+
 - How do you identify which exact layout.xml file is processed in a given scope?
+
 - How does Magento treat layout XML files with the same names in different modules?
+
 - Identify the differences between admin and frontend scopes.
+
 - What differences exist for layout initialization for the admin scope?
 
 ### 2.5 Determine the structure of block templates
 
 - Identify and understand root templates, empty.xml, and page_layout.
-- How are page structures defined, including number of columns,
+
+- How are page structures defined, including number of columns?
+
 - which basic containers are present, etc.?
+
 - Describe the role of blocks and templates in the request flow.
+
 - In which situations would you create a new block or a new template?
 
 
