@@ -228,72 +228,95 @@ and capture output data regardless of the controller?
 
 ### 2.4 Determine the layout initialization process
 
-- Determine how layout is compiled.
+- Determine how layout is compiled.[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/4.%20Determine%20the%20layout%20initialization%20process.md),[devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/layouts/layout-overview.html), [jamersan](https://jamersan.com/super-guide-theming-magento-2-part-2-3/),[belvg](https://belvg.com/blog/how-to-use-templates-and-layouts-in-magento-2-layout-overview.html), [webkul](https://webkul.com/blog/use-less-magento-2-template-modules/),[inviqa](https://inviqa.com/blog/magento-2-tutorial-how-use-new-front-end-templating-system)
 
-- How would you debug your layout.xml files and verify that the right layout instructions are used?
-- Determine how HTML output is rendered.
+- How would you debug your layout.xml files & verify that  right layout instructions are used?
+[stackexchange](https://magento.stackexchange.com/questions/97343/how-can-i-debug-layout-file-processing-in-magento-2),[jamersan](https://jamersan.com/instantly-identify-magento-2-template-file-looking/)
 
-- How does Magento flush output, and what mechanisms exist to access and customize output?
+- Determine how HTML output is rendered? [stackexchange](https://magento.stackexchange.com/questions/156218/how-to-render-html-with-ajax-in-magento-2),[alanstorm](https://alanstorm.com/magento_2_javascript_css_layout_woes/)
 
-- Determine module layout XML schema.
+- How does Magento flush output & what mechanisms exist to access and customize output?
+[belvg](https://belvg.com/blog/output-flushing-in-magento-2-magento-developer-certification.html),
+
+- Determine module layout XML schema ? [belvg](https://belvg.com/blog/using-layout-and-xml-schema-in-magento-2.html),[coursehero](https://www.coursehero.com/file/p6rqf3t/Determine-module-layout-XML-schema-How-do-you-add-new-elements-to-the-pages/)
 
 - How do you add new elements to the pages introduced by a given module?
+[atwix](https://www.atwix.com/magento-2/how-to-add-custom-layout-handle-to-category-in-magento-2/), [notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/4.%20Determine%20the%20layout%20initialization%20process.md)
 
-- Demonstrate the ability to use layout fallback for customizations and debugging.
+- Demonstrate the ability to use layout fallback for customizations & debugging?
+[devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/themes/debug-theme.html)
 
-- How do you identify which exact layout.xml file is processed in a given scope?
+- How do you identify which exact layout.xml file is processed in a given scope?[exam-notes]
 
-- How does Magento treat layout XML files with the same names in different modules?
+- How does Magento treat layout XML files with the same names in different modules? [inchoo](https://inchoo.net/magento-2/override-magento-2-layout-product-page-example/)
 
-- Identify the differences between admin and frontend scopes.
+- Identify the differences between admin and frontend scopes.[devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/layouts/xml-instructions.html)
 
 - What differences exist for layout initialization for the admin scope?
+[devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/layouts/layout-practice.html),[emiprotechnologies](https://www.emiprotechnologies.com/technical_notes/magento-technical-notes-60/post/ui-component-using-layout-xml-in-magento-2-664)
 
 ### 2.5 Determine the structure of block templates
 
-- Identify and understand root templates, empty.xml, and page_layout.
+- Identify and understand root templates, empty.xml, and page_layout. [devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/layouts/layout-types.html),
+[belvg](https://belvg.com/blog/magento-2-certification-page-layouts-and-their-inheritance.html),
 
-- How are page structures defined, including number of columns?
+- How are page structures defined, including number of columns?[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/4.%20Determine%20the%20layout%20initialization%20process.md)
 
-- which basic containers are present, etc.?
+- which basic containers are present, etc.?[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/4.%20Determine%20the%20layout%20initialization%20process.md)
 
-- Describe the role of blocks and templates in the request flow.
+- Describe the role of blocks and templates in the request flow?[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/4.%20Determine%20the%20layout%20initialization%20process.md),[magenticians](https://magenticians.com/using-magento-2-layouts-blocks-templates/)
 
-- In which situations would you create a new block or a new template?
+- In which situations would you create a new block or a new template? [exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/4.%20Determine%20the%20layout%20initialization%20process.md),[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
 
 
 ### <a name="MagentoUI"> 3 Customizing the Magento UI</a>
 
-- 3.1 Demonstrate ability to utilize themes and the template structure
+#### 3.1 Demonstrate ability to utilize themes and the template structure
 
-      Demonstrate the ability to customize the Magento UI using themes.
-      When would you create a new theme?
-      How do you define theme hierarchy for your project?
-      Demonstrate the ability to customize/debug templates using the template fallback process.
-      How do you identify
-      which exact theme file is used in different situations?
-      How can you override native files?
+- Demonstrate the ability to customize the Magento UI using themes.
 
-- 3.2 Determine how to use blocks
+- When would you create a new theme?
 
-      Demonstrate an understanding of block architecture and its use in development.
-      Which objects are accessible from
-      the block? What is the typical block’s role?
-      Identify the stages in the lifecycle of a block.
-      In what cases would you put your code in the _ prepareLayout(), _ beforeToHtml(), and _ toHtml() methods?
-      How would you use events fired in the abstract block?
-      Describe how blocks are rendered and cached.
-      Identify the uses of different types of blocks.
-      When would you use non-template block types?
-      In what situation should you use a template block or other block types?
+- How do you define theme hierarchy for your project?
+
+- Demonstrate the ability to customize/debug templates using the template fallback process.
+
+- How do you identify which exact theme file is used in different situations?
+
+- How can you override native files?
+
+#### 3.2 Determine how to use blocks
+
+- Demonstrate an understanding of block architecture and its use in development.
+
+- Which objects are accessible from the block?
+
+- What is the typical block’s role?
+
+- Identify the stages in the lifecycle of a block.
+
+- In what cases would you put your code in the _ prepareLayout(), _ beforeToHtml(), and _ toHtml() methods?
+
+- How would you use events fired in the abstract block?
+
+- Describe how blocks are rendered and cached.
+
+- Identify the uses of different types of blocks.
+
+- When would you use non-template block types?
+
+- In what situation should you use a template block or other block types?
 
 
-- 3.3 Demonstrate ability to use layout and XML schema
+#### 3.3 Demonstrate ability to use layout and XML schema
 
-      Describe the elements of the Magento layout XML schema, including the major XML directives.
-      How do you use layout XML directives in your customizations?
-      Describe how to create a new layout XML file.
-      Describe how to pass variables from layout to block.
+- Describe the elements of the Magento layout XML schema, including the major XML directives.
+
+- How do you use layout XML directives in your customizations?
+
+- Describe how to create a new layout XML file.
+
+- Describe how to pass variables from layout to block.
 
 #### 3.4 Utilize JavaScript in Magento
 
