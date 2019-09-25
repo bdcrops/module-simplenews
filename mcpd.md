@@ -349,7 +349,7 @@ and capture output data regardless of the controller?
 - In which situation would you use UiComponent versus a regular JavaScript module?
 [exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/3.%20Customizing%20the%20Magento%20UI/4.%20Utilize%20JavaScript%20in%20Magento.md), [alanstorm](https://alanstorm.com/magento_2_simplest_ui_knockout_component/),[inchoo](https://inchoo.net/magento-2/knockout-js-in-magento-2/),[belvg](https://belvg.com/blog/magento-2-certification-ui-component-configuration.html)
 
-- Describe the use of requirejs-config.js, x-magento-init, and data-mage-init?[alanstorm](https://alanstorm.com/magento_2_javascript_init_scripts/),[](https://toweringmedia.com/blog/javascript-init-scripts-magento2/),
+- Describe the use of requirejs-config.js, x-magento-init, and data-mage-init?[alanstorm](https://alanstorm.com/magento_2_javascript_init_scripts/),[toweringmedia](https://toweringmedia.com/blog/javascript-init-scripts-magento2/),
 [firebearstudio](https://firebearstudio.com/blog/advanced-development-with-requirejs-magento-2-tutorial.html),
 
 
@@ -357,17 +357,20 @@ and capture output data regardless of the controller?
 ### <a name="Databases"> 4 Working with Databases in Magento</a>
 
 #### 4.1 Demonstrate ability to use data-related classes
-- Describe repositories and data API classes.
+
+- Describe repositories and data API classes? [belvg](https://belvg.com/blog/how-to-use-data-related-classes-repositories-and-data-api-in-magento-2.html),[vinaikopp](http://vinaikopp.com/2017/02/18/magento2_repositories_interfaces_and_webapi/),[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/4.%20Working%20with%20Databases%20in%20Magento/1.%20Demonstrate%20ability%20to%20use%20data-related%20classes.md), [black.bird](https://black.bird.eu/en/blog/recettem2.html)
 
 - How do you obtain an object or set of objects from the database using a repository?
+[alanstorm](https://alanstorm.com/magento_2_understanding_object_repositories/),[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/searching-with-repositories.html)
 
-- How do you configure and create a SearchCriteria instance using the builder?
+- How do you configure and create a SearchCriteria instance using the builder? [vinaikopp](http://vinaikopp.com/2017/02/18/magento2_repositories_interfaces_and_webapi/),
+[Magestudy](https://github.com/nans/Magestudy/tree/master/SearchCriteria),[packtpub](https://subscription.packtpub.com/book/web_development/9781785886584/9/ch09lvl1sec65/search-criteria-interface-for-list-filtering), [medium](https://medium.com/@dannynimmo/how-to-use-the-repository-pattern-in-magento-2-4914caa67eaa)
 
-- How do you use Data/Api classes?
+- How do you use Data/Api classes? [belvg](https://belvg.com/blog/how-to-use-data-related-classes-repositories-and-data-api-in-magento-2.html), [magestore](https://www.magestore.com/magento-2-tutorial/magento-2-api-how-to-implement/),[iperiusbackup](https://www.iperiusbackup.net/en/magento-2-data-load-through-rest-api-interface-and-c/)
 
-- Describe how to create and register new entities.
+- Describe how to create and register new entities.[mageplaza](https://www.mageplaza.com/devdocs/how-create-eav-attribute-magento-2.html),[techjeffyu](http://techjeffyu.com/blog/magento-2-creating-new-eav-entity-and-model),[excellencemagentoblog](http://excellencemagentoblog.com/blog/2018/04/17/add-customer-attributes-programmatically-in-magento-2/)
 
-- How do you add a new table to the database?
+- How do you add a new table to the database? [devdocs](https://devdocs.magento.com/videos/fundamentals/add-a-new-table-to-database/),[bsscommerce](https://bsscommerce.com/confluence/how-to-create-insert-data-into-the-table-in-magento-2/)
 
 - Describe the entity load and save process.
 
