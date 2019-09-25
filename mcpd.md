@@ -386,107 +386,112 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 - How do you select a subset of records from the database? [belvg](https://belvg.com/blog/magento-2-database-group-operations.html),[stackexchange](https://magento.stackexchange.com/questions/109426/magento-2-how-to-select-fetch-data-from-database)
 
 - Describe the database abstraction layer for Magento.
+[devdocs](https://devdocs.magento.com/guides/v2.3/architecture/archi_perspectives/service_layer.html),[belvg](https://belvg.com/blog/database-in-magento-2-models-resource-models-and-collections.html), [medium](https://medium.com/@matthewhaworth1/understanding-data-persistence-in-magento-2-d3fefafc4f2e)
 
-- What type of exceptions does the database layer throw?
+- What type of exceptions does the database layer throw? [belvg](https://belvg.com/blog/magento-2-architecture-how-is-it-used-in-magento-2-application.html),
 
 - What additional functionality does Magento provide over Zend_Adapter?
+[stackexchange](https://magento.stackexchange.com/questions/33981/magento-2-and-zend-framework-2), [mageplaza](https://www.mageplaza.com/kb/there-has-been-error-processing-your-request-magento-2.html)
 
 #### 4.2 Demonstrate an ability to use declarative schema
 
-- How to manipulate columns and keys using declarative schema?
+- How to manipulate columns and keys using declarative schema? [declarative](https://github.com/bdcrops/module-declarative)
 
 - What is the purpose of whitelisting?
+[declarative](https://github.com/bdcrops/module-declarative)
 
 - How to use Data and Schema patches?
+[declarative](https://github.com/bdcrops/module-declarative)
 
 - How to manage dependencies between patch files?
+[declarative](https://github.com/bdcrops/module-declarative)
 
 
 ### <a name="EAV">5 Using the Entity-Attribute-Value (EAV) Model</a>
 
-- 5.1 Demonstrate ability to use EAV model concepts
+#### 5.1 Demonstrate ability to use EAV model concepts
 
-      Describe the EAV hierarchy structure.
-      What happens when a new attribute is added to the system?
-      What is the role of attribute sets and attribute groups?
-      How are attributes presented in the admin?
-      Describe how EAV data storage works in Magento.
-      Which additional options do you have when saving EAV entities?
-      How do you create customizations based on changes to attribute values?
-      Describe the key differences between EAV and flat table collections.
-      In which situations would you use EAV for a new entity?
-      What are the pros and cons of EAV architecture?
+- Describe the EAV hierarchy structure.
+- What happens when a new attribute is added to the system?
+- What is the role of attribute sets and attribute groups?
+- How are attributes presented in the admin?
+- Describe how EAV data storage works in Magento.
+- Which additional options do you have when saving EAV entities?
+- How do you create customizations based on changes to attribute values?
+- Describe the key differences between EAV and flat table collections.
+- In which situations would you use EAV for a new entity?
+- What are the pros and cons of EAV architecture?
 
-- 5.2 Demonstrate ability to use EAV entity load and save
+#### 5.2 Demonstrate ability to use EAV entity load and save
 
-      Describe the EAV load and save process and differences from the flat table load and save process.
-      What happens when an EAV entity has too many attributes?
-      How does the number of websites/stores affect the EAV load/save process?
-      How would you customize the load and save process for an EAV entity in the situations described here?
+- Describe the EAV load and save process and differences from the flat table load and save process.
+- What happens when an EAV entity has too many attributes?
+- How does the number of websites/stores affect the EAV load/save process?
+- How would you customize the load and save process for an EAV entity in the situations described here?
 
-- 5.3 Demonstrate ability to manage attributes
+#### 5.3 Demonstrate ability to manage attributes
 
-      Describe EAV attributes, including the frontend/source/backend structure.
-      How would you add dropdown/multiselect attributes?
-      What other possibilities do you have when adding an attribute (to a product, for example)?
-      Describe how to implement the interface for attribute frontend models.
-      What is the purpose of this interface?
-      How can you render your attribute value on the frontend?
-      Identify the purpose and describe how to implement the interface for attribute source models.
-      For a given dropdown/multiselect attribute, how can you specify and manipulate its list of options?
-      Identify the purpose and describe how to implement the interface for attribute backend models.
-      How (and why) would you create a backend model for an attribute?
-      Describe how to create and customize attributes.
-      How would you add a new attribute to the product, category, or customer entities?
-      What is the difference between adding a new attribute and modifying an existing one?
+- Describe EAV attributes, including the frontend/source/backend structure.
+- How would you add dropdown/multiselect attributes?
+- What other possibilities do you have when adding an attribute (to a product, for example)?
+- Describe how to implement the interface for attribute frontend models.
+- What is the purpose of this interface?
+- How can you render your attribute value on the frontend?
+- Identify the purpose and describe how to implement the interface for attribute source models.
+- For a given dropdown/multiselect attribute, how can you specify and manipulate its list of options?
+- Identify the purpose and describe how to implement the interface for attribute backend models.
+- How (and why) would you create a backend model for an attribute?
+- Describe how to create and customize attributes.
+- How would you add a new attribute to the product, category, or customer entities?
+- What is the difference between adding a new attribute and modifying an existing one?
 
 
 ### <a name="Adminhtml">6 Developing with Adminhtml</a>
 
-- 6.1 Describe common structure/architecture
+#### 6.1 Describe common structure/architecture
 
-      Describe the difference between Adminhtml and frontend.
-      What additional tools and requirements exist in the admin?
+- Describe the difference between Adminhtml and frontend.
+- What additional tools and requirements exist in the admin?
 
 - 6.2 Define form and grid widgets
 
-      Define form structure, form templates, grids, grid containers, and elements.
-      What steps are needed to display a grid or form?
-      Describe the grid and form workflow.
-      How is data provided to the grid or form?
-      How can this be process be customized or extended?
-      Describe how to create a simple form and grid for a custom entity.
-      Given a specific entity with different types of fields (text, dropdown, image, file, date, and so on) how would you create a grid and a form?
+- Define form structure, form templates, grids, grid containers, and elements.
+- What steps are needed to display a grid or form?
+- Describe the grid and form workflow.
+- How is data provided to the grid or form?
+- How can this be process be customized or extended?
+- Describe how to create a simple form and grid for a custom entity.
+- Given a specific entity with different types of fields (text, dropdown, image, file, date, and so on) how would you create a grid and a form?
 
-- 6.3 Define system configuration XML and configuration scope
+#### 6.3 Define system configuration XML and configuration scope
 
-      Define basic terms and elements of system configuration XML, including scopes.
-      How would you add a new system configuration option?
-      What is the difference in this process for different option types (secret, file)?
-      Describe system configuration data retrieval.
-      How do you access system configuration options programmatically?
+- Define basic terms and elements of system configuration XML, including scopes.
+- How would you add a new system configuration option?
+- What is the difference in this process for different option types (secret, file)?
+- Describe system configuration data retrieval.
+- How do you access system configuration options programmatically?
 
-- 6.4 Utilize ACL to set menu items and permissions
+#### 6.4 Utilize ACL to set menu items and permissions
 
-      Describe how to set up a menu item and permissions.
-      How would you add a new menu item in a given tab?
-      How would you add a new tab in the Admin menu?
-      How do menu items relate to ACL permissions?
-      Describe how to check for permissions in the permissions management tree structures.
-      How would you add a new user with a given set of permissions?
-      How can you do that programmatically?
+- Describe how to set up a menu item and permissions.
+- How would you add a new menu item in a given tab?
+- How would you add a new tab in the Admin menu?
+- How do menu items relate to ACL permissions?
+- Describe how to check for permissions in the permissions management tree structures.
+- How would you add a new user with a given set of permissions?
+- How can you do that programmatically?
 
 
 ### <a name="Catalog"> 7 Customizing the Catalog</a>
 
-- 7.1 Demonstrate ability to use products and product types
+#### 7.1 Demonstrate ability to use products and product types
 
       Identify/describe standard product types (simple, configurable, bundled, etc.).
       How would you obtain a product of a specific type?
       What tools (in general) does a product type model provide?
       What additional functionality is available for each of the different product types?
 
-- 7.2 Describe price functionality
+#### 7.2 Describe price functionality
 
       Identify the basic concepts of price generation in Magento.
       How would you identify what is composing the final price
@@ -495,7 +500,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
       How would you render price in a given place on the page, and
       how would you modify how the price is rendered?
 
-- 7.3 Demonstrate ability to use and customize categories
+#### 7.3 Demonstrate ability to use and customize categories
 
       Describe category properties and features.
       How do you create and manage categories?
@@ -504,7 +509,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
       Which attribute values are required to display a new category in the store?
       What kind of strategies can you suggest for organizing products into categories?
 
-- 7.4 Determine and manage catalog rules
+#### 7.4 Determine and manage catalog rules
 
       Identify how to implement catalog price rules.
       When would you use catalog price rules?
@@ -513,18 +518,18 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 ### <a name="Checkout"> 8 Customizing the Checkout Process</a>
 
-- 8.1 Demonstrate ability to use quote, quote item, address, and shopping cart rules in checkout
+#### 8.1 Demonstrate ability to use quote, quote item, address, and shopping cart rules in checkout
 
       Describe how to modify these models and effectively use them in customizations.
       Describe how to customize the process of adding a product to the cart.
       Which different scenarios should you take into account?
 
-- 8.2 Demonstrate ability to use totals models
+#### 8.2 Demonstrate ability to use totals models
 
       Describe how to modify the price calculation process in the shopping cart.
       How can you add a custom totals model or modify existing totals models?
 
-- 8.3 Demonstrate ability to customize the shopping cart
+#### 8.3 Demonstrate ability to customize the shopping cart
 
       Describe how to implement shopping cart rules.
       What is the difference between sales rules and catalog rules?
@@ -542,7 +547,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
       How would you create an extension that deletes one item if another was deleted?
       How do you add a field to the shipping address?
 
-- 8.4 Demonstrate ability to customize shipping and payment methods
+#### 8.4 Demonstrate ability to customize shipping and payment methods
 
       Describe shipping methods architecture.
       How can you create a new shipping method? What is the relationship
@@ -556,7 +561,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 ### <a name="Sales"> 9 Sales Operations</a>
 
-- 9.1 Demonstrate ability to customize sales operations
+#### 9.1 Demonstrate ability to customize sales operations
 
       Describe how to modify order processing and integrate it with a third-party ERP system.
       Describe how to modify order processing flow.
