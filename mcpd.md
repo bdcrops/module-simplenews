@@ -273,93 +273,128 @@ and capture output data regardless of the controller?
 
 #### 3.1 Demonstrate ability to utilize themes and the template structure
 
-- Demonstrate the ability to customize the Magento UI using themes.
+- Demonstrate the ability to customize the Magento UI using themes.[mageplaza](https://www.mageplaza.com/devdocs/how-to-create-magento-2-theme.html)
 
-- When would you create a new theme?
+- When would you create a new theme? [cloudways](https://www.cloudways.com/blog/create-custom-theme-magento-2-part-1/)
 
-- How do you define theme hierarchy for your project?
+- How do you define theme hierarchy for your project? [devdocs](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/themes/theme-structure.html)
 
-- Demonstrate the ability to customize/debug templates using the template fallback process.
+- Demonstrate the ability to customize/debug templates using the template fallback process.[belvg](https://belvg.com/blog/utilizing-themes-and-the-template-structure-in-magento-2.html)
 
 - How do you identify which exact theme file is used in different situations?
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/3.%20Customizing%20the%20Magento%20UI/1.%20Demonstrate%20ability%20to%20utilize%20themes%20and%20the%20template%20structure.md)
 
-- How can you override native files?
+- How can you override native files? [classyllama](https://www.classyllama.com/blog/template-override-m2),
+
 
 #### 3.2 Determine how to use blocks
 
-- Demonstrate an understanding of block architecture and its use in development.
+- Demonstrate an understanding of block architecture and its use in development.[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html),
+[amasty](https://amasty.com/blog/magento-2-certification-module-based-architecture/),
+[devdocs](https://devdocs.magento.com/guides/v2.3/mtf/mtf_entities/mtf_block.html),[belvg2](https://belvg.com/blog/understanding-containers-blocks-and-actions-in-magento-2-layout-structure.html)
 
-- Which objects are accessible from the block?
+- Which objects are accessible from the block? [alanstorm](https://alanstorm.com/magento-2-block-and-this-are-not/),[digitalsix](https://www.digitalsix.co.uk/taking-the-block-out-of-blocks-with-view-models/)
 
-- What is the typical block’s role?
+- What is the typical block’s role? [belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html),
 
-- Identify the stages in the lifecycle of a block.
+- Identify the stages in the lifecycle of a block.[](https://fixes.co.za/magento2/magento-2-rendering/)
 
-- In what cases would you put your code in the _ prepareLayout(), _ beforeToHtml(), and _ toHtml() methods?
+- In what cases would you put your code in the _ prepareLayout(), _ beforeToHtml(), and _ toHtml() methods? [belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
 
 - How would you use events fired in the abstract block?
+[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
+
 
 - Describe how blocks are rendered and cached.
+[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
 
 - Identify the uses of different types of blocks.
+[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
+
 
 - When would you use non-template block types?
+[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
+
 
 - In what situation should you use a template block or other block types?
+[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
+
 
 
 #### 3.3 Demonstrate ability to use layout and XML schema
 
 - Describe the elements of the Magento layout XML schema, including the major XML directives.
+[belvg](https://belvg.com/blog/using-layout-and-xml-schema-in-magento-2.html)
 
 - How do you use layout XML directives in your customizations?
+[belvg](https://belvg.com/blog/using-layout-and-xml-schema-in-magento-2.html)
 
 - Describe how to create a new layout XML file.
+[belvg](https://belvg.com/blog/using-layout-and-xml-schema-in-magento-2.html)
+
 
 - Describe how to pass variables from layout to block.
+[belvg](https://belvg.com/blog/using-layout-and-xml-schema-in-magento-2.html)
+
 
 #### 3.4 Utilize JavaScript in Magento
 
-- Describe different types and uses of JavaScript modules?
+- Describe different types and uses of JavaScript modules? [belvg](https://belvg.com/blog/utilizing-javascript-component-in-magento-2.html)
 
-- Which JavaScript modules are suited for which tasks?
+- Which JavaScript modules are suited for which tasks? [magestore](https://www.magestore.com/magento-2-tutorial/how-to-override-magento-js-core-in-magento-2/)
 
-- Describe UI components.
+- Describe UI components. [devdocs](https://devdocs.magento.com/guides/v2.3/ui_comp_guide/bk-ui_comps.html), [magently](https://magently.com/blog/magento-ui-components-custom-grid/), [belvg](https://belvg.com/blog/magento-2-certification-ui-component-configuration.html)
+[magento 2 ui components-pdf](http://uk.magetitans.com/wp-content/uploads/2017/06/Mage-Titans-Maria-Kerns.pdf)
 
 - In which situation would you use UiComponent versus a regular JavaScript module?
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/3.%20Customizing%20the%20Magento%20UI/4.%20Utilize%20JavaScript%20in%20Magento.md), [alanstorm](https://alanstorm.com/magento_2_simplest_ui_knockout_component/),[inchoo](https://inchoo.net/magento-2/knockout-js-in-magento-2/),[belvg](https://belvg.com/blog/magento-2-certification-ui-component-configuration.html)
 
-- Describe the use of requirejs-config.js, x-magento-init, and data-mage-init?
+- Describe the use of requirejs-config.js, x-magento-init, and data-mage-init?[alanstorm](https://alanstorm.com/magento_2_javascript_init_scripts/),[](https://toweringmedia.com/blog/javascript-init-scripts-magento2/),
 [firebearstudio](https://firebearstudio.com/blog/advanced-development-with-requirejs-magento-2-tutorial.html),
 
 
 
 ### <a name="Databases"> 4 Working with Databases in Magento</a>
 
-- 4.1 Demonstrate ability to use data-related classes
+#### 4.1 Demonstrate ability to use data-related classes
+- Describe repositories and data API classes.
 
-      Describe repositories and data API classes.
-      How do you obtain an object or set of objects from the database using a repository?
-      How do you configure and create a SearchCriteria instance using the builder?
-      How do you use Data/Api classes?
-      Describe how to create and register new entities.
-      How do you add a new table to the database?
-      Describe the entity load and save process.
-      Describe how to extend existing entities.
-      What mechanisms are available to extend existing classes, for example by
-      adding a new attribute, a new field in the database, or a new related entity?
-      Describe how to filter, sort, and specify the selected values for collections and repositories.
-      How do you select a subset of records from the database?
-      Describe the database abstraction layer for Magento.
-      What type of exceptions does the database layer throw?
-      What additional functionality does Magento provide over Zend_Adapter?
+- How do you obtain an object or set of objects from the database using a repository?
 
-- 4.2 Demonstrate an ability to use declarative schema
+- How do you configure and create a SearchCriteria instance using the builder?
 
-      Demonstrate use of schema.
-      How to manipulate columns and keys using declarative schema?
-      What is the purpose of whitelisting?
-      How to use Data and Schema patches?
-      How to manage dependencies between patch files?
+- How do you use Data/Api classes?
+
+- Describe how to create and register new entities.
+
+- How do you add a new table to the database?
+
+- Describe the entity load and save process.
+
+- Describe how to extend existing entities.
+
+-What mechanisms are available to extend existing classes, for example by
+adding a new attribute, a new field in the database, or a new related entity?
+
+- Describe how to filter, sort & specify the selected values for collections and repositories.
+
+- How do you select a subset of records from the database?
+
+- Describe the database abstraction layer for Magento.
+
+- What type of exceptions does the database layer throw?
+
+- What additional functionality does Magento provide over Zend_Adapter?
+
+#### 4.2 Demonstrate an ability to use declarative schema
+
+- How to manipulate columns and keys using declarative schema?
+
+- What is the purpose of whitelisting?
+
+- How to use Data and Schema patches?
+
+- How to manage dependencies between patch files?
 
 
 ### <a name="EAV">5 Using the Entity-Attribute-Value (EAV) Model</a>
