@@ -450,26 +450,39 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 6.1 Describe common structure/architecture
 
-- Describe the difference between Adminhtml and frontend.
+- Describe the difference between Adminhtml and frontend? [belvg](https://belvg.com/blog/magento-2-areas-adminhtml-base-and-frontend.html),
+
 - What additional tools and requirements exist in the admin?
 
-- 6.2 Define form and grid widgets
+#### 6.2 Define form and grid widgets
 
-- Define form structure, form templates, grids, grid containers, and elements.
+- Define form structure, form templates, grids, grid containers, and elements?
+
 - What steps are needed to display a grid or form?
-- Describe the grid and form workflow.
+
+- Describe the grid and form workflow?
+
 - How is data provided to the grid or form?
+
 - How can this be process be customized or extended?
-- Describe how to create a simple form and grid for a custom entity.
+
+- Describe how to create a simple form and grid for a custom entity?
+
 - Given a specific entity with different types of fields (text, dropdown, image, file, date, and so on) how would you create a grid and a form?
+
 
 #### 6.3 Define system configuration XML and configuration scope
 
 - Define basic terms and elements of system configuration XML, including scopes.
+
 - How would you add a new system configuration option?
+
 - What is the difference in this process for different option types (secret, file)?
-- Describe system configuration data retrieval.
+
+- Describe system configuration data retrieval?
+
 - How do you access system configuration options programmatically?
+
 
 #### 6.4 Utilize ACL to set menu items and permissions
 
