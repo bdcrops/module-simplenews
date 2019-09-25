@@ -372,16 +372,18 @@ and capture output data regardless of the controller?
 
 - How do you add a new table to the database? [devdocs](https://devdocs.magento.com/videos/fundamentals/add-a-new-table-to-database/),[bsscommerce](https://bsscommerce.com/confluence/how-to-create-insert-data-into-the-table-in-magento-2/)
 
-- Describe the entity load and save process.
+- Describe the entity load and save process. [belvg](https://belvg.com/blog/eav-load-and-save-processes-in-magento-2.html)
 
 - Describe how to extend existing entities.
+[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/5.%20Using%20the%20Entity-Attribute-Value%20-EAV-%20Model/2.%20Demonstrate%20ability%20to%20use%20EAV%20entity%20load%20and%20save.md) , [magestore](https://blog.magestore.com/entity-attribute-value-in-magento/)
 
 -What mechanisms are available to extend existing classes, for example by
-adding a new attribute, a new field in the database, or a new related entity?
+adding a new attribute, a new field in the database, or a new related entity? [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/extension_attributes/adding-attributes.html),[devdocs2](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/attributes.html),[hellomagento2](https://www.hellomagento2.com/extension-attributes/)
 
-- Describe how to filter, sort & specify the selected values for collections and repositories.
+- Describe how to filter, sort & specify the selected values for collections and repositories?
+[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/searching-with-repositories.html),[webkul](https://webkul.com/blog/how-to-use-search-criteria-in-custom-module/)
 
-- How do you select a subset of records from the database?
+- How do you select a subset of records from the database? [belvg](https://belvg.com/blog/magento-2-database-group-operations.html),[stackexchange](https://magento.stackexchange.com/questions/109426/magento-2-how-to-select-fetch-data-from-database)
 
 - Describe the database abstraction layer for Magento.
 
