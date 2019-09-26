@@ -522,7 +522,7 @@ Create  app/code/BDC/SimpleNews/etc/frontend/routes.xml and insert this followin
 xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/
 App/etc/routes.xsd">
     <router id="standard">
-        <route id="bdcnews" frontName="news">
+        <route id="news" frontName="news">
             <module name="BDC_SimpleNews" />
         </route>
     </router>
@@ -535,6 +535,13 @@ After define the route, the URL path to our module will be: `http://example.com/
 - Routers: define name for a module which we can use in the url to find the module and execute the controller action.
 - Controllers:Controllers in Magento 2 differ from typical controllers in MVC applications. Magento 2 controllers are responsible for only one specific URL and contain only one execute method. This method is responsible for returning result object and occasional processing of input POST data. All controllers inherit \Magento\Framework\App\Action\Action class. The required controller is searched in the Base Router, and then it’s called in the Front Controller.
 - Responses: The controller in Magento 2 can return several response types depending on the purpose and the necessary result.
+
+- Frontend route: Please look into the code, you will see it’s very simple to register a route. You must use the standard router for the frontend. This route will have a child which define the module for it and 2 attributes:
+1. The id attribute is a unique string which will identify this route. You will use this string to declare the layout handle for the action of this module
+2. The frontName attribute is also a unique string which will be shown on the url request. For example, if you declare a route like this: <route frontName="news" id="news"> The url to this module should be:
+http://example.com/index.php/nwes/controller/action
+And the layout handle for this action is: helloworld_controller_action.xml So with this example path, you must create the action class in this folder: {namespace}/{module}/Controller/{Controller}/{Action}.php
+
 
 
 ### <a name="Step2A12">Step 2A.12: Create IndexController</a>
@@ -910,6 +917,11 @@ Framework/App/etc/routes.xsd">
 </config>
 
 ```
+#### Note:
+- Admin Route: This route will be same as the frontend route but you must declare it in adminhtml folder with router id is admin. /etc/adminhtml/routes.xml
+The url of the admin page is the same structure with frontend page, but the admin_area name will be added before route_frontName to recognize this is a admin router. For example, the url of admin cms page:
+http://example.com/index.php/admin/simplenews/controller/action
+The controller action for admin page will be added inside of the folder Controller/Adminhtml. For example for above url: {namespace}/{module}/Controller/Adminhtml/{Controller}/{Action}.php
 
 ### <a name="Step2B8">Step 2B.8:  Update the acl.xml to add more roles</a>
 
