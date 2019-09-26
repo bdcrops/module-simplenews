@@ -392,8 +392,7 @@ class News extends AbstractModel{
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        array $data = []
-    ) {
+        array $data = [] ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
 
@@ -401,8 +400,7 @@ class News extends AbstractModel{
     * (non-PHPdoc)
     * @see \Magento\Framework\Model\AbstractModel::_construct()
     */
-    public function _construct()
-    {
+    public function _construct(){
         $this->_init('BDC\SimpleNews\Model\Resource\News');
     }
 
@@ -453,8 +451,7 @@ class News extends AbstractDb {
     /**
      * Define main table
      */
-    protected function _construct()
-    {
+    protected function _construct() {
         $this->_init('bdc_simplenews', 'id');
     }
 }
