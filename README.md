@@ -246,19 +246,20 @@ Create  app/code/BDC/SimpleNews/etc/db_schema.xml &  insert this following code 
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
 
-  <table name="bdc_simplenews" resource="default" engine="innodb" comment="SimpleNews Table">
-        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
-        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
-        <column xsi:type="varchar" name="summary" nullable="false" length="255" comment="Summary"/>
-        <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Descrition"/>
-        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created Datetime"/>
-        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated Datetime"/>
-        <column xsi:type="smallint" name="status"  padding="2" unsigned="false" nullable="false" comment="Status"/>
-        <constraint xsi:type="primary" referenceId="PRIMARY">   <column name="id"/> </constraint>
-    </table>
+<table name="bdc_simplenews" resource="default" engine="innodb" comment="SimpleNews Table">
+    <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+    <column xsi:type="varchar" name="summary" nullable="false" length="255" comment="Summary"/>
+    <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Descrition"/>
+    <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created Datetime"/>
+    <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated Datetime"/>
+    <column xsi:type="smallint" name="status"  padding="2" unsigned="false" nullable="false" comment="Status"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">   <column name="id"/> </constraint>
+</table>
 </schema>
 ```
 #### Note:
+[Tutarials module-declarative](https://github.com/bdcrops/module-declarative)
 
 ### <a name="Step2A5">Step 2A.5: Schema whitelist (etc/db_schema_whitelist.json) </a>
 

@@ -450,48 +450,65 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 6.1 Describe common structure/architecture
 
-- Describe the difference between Adminhtml and frontend? [belvg](https://belvg.com/blog/magento-2-areas-adminhtml-base-and-frontend.html),
+- Describe the difference between Adminhtml and frontend? [belvg](https://belvg.com/blog/magento-2-areas-adminhtml-base-and-frontend.html),[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/6.%20Developing%20with%20Adminhtml/1.%20Describe%20common%20structure%20architecture.md), [exam-notes](https://github.com/colinmurphy/magento-exam-notes/blob/master/6.%20Adminhtml/1.%20Common%20Structure/1.%20Describe%20the%20similarities%20and%20differences%20between%20adminhtml%20and%20frontend%20interface%20and%20routing.md),
 
-- What additional tools and requirements exist in the admin?
+- What additional tools and requirements exist in the admin? [mageplaza](https://www.mageplaza.com/magento-2-module-development/create-admin-menu-magento-2.html), [mageworx](https://www.mageworx.com/wiki/magento2-admin-panel/)
 
 #### 6.2 Define form and grid widgets
 
-- Define form structure, form templates, grids, grid containers, and elements?
+- Define form structure, form templates, grids, grid containers & elements?
+[bitsofco](https://bitsofco.de/understanding-the-difference-between-grid-template-and-grid-auto/), [mageplaza](https://www.mageplaza.com/magento-2-module-development/create-admin-grid-magento-2.html),
 
-- What steps are needed to display a grid or form?
+- What steps are needed to display a grid or form? [aionhill](https://aionhill.com/magento-2-module-development-part-2),[atwix](https://www.atwix.com/magento-2/how-to-add-a-simple-note-to-the-checkout-step/), [belvg](https://belvg.com/blog/ui-grid-component-on-the-front-end-in-magento-2.html)
 
 - Describe the grid and form workflow?
+ [magentodeveloper](https://magentodeveloper.in/magento-2-admin-grid.html),
 
-- How is data provided to the grid or form?
+- How is data provided to the grid or form? [magestore](https://www.magestore.com/magento-2-tutorial/how-to-show-listing-items-grid-on-the-form-in-magento-2/)
 
-- How can this be process be customized or extended?
+- How can this be process be customized or extended? [create-admin-grid](https://medium.com/@jhonkelly2016/how-to-create-admin-grid-in-magento-2-9f39d052322d)
 
-- Describe how to create a simple form and grid for a custom entity?
+- Describe how to create a simple form and grid for a custom entity? [techjeffyu](http://techjeffyu.com/blog/magento-2-create-uicomponent-list-and-uicomponent-form-by-example), [bsscommerce](https://bsscommerce.com/confluence/3-simple-steps-to-create-admin-grid-in-magento-1/)
 
-- Given a specific entity with different types of fields (text, dropdown, image, file, date, and so on) how would you create a grid and a form?
+- Given a specific entity with different types of fields (text, dropdown, image, file, date, and so on)? [atwix](https://www.atwix.com/magento-2/joining-external-attributes-to-entity-in-magento-2/),
+
+- how would you create a grid and a form? [webkul](https://webkul.com/blog/create-grid-edit-add-grid-row-and-installer-in-magento2/),
+[mage-world](https://www.mage-world.com/blog/grid-and-form-in-magento-2-admin-panel-part-1.html), [meetanshi](https://meetanshi.com/blog/create-admin-grid-magento-2/)
 
 
 #### 6.3 Define system configuration XML and configuration scope
 
 - Define basic terms and elements of system configuration XML, including scopes.
+[magestore](https://www.magestore.com/magento-2-tutorial/3169-2/),
+[atwix](https://www.atwix.com/magento-2/system-configuration/)
 
 - How would you add a new system configuration option?
+[mageplaza](https://www.mageplaza.com/magento-2-module-development/create-system-xml-configuration-magento-2.html),
 
 - What is the difference in this process for different option types (secret, file)?
+[aureatelabs](https://aureatelabs.com/how-to/how-to-create-system-xml-configuration-in-magento-2/), [metagento](https://www.metagento.com/blog/magento-2-create-system-configuration-system-xml)
 
 - Describe system configuration data retrieval?
+[mage2](https://mage2-blog.com/magento-2-get-core-config-data-programmatically/)
 
-- How do you access system configuration options programmatically?
+- How do you access system configuration options programmatically? [blogtreat](http://www.blogtreat.com/get-store-system-configuration-value-in-magento-2/),
+[](http://www.blogtreat.com/get-store-system-configuration-value-in-magento-2/)
 
 
 #### 6.4 Utilize ACL to set menu items and permissions
 
-- Describe how to set up a menu item and permissions.
-- How would you add a new menu item in a given tab?
+- Describe how to set up a menu item and permissions.[firebearstudio](https://firebearstudio.com/blog/how-to-add-magento-2-system-configuration-fields-get-core-config-data-programmatically.html),[mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-acl-access-control-lists.html)[magestore](https://www.magestore.com/magento-2-tutorial/how-to-create-admin-menu-in-magento-2/)
+
+- How would you add a new menu item in a given tab? []()
+
 - How would you add a new tab in the Admin menu?
-- How do menu items relate to ACL permissions?
+
+- How do menu items relate to ACL permissions?[](https://www.magestore.com/magento-2-tutorial/3194-2/)
+
 - Describe how to check for permissions in the permissions management tree structures.
+
 - How would you add a new user with a given set of permissions?
+
 - How can you do that programmatically?
 
 
@@ -606,3 +623,10 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 -  What functionality do they affect?
 -  Describe Magento functionality related to VAT.
 -  How do you customize VAT functionality?
+
+***
+
+### Tutorials Series
+
+- [magestore](https://www.magestore.com/magento-2-tutorial/)
+-[mageplaza](https://www.mageplaza.com/magento-2-module-development/)
