@@ -598,6 +598,12 @@ After define the Controller, the URL path to our module will be: `http://example
 ![NewsDataFrontend](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/newsFrontendData.png)
 
 
+#### Notes:
+- Action class: extensions of the Action class that a router returns on matched requests. The execute() function in these classes contain the logic for dispatching requests.Each Action should implement one or more Magento\Framework\App\Action\HttpHTTP MethodActionInterface to declare which HTTP request methods it can process.Magento has a form key validation in place for all POST non-AJAX requests - if your Action doesn’t need that validation or you want to modify it you can implement CsrfAwareActionInterface.
+If you need to forward a request to another action in your class, use the _ forward() function. Example:
+```
+$this->_forward('action', 'controller', 'Other_Module')
+```
 
 #### <a name="Step2A12Note1"> Responses: create a frontend controller with different response types</a>
 - Page Result (\Magento\Framework\View\Result\Page) is the most common type of response. By returning this object, the controller starts the standard page rendering based on the corresponding XML layout handle.
