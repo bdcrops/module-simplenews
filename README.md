@@ -433,7 +433,7 @@ The Magento ORM is used by the Repository implementations that are part of the M
 #### <a name="Step2A8Note2">Note:native Magento save/load </a>
 The ORM gives you a possibility to create, load, update, and delete data in a database. A collection in Magento is a class that implements both the IteratorAggregate and the Countable PHP5 SPL interfaces. Collections are widely used in Magento to store a set of objects of a specific type.
 
-#### <a name="Step2A8Note3">NOte: Models</a>
+#### <a name="Step2A8Note3">Note: Models</a>
 Models are like a black box which provides a layer of abstraction on top of the resource models. The fetching, extraction, and manipulation of data occur through models. As a rule of thumb, every entity we create (i.e. every table we create in our database) should have its own model class. Every model extends the Magento\Framework\Model\AbstractModelclass, which inherits the \Magento\Framework\DataObjectclass, hence, we can call the setDataand getData functions on our model, to get or set the data of a model respectively. class only has one method, _ construct(), when we call the _ init()method, and pass the resource model’s name as its paramete
 
 
@@ -451,9 +451,7 @@ class News extends AbstractDb {
     /**
      * Define main table
      */
-    protected function _construct() {
-        $this->_init('bdc_simplenews', 'id');
-    }
+    protected function _construct() { $this->_init('bdc_simplenews', 'id'); }
 }
 
 ```
@@ -464,7 +462,7 @@ here also has one method, <__ construct>, where we call the <_ initmethod>, and 
 Resource Model. In Magento 2, the model class defines the methods an end-user-programmer will use to interact with a model’s data. A resource model class contains the methods that will actually fetch the information from the database. Each CRUD model in Magento 2 has a corresponding resource model class.
 
 Every CRUD resource model class extends the Magento\Framework\Model\ResourceModel\Db\AbstractDb class. This base class contains the basic logic for fetching information from a single database table.
-For a basic model like ours, the only thing a resource model must do is call the _ init method from _ construct. The _ init method for a resource model accepts two arguments. The first is the name of the database table (pulsestorm_todocrud_todoitem), and the second is the ID column for the model (pulsestorm_todocrud_todoitem_id). While it’s beyond the scope of this article, Magento 2’s active record implementation contains no method for linking tables via primary keys. How to use multiple database tables is up to each individual module developer, and a resource model will typically contain the SQL generating methods needed to fetch information from related tables.
+For a basic model like ours, the only thing a resource model must do is call the _ init method from _ construct. The _ init method for a resource model accepts two arguments. The first is the name of the database table (bdc_simplenews), and the second is the ID column for the model (id). While it’s beyond the scope of this article, Magento 2’s active record implementation contains no method for linking tables via primary keys. How to use multiple database tables is up to each individual module developer, and a resource model will typically contain the SQL generating methods needed to fetch information from related tables.
 
 
 ### <a name="Step2A10">Step 2A.10: Create Model's collection class</a>
@@ -481,10 +479,7 @@ class Collection extends AbstractCollection {
      * Define model & resource model
      */
     protected function _construct(){
-        $this->_init(
-            'BDC\SimpleNews\Model\News',
-            'BDC\SimpleNews\Model\Resource\News'
-        );
+        $this->_init('BDC\SimpleNews\Model\News', 'BDC\SimpleNews\Model\Resource\News');
     }
 }
 
