@@ -264,21 +264,17 @@ Create  app/code/BDC/SimpleNews/etc/db_schema.xml &  insert this following code 
 ### <a name="Step2A5">Step 2A.5: Schema whitelist (etc/db_schema_whitelist.json) </a>
 
 You will not be able to run a declarative mode without creating a schema whitelist.
-Note: it is recommended to generate a new whitelist for every release for the double-check purposes.
-
-Before running the upgrade command you need to add your schema to db_whitelist_schema.json file by running the following command.
-
+Note: it is recommended to generate a new whitelist for every release for the double-check purposes.Before running the upgrade command you need to add your schema to db_whitelist_schema.json file by running the following command.
 For that, you need a /etc/db_schema_whitelist.json file that will store all the content added with declarative schema. To generate this file, run:
 
 
 ![db_schema](https://github.com/bdcrops/BDC_Declarative/blob/master/view/adminhtml/web/images/whitelist.png)
 
-
+```
 php bin/magento setup:db-declaration:generate-whitelist [options]
 php bin/magento setup:db-declaration:generate-whitelist --module-name=vendor_module
-
 php bin/magento setup:db-declaration:generate-whitelist --module-name=BDC_SimpleNews
-
+```
 
 Now, there are db_whitelist_schema.json file will be create in /vendor/module/etc folder.
 ![db_whitelist_schema](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/db_schema_whitelist.png)
