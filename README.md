@@ -706,6 +706,14 @@ public function execute()
 </config>
 
 ```
+#### Note: System configuration :
+simple way to store single values required for application functionality in both Magento 1 and 2. In this post we will show you how to add custom system configuration settings in Magento 2.
+System configuration values in Magento 2 are stored in the core_config_data database table, which is exactly the same as in Magento 1. But the xml config files differ.
+The system.xml is a configuration file which is used to create configuration fields in Magento 2 System Configuration.
+
+The system.xml is a configuration file which is used to create configuration fields in Magento 2 System Configuration. You will need this if your module has some settings which the admin needs to set. You can go to Store -> Setting -> Configuration to check how it look like.
+
+
 #### Note:- MCAD: 5.4 Set up a menu item
 - How do you add a new menu item to a given tab?
 - How do you add a new tab to the Admin menu?
