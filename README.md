@@ -284,8 +284,7 @@ Now, there are db_whitelist_schema.json file will be create in /vendor/module/et
 ### <a name="Step2A6">Step 2A.6: Enable the module</a>
 
 
-By finish above step, you have created an empty module. Now we will enable it in Magento environment.
-Before enable the module, we must check to make sure Magento has recognize our module or not by enter the following at the command line:
+By finish above step, you have created an empty module. Now we will enable it in Magento environment.Before enable the module, we must check to make sure Magento has recognize our module or not by enter the following at the command line:
 
 ~~~
 php bin/magento module:status
@@ -328,17 +327,10 @@ Also  you can check Database Table from PhpMyAdmin or Your Favorite tools:
 ### <a name="Step2A7">Step 2A.7:  Develop data and schema patches (Insert data Installing and upgrading data)</a>
 
 
-Since in the old method, we used to write scripts in Install Schema or Upgrade schema when a table was created, but now in the new version, this will be done through Patch system.
-
-A data patch is a class that contains data modification instructions. It is defined in a <Namespace>/<Module_Name>/Setup/Patch/Data/<Patch_Name>.php file and implements \Magento\Setup\Model\Patch\DataPatchInterface.
-
+Since in the old method, we used to write scripts in Install Schema or Upgrade schema when a table was created, but now in the new version, this will be done through Patch system.A data patch is a class that contains data modification instructions. It is defined in a <Namespace>/<Module_Name> /Setup/Patch/Data/<Patch_Name>.php file and implements \Magento\Setup\Model\Patch\DataPatchInterface.
 A schema patch contains custom schema modification instructions. These modifications can be complex.
-
 It is defined in a<Vendor>/<Module_Name>/Setup/Patch/Schema/<Patch_Name>.php file and implements \Magento\Setup\Model\Patch\SchemaPatchInterface.
-
-
 So to add data to the bdc_simplenews table create AddData.php file inside folder BDC/SimpleNews/Setup/Patch/Data and write the following code
-
 app/code/BDC/SimpleNews/Setup/Patch/Data/AddData.php
 
 ```
@@ -379,7 +371,6 @@ class AddData implements DataPatchInterface, PatchVersionInterface {
 ### <a name="Step2A8"> Step 2A.8: Create Model News for business Logic</a>
 
 We need to create these files to insert, update, delete and get data in the database.
-
 - Create model file: app/code/BDC/SimpleNews/Model/News.php and insert this following code into it:
 ```
 <?php
