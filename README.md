@@ -843,8 +843,7 @@ class Data extends AbstractHelper {
      *
      * @return bool
      */
-   public function isEnabledInFrontend($store = null)
-   {
+   public function isEnabledInFrontend($store = null){
       return $this->_scopeConfig->getValue(
          self::XML_PATH_ENABLED,
          ScopeInterface::SCOPE_STORE
@@ -856,8 +855,7 @@ class Data extends AbstractHelper {
      *
      * @return string
      */
-   public function getHeadTitle()
-   {
+   public function getHeadTitle() {
       return $this->_scopeConfig->getValue(
          self::XML_PATH_HEAD_TITLE,
          ScopeInterface::SCOPE_STORE
@@ -869,8 +867,7 @@ class Data extends AbstractHelper {
      *
      * @return int
      */
-   public function getLastestNewsBlockPosition()
-   {
+   public function getLastestNewsBlockPosition() {
       return $this->_scopeConfig->getValue(
          self::XML_PATH_LASTEST_NEWS,
          ScopeInterface::SCOPE_STORE
@@ -880,6 +877,9 @@ class Data extends AbstractHelper {
 
 ```
 
+#### Note: What are Helpers?
+Helpers are the classes that we can use throughout the Magento website to provide different features. Magento 2 Helpers can be used in Controllers, Blocks, Models, Views and even in other Helper classes.
+Helpers are the elements that are global and always available. We can use the Helpers in any class through Dependency Injection.
 
 
 ### <a name="Step2B6">Step 2B.6:  Create the menu for Magento backend</a>
