@@ -1171,8 +1171,8 @@ class Status implements ArrayInterface {
 
 
 
-### <a name="Step2B14">Step 2B.14:  Create Grid block file for Ajax load</a>
-- Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Grid.php (Purpose: This is the block file of grid) and insert this following code into it:
+### <a name="Step2B14">Step 2B.14:  Create Status </a>
+- Create file: app/code/BDC/SimpleNews/Model/System/Config/Status.php (Purpose: check) and insert this following code into it:
 ```
 <?php
 
@@ -1227,7 +1227,7 @@ class News extends Container{
 ```
 
 
-### <a name="Step2B1">Step 2B.16:  Create Backend Action file Index.php</a>
+### <a name="Step2B16">Step 2B.16:  Create Backend Action file Index.php</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Index.php (Purpose: This is the index action) and insert this following code into it:
 
