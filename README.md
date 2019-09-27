@@ -1234,23 +1234,26 @@ class News extends Container{
 ```
 <?php
 
-namespace BDC\SimpleNews\Block\Adminhtml;
+namespace BDC\SimpleNews\Controller\Adminhtml\News;
 
-use Magento\Backend\Block\Widget\Grid\Container;
+use BDC\SimpleNews\Controller\Adminhtml\News;
 
-class News extends Container{
-   /**
-     * Constructor
-     *
+class Index extends News{
+    /**
      * @return void
      */
-   protected function _construct(){
-        $this->_controller = 'adminhtml_news';
-        $this->_blockGroup = 'BDC_SimpleNews';
-        $this->_headerText = __('Manage News');
-        $this->_addButtonLabel = __('Add News');
-        parent::_construct();
-    }
+   public function execute(){
+      if ($this->getRequest()->getQuery('ajax')) {
+            $this->_forward('grid');
+            return;
+        }
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $resultPage = $this->_resultPageFactory->create();
+        $resultPage->setActiveMenu('BDC_SimpleNews::main_menu');
+        $resultPage->getConfig()->getTitle()->prepend(__('Simple News'));
+
+        return $resultPage;
+   }
 }
 
 ```
