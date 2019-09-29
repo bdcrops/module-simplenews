@@ -1268,13 +1268,11 @@ namespace BDC\SimpleNews\Controller\Adminhtml\News;
 
 use BDC\SimpleNews\Controller\Adminhtml\News;
 
-class Grid extends News
-{
+class Grid extends News {
    /**
      * @return void
      */
-   public function execute()
-   {
+   public function execute() {
       return $this->_resultPageFactory->create();
    }
 }
@@ -1293,8 +1291,7 @@ class Grid extends News
 layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="left">
-            <block class="BDC\SimpleNews\Block\Adminhtml\News\Edit\Tabs"
-                name="bdc_simplenews_news.edit.tabs"/>
+            <block class="BDC\SimpleNews\Block\Adminhtml\News\Edit\Tabs"  name="bdc_simplenews_news.edit.tabs"/>
         </referenceContainer>
         <referenceContainer name="content">
             <block class="BDC\SimpleNews\Block\Adminhtml\News\Edit"
