@@ -450,7 +450,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 6.1 Describe common structure/architecture
 
-- Describe the difference between Adminhtml and frontend? [belvg](https://belvg.com/blog/magento-2-areas-adminhtml-base-and-frontend.html),[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/6.%20Developing%20with%20Adminhtml/1.%20Describe%20common%20structure%20architecture.md), [exam-notes](https://github.com/colinmurphy/magento-exam-notes/blob/master/6.%20Adminhtml/1.%20Common%20Structure/1.%20Describe%20the%20similarities%20and%20differences%20between%20adminhtml%20and%20frontend%20interface%20and%20routing.md),
+- Describe the difference between Adminhtml and frontend? [belvg](https://belvg.com/blog/magento-2-areas-adminhtml-base-and-frontend.html),[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/6.%20Developing%20with%20Adminhtml/1.%20Describe%20common%20structure%20architecture.md), 
 
 - What additional tools and requirements exist in the admin? [mageplaza](https://www.mageplaza.com/magento-2-module-development/create-admin-menu-magento-2.html), [mageworx](https://www.mageworx.com/wiki/magento2-admin-panel/)
 
@@ -627,6 +627,6 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 ***
 
 ### Tutorials Series
-
+- [pierrefay](https://www.pierrefay.com/magento2-training/create-a-view.html)
+- [mageplaza](https://www.mageplaza.com/magento-2-module-development/)
 - [magestore](https://www.magestore.com/magento-2-tutorial/)
--[mageplaza](https://www.mageplaza.com/magento-2-module-development/)
