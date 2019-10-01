@@ -468,7 +468,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 - How can this be process be customized or extended? [create-admin-grid](https://medium.com/@jhonkelly2016/how-to-create-admin-grid-in-magento-2-9f39d052322d)
 
-- Describe how to create a simple form and grid for a custom entity? [techjeffyu](http://techjeffyu.com/blog/magento-2-create-uicomponent-list-and-uicomponent-form-by-example) 
+- Describe how to create a simple form and grid for a custom entity? [techjeffyu](http://techjeffyu.com/blog/magento-2-create-uicomponent-list-and-uicomponent-form-by-example)
 
 - Given a specific entity with different types of fields (text, dropdown, image, file, date, and so on)? [atwix](https://www.atwix.com/magento-2/joining-external-attributes-to-entity-in-magento-2/),
 
@@ -625,6 +625,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 -  How do you customize VAT functionality?
 
 ***
+
 
 ### Tutorials Series
 - [pierrefay](https://www.pierrefay.com/magento2-training/create-a-view.html)
