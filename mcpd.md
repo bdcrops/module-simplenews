@@ -450,7 +450,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 6.1 Describe common structure/architecture
 
-- Describe the difference between Adminhtml and frontend? [belvg](https://belvg.com/blog/magento-2-areas-adminhtml-base-and-frontend.html),[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/6.%20Developing%20with%20Adminhtml/1.%20Describe%20common%20structure%20architecture.md), 
+- Describe the difference between Adminhtml and frontend? [belvg](https://belvg.com/blog/magento-2-areas-adminhtml-base-and-frontend.html),[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/6.%20Developing%20with%20Adminhtml/1.%20Describe%20common%20structure%20architecture.md),
 
 - What additional tools and requirements exist in the admin? [mageplaza](https://www.mageplaza.com/magento-2-module-development/create-admin-menu-magento-2.html), [mageworx](https://www.mageworx.com/wiki/magento2-admin-panel/)
 
@@ -468,7 +468,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 - How can this be process be customized or extended? [create-admin-grid](https://medium.com/@jhonkelly2016/how-to-create-admin-grid-in-magento-2-9f39d052322d)
 
-- Describe how to create a simple form and grid for a custom entity? [techjeffyu](http://techjeffyu.com/blog/magento-2-create-uicomponent-list-and-uicomponent-form-by-example), [bsscommerce](https://bsscommerce.com/confluence/3-simple-steps-to-create-admin-grid-in-magento-1/)
+- Describe how to create a simple form and grid for a custom entity? [techjeffyu](http://techjeffyu.com/blog/magento-2-create-uicomponent-list-and-uicomponent-form-by-example) 
 
 - Given a specific entity with different types of fields (text, dropdown, image, file, date, and so on)? [atwix](https://www.atwix.com/magento-2/joining-external-attributes-to-entity-in-magento-2/),
 
