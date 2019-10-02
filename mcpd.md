@@ -106,7 +106,7 @@
 #### 1.6 Configure event observers and scheduled jobs
 
 - Demonstrate how to configure observers? [exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/1.%20Magento%20Architecture%20and%20Customization%20Techniques/6.%20Configure%20event%20observers%20and%20scheduled%20jobs.md), [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/events-and-observers.html)
-,[cloudways](https://www.cloudways.com/blog/magento-2-events-observers/),[mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-create-events.html),[magenticians](https://magenticians.com/magento-2-events-observers/),[divisionlab](https://www.divisionlab.com/solvingmagento/events-and-observers-a-magento-tutorial/)
+,[cloudways](https://www.cloudways.com/blog/magento-2-events-observers/),[mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-create-events.html),[magenticians](https://magenticians.com/magento-2-events-observers/) 
 
 - How do you make your observer only be active on the frontend or backend? [magefoo](http://magefoo.com/creating-a-magento-2-observer/)
 
