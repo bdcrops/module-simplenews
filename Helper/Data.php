@@ -60,8 +60,7 @@ class Data extends AbstractHelper
      *
      * @return int
      */
-   public function getLastestNewsBlockPosition()
-   {
+   public function getLastestNewsBlockPosition(){
       return $this->_scopeConfig->getValue(
          self::XML_PATH_LASTEST_NEWS,
          ScopeInterface::SCOPE_STORE

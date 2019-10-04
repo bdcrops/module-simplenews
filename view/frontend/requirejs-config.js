@@ -1,9 +1,11 @@
 var config = {
     'map': {
         '*': {
-            'mage/validation': 'BDC_SimpleNews/js/validation'
+            'mage/validation': 'BDC_SimpleNews/js/validation' 
         }
-    }/*,
+    }
+
+     /*,
     config: {
         mixins: {
             'BDC_SimpleNews/js/validation': {
