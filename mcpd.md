@@ -632,3 +632,5 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 - [magestore](https://www.magestore.com/magento-2-tutorial/)
 - [sudhanshubajaj](https://www.sudhanshubajaj.com/magento-2-certified-associate-developer-preparation/)
 - [blogtreat](http://www.blogtreat.com/category/magento-2/)
+
+- [techjeffyu](http://techjeffyu.com/?tag=Magento2)

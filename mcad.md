@@ -344,3 +344,12 @@ Most of the source models are located in app/code/Magento/Config/Model/Config/So
 
 End
 ***
+
+### Tutorials Series
+- [pierrefay](https://www.pierrefay.com/magento2-training/create-a-view.html)
+- [mageplaza](https://www.mageplaza.com/magento-2-module-development/)
+- [magestore](https://www.magestore.com/magento-2-tutorial/)
+- [sudhanshubajaj](https://www.sudhanshubajaj.com/magento-2-certified-associate-developer-preparation/)
+- [blogtreat](http://www.blogtreat.com/category/magento-2/)
+
+- [techjeffyu](http://techjeffyu.com/?tag=Magento2)
