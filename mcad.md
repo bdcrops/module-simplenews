@@ -336,6 +336,7 @@ Most of the source models are located in app/code/Magento/Config/Model/Config/So
 
 #### 6.8 Customize the customer address
 - How do you add another field to the customer address entity using a setup script?
+[siphor](https://www.siphor.com/magento-customer-address-entity/)
 [webkul](https://webkul.com/blog/how-to-create-custom-customer-address-attribute-in-magento-2/), [web4pro](https://web4pro.net/blog-news/magento-2-add-custom-attribute-customers-address/),
 [devdocs](https://devdocs.magento.com/guides/v2.3/howdoi/checkout/checkout_new_field.html)
 
