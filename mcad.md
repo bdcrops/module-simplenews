@@ -249,7 +249,7 @@ magento maintenance:status
 
 #### 5.1 Create a controller for an admin router
 
-- How would you create an admin controller?  [Step 2B.15-17](README.md#Step2B15)
+- How would you create an admin controller?  [Step 2B.15-17](README.md#Step2B15), [mage2-blog](https://mage2-blog.com/magento-2-create-simple-adminhtml-module/),[magecheck](https://www.magecheck.com/magento-backend-controller)
 - How do you ensure the right level of security for a new controller?
 [andresa](https://andresa.dev/en/magento-2-how-to-create-an-admin-controller-and-a-new-acl/)
 
@@ -336,7 +336,7 @@ Most of the source models are located in app/code/Magento/Config/Model/Config/So
 
 #### 6.8 Customize the customer address
 - How do you add another field to the customer address entity using a setup script?
-[siphor](https://www.siphor.com/add-customer-and-customer-address-attributes-in-magento-2/)
+[siphor](https://www.siphor.com/add-customer-and-customer-address-attributes-in-magento-2/),
 [webkul](https://webkul.com/blog/how-to-create-custom-customer-address-attribute-in-magento-2/), [web4pro](https://web4pro.net/blog-news/magento-2-add-custom-attribute-customers-address/),
 [devdocs](https://devdocs.magento.com/guides/v2.3/howdoi/checkout/checkout_new_field.html)
 
