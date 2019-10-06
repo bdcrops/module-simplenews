@@ -233,7 +233,9 @@ magento maintenance:status
 
 #### 4.3 Describe how to filter, sort, and specify the selected values for collections and repositories
 
-- [How do you select a subset of records from the database?](README.md#Step2A10Note1)
+- How do you select a subset of records from the database?[](README.md#Step2A10Note1),
+[mageplaza](https://www.mageplaza.com/devdocs/get-all-order-collection-filters-magento-2.html),
+[mageworx](https://www.mageworx.com/blog/how-to-add-column-with-filter-to-magento-2-orders-grid/),
 
 #### 4.4 Demonstrate an ability to use declarative schema
 
