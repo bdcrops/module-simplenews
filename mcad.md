@@ -222,7 +222,10 @@ magento maintenance:status
 
 ### <a name="Databases">4 Working with Databases in Magento</a>
 
-#### 4.1 Describe the basic concepts of [models](README.md#Step2A8Note3), resource models, and collections
+#### 4.1 Describe the basic concepts of [models](README.md#Step2A8Note3), resource models, and collections [mageplaza](https://www.mageplaza.com/magento-2-module-development/how-to-create-crud-model-magento-2.html), [emiprotechnologies](https://www.emiprotechnologies.com/technical_notes/magento-technical-notes-60/post/how-to-create-model-resource-model-and-collection-in-magento-2-400),
+[pierrefay](https://www.pierrefay.com/magento2-training/create-magento2-model-database.html),
+[fixes](https://fixes.co.za/magento2/magento-2-database-and-models/),
+[module-creator](https://github.com/mageplaza/magento-2-module-creator)
 
 - What are the responsibilities of each of the ORM object types? [Step2A9Note1](README.md#Step2A9Note1)
 - How do they relate to one another?
@@ -233,7 +236,7 @@ magento maintenance:status
 
 #### 4.3 Describe how to filter, sort, and specify the selected values for collections and repositories
 
-- How do you select a subset of records from the database?[](README.md#Step2A10Note1),
+- How do you select a subset of records from the database?[note](README.md#Step2A10Note1),
 [mageplaza](https://www.mageplaza.com/devdocs/get-all-order-collection-filters-magento-2.html),
 [mageworx](https://www.mageworx.com/blog/how-to-add-column-with-filter-to-magento-2-orders-grid/),
 
