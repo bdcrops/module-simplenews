@@ -177,7 +177,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 ### <a name="Step2A2">Step 2A.2: Declare module by using configuration file module.xml</a>
 
 Magento 2 looks for configuration information for each module in that module’s etc directory. We need to create folder etc and add module.xml:
- Create app/code/BDC/SimpleNews/etc/module.xml And the content for this file:
+ - Create [etc/module.xml](app/code/BDC/SimpleNews/etc/module.xml) And the content for this file:
 
 ~~~ xml
 <?xml version="1.0"?>
