@@ -20,7 +20,7 @@
 
 ## <a name="top"> Magento 2 SimpleNews Module Step By Step (BDCrops) </a>
 
-##  [Part A : News Module for Basic](#PartA)
+##  [PartA: Architecture & Customization-News Module Basic ](#PartA)
 
 
 - [Step 2A.1: Create a directory for the module like above format](#Step2A1)
@@ -178,7 +178,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 
 Magento 2 looks for configuration information for each module in that module’s etc directory. We need to create folder etc and add module.xml:
  - Create [etc/module.xml](/etc/module.xml) And the content for this file:
- 
+
 ~~~ xml
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
