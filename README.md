@@ -178,6 +178,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 
 Magento 2 looks for configuration information for each module in that module’s etc directory. We need to create folder etc and add module.xml:
  - Create [etc/module.xml](/etc/module.xml) And the content for this file:
+https://github.com/bdcrops/module-simplenews/blob/6cd4149b8d198bcdf66b2f636fe1abed363bdb4d/etc/module.xml#L1-L13
 
 ~~~ xml
 <?xml version="1.0"?>
@@ -199,8 +200,7 @@ Create  app/code/BDC/SimpleNews/registration.php and insert this following code 
 ~~~
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'BDC_SimpleNews',
-    __DIR__
+    'BDC_SimpleNews', __DIR__
 );
 ~~~
 
