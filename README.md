@@ -20,7 +20,7 @@
 
 ## <a name="top"> Magento 2 SimpleNews Module Step By Step (BDCrops) </a>
 
-##  [PartA: Architecture & Customization-News Module Basic ](#PartA)
+##  [PartA: News Module Basic (Architecture & Customization)](#PartA)
 
 
 - [Step 2A.1: Create a directory for the module like above format](#Step2A1)
