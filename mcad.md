@@ -366,3 +366,4 @@ End
 - [diazwatson](https://github.com/diazwatson/magecert2/blob/master/_pages/associate-developer/index.md)
 - [novikor](https://github.com/novikor/magento2certification/tree/master/app/code/M2C)
 - [pykettk](https://github.com/pykettk/magento2-associate-developer-certification)
+- https://www.magebay.com/docs/category/magento-2-knowledge-base/

@@ -511,39 +511,39 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 - How can you do that programmatically?
 
 
-### <a name="Catalog"> 7 Customizing the Catalog</a>
+## <a name="Catalog"> 7 Customizing the Catalog</a>
 
-#### 7.1 Demonstrate ability to use products and product types
-
-      Identify/describe standard product types (simple, configurable, bundled, etc.).
-      How would you obtain a product of a specific type?
-      What tools (in general) does a product type model provide?
-      What additional functionality is available for each of the different product types?
+### 7.1 Demonstrate ability to use products and product types
+- Identify/describe standard product types (simple, configurable, bundled, etc.).
+- How would you obtain a product of a specific type?
+- What tools (in general) does a product type model provide?
+- What additional functionality is available for each of the different product types?
 
 #### 7.2 Describe price functionality
 
-      Identify the basic concepts of price generation in Magento.
-      How would you identify what is composing the final price
-      of the product? How can you customize the price calculation process?
-      Describe how price is rendered in Magento.
-      How would you render price in a given place on the page, and
-      how would you modify how the price is rendered?
+- Identify the basic concepts of price generation in Magento.
+- How would you identify what is composing the final price
+of the product?
+- How can you customize the price calculation process?
+- Describe how price is rendered in Magento.
+- How would you render price in a given place on the page, and
+how would you modify how the price is rendered?
 
 #### 7.3 Demonstrate ability to use and customize categories
 
-      Describe category properties and features.
-      How do you create and manage categories?
-      Describe the category hierarchy tree structure implementation (the internal structure inside the database).
-      What is the meaning of parent_id 0? How are paths constructed?
-      Which attribute values are required to display a new category in the store?
-      What kind of strategies can you suggest for organizing products into categories?
+- Describe category properties and features.
+- How do you create and manage categories?
+- Describe the category hierarchy tree structure implementation (the internal structure inside the database).
+- What is the meaning of parent_id 0? How are paths constructed?
+- Which attribute values are required to display a new category in the store?
+- What kind of strategies can you suggest for organizing products into categories?
 
 #### 7.4 Determine and manage catalog rules
 
-      Identify how to implement catalog price rules.
-      When would you use catalog price rules?
-      How do they impact performance?
-      How would you debug problems with catalog price rules?
+- Identify how to implement catalog price rules.
+- When would you use catalog price rules?
+- How do they impact performance?
+- How would you debug problems with catalog price rules?
 
 ## <a name="Checkout"> 8 Customizing the Checkout Process</a>
 
@@ -559,21 +559,21 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 8.3 Demonstrate ability to customize the shopping cart
 
-- Describe how to implement shopping cart rules.[]()
-- What is the difference between sales rules and catalog rules?[]()
-- How do sales rules affect performance? []()
-- What are the limitations of the native sales rules engine? []()
-- Describe add-to-cart logic in different scenarios. []()
+- Describe how to implement shopping cart rules.[mageplaza](https://www.mageplaza.com/kb/how-create-a-cart-price-rule-in-magento-2.html), [magento](https://docs.magento.com/m2/ce/user_guide/marketing/price-rules-cart.html), [magenticians](https://magenticians.com/add-magento-shopping-cart-price-rules/), [cloudways](https://www.cloudways.com/blog/magento-2-catalog-and-cart-price-rules/)
+- What is the difference between sales rules and catalog rules? [magento](https://docs.magento.com/m2/ee/user_guide/marketing/price-rules-catalog.html), [mageplaza](https://www.mageplaza.com/kb/how-create-a-catalog-price-rule-in-magento-2.html), [mageworx](https://www.mageworx.com/blog/2018/01/how-to-create-catalog-price-rule-in-magento-2/), [excellencemagentoblog](http://excellencemagentoblog.com/question/what-is-the-difference-between-shopping-cart-and-catalog-price-rules/), [amasty](https://amasty.com/blog/promotion-rules-in-magento-2-comprehensive-guide/)
+- How do sales rules affect performance? [onilab](https://onilab.com/blog/magento-2-add-to-cart-is-slow-fix/), [templatemonster](https://www.templatemonster.com/blog/target-customers-abandoned-cart-email-magento-2/)
+- What are the limitations of the native sales rules engine? [tigrensolutions](http://tigrensolutions.blogspot.com/2018/10/how-to-add-extension-attribute-to-order.html)
+- Describe add-to-cart logic in different scenarios. [belvg](https://belvg.com/blog/how-to-customize-the-checkout-process-in-magento-2.html), [magebay](https://www.magebay.com/docs/magento-2-ajax-add-to-cart-in-custom-module/)
 - What is the difference in adding a product to the cart from the
-product page, from the wishlist, by clicking Reorder, and during quotes merge? []()
-- Describe the difference in behavior of different product types in the shopping cart. []()
-- How are configurable and bundle products rendered? []()
-- How can you create a custom shopping cart renderer? []()
+product page, from the wishlist, by clicking Reorder, and during quotes merge? [belvg](https://belvg.com/blog/how-to-customize-the-checkout-process-in-magento-2.html)
+- Describe the difference in behavior of different product types in the shopping cart. [mageplaza](https://www.mageplaza.com/kb/6-types-product-types-magento-2.html), [bsscommerce](https://bsscommerce.com/blog/6-product-types-of-magento-2-explained/)
+- How are configurable and bundle products rendered? [belvg](https://belvg.com/blog/the-functionality-and-basic-concepts-of-price-generation-in-magento-2.html), [firebearstudio](https://firebearstudio.com/blog/how-to-add-magento-2-configurable-products-in-bundles.html)
+- How can you create a custom shopping cart renderer? [tigren](https://www.tigren.com/order-information-checkout-success-m2/)
 - Describe the available shopping cart operations. []()
 - Which operations are available to the customer on the cart page? []()
 - How can you customize cart edit functionality? []()
 - How would you create an extension that deletes one item if another was deleted? []()
-- How do you add a field to the shipping address? []()
+- How do you add a field to the shipping address? [github](https://github.com/bdcrops/module-ordernotes)
 
 #### 8.4 Demonstrate ability to customize shipping and payment methods
 
