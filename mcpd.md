@@ -531,19 +531,21 @@ of the product? [magestore](https://www.magestore.com/magento-2-tutorial/magento
 
 #### 7.3 Demonstrate ability to use and customize categories
 
-- Describe category properties and features.
-- How do you create and manage categories?
-- Describe the category hierarchy tree structure implementation (the internal structure inside the database).
+- Describe category properties and features. [sherocommerce](https://sherocommerce.com/categories-attributes-magento-2/),
+[amasty](https://amasty.com/docs/doku.php?id=magento_2:improved_layered_navigation)
+- How do you create and manage categories? [belvg](https://belvg.com/blog/how-to-add-new-category-in-magento-2.html)
+- Describe the category hierarchy tree structure implementation (the internal structure inside the database). [stackoverflow](https://stackoverflow.com/questions/54520749/get-categories-and-subcategories-as-tree-display), [firebearstudio](https://firebearstudio.com/blog/magento-2-page-hierarchy-import-export.html)
 - What is the meaning of parent_id 0? How are paths constructed?
-- Which attribute values are required to display a new category in the store?
-- What kind of strategies can you suggest for organizing products into categories?
+[magentoextensions](https://www.magentoextensions.org/documentation/class_magento_1_1_catalog_1_1_model_1_1_category.html), [dckap](https://www.dckap.com/blog/magento-2-import-a-category-with-its-subcategories-programmatically/), [community](https://community.magento.com/t5/Magento-2-x-Programming/Categories-names-as-quot-None-quot-when-accessed-via-REST-API/td-p/142202)
+- Which attribute values are required to display a new category in the store? [docs](https://docs.magento.com/m2/2.2/ee/user_guide/catalog/category-product-rules.html)
+- What kind of strategies can you suggest for organizing products into categories? []()
 
 #### 7.4 Determine and manage catalog rules
 
-- Identify how to implement catalog price rules.
-- When would you use catalog price rules?
-- How do they impact performance?
-- How would you debug problems with catalog price rules?
+- Identify how to implement catalog price rules. [magestore](https://www.magestore.com/magento-2-tutorial/how-to-create-and-manage-catalog-price-rules-in-magento-2/), [belvg](https://belvg.com/blog/how-to-manage-catalog-rules-in-magento-2.html)
+- When would you use catalog price rules? [toweringmedia](https://toweringmedia.com/blog/create-catalog-price-rule-magento2/), [mydons](http://mydons.com/magento-2-catalog-price-rule-in-rest-api/)
+- How do they impact performance? []()
+- How would you debug problems with catalog price rules? []()
 
 ## <a name="Checkout"> 8 Customizing the Checkout Process</a>
 
