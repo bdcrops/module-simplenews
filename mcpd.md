@@ -602,7 +602,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
       Which refund types are available, and how are they used?
 
 
-### <a name="Customer"> 10 Customer Management</a>
+### <a name="Customer"> 10 [Customer Management](https://github.com/bdcrops/module-contactpreferences)</a>
 
 #### 10.1 Demonstrate ability to customize My Account
 

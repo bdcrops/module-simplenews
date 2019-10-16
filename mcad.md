@@ -356,6 +356,8 @@ End
 - [pierrefay](https://www.pierrefay.com/magento2-training/create-a-view.html)
 - [mageplaza](https://www.mageplaza.com/magento-2-module-development/)
 - [magestore](https://www.magestore.com/magento-2-tutorial/)
+- [alanstorm](https://alanstorm.com/category/magento-2/)
+- [bizspice](https://www.bizspice.com/blog/category/magento-2-tips-and-tricks)
 - [sudhanshubajaj](https://www.sudhanshubajaj.com/magento-2-certified-associate-developer-preparation/)
 - [blogtreat](http://www.blogtreat.com/category/magento-2/)
 
