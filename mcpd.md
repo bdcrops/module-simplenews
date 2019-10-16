@@ -613,16 +613,20 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 10.2 Demonstrate ability to customize customer functionality
 
--  Describe how to add or modify customer attributes. [](
--  Describe how to extend the customer entity? [](
--  How would you extend the customer entity using the extension attributes mechanism? [](
--  Describe how to customize the customer address? [](
--  How would you add another field into the customer address? [](
--  Describe customer groups and their role in different business processes? [](
--  What is the role of customer groups? [](
--  What functionality do they affect? [](
--  Describe Magento functionality related to VAT? [](
--  How do you customize VAT functionality? [](
+-  Describe how to add or modify customer attributes. [m2example](https://github.com/bdcrops/m2example/tree/master/CustomerAttribute)
+-  Describe how to extend the customer entity? [mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-add-customer-attribute-programmatically.html), [arpatech](https://www.arpatech.com/blog/add-customer-attribute-magento-2-x/), [magesolution](http://www.magesolution.com/blog/how-to-create-customer-attribute-in-magento2/)
+
+-  How would you extend the customer entity using the extension attributes mechanism? [stackexchange](https://magento.stackexchange.com/questions/94890/magento-2-best-practice-for-extending-customer-entity), [belvg](https://belvg.com/blog/customer-management-in-magento-2-customize-my-account-order-history-and-functionality.html),[](https://blog.chapagain.com.np/magento-2-customer-image-file-upload-in-registration-account-page/)
+-  Describe how to customize the customer address? [packagist](https://packagist.org/packages/yireo-training/magento2-example-address-field-note), [fooman](https://store.fooman.co.nz/blog/an-introduction-to-extension-attributes.html)
+
+-  How would you add another field into the customer address? [github](https://github.com/danielozano/magento2-customer-address-attribute-example),
+[webkul](https://webkul.com/blog/how-to-create-custom-customer-address-attribute-in-magento-2/)
+-  Describe customer groups and their role in different business processes? [mageplaza](https://www.mageplaza.com/devdocs/add-new-fields-address-form-magento-2.html)
+-  What is the role of customer groups? [paulnrogers](https://paulnrogers.com/guide-using-customer-groups-magento/), [magento](https://docs.magento.com/m2/ce/user_guide/customers/customer-groups.html)
+-  What functionality do they affect? [mageplaza](https://www.mageplaza.com/kb/how-manage-customers-customers-group-magento-2.html)
+-  Describe Magento functionality related to VAT? [docs](https://docs.magento.com/m2/ce/user_guide/tax/vat.html), [mageplaza](https://www.mageplaza.com/kb/how-to-configure-value-added-tax-vat-magento-2.html)
+
+-  How do you customize VAT functionality? [stackexchange](https://magento.stackexchange.com/questions/148219/magento-2-add-custom-tax-amount-in-cart-programatically)
 
 ***
 
