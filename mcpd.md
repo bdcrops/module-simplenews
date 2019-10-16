@@ -521,13 +521,13 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 7.2 Describe price functionality
 
-- Identify the basic concepts of price generation in Magento.
+- Identify the basic concepts of price generation in Magento.[devdocs](https://devdocs.magento.com/guides/v2.3/ui_comp_guide/howto/price_rendering.html)
 - How would you identify what is composing the final price
-of the product?
-- How can you customize the price calculation process?
-- Describe how price is rendered in Magento.
-- How would you render price in a given place on the page, and
-how would you modify how the price is rendered?
+of the product? [magestore](https://www.magestore.com/magento-2-tutorial/magento-2-special-price-configuration-tutorial/)
+- How can you customize the price calculation process? [stackexchange](https://magento.stackexchange.com/questions/257587/magento-2-how-to-get-final-price-original-price-of-all-types-of-product)
+- Describe how price is rendered in Magento.stackexchange[stackexchange](https://magento.stackexchange.com/questions/246245/specific-product-price-render-in-magento-2)
+- How would you render price in a given place on the page?
+- How would you modify how the price is rendered?
 
 #### 7.3 Demonstrate ability to use and customize categories
 
