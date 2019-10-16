@@ -360,18 +360,9 @@ End
 - [bizspice](https://www.bizspice.com/blog/category/magento-2-tips-and-tricks)
 - [sudhanshubajaj](https://www.sudhanshubajaj.com/magento-2-certified-associate-developer-preparation/)
 - [blogtreat](http://www.blogtreat.com/category/magento-2/)
+- [vjcspy](https://github.com/vjcspy/mgt2-example-modules/tree/master/app/code)
 
-
-
-
-https://github.com/pykettk/magento2-associate-developer-certification
-
-https://github.com/vjcspy/mgt2-example-modules/tree/master/app/code
-
-https://github.com/drewfx/magento_2_notes/blob/master/certification_questions/questions.md
-
-https://github.com/diazwatson/magecert2/blob/master/_pages/associate-developer/index.md
-
-https://github.com/novikor/magento2certification/tree/master/app/code/M2C
-
-https://github.com/pykettk/magento2-associate-developer-certification
+- [drewfx](https://github.com/drewfx/magento_2_notes/blob/master/certification_questions/questions.md)
+- [diazwatson](https://github.com/diazwatson/magecert2/blob/master/_pages/associate-developer/index.md)
+- [novikor](https://github.com/novikor/magento2certification/tree/master/app/code/M2C)
+- [pykettk](https://github.com/pykettk/magento2-associate-developer-certification)

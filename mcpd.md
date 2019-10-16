@@ -588,18 +588,18 @@ adding a new attribute, a new field in the database, or a new related entity? [d
       What types of payment methods exist?
       What are the different payment flows?
 
-### <a name="Sales"> 9 Sales Operations</a>
+###<a name="Sales"> 9 Sales Operations</a>
 
-#### 9.1 Demonstrate ability to customize sales operations
+### 9.1 Demonstrate ability to customize sales operations
 
-      Describe how to modify order processing and integrate it with a third-party ERP system? [](
-      Describe how to modify order processing flow? [](
-      How would you add new states and statuses for an order? [](
-      How do you change the behavior of existing states and statuses? [](
-      Described how to customize invoices? [](
-      How would you customize invoice generation, capturing, and management? [](
-      Describe refund functionality in Magento? [](
-      Which refund types are available, and how are they used? [](
+- Describe how to modify order processing and integrate it with a third-party ERP system? [](
+- Describe how to modify order processing flow? [](
+- How would you add new states and statuses for an order? [](
+- How do you change the behavior of existing states and statuses? [](
+- Described how to customize invoices? [](
+- How would you customize invoice generation, capturing, and management? [](
+- Describe refund functionality in Magento? [](
+- Which refund types are available, and how are they used? [](
 
 
 ### <a name="Customer"> 10 [Customer Management](https://github.com/bdcrops/module-contactpreferences)</a>
@@ -632,10 +632,17 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 
 ### Tutorials Series
+- [techjeffyu](http://techjeffyu.com/?tag=Magento2)
 - [pierrefay](https://www.pierrefay.com/magento2-training/create-a-view.html)
 - [mageplaza](https://www.mageplaza.com/magento-2-module-development/)
 - [magestore](https://www.magestore.com/magento-2-tutorial/)
+- [alanstorm](https://alanstorm.com/category/magento-2/)
+- [bizspice](https://www.bizspice.com/blog/category/magento-2-tips-and-tricks)
 - [sudhanshubajaj](https://www.sudhanshubajaj.com/magento-2-certified-associate-developer-preparation/)
 - [blogtreat](http://www.blogtreat.com/category/magento-2/)
+- [vjcspy](https://github.com/vjcspy/mgt2-example-modules/tree/master/app/code)
 
-- [techjeffyu](http://techjeffyu.com/?tag=Magento2)
+- [drewfx](https://github.com/drewfx/magento_2_notes/blob/master/certification_questions/questions.md)
+- [diazwatson](https://github.com/diazwatson/magecert2/blob/master/_pages/associate-developer/index.md)
+- [novikor](https://github.com/novikor/magento2certification/tree/master/app/code/M2C)
+- [pykettk](https://github.com/pykettk/magento2-associate-developer-certification)
