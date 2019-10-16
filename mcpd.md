@@ -549,8 +549,8 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 ### 8.1 Demonstrate ability to use quote, quote item, address & shopping cart rules in checkout
 
-- Describe how to customize the process of adding a product to the cart.
-- Which different scenarios should you take into account?
+- Describe how to customize the process of adding a product to the cart.[mageplaza](https://www.mageplaza.com/blog/how-to-customize-add-to-cart-in-magento-2.html), [belvg](https://belvg.com/blog/how-to-customize-the-checkout-process-in-magento-2.html), [inchoo](https://inchoo.net/magento-2/improve-usability-magento-2-add-cart-process/), [cloudways](https://www.cloudways.com/blog/add-additional-options-in-magento-2/), [atwix](https://www.atwix.com/magento-2/how-to-add-the-details-for-cart-item-in-magento-2/)
+- Which different scenarios should you take into account?[](https://bit.ly/33vg81A), [bsscommerce](https://bsscommerce.com/blog/tips-for-magento-2-checkout-customization-you-wont-want-to-miss/)
 
 #### 8.2 Demonstrate ability to use totals models
 
