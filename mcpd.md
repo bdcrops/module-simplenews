@@ -588,18 +588,21 @@ adding a new attribute, a new field in the database, or a new related entity? [d
       What types of payment methods exist?
       What are the different payment flows?
 
-###<a name="Sales"> 9 Sales Operations</a>
+### <a name="Sales"> 9 Sales Operations</a>
 
 ### 9.1 Demonstrate ability to customize sales operations
 
-- Describe how to modify order processing and integrate it with a third-party ERP system? [](
-- Describe how to modify order processing flow? [](
-- How would you add new states and statuses for an order? [](
-- How do you change the behavior of existing states and statuses? [](
-- Described how to customize invoices? [](
-- How would you customize invoice generation, capturing, and management? [](
-- Describe refund functionality in Magento? [](
-- Which refund types are available, and how are they used? [](
+- Describe how to modify order processing and integrate it with a third-party ERP system? [belvg](https://belvg.com/blog/magento-2-certification-customize-sales-operations.html), [devdocs](https://devdocs.magento.com/guides/v2.3/get-started/create-integration.html) [firebearstudio](https://firebearstudio.com/blog/enterprise-resource-planning-erp-systems-magento-2-integration.html), [elogic](https://elogic.co/blog/magento-2-erp-integration-guide/)
+
+- Describe how to modify order processing flow? [mag-manager](https://www.mag-manager.com/product-information/magento-order-management/magento-2-order-status-flow/), [docs](https://docs.magento.com/m2/ce/user_guide/sales/order-processing.html), [stackexchange](https://magento.stackexchange.com/questions/174320/magento-2-order-flow-sequence), [magecom](https://magecom.net/order-management-in-magento-2/), [amasty](https://amasty.com/knowledge-base/magento-order-statuses-change-create-new-or-assign-an-order-status.html)
+- How would you add new states and statuses for an order? [atwix](https://www.atwix.com/magento-2/create-new-order-state-and-status-programmatically-in-magento-2/) , [mageplaza](https://www.mageplaza.com/kb/magento-2-order-status-order-state.html), [stackexchange](https://magento.stackexchange.com/questions/197246/how-to-create-new-order-states-in-magento-2), [magestore](https://www.magestore.com/magento-2-tutorial/manage-order-status-in-magento-2/)
+- How do you change the behavior of existing states and statuses? [magestore](https://www.magestore.com/magento-2-tutorial/manage-order-status-in-magento-2/)
+- Described how to customize invoices? [mageplaza](https://www.mageplaza.com/kb/how-change-invoice-order-pdf-template.html), [magestore](https://www.magestore.com/magento-2-tutorial/magento-2-invoice-tutorial-2/), [magento](https://docs.magento.com/m2/ce/user_guide/sales/invoice-create.html)
+- How would you customize invoice generation, capturing, and management? [magestore](https://www.magestore.com/magento-2-tutorial/magento-2-invoice-tutorial/), [webkul](https://webkul.com/blog/how-to-programmatically-create-invoice-in-magento2/), [magenticians](https://magenticians.com/order-management-magento-2-stores/)
+
+- Describe refund functionality in Magento? [mageplaza](https://www.mageplaza.com/kb/how-to-create-a-credit-memo-or-partial-refund-in-magento-2.html), [simicart](https://www.simicart.com/blog/magento-refunds/)
+
+- Which refund types are available, and how are they used? [magestore](https://www.magestore.com/magento-2-tutorial/magento-2-credit-memo/), [magento](https://docs.magento.com/m2/ce/user_guide/sales/credit-memo-create.html), [mage2](https://mage2.pro/t/topic/709)
 
 
 ### <a name="Customer"> 10 [Customer Management](https://github.com/bdcrops/module-contactpreferences)</a>
