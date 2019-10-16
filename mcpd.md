@@ -592,14 +592,14 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 9.1 Demonstrate ability to customize sales operations
 
-      Describe how to modify order processing and integrate it with a third-party ERP system.
-      Describe how to modify order processing flow.
-      How would you add new states and statuses for an order?
-      How do you change the behavior of existing states and statuses?
-      Described how to customize invoices.
-      How would you customize invoice generation, capturing, and management?
-      Describe refund functionality in Magento.
-      Which refund types are available, and how are they used?
+      Describe how to modify order processing and integrate it with a third-party ERP system? [](
+      Describe how to modify order processing flow? [](
+      How would you add new states and statuses for an order? [](
+      How do you change the behavior of existing states and statuses? [](
+      Described how to customize invoices? [](
+      How would you customize invoice generation, capturing, and management? [](
+      Describe refund functionality in Magento? [](
+      Which refund types are available, and how are they used? [](
 
 
 ### <a name="Customer"> 10 [Customer Management](https://github.com/bdcrops/module-contactpreferences)</a>
@@ -607,21 +607,22 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 #### 10.1 Demonstrate ability to customize My Account
 
 - Describe how to customize the “My Account” section.
-- How do you add a menu item?
-- How would you customize the “Order History” page?
+[belvg](https://belvg.com/blog/customer-management-in-magento-2-customize-my-account-order-history-and-functionality.html), [stackexchange](https://magento.stackexchange.com/questions/209763/magento-2-1-add-a-new-section-on-my-account-page), [magecomp](https://magecomp.com/blog/add-custom-tab-in-customer-account-section-magento-2/), [meetanshi](https://meetanshi.com/blog/add-custom-tab-in-customer-account-dashboard-in-magento-2/), [belvg](https://belvg.com/blog/customer-management-in-magento-2-customize-my-account-order-history-and-functionality.html)
+- How do you add a menu item? [mageplaza](https://www.mageplaza.com/devdocs/magento-2-add-delete-re-order-custom-links.html), [fmeextensions](https://www.fmeextensions.com/magento-2-customize-my-account-page-extension.htm)
+- How would you customize the “Order History” page? [belvg](https://belvg.com/blog/customer-management-in-magento-2-customize-my-account-order-history-and-functionality.html), [rakeshjesadiya](https://www.rakeshjesadiya.com/how-to-override-order-history-phtml-template-in-magento-2/), [stackexchange](https://magento.stackexchange.com/questions/251664/magento-2-x-add-column-to-sales-order-history-page-fo)
 
 #### 10.2 Demonstrate ability to customize customer functionality
 
--  Describe how to add or modify customer attributes.
--  Describe how to extend the customer entity.
--  How would you extend the customer entity using the extension attributes mechanism?
--  Describe how to customize the customer address.
--  How would you add another field into the customer address?
--  Describe customer groups and their role in different business processes.
--  What is the role of customer groups?
--  What functionality do they affect?
--  Describe Magento functionality related to VAT.
--  How do you customize VAT functionality?
+-  Describe how to add or modify customer attributes. [](
+-  Describe how to extend the customer entity? [](
+-  How would you extend the customer entity using the extension attributes mechanism? [](
+-  Describe how to customize the customer address? [](
+-  How would you add another field into the customer address? [](
+-  Describe customer groups and their role in different business processes? [](
+-  What is the role of customer groups? [](
+-  What functionality do they affect? [](
+-  Describe Magento functionality related to VAT? [](
+-  How do you customize VAT functionality? [](
 
 ***
 
