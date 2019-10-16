@@ -514,10 +514,12 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 ## <a name="Catalog"> 7 Customizing the Catalog</a>
 
 ### 7.1 Demonstrate ability to use products and product types
-- Identify/describe standard product types (simple, configurable, bundled, etc.).
-- How would you obtain a product of a specific type?
-- What tools (in general) does a product type model provide?
-- What additional functionality is available for each of the different product types?
+- Identify/describe standard product types (simple, configurable, bundled, etc.)? [magestore](https://blog.magestore.com/magento-product-types-magento-tutorial/)
+- How would you obtain a product of a specific type?[firebearstudio](https://firebearstudio.com/blog/how-to-get-simple-products-of-configurable-product-in-magento-2.html)
+- What tools (in general) does a product type model provide?[magestore](https://www.magestore.com/magento-2-tutorial/magento-2-product-options/)
+- What additional functionality is available for each of the different product types? [](https://www.mageworx.com/wiki/cat/magento-2-product/
+10:32 PM
+https://amasty.com/knowledge-base/magento-2-product-types.html)
 
 #### 7.2 Describe price functionality
 
