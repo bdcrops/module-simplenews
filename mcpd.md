@@ -577,14 +577,34 @@ product page, from the wishlist, by clicking Reorder, and during quotes merge? [
 
 #### 8.4 Demonstrate ability to customize shipping and payment methods
 
-- Describe shipping methods architecture & create a new shipping method? [banglacourier](https://github.com/bdcrops/module-banglacourier), []()
-- What is the relationship between carriers and rates? []()
-- Describe how to troubleshoot shipping methods and rate results. []()
-- Where do shipping rates come from?
-- How can you debug the wrong shipping rate being returned? []()
-- Describe how to troubleshoot payment methods. []()
-- What types of payment methods exist? []()
-- What are the different payment flows? []()
+- Describe shipping methods architecture & create a new shipping method? [banglacourier](https://github.com/bdcrops/module-banglacourier), [](https://devdocs.magento.com/guides/v2.3/howdoi/checkout/checkout-add-custom-carrier.html
+6:16 PM
+https://www.mageplaza.com/devdocs/magento-2-create-shipping-method/
+6:16 PM
+https://www.classyllama.com/blog/creating-shipping-method-magento-2
+6:16 PM
+https://www.cloudways.com/blog/create-custom-shipping-module-magento-2/)
+- What is the relationship between carriers and rates? [](https://maurisource.com/magento-2-live-shipping-rates-in-cart/)
+- Describe how to troubleshoot shipping methods and rate results. [](https://community.magento.com/t5/Magento-2-x-Technical-Issues/Please-specify-a-shipping-method-when-logged-in-user-try-to/td-p/104294)
+- Where do shipping rates come from?[](https://www.mageplaza.com/kb/how-to-configure-table-rates-shipping-method-magento-2.html)
+- How can you debug the wrong shipping rate being returned? [](https://magento.stackexchange.com/questions/162479/magento-2-error-displaying-shipping-rates-with-ups-xml-configuration)
+- Describe how to troubleshoot payment methods. [](https://stripe.com/docs/plugins/magento/troubleshooting
+6:19 PM
+https://www.maxpronko.com/how-to-show-payment-errors-on-the-checkout-payment-page-in-magento-2/
+6:19 PM
+https://magento.stackexchange.com/questions/125133/magento-2-no-payment-methods
+6:20 PM
+/
+6:20 PM
+)
+- What types of payment methods exist? [](https://www.mageworx.com/wiki/cat/magento-payment/
+6:20 PM
+https://www.magestore.com/magento-2-tutorial/magento-2-payment-methods/)
+- What are the different payment flows? [](https://devdocs.magento.com/guides/v2.3/payments-integrations/payment-gateway/payment-gateway-intro.html
+6:18 PM
+https://devdocs.magento.com/guides/v2.3/payments-integrations/bk-payments-integrations.html
+6:18 PM
+https://www.mageplaza.com/devdocs/magento-2-create-payment-method/)
 
 ### <a name="Sales"> 9 Sales Operations</a>
 
