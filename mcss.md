@@ -220,7 +220,7 @@ native functionality? []()
 ### 5 Catalog
 
 #### 5.1 Demonstrate how to use products
-- Demonstrate the ability to create and use product videos. [](https://docs.magento.com/m2/ce/user_guide/catalog/product-video.html), [](https://magenticians.com/add-video-to-product-in-magento-2/), [](https://www.mageplaza.com/kb/how-to-upload-product-videos-in-magento-2.html), [](https://inchoo.net/magento-2/adding-videos-product-page-magento2/), [](https://www.shoppimon.com/2017/02/add-videos-to-product-pages-magento/)
+- Demonstrate the ability to create and use product videos. [docs](https://docs.magento.com/m2/ce/user_guide/catalog/product-video.html), [magenticians](https://magenticians.com/add-video-to-product-in-magento-2/), [mageplaza](https://www.mageplaza.com/kb/how-to-upload-product-videos-in-magento-2.html), [inchoo](https://inchoo.net/magento-2/adding-videos-product-page-magento2/), [shoppimon](https://www.shoppimon.com/2017/02/add-videos-to-product-pages-magento/)
 - What determines whether a product is visible on the storefront? []()
 - What determines whether a product can be sold on the storefront (saleable)? []()
 #### 5.2 Demonstrate ability to use different product types
