@@ -5,7 +5,7 @@
 - [Magento architecture 22%](#2-Magento-architecture)
 - [Magento Admin and storefront 30%](#3-Magento-Admin-and-storefront)
 - [Business and applications 13%](#4-Business-and-applications)
-- [Catalog 22%](#Catalog)
+- [Catalog 22%](#5-Catalog)
 
 ## Topics and Objectives
 
