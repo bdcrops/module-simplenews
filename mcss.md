@@ -10,6 +10,7 @@
 ## Topics and Objectives
 
 ### 1 Ecommerce
+
 #### 1.1 Demonstrate ability to configure SEO features in Magento
 - Marketing strategies: Omnichannel, multichannel, SEO, affiliate marketing, social marketing, email marketing
 - What are the principle methods of natively improving SEO in Magento 2 projects?
@@ -38,8 +39,10 @@
 #### References:
 - Magento Open
 
+[GoToTop](#Magento-2-Certified-Solution-Specialist)
 
 ### 2 Magento 2 Architecture
+
 ### 2.1 Demonstrate ability to design a Cloud solution
 - What are the benefits and drawbacks of on-premise vs. Cloud?
 - How do you move to Cloud?
@@ -58,8 +61,8 @@
 -  What types of API does Magento Commerce have?
 - What are the intended use cases for the different API types?
 - What are the pros and cons of each type?
--  What methods of authentication do the Magento 2 APIs support?
--  Demonstrate the ability to manage credentials for the Magento API
+- What methods of authentication do the Magento 2 APIs support?
+- Demonstrate the ability to manage credentials for the Magento API
 #### 2.4 Demonstrate ability to design and administer websites, stores, store views
 - What are use cases for product attributes scopes?
 - What is the effect of Website, Store, and Store View configuration scopes?
@@ -87,8 +90,9 @@ available only on Magento Commerce? (Commerce, Open Source, and B2B)
 - Magento Open Source and Magento Commerce Documentation and Resources
 - Magento U courses for Merchants and Marketers
 
-
+[GoToTop](#Magento-2-Certified-Solution-Specialist)
 ### 3 Magento Admin and Storefront
+
 #### 3.1 Demonstrate ability to use the Magento Admin
 - Which sections exist in the Magento Admin UI?
 - What are user roles? How can they be configured? Can a user have multiple roles?
@@ -125,18 +129,22 @@ of staging?
 - Where can a merchant find Magento extensions?
 - How are extensions installed?
 - How can a Magento extension be evaluated?
-- What do you need to look out for when evaluating a third-party extension? When is a customization required?
+- What do you need to look out for when evaluating a third-party extension?
+- When is a customization required?
 #### 3.9 Demonstrate ability to manage customers
-- What are customer groups? What can customer groups be used for? How can customer groups be set up?
-- What are customer segments? What can customer segments be used for? How can customer segments be
-configured?
-- What are customer attributes used for? What kind of customer attributes can be created? What is the difference in
-customer attribute configuration between Magento Commerce and Magento Open Source?
+- What are customer groups?
+- What can customer groups be used for?
+- How can customer groups be set up?
+- What are customer segments? What can customer segments be used for?
+- How can customer segments be configured?
+- What are customer attributes used for?
+- What kind of customer attributes can be created?
+- What is the difference in customer attribute configuration between Magento Commerce and Magento Open Source?
 - What are customer account features?
 #### 3.10 Demonstrate ability to use the CMS
 - What are CMS pages and blocks?
-- How can custom variables be used? How can external images be embedded in
-CMS content?
+- How can custom variables be used?
+- How can external images be embedded in CMS content?
 - How can multilingual CMS content be managed?
 - What are widgets?
 - How are widgets used?
@@ -159,7 +167,10 @@ level. For example, images and language differ across the store views. If I have
 - Magento Open Source and Magento Commerce Documentation and Resources
 - Magento U courses for Merchants and Marketers
 
+[GoToTop](#Magento-2-Certified-Solution-Specialist)
+
 ### 4 Business and Applications
+
 #### 4.1 Demonstrate ability to gather requirements
 - Given a customer need, how can it be implemented in Magento?
 - Given a customer design request, what would be the easiest or most efficient way to accomplish the goal?
@@ -189,7 +200,10 @@ native functionality?
 - Magento U courses for Merchants and Marketers
 - Magento U course: Requirements Discovery
 
+[GoToTop](#Magento-2-Certified-Solution-Specialist)
+
 ### 5 Catalog
+
 #### 5.1 Demonstrate how to use products
 - Demonstrate the ability to create and use product videos.
 - What determines whether a product is visible on the storefront?
@@ -215,5 +229,6 @@ native functionality?
 #### 5.6 Demonstrate ability to configure inventory management
 - Inventory management
 
+[GoToTop](#Magento-2-Certified-Solution-Specialist)
 
 ### References:
