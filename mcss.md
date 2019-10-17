@@ -1,11 +1,11 @@
 # Magento 2 Certified Solution Specialist
 
 ## Content Area Approximate Percentage of Exam
-- ecommerce 13%
-- Magento architecture 22%
-- Magento Admin and storefront 30%
-- Business and applications 13%
-- Catalog 22%
+- [ecommerce 13%](#1-ecommerce)
+- [Magento architecture 22%](#2-Magento-architecture)
+- [Magento Admin and storefront 30%](#3-Magento-Admin-and-storefront)
+- [Business and applications 13%](#4-Business-and-applications)
+- [Catalog 22%](#Catalog)
 
 ## Topics and Objectives
 
