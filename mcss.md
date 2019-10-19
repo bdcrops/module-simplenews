@@ -247,3 +247,4 @@ native functionality? []()
 [GoToTop](#Magento-2-Certified-Solution-Specialist)
 
 ### References:
+- [theecommmanager](https://theecommmanager.com/magento-solutions-specialist-exam/)
