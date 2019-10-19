@@ -475,7 +475,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 [mage-world](https://www.mage-world.com/blog/grid-and-form-in-magento-2-admin-panel-part-1.html), [meetanshi](https://meetanshi.com/blog/create-admin-grid-magento-2/)
 
 
-#### 6.3 Define system configuration XML and configuration scope
+#### 6.3 Define system configuration XML and configuration scope [inviqa](https://inviqa.com/blog/how-use-system-configuration-and-helpers-magento-2)
 
 - Define basic terms and elements of system configuration XML, including scopes.
 [magestore](https://www.magestore.com/magento-2-tutorial/3169-2/),
