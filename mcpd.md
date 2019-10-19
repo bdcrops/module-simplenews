@@ -141,6 +141,7 @@
 
 #### 1.8 Demonstrate the ability to manage the cache
 
+[simicart](https://www.simicart.com/blog/clear-magento-2-cache/)
 - Describe cache types and the tools used to manage caches?
 [devdocs](https://devdocs.magento.com/guides/v2.3/config-guide/cli/config-cli-subcommands-cache.html),[belvg](https://belvg.com/blog/how-to-manage-the-cache-types-in-magento-2.html)
 
