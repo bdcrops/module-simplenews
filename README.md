@@ -3089,11 +3089,11 @@ Edit/Create [app/code/BDC/SimpleNews/etc/di.xml](etc/di.xml) and insert this fol
 
 ### <a name="Step2F3">Step2F.3:Declare API Interface – Api/NewsRepositoryInterface.php </a>
 
-#### what is Repository Interface?
+#### What is Repository Interface?
 An interface defines the repository with all logical read and write operations for a specific entity. You can see an example of such a repository interface in the diagram. The interface gets implemented by one or more classes that provide data store specific implementations of each interface method
 Now, we need to create an interface and model, please note that you need to take care of the comments as well.
 
-#### what is Repository Interface magento 2?
+#### What is Repository Interface magento 2?
 
 Repositories are service contracts which are interface classes & helps to hide your business logic from controller,model and helper.
 
@@ -3125,9 +3125,12 @@ interface NewsRepositoryInterface {
 
 ### <a name="Step2F4">Step2F.4:Data Interface – Api/Data/NewsInterface.php    </a>
 
+#### What is Data interfaces?
+
+Define data interfaces in the Api/Data subdirectory for a module.Ex. data interfaces for the Customer module are in the /app/code/Magento/Customer/Api/Data subdirectory.
 
 Now, we need to create an interface and model, please note that you need to take care of the comments as well.
-Create app/code/BDC/SimpleNews/Api/Data/NewsInterface.php & insert this following code into it:
+Create [app/code/BDC/SimpleNews/Api/Data/NewsInterface.php](Api/Data/NewsInterface.php) & insert this following code into it:
 
 ```
 <?php
@@ -3153,6 +3156,7 @@ interface NewsInterface {
 
 ```
 ### <a name="Step2F5">Step2F.5: Create Model – Model/NewsRepository.php  </a>
+
 Create app/code/BDC/SimpleNews/Model/NewsRepository.php & insert this following code into it:
 ```
 <?php
