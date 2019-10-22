@@ -2991,9 +2991,27 @@ print_r($result);
 
 ### <a name="Step2F1">Step2F.1: Web API Routes/Configuration – etc/webapi.xml </a>
 
+#### What is Web API?
+A Web API is an application programming interface for either a web server or a web browser. It is a web development concept, usually limited to a web application's client-side (including any web frameworks being used), and thus usually does not include web server or browser implementation details such as SAPIs or APIs unless publicly accessible by a remote web application.
+
+#### What are the Magento 2 web APIs?
+The Magento web API framework provides integrators & developers the means to use web services that communicate with the Magento system. Key features include:
+- M2 Support Both REST (Representational State Transfer) & SOAP (Simple Object Access Protocol) coverage same for both REST and SOAP.
+- 3 types of authentication:
+  * (a)3rd-party applications authenticate with OAuth 1.0a.
+  * (b)Mobile applications authenticate using tokens.
+  * (c)Administrators and customers are authenticated with login credentials.
+- All accounts & integrations are assigned resources that they have access to. The API framework checks that any call has the authorization to perform the request.
+- Any Magento or third-party service can be configured as a web API with a few lines of xml. To configure a web API, you define XML elements and attributes in a webapi.xml configuration file. If a service is not defined in a configuration file, it will not be exposed at all.
+- The framework is based on the CRUD (create, read, update, delete) & search model. The system does not currently support webhooks
+- The framework supports field filtering of web API responses to conserve mobile bandwidth
+- Integration style web APIs enable a single web API call to run multiple services at once for a more efficient integration. An example of this behavior can be seen in the Catalog where one web API call can create a product. If your payload includes the stock_item and media_gallery_entries objects, then the framework will also create the product’s inventory & media in that one API call.
+
+
 Defining Web API routes in Magento 2 is much simpler when compared with Magento 1. The routes are defined in etc/webapi.xml within a module, and although the structure of the definition xml is directed by the requirements of the REST API, the SOAP API uses the same definitions.
 There are two more additional configurations we need to add API capability to module, webapi.xml and di.xml. In webapi.xml we are configuring access rights and API Interface that specified method will use.
-Create app/code/BDC/SimpleNews/etc/webapi.xml and insert this following code into it:
+
+- Create app/code/BDC/SimpleNews/etc/webapi.xml and insert this following code into it:
 
 ```
 <?xml version="1.0"?>
