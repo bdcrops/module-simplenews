@@ -2994,20 +2994,21 @@ print_r($result);
 #### What is Web API?
 A Web API is an application programming interface for either a web server or a web browser. It is a web development concept, usually limited to a web application's client-side (including any web frameworks being used), and thus usually does not include web server or browser implementation details such as SAPIs or APIs unless publicly accessible by a remote web application.
 
-#### What are the Magento 2 web APIs?
-The Magento web API framework provides integrators & developers the means to use web services that communicate with the Magento system. Key features include:
-- M2 Support Both REST (Representational State Transfer) & SOAP (Simple Object Access Protocol) coverage same.
+#### What are the Magento 2 web APIs Framework?
+Supports developers to use web services that communicate with the Magento system. For instance, a developer can create a customer account, product record through web service.  Key features include:
+- M2 Support Both REST  & SOAP coverage same.
 - 3 types of authentication:
   * 3rd-party applications authenticate with OAuth 1.0a.
   * Mobile applications authenticate using tokens.
   * Administrators & customers authenticated with login credentials.
-- All accounts & integrations are assigned resources access API framework checks any call authorization to perform request.
-- Any Magento or third-party service can be configured as a web API with a few lines of xml. To configure a web API, you define XML elements and attributes in a webapi.xml configuration file. If a service is not defined in a configuration file, it will not be exposed at all.
-- Framework is based on  CRUD & search model, not currently support webhooks
-- Framework supports field filtering of web API responses to conserve mobile bandwidth
-- Integration style web APIs enable a single web API call to run multiple services at once for a more efficient integration.Ex. behavior can be seen in Catalog where one web API call can create a product. If payload includes stock_item & media_gallery_entries objects, then framework will also create  product’s inventory & media in that one API call.
+- All accounts & integrations assigned resources access API framework checks any call authorization to perform request.
+- Any Magento or third-party service can be configured as a web API with a few lines of xml. To configure a web API define XML elements & attributes in a webapi.xml.
+- Based on CRUD & search model
+- Supports field filtering of web API responses to conserve mobile bandwidth
+- Integration style web APIs enable a single web API call to run multiple services at once for a more efficient integration.
 
 #### What can I do with the Magento web APIs?
+
 APIs can be used to perform a wide array of tasks ex:
 
 - Create shopping app as traditional user downloads on a mobile device, also  employee uses on a showroom floor to help customers make purchases.
@@ -3016,11 +3017,24 @@ APIs can be used to perform a wide array of tasks ex:
 - Create JavaScript widgets in storefront/ Admin panel makes AJAX calls to access services.
 
 #### How do I get started?
-You must register a web service on Magento Admin. Use the following general steps to set up Magento to enable web services.
-- If you are using token-based authentication, create a web services user on Magento Admin by selecting System > Permission > All Users > Add New User. (If you are using session-based or OAuth authentication, you do not need to create the new user in the Admin.)
-- Create a new integration on Magento Admin. To create an integration, click System > Extensions > Integration > Add New Integration**. Be sure to restrict which resources the integration can access.
+Register web service on Magento Admin following general steps to set up  to enable web services.
+- If using token-based authentication, create a web services user on Admin by selecting System > Permission > All Users > Add New User. (If session-based or OAuth authentication do not need to create new user in  Admin.)
+- To create an integration, click System > Extensions > Integration > Add New Integration**. Be sure to restrict which resources the integration can access.
 - Use a REST or SOAP client to configure authentication.
 
+#### Routes & Configuration?
+routes are defined in etc/webapi.xml within a module, and although the structure of the definition xml is directed by the requirements of the REST API, the SOAP API uses the same definitions.
+
+The following shows the route configuration for fetching a CMS block, as defined in BDC_SimpleNews::etc/webapi.xml:
+```
+<routes> <route url="/V1/news" method="GET">
+        <service class="BDC\SimpleNews\Api\NewsRepositoryInterface" method="getList"/>
+        <resources> <resource ref="anonymous"/> </resources>
+    </route>
+</routes>
+```
+
+#### Implementation News webapi.xml
 - Create [app/code/BDC/SimpleNews/etc/webapi.xml](/etc/webapi.xml) & insert this following code into it:
 
 ```
@@ -3134,6 +3148,10 @@ class NewsRepository implements NewsRepositoryInterface {
 ```
 
 ### <a name="Step2F6">Step2F.6: Communicating with new API call  </a>
+
+#### Accessing routes
+As mentioned above, the configuration is conveniently used by both the REST and SOAP APIs. However, the means of accessing resources differs quite a lot.The full REST resource URL is the easiest to determine as it just needs prefixing with ‘http://www.yourdomain.com/rest/’, so in the example above, assuming the news needed has an entity id of 1, the resource url would be ‘http://www.yourdomain.com/rest/V1/news/1’.
+
 Testing as guest:
 To test REST you can go to http://{domain_name}/rest/V1/{method}/{attribute}/{value}.
 
