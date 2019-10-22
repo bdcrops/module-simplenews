@@ -3125,7 +3125,10 @@ interface NewsRepositoryInterface {
 
 ### <a name="Step2F4">Step2F.4:Data Interface – Api/Data/NewsInterface.php    </a>
 
-#### What is Data interfaces?
+#### What is Interface class PHP?
+An interface allows unrelated classes to implement the same set of methods, regardless of their positions in the class inheritance hierarchy. An interface enables you to model multiple inheritance because a class can implement more than one interface whereas it can extend only one class.
+
+#### What is Data interfaces in Magento 2 ?
 
 Define data interfaces in the Api/Data subdirectory for a module.Ex. data interfaces for the Customer module are in the /app/code/Magento/Customer/Api/Data subdirectory.
 
@@ -3159,7 +3162,7 @@ interface NewsInterface {
 
 #### What task done by Model NewsRepository?
 
-Get Collection in Magento 2 means showing the items in your store when you run the command. With the code snippet in this topic, you can request the specific number of the news as you need. Let’s start calling the news in  Magento 2  now!
+Get Collection in  means showing the items in your store when  run the command. With the code snippet in this topic, request the specific number of the news as you need. Let’s start calling the news in  Magento 2  now!
 
 #### Implementation
 Create [app/code/BDC/SimpleNews/Model/NewsRepository.php](Model/NewsRepository.php) & insert this following code into it:
