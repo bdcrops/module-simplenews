@@ -2996,22 +2996,32 @@ A Web API is an application programming interface for either a web server or a w
 
 #### What are the Magento 2 web APIs?
 The Magento web API framework provides integrators & developers the means to use web services that communicate with the Magento system. Key features include:
-- M2 Support Both REST (Representational State Transfer) & SOAP (Simple Object Access Protocol) coverage same for both REST and SOAP.
+- M2 Support Both REST (Representational State Transfer) & SOAP (Simple Object Access Protocol) coverage same.
 - 3 types of authentication:
-  * (a)3rd-party applications authenticate with OAuth 1.0a.
-  * (b)Mobile applications authenticate using tokens.
-  * (c)Administrators and customers are authenticated with login credentials.
-- All accounts & integrations are assigned resources that they have access to. The API framework checks that any call has the authorization to perform the request.
+  * 3rd-party applications authenticate with OAuth 1.0a.
+  * Mobile applications authenticate using tokens.
+  * Administrators & customers authenticated with login credentials.
+- All accounts & integrations are assigned resources access API framework checks any call authorization to perform request.
 - Any Magento or third-party service can be configured as a web API with a few lines of xml. To configure a web API, you define XML elements and attributes in a webapi.xml configuration file. If a service is not defined in a configuration file, it will not be exposed at all.
-- The framework is based on the CRUD (create, read, update, delete) & search model. The system does not currently support webhooks
-- The framework supports field filtering of web API responses to conserve mobile bandwidth
-- Integration style web APIs enable a single web API call to run multiple services at once for a more efficient integration. An example of this behavior can be seen in the Catalog where one web API call can create a product. If your payload includes the stock_item and media_gallery_entries objects, then the framework will also create the product’s inventory & media in that one API call.
+- Framework is based on  CRUD & search model, not currently support webhooks
+- Framework supports field filtering of web API responses to conserve mobile bandwidth
+- Integration style web APIs enable a single web API call to run multiple services at once for a more efficient integration.Ex. behavior can be seen in Catalog where one web API call can create a product. If payload includes stock_item & media_gallery_entries objects, then framework will also create  product’s inventory & media in that one API call.
 
+#### What can I do with the Magento web APIs?
+APIs can be used to perform a wide array of tasks ex:
 
-Defining Web API routes in Magento 2 is much simpler when compared with Magento 1. The routes are defined in etc/webapi.xml within a module, and although the structure of the definition xml is directed by the requirements of the REST API, the SOAP API uses the same definitions.
-There are two more additional configurations we need to add API capability to module, webapi.xml and di.xml. In webapi.xml we are configuring access rights and API Interface that specified method will use.
+- Create shopping app as traditional user downloads on a mobile device, also  employee uses on a showroom floor to help customers make purchases.
+- Integrate with CRM/ERP  backend systems ex. Salesforce/Xero/NetSuite.
+- Integrate with CMS
+- Create JavaScript widgets in storefront/ Admin panel makes AJAX calls to access services.
 
-- Create app/code/BDC/SimpleNews/etc/webapi.xml and insert this following code into it:
+#### How do I get started?
+You must register a web service on Magento Admin. Use the following general steps to set up Magento to enable web services.
+- If you are using token-based authentication, create a web services user on Magento Admin by selecting System > Permission > All Users > Add New User. (If you are using session-based or OAuth authentication, you do not need to create the new user in the Admin.)
+- Create a new integration on Magento Admin. To create an integration, click System > Extensions > Integration > Add New Integration**. Be sure to restrict which resources the integration can access.
+- Use a REST or SOAP client to configure authentication.
+
+- Create [app/code/BDC/SimpleNews/etc/webapi.xml](/etc/webapi.xml) & insert this following code into it:
 
 ```
 <?xml version="1.0"?>
