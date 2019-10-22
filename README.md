@@ -3157,7 +3157,12 @@ interface NewsInterface {
 ```
 ### <a name="Step2F5">Step2F.5: Create Model – Model/NewsRepository.php  </a>
 
-Create app/code/BDC/SimpleNews/Model/NewsRepository.php & insert this following code into it:
+#### What task done by Model NewsRepository?
+
+Get Collection in Magento 2 means showing the items in your store when you run the command. With the code snippet in this topic, you can request the specific number of the news as you need. Let’s start calling the news in  Magento 2  now!
+
+#### Implementation
+Create [app/code/BDC/SimpleNews/Model/NewsRepository.php](Model/NewsRepository.php) & insert this following code into it:
 ```
 <?php
 namespace BDC\SimpleNews\Model;
