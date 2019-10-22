@@ -3035,8 +3035,7 @@ The following shows the route configuration for fetching a CMS block, as defined
 ```
 
 #### Implementation News webapi.xml
-- Create [app/code/BDC/SimpleNews/etc/webapi.xml](/etc/webapi.xml) & insert this following code into it:
-
+- Create [app/code/BDC/SimpleNews/etc/webapi.xml](/etc/webapi.xml)  
 ```
 <?xml version="1.0"?>
 <routes>
@@ -3051,8 +3050,18 @@ In the route tag the url attribute defines the route as /V1/cmsBlock/:blockId wh
 In the service tag the class attribute associates the service contract Magento\Cms\Api\BlockRepositoryInterface with the route, and the method attribute defines the method to call upon the object provided by the service contract.
 
 ### <a name="Step2F2">Step2F.2: Define Interface – etc/di.xml   </a>
-Now, create a di.xml file to define an interface and model that defines which model will be called by the defined interface.
-Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code into it:
+
+#### What is repository?
+Repositories give service requestors the ability to perform create, read, update, and delete (CRUD) operations on entities or a list of entities. A repository is an example of a service contract, and its implementation is part of the domain layer.
+
+Repositories are service contracts which are interface classes & helps to hide business logic from controller,model & helper,  defined repository file which is an interface class & model file in which  define  methods declared in repository class.To create  module’s repository, firstly  have to define it in di.xml file at path:
+app/code/BDC/SimpleNews/etc/di.xml
+
+
+
+
+#### Implementation
+Edit/Create [app/code/BDC/SimpleNews/etc/di.xml](etc/di.xml) and insert this following code into it:
 
 ```
 <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
@@ -3079,9 +3088,26 @@ Edit/Create app/code/BDC/SimpleNews/etc/di.xml and insert this following code in
 ```
 
 ### <a name="Step2F3">Step2F.3:Declare API Interface – Api/NewsRepositoryInterface.php </a>
+
+#### what is Repository Interface?
+An interface defines the repository with all logical read and write operations for a specific entity. You can see an example of such a repository interface in the diagram. The interface gets implemented by one or more classes that provide data store specific implementations of each interface method
 Now, we need to create an interface and model, please note that you need to take care of the comments as well.
 
-Create app/code/BDC/SimpleNews/Api/NewsRepositoryInterface.php & insert this following code into it:
+#### what is Repository Interface magento 2?
+
+Repositories are service contracts which are interface classes & helps to hide your business logic from controller,model and helper.
+
+#### How many Interface types and locations?
+
+A service contract must define data interfaces, which preserve data integrity, and service interfaces, which hide business logic from service requestors.
+
+- Data interfaces: define functions that return information about data entities, return search results, and set validation rules and return validation results. You must define the data interfaces for a service contract in the Api/Data subdirectory for a module.
+
+- Service interfaces: include management, repository, and metadata interfaces. You must define the service interfaces for a service contract in the Api subdirectory for a module.
+
+
+#### Implementation
+Create [app/code/BDC/SimpleNews/Api/NewsRepositoryInterface.php](Api/NewsRepositoryInterface.php)
 ```
 <?php
 
