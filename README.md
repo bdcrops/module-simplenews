@@ -116,8 +116,12 @@
 - [Step2H.2: Customization JavaScript Map & Mixin](#Step2H2)
 
 ## [PartI : UI Components Library](#PartI)
-- [Step2HI1: Rendering Grid(collections & listing component configuration)](#Step2I1)
+- [Step2I1: Rendering Grid(collections & listing component configuration)](#Step2I1)
 - [Step2I.2: Rendering Form ()](#Step2I2)
+
+## [PartJ : Entity-Attribute-Value (EAV)](#PartJ)
+- [Step2J1: Rendering Grid(collections & listing component configuration)](#Step2J1)
+- [Step2J2: ](#Step2J2)
 
 
 
