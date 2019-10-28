@@ -1,4 +1,4 @@
-# Magento 2 Certified Solution Specialist
+# [Magento 2 Certified Solution Specialist](https://u.magento.com/magento-2-certified-professional-developer)
 
 ## Content Area Approximate Percentage of Exam
 - [ecommerce 13%](#1-ecommerce)
