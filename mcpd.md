@@ -356,6 +356,8 @@ and capture output data regardless of the controller?
 
 ### <a name="Databases"> 4 Working with Databases in Magento</a>
 
+[dballl](https://github.com/bdcrops/module-declarative/blob/master/db.md)
+
 #### 4.1 Demonstrate ability to use data-related classes
 
 - Describe repositories and data API classes? [belvg](https://belvg.com/blog/how-to-use-data-related-classes-repositories-and-data-api-in-magento-2.html),[vinaikopp](http://vinaikopp.com/2017/02/18/magento2_repositories_interfaces_and_webapi/),[exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/4.%20Working%20with%20Databases%20in%20Magento/1.%20Demonstrate%20ability%20to%20use%20data-related%20classes.md), [black.bird](https://black.bird.eu/en/blog/recettem2.html)
@@ -408,6 +410,8 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 
 ### <a name="EAV">5 Using the Entity-Attribute-Value (EAV) Model</a>
+
+[dballl](https://github.com/bdcrops/module-declarative/blob/master/db.md)
 
 #### 5.1 Demonstrate ability to use EAV model concepts
 
@@ -497,7 +501,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 
 #### 6.4 Utilize ACL to set menu items and permissions
 
-- Describe how to set up a menu item and permissions.[firebearstudio](https://firebearstudio.com/blog/how-to-add-magento-2-system-configuration-fields-get-core-config-data-programmatically.html),[mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-acl-access-control-lists.html)[magestore](https://www.magestore.com/magento-2-tutorial/how-to-create-admin-menu-in-magento-2/)
+- Describe how to set up a menu item and permissions.[firebearstudio](https://firebearstudio.com/blog/how-to-add-magento-2-system-configuration-fields-get-core-config-data-programmatically.html),[mageplaza](https://www.mageplaza.com/magento-2-module-development/magento-2-acl-access-control-lists.html), [magestore](https://www.magestore.com/magento-2-tutorial/how-to-create-admin-menu-in-magento-2/)
 
 - How would you add a new menu item in a given tab? []()
 

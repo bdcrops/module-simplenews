@@ -222,6 +222,8 @@ magento maintenance:status
 
 ### <a name="Databases">4 Working with Databases in Magento</a>
 
+[dballl](https://github.com/bdcrops/module-declarative/blob/master/db.md)
+
 #### 4.1 Describe the basic concepts of [models](README.md#Step2A8Note3), resource models, and collections [mageplaza](https://www.mageplaza.com/magento-2-module-development/how-to-create-crud-model-magento-2.html), [emiprotechnologies](https://www.emiprotechnologies.com/technical_notes/magento-technical-notes-60/post/how-to-create-model-resource-model-and-collection-in-magento-2-400),
 [pierrefay](https://www.pierrefay.com/magento2-training/create-magento2-model-database.html),
 [fixes](https://fixes.co.za/magento2/magento-2-database-and-models/),
