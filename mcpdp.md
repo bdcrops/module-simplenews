@@ -309,19 +309,19 @@ In your phtml template file you need to output a URL inside a JavaScript context
   ```
 
 Which two methods allow you to keep the output XSS-safe?
-A. escapeUrl
-B. escapeHtmlAttr
-C. escapeHtml
-D. escapeJs
+- A. escapeUrl
+- B. escapeHtmlAttr
+- C. escapeHtml
+- D. escapeJs
 #### Question 2
 You are working on a custom form in the Admin and the form is too lengthy. To organize the form better, you decide to
 group the fields into multiple tabs.
 How do you achieve this?
-A. Create a plugin for the method
+- A. Create a plugin for the method
 MyCompany\MyModule\Block\Adminhtml\Form\Edit\Tabs::toHtml()
-B. Add the fields into <tab> nodes in the customer_account_edit.xml layout file
-C. Add the fields into a <fieldset> node in the existing form in the ui_component XML file
-D. Add a new form for the field group in the ui_component XML file
+- B. Add the fields into <tab> nodes in the customer_account_edit.xml layout file
+- C. Add the fields into a <fieldset> node in the existing form in the ui_component XML file
+- D. Add a new form for the field group in the ui_component XML file
 
 
 #### Question 3
@@ -342,20 +342,20 @@ Recoverable Error: Argument 2 passed to
 instance of <new dependency class> ...
 ```
 How do you fix the error?
-A. New dependencies must be added at the end of the constructor signature because dependencies cannot be
+- A. New dependencies must be added at the end of the constructor signature because dependencies cannot be
 added in the middle of existing constructors
-B. Remove the generated child class from generated/code that is calling the parent constructor with the old signature
-C. Clean the config cache that contains all constructor signatures
-D. Configure the new argument in di.xml for the controller class
+- B. Remove the generated child class from generated/code that is calling the parent constructor with the old signature
+- C. Clean the config cache that contains all constructor signatures
+- D. Configure the new argument in di.xml for the controller class
 #### Question 4
 You are working with an OMS that requires you to add an attribute to the order API.
 How do you add a field to the existing sales API?
-A. You update Magento\Sales\Api\OrderManagementInterface and
+- A. You update Magento\Sales\Api\OrderManagementInterface and
 Magento\Sales\Api\Data\OrderInterface to add your field
-B. You add an extension attribute to Magento\Sales\Api\Data\OrderInterface to include the new field
-C. You create an install script to add a column to the sales table and Magento will automatically pull in the
+- B. You add an extension attribute to Magento\Sales\Api\Data\OrderInterface to include the new field
+- C. You create an install script to add a column to the sales table and Magento will automatically pull in the
 information
-D. You create an etc/webapi.xml file and add the new field as an item to the route, as shown in the following code:
+- D. You create an etc/webapi.xml file and add the new field as an item to the route, as shown in the following code:
 <route url="/V1/orders" method="GET">
  <service class="Magento\Sales\Api\OrderRepositoryInterface" method="getList">
  <item name="my_new_attribute" xsi:type="string" />
@@ -371,10 +371,10 @@ var url = '<?= /* code here */ ?>';
 ```
 
 Which two methods allow you to keep the output XSS-safe?
-A. escapeUrl
-B. escapeHtmlAttr
-C. escapeHtml
-D. escapeJs
+- A. escapeUrl
+- B. escapeHtmlAttr
+- C. escapeHtml
+- D. escapeJs
 
 #### Question 6
 You are exploring the customer segment module and find this code in frontend/di.xml:
@@ -383,28 +383,28 @@ You are exploring the customer segment module and find this code in frontend/di.
 type="Magento\CustomerSegment\Model\Layout\DepersonalizePlugin" sortOrder="15"/>
 </type>
 What effect does this plugin have for customer segments?
-A. It passes the segment information to the Knockout JS model from the customer session
-B. It passes the segment information to the HttpContext from the customer session
-C. It cleans the intermediate data of the segment-website and the segment-customer mapping in the tables to
+- A. It passes the segment information to the Knockout JS model from the customer session
+- B. It passes the segment information to the HttpContext from the customer session
+- C. It cleans the intermediate data of the segment-website and the segment-customer mapping in the tables to
 improve performance
-D. It cleans the segment and customer related entities from the session
+- D. It cleans the segment and customer related entities from the session
 
 Answer Key
-Question 1
+- Question 1
 Answers: A and D
 Reference:
 https://devdocs.magento.com/guides/v2.2/frontend-dev-guide/templates/template-security.html
-Question 2
-Answer: C
+- Question 2
+- Answer: C
 Reference:
 https://www.magestore.com/magento-2-tutorial/how-to-insert-new-tab-into-customer-form-in-backend-magento-2/
-Question 3
-Answer: B
-Question 4
-Answer: B
-Question 5
+- Question 3
+- Answer: B
+- Question 4
+- Answer: B
+- Question 5
 Answers: A and D
 Reference:
 https://devdocs.magento.com/guides/v2.0/frontend-dev-guide/templates/template-security.html
-Question 6
-Answer: D
+- Question 6
+- Answer: D
