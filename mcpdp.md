@@ -391,7 +391,7 @@ improve performance
 
 Answer Key
 - Question 1
-Answers: A and D
+- Answers: A and D
 Reference:
 https://devdocs.magento.com/guides/v2.2/frontend-dev-guide/templates/template-security.html
 - Question 2
@@ -403,7 +403,7 @@ https://www.magestore.com/magento-2-tutorial/how-to-insert-new-tab-into-customer
 - Question 4
 - Answer: B
 - Question 5
-Answers: A and D
+- Answers: A and D
 Reference:
 https://devdocs.magento.com/guides/v2.0/frontend-dev-guide/templates/template-security.html
 - Question 6
