@@ -152,7 +152,20 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 - Config: module-deploy/Config/BundleConfig.php
 - Cron: We use the directory to store the files, which are later executed on the Cron launching.
 - CustomerData: directory contains PHP files responsible for processing information for sections. Magento 2 has a special functionality, which allows for processing, updating and transferring the information asynchronously.
-- etc: Configuration XML files—The module defines itself and its parts (routes, models, blocks, observers, and cron jobs) within this folder. The etc files can also be used by non-core modules to override the functionality of core modules.
+- etc: Configuration XML files  module defines itself & its parts (routes, models, blocks, observers, and cron jobs) within this folder, also be used by non-core modules to override the functionality of core modules.
+    - etc/acl.xml
+    - etc/config.xml
+    - etc/cron_groups.xml
+    - etc/crontab.xml
+    - etc/db_schema.xml
+    - etc/di.xml
+    - etc/events.xml
+    - etc/module.xml
+    - etc/webapi.xml
+    - etc/adminhtml/menu.xml
+    - etc/adminhtml/system.xml
+    - etc/adminhtml/routes.xml
+    - etc/frontend/routes.xml
 - Exception: (module-sales/Exception/)
 - Files: Sample file  (module-inventory-import-export/Files/)
 - fixtures: Sample Data module (module-sales-sample-data/fixtures/orders.csv)
