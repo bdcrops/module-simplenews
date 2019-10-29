@@ -166,6 +166,14 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
     - etc/adminhtml/system.xml
     - etc/adminhtml/routes.xml
     - etc/frontend/routes.xml
+    - etc/webapi_rest/di.xml
+    - etc/adminhtml/events.xml
+    - etc/frontend/events.xml
+    - etc/crontab/events.xml
+    - etc/setup/events.xml
+    - etc/webapi_rest/events.xml
+    - etc/webapi_soap/events.xml
+
 - Exception: (module-sales/Exception/)
 - Files: Sample file  (module-inventory-import-export/Files/)
 - fixtures: Sample Data module (module-sales-sample-data/fixtures/orders.csv)
