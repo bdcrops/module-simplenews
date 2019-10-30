@@ -173,6 +173,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
     - etc/setup/events.xml
     - etc/webapi_rest/events.xml
     - etc/webapi_soap/events.xml
+    [ReadDevDoc](https://devdocs.magento.com/guides/v2.3/config-guide/config/config-files.html)
 
 - Exception: (module-sales/Exception/)
 - Files: Sample file  (module-inventory-import-export/Files/)

@@ -127,7 +127,7 @@
 [devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/cli-cmds/cli-howto.html),[]
 
 - Which commands are available magento 2?
-(https://www.emiprotechnologies.com/technical_notes/magento-technical-notes-60/post/magento-2-useful-commands-list-391)
+[emiprotechnologies](https://www.emiprotechnologies.com/technical_notes/magento-technical-notes-60/post/magento-2-useful-commands-list-391)
 
 - How are commands used in the development cycle?
 
