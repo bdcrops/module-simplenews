@@ -163,7 +163,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 
 ##### Magento 2  Model View ViewModel (MVVM) Architecture
 
-![](docs/MVVMPattern.png)
+![](doc/MVVMPattern.png)
 
 - Model: Holds business logic of  application & depends on an associated class—the ResourceModel—for database access. Models rely on service contracts to expose their functionality to  other layers of  application.
 - View: Structure & layout of what a user sees on a screen - the actual HTML. This is achieved in the PHTML files distributed with modules. PHTML files are associated to each ViewModel in the Layout XML files, which would be referred to as binders in the MVVM dialect. The layout files might also assign JavaScript files to be used in the final page.
@@ -171,7 +171,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 
 #### Magento 2 architecture is split into 4 (PDSP)layers.
 
-![](docs/archi_diagrams_layers_alt4.jpg)
+![](doc/archi_diagrams_layers_alt4.jpg)
 
 - Persistence layer: describes resource model, which is responsible for extracting and modifying data in the database using CRUD requests.Additional business logic capabilities are also implemented here, for example, data validation and database functions implementation.
 - Domain layer: responsible for the business logic, which does not contain resource-specific or database-specific information. Domain layer can also include service contracts.Each data model at the level of domain layer depends on the resource model, which is responsible for accessing the database.
