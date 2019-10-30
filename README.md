@@ -20,7 +20,7 @@
 
 ## <a name="top"> Magento 2 SimpleNews Module Step By Step (BDCrops) </a>
 
-##  [PartA: News Module Basic (Architecture & Customization)](#PartA)
+###  [PartA: News Module Basic (Architecture & Customization)](#PartA)
 
 
 - [Step 2A.1: Create a directory for the module like above format](#Step2A1)
@@ -68,7 +68,7 @@
 - [Step 2B.28:  The mass delete action the grid list](#Step2B28)
 - [Step 2B.29:  Backend Menu and Grid List](#Step2B29)
 
-## [Part C : News Module for Front End](#PartC)
+### [Part C : News Module for Front End](#PartC)
 - [Step 2C.1:  Create Layout file for page handle](#Step2C1)
 - [Step 2C.2:  Create another layout file by update the previous layout](#Step2C2)
 - [Step 2C.3:  Create Block NewList file](#Step2C3)
@@ -85,19 +85,19 @@
 - [Step 2C.14:  Create the template file for Latest News](#Step2C14)
 - [Step 2C.15:  Frontend view for the module](#Step2C15)
 
-## [Part D : News Console/Command](#PartD)
+### [Part D : News Console/Command](#PartD)
 - [Step 2D.1:  Adding a new command Dependency Injection](#Step2D1)
 - [Step 2D.2:  Adding a new command class](#Step2D3)
 - [Step 2D.3:  Adding a new command Helper class](#Step2D3)
 
-## [Part E : Create/Set / Configure Custom Cron Jobs](#PartE)
+### [Part E : Create/Set / Configure Custom Cron Jobs](#PartE)
 - [Step 2E.1:  Create crontab.xml ](#Step2E1)
 - [Step 2E.2:  defined to run the execute method of class](#Step2E3)
 - [Step 2E.3:  Run all cron jobs ](#Step2E3)
 - [Step 2E.4:  Create custom cron group ](#Step2E4)
 - [Step 2E.5:  Run new cron group cron jobs ](#Step2E5)
 
-## [Part F : Create  REST WEB API](#PartF)
+### [Part F : Create  REST WEB API](#PartF)
 - [Step2F.1: Web API Routes/Configuration](#Step2F1)
 - [Step2F.2: Define Interface– etc/di.xml](#Step2F2)
 - [Step2F.3: Declare API Interface](#Step2F3)
@@ -106,20 +106,20 @@
 - [Step2F.6: Communicating with new API call](#Step2F6)
 - [Step2F.7: Adding ACL Web API](#Step2F7)
 
-## [PartG: Dependency Injection configuration ](#PartG)
+### [PartG: Dependency Injection configuration ](#PartG)
 - [Step2G.1: DI Preference,Arguments & Virtual Types Implements](#Step2G1)
 - [Step2G.2: DI Observer Implements](#Step2G2)
 - [Step2G.3: DI Plugins (Interceptors)](#Step2G3)
 
-## [PartH : Customization Layout Configuration & JavaScript ](#PartH)
+### [PartH : Customization Layout Configuration & JavaScript ](#PartH)
 - [Step2H.1: Layout Configuration](#Step2H1)
 - [Step2H.2: Customization JavaScript Map & Mixin](#Step2H2)
 
-## [PartI : UI Components Library](#PartI)
+### [PartI : UI Components Library](#PartI)
 - [Step2I1: Rendering Grid(collections & listing component configuration)](#Step2I1)
 - [Step2I.2: Rendering Form ()](#Step2I2)
 
-## [PartJ : Entity-Attribute-Value (EAV)](#PartJ)
+### [PartJ : Entity-Attribute-Value (EAV)](#PartJ)
 - [Step2J1: Rendering Grid(collections & listing component configuration)](#Step2J1)
 - [Step2J2: ](#Step2J2)
 
@@ -136,7 +136,33 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 
 #### Notes[u can skip]:
 
+##### Magento 2 directory structure
+
+- app – is used for additional elements; as a rule, app contains the following subdirectories:
+    - code – contains the installed modules;
+    - design – contains the installed themes. The frontend themes are located at the frontend folder; themes for admin panel – in the adminhtml folder;
+    - etc – contains the Magento 2 configuration files;
+    - i18n – contains the installed language packs.
+- bin – contains Magento file responsible for the execution of CLI-commands in Magento 2.
+- dev – contains Integration and Functional test files.
+- generated – utilized for generated classes in Magento 2.
+- lib – contains Magento 2 libraries and non-module based code.
+- phpserver – contains Router.php file, implemented to realize the built-in PHP server.
+- pub – used for static files storage:
+    - errors – contains files responsible for displaying errors in the browser (this behavior is by default disabled);
+    - media – contains all media-files from the website;
+    - static – contains the generated theme and module files.
+- var – contains temporary files, like:
+    - cache – contains all the cached objects, except for pages;
+    - composer_home – root directory of the installation wizard;
+    - log – stores Magento 2 logs;
+    - page_cache – contains pages cached with Full Page Cache;
+    - view_preprocessed – contains minified templates and compiled LESS.
+- vendor – contains core files of Magento 2. Moreover, this directory can contain the additionally installed modules. You should perform operations with components from this directory via Composer.
+
+
 ##### Magento 2  Model View ViewModel (MVVM) Architecture
+
 - Model: Holds business logic of  application & depends on an associated class—the ResourceModel—for database access. Models rely on service contracts to expose their functionality to  other layers of  application.
 - View: Structure & layout of what a user sees on a screen - the actual HTML. This is achieved in the PHTML files distributed with modules. PHTML files are associated to each ViewModel in the Layout XML files, which would be referred to as binders in the MVVM dialect. The layout files might also assign JavaScript files to be used in the final page.
 - ViewModel: Interacts with  Model layer, exposing only  necessary information to  View layer handled by the module’s Block classes. Note that this was usually part of the Controller role of an MVC system. On MVVM, the controller is only responsible for handling the user flow, meaning that it receives requests and either tells the system to render a view or to redirect the user to another route.
@@ -144,6 +170,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 ##### Module  folder holds one part of the architecture, as follows:
 
 - Api or Api/Data: Service contracts, defining service interfaces & data interfaces
+
 - Adapter:Classes follow  adapter pattern & wrap around classes from third-party libraries allow  to use functionality from third-party libraries in  code by converting the third-party class interfaces into an interface that is expected by  native code.( module-search/Adapter/)
 - Block:  ViewModels of our MVVM architecture
 - Collector: module-deploy/Collector/Collector.php
