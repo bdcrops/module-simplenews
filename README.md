@@ -163,9 +163,31 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 
 ##### Magento 2  Model View ViewModel (MVVM) Architecture
 
+![](docs/MVVMPattern.png)
+
 - Model: Holds business logic of  application & depends on an associated class—the ResourceModel—for database access. Models rely on service contracts to expose their functionality to  other layers of  application.
 - View: Structure & layout of what a user sees on a screen - the actual HTML. This is achieved in the PHTML files distributed with modules. PHTML files are associated to each ViewModel in the Layout XML files, which would be referred to as binders in the MVVM dialect. The layout files might also assign JavaScript files to be used in the final page.
 - ViewModel: Interacts with  Model layer, exposing only  necessary information to  View layer handled by the module’s Block classes. Note that this was usually part of the Controller role of an MVC system. On MVVM, the controller is only responsible for handling the user flow, meaning that it receives requests and either tells the system to render a view or to redirect the user to another route.
+
+#### Magento 2 architecture is split into 4 (PDSP)layers.
+
+![](docs/archi_diagrams_layers_alt4.jpg)
+
+- Persistence layer: describes resource model, which is responsible for extracting and modifying data in the database using CRUD requests.Additional business logic capabilities are also implemented here, for example, data validation and database functions implementation.
+- Domain layer: responsible for the business logic, which does not contain resource-specific or database-specific information. Domain layer can also include service contracts.Each data model at the level of domain layer depends on the resource model, which is responsible for accessing the database.
+- Service layer: interlayer between presentation layer and domain layer. It implements service contracts, which are defined using PHP interfaces. Service contracts allow to add or change business logic resource model using dependency injection file (di.xml). Service layer is also used for granting access to API (REST/SOAP or other modules).Service interface is declared in /Api namespace of the module.
+Data (entity) interface is declared in /Api/Data. Data entities are data structures passed to and returned from service interfaces.
+
+- Presentation Layer: upper layer. It contains all the View elements (including layouts, blocks, templates, css, js) and controllers.Presentation Layer usually calls service layer using service contracts. But, depending on the implementation, it may overlap with business logic.
+
+##### Magento has 5 areas types:
+- Magento Admin (adminhtml): entry point for this area is index.php or pub/index.php. The Admin panel area includes the code needed for store management. The /app/design/adminhtml directory contains all the code for components you’ll see while working in the Admin panel.
+- Storefront (frontend): entry point for this area is index.php or pub/index.php. The storefront (or frontend) contains template and layout files that define the appearance of your storefront.
+- Basic (base): used as a fallback for files absent in adminhtml and frontend areas.
+- Cron (crontab): In cron.php, the \Magento\Framework\App\Cron class always loads the 'crontab' area.
+You can also send requests to Magento using the SOAP and REST APIs. These two areas:
+- Web API REST (webapi_rest): entry point for this area is index.php or pub/index.php. The REST area has a front controller that understands how to do URL lookups for REST-based URLs.
+- Web API SOAP (webapi_soap): entry point for this area is index.php or pub/index.php.
 
 ##### Module  folder holds one part of the architecture, as follows:
 
@@ -181,6 +203,11 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 - CustomerData: directory contains PHP files responsible for processing information for sections. Magento 2 has a special functionality, which allows for processing, updating and transferring the information asynchronously.
 - etc: Configuration XML files  module defines itself & its parts (routes, models, blocks, observers, and cron jobs) within this folder, also be used by non-core modules to override the functionality of core modules.
     - etc/acl.xml
+    - etc/adminhtml/menu.xml
+    - etc/adminhtml/system.xml
+    - etc/{area}/routes.xml
+    - etc/{area}/events.xml
+    - etc/crontab/events.xml
     - etc/config.xml
     - etc/cron_groups.xml
     - etc/crontab.xml
@@ -188,16 +215,9 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
     - etc/di.xml
     - etc/events.xml
     - etc/module.xml
-    - etc/webapi.xml
-    - etc/adminhtml/menu.xml
-    - etc/adminhtml/system.xml
-    - etc/adminhtml/routes.xml
-    - etc/frontend/routes.xml
-    - etc/webapi_rest/di.xml
-    - etc/adminhtml/events.xml
-    - etc/frontend/events.xml
-    - etc/crontab/events.xml
     - etc/setup/events.xml
+    - etc/webapi.xml
+    - etc/webapi_rest/di.xml
     - etc/webapi_rest/events.xml
     - etc/webapi_soap/events.xml
     [ReadDevDoc](https://devdocs.magento.com/guides/v2.3/config-guide/config/config-files.html)
@@ -232,7 +252,7 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
     - view/{area}/ui_component – contains XML-files of the UI module components.
     - view/{area}/ui_component/templates
     - view/{area}/web – contains CSS, JS, static and media module files.
-    - view/frontend/web/js – contains js
+    - view/{area}/web/js – contains js
     - view/{area}/web/template – contains html
     - view/{area}/requirejs-config.js
 
