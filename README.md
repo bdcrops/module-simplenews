@@ -224,14 +224,20 @@ In this module, we will use `BDCrops` for Vendor name and `SimpleNews` for Modul
 - Source: module-deploy/Source
 - Test: Unit tests
 - Ui: Elements such as grids & forms used in  admin application
+- view – Layout (XML) files & template (PHTML) files for  front-end & admin application contains template files, CSS and JS files, module media files. These files are located in subfolders depending on the area of use: adminhtml, frontend or base (common files for the administrative and frontal parts of the site). These subdirectories, in turn, including static view files, design templates, email templates, and layout files:
+    - view/{area}/email – contains emails templates.
+    - view/{area}/layout – contains files for layout modifications.
+    - view/{area}/page_layout – contains files for page_layout modifications.
+    - view/{area}/templates – contains files of the module templates (phtml).
+    - view/{area}/ui_component – contains XML-files of the UI module components.
+    - view/{area}/ui_component/templates
+    - view/{area}/web – contains CSS, JS, static and media module files.
+    - view/frontend/web/js – contains js
+    - view/{area}/web/template – contains html
+    - view/{area}/requirejs-config.js
 
-- view – Layout (XML) files & template (PHTML) files for  front-end & admin application contains template files, CSS and JS files, module media files. These files are located in subfolders depending on the area of use: adminhtml, frontend or base (common files for the administrative and frontal parts of the site). These subdirectories, in turn, may contain the following folders:
-    - email – contains emails templates.
-    - layout – contains files for layout modifications.
-    - page_layout – contains files for page_layout modifications.
-    - templates – contains files of the module templates (phtml).
-    - ui_component – contains XML-files of the UI module components.
-    - web – contains CSS, JS, static and media module files.
+
+
 - ViewModel: (module-sales/ViewModel)
 
 ### <a name="Step2A2">Step 2A.2: Declare module by using configuration file module.xml</a>
