@@ -8,6 +8,7 @@
 - [Working with Databases in Magento 18%](#Databases)
 - [Developing with Adminhtml 11%](#Adminhtml)
 - [Customizing Magento Business Logic 16%](#BusinessLogic)
+
 ***
 
 
@@ -302,7 +303,7 @@ Most of the source models are located in app/code/Magento/Config/Model/Config/So
 [mageplaza](https://www.mageplaza.com/kb/how-to-create-new-admin-user-magento-2.html)
 
 
-### <a name="BusinessLogic"> 6 Customizing Magento Business Logic</a>
+### <a name="BusinessLogic"> 6 Customizing Magento Business Logic 16%</a>
 
 #### 6.1 Identify/describe standard product types (simple, configurable, bundled, etc.)
 - How would you obtain a product of a specific type, and what tools (in general) does a product type model provide?
