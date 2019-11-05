@@ -15,7 +15,7 @@
 ## Topics and Objectives
 ***
 
-### <a name="Architecture"> 1 Magento Architecture and Customization Techniques</a>
+### <a name="Architecture"> 1 Magento Architecture and Customization Techniques 33%</a>
 
 #### 1.1 Describe the Magento module-based architecture
 
@@ -139,7 +139,7 @@
 - How would you install and verify an extension by a customer’s request? [belvg blog](https://belvg.com/blog/how-to-install-module-manually-on-magento-2.html),
 [devdocs](https://devdocs.magento.com/guides/v2.3/comp-mgr/extens-man/extensman-main-pg.html)
 
-### <a name="RequestFlow"> 2 Request Flow Processing</a>
+### <a name="RequestFlow"> 2 Request Flow Processing 7%</a>
 
 #### 2.1 Describe how to use Magento modes
 
@@ -175,7 +175,7 @@ magento maintenance:status
 [fastcomet](https://www.fastcomet.com/tutorials/magento2/sef-urls)
 
 
-### <a name="MagentoUI"> 3 Customizing the Magento UI</a>
+### <a name="MagentoUI"> 3 Customizing the Magento UI 15%</a>
 
 #### 3.1 Demonstrate the ability to customize the Magento UI using themes
 
@@ -221,7 +221,7 @@ magento maintenance:status
 - How do you add new content to existing pages using layout XML?
 [knowband](https://www.knowband.com/blog/magento-tutorials/create-custom-layout-cms-pages-magento-2/) , [belvg](https://belvg.com/blog/using-layout-and-xml-schema-in-magento-2.html)
 
-### <a name="Databases">4 Working with Databases in Magento</a>
+### <a name="Databases">4 Working with Databases in Magento 18%</a>
 
 [dballl](https://github.com/bdcrops/module-declarative/blob/master/db.md)
 
@@ -253,7 +253,7 @@ magento maintenance:status
 - What is the purpose of schema patches? [Step 2A.7](README.md#Step2A7) [BDC_Declarative](https://github.com/bdcrops/BDC_Declarative)
 
 
-### <a name="Adminhtml"> 5 Developing with Adminhtml</a>
+### <a name="Adminhtml"> 5 Developing with Adminhtml 11%</a>
 
 #### 5.1 Create a controller for an admin router
 
