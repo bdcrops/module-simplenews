@@ -284,48 +284,49 @@ In this file, we register a module with name `BDC_SimpleNews` and the version is
 
 All Magento 2 module must be registered in the Magento system through the magento ComponentRegistrar class. This file will be placed in module root directory.
 In this step, we need to create this file:
-Create  app/code/BDC/SimpleNews/registration.php and insert this following code into it:
-
-~~~
-\Magento\Framework\Component\ComponentRegistrar::register(
-    \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'BDC_SimpleNews', __DIR__
-);
-~~~
+- Create  [registration.php](registration.php) and insert this following code into it:
+  <details><summary>Source</summary>
+    ~~~
+    \Magento\Framework\Component\ComponentRegistrar::register(
+        \Magento\Framework\Component\ComponentRegistrar::MODULE,
+        'BDC_SimpleNews', __DIR__
+    );
+    ~~~
+  </details>
 
 Modules in vendor folder would update using composer And all the modules in app/code would not be updated through composer That's why when you need to override any module you add it in app/code
 
-Create  app/code/BDC/SimpleNews/composer.json  and insert this following code into it:
-
-```
-{
-    "name": "bdc/module-simplenews",
-    "description": "BDCrops SimpleNews module for Magento 2 extensions.",
-    "type": "magento2-module",
-    "version": "1.0.0",
-    "license": [
-        "OSL-3.0",
-        "AFL-3.0"
-    ],
-	"authors": [{
-            "name": "Abdul Matin",
-            "email": "matinict@gmail.com",
-			      "company": "BDCrops Inc"
-        }
-    ],
-	"homepage": "https://www.bdcrops.com",
-    "autoload": {
-        "files": [
-            "registration.php"
+- Create  app/code/BDC/SimpleNews/composer.json  and insert this following code into it:
+  <details><summary>Source</summary>
+      ```
+      {
+        "name": "bdc/module-simplenews",
+        "description": "BDCrops SimpleNews module for Magento 2 extensions.",
+        "type": "magento2-module",
+        "version": "1.0.3",
+        "license": [
+            "OSL-3.0",
+            "AFL-3.0"
         ],
-        "psr-4": {
-            "BDC\\SimpleNews\\": ""
+      "authors": [{
+                "name": "Abdul Matin",
+                "email": "matinict@gmail.com",
+      		      "company": "BDCrops Inc"
+            }
+        ],
+      "homepage": "https://www.bdcrops.com",
+        "autoload": {
+            "files": [
+                "registration.php"
+            ],
+            "psr-4": {
+                "BDC\\SimpleNews\\": ""
+            }
         }
-    }
-}
+      }
 
-```
-
+      ```
+  </details>
 
 ### <a name="Step2A4">Step 2A.4: Configure declarative schema (create table  schema Installation file)</a>
 
