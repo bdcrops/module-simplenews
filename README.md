@@ -297,7 +297,9 @@ In this step, we need to create this file:
 Modules in vendor folder would update using composer And all the modules in app/code would not be updated through composer That's why when you need to override any module you add it in app/code
 
 - Create  app/code/BDC/SimpleNews/composer.json  and insert this following code into it:
+
   <details><summary>Source</summary>
+
       ```
       {
         "name": "bdc/module-simplenews",
