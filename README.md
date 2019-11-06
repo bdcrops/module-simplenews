@@ -674,6 +674,7 @@ And the layout handle for this action is: helloworld_controller_action.xml So wi
 - Create controller [Controller/Index/Index.php](Controller/Index/Index.php):
 
   <details><summary>Source</summary>
+  
     ```
       <?php
 
