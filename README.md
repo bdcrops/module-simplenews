@@ -471,6 +471,7 @@ So to add data to the bdc_simplenews table create AddData.php file inside folder
 ### <a name="Step2A8"> Step 2A.8: Create Model News for business Logic</a>
 
 We need to create these files to insert, update, delete and get data in the database.
+
 - Create model file: [Model/News.php](Model/News.php):
 
   <details><summary>Source</summary>
@@ -546,22 +547,28 @@ Models are like a black box which provides a layer of abstraction on top of the 
 
 ### <a name="Step2A9">Step 2A.9: Create Model's ResourceModel to handle real database transaction</a>
 
-- Create resource model file: app/code/BDC/SimpleNews/Model/Resource/News.php and insert this following code into it:
-```
-<?php
+- Create resource model [Model/Resource/News.php](Model/Resource/News.php):
 
-namespace BDC\SimpleNews\Model\Resource;
+  <details><summary>Source</summary>
 
-use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+      ```
+      <?php
 
-class News extends AbstractDb {
-    /**
-     * Define main table
-     */
-    protected function _construct() { $this->_init('bdc_simplenews', 'id'); }
-}
+      namespace BDC\SimpleNews\Model\Resource;
 
-```
+      use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+
+      class News extends AbstractDb {
+          /**
+           * Define main table
+           */
+          protected function _construct() { $this->_init('bdc_simplenews', 'id'); }
+      }
+
+      ```
+  </details>
+
+
 
 #### <a name="Step2A9Note1">Note: Resource Model</a>
 All of the actual database operations are executed by the resource model. Every model must have a resource model, since all of the methods of a resource model expects a model as its first parameter. All resource models must extend the Magento\Framework\Model\ResourceModel\Db\AbstractDbclass.
@@ -574,23 +581,29 @@ For a basic model like ours, the only thing a resource model must do is call the
 
 ### <a name="Step2A10">Step 2A.10: Create Model's collection class</a>
 
-- Create collection file: app/code/BDC/SimpleNews/Model/Resource/News/Collection.php and insert this following code into it:
+- Create collection [Model/Resource/News/Collection.php](Model/Resource/News/Collection.php ):
 
-```
-<?php
-namespace BDC\SimpleNews\Model\Resource\News;
+  <details><summary>Source</summary>
 
-use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-class Collection extends AbstractCollection {
-    /**
-     * Define model & resource model
-     */
-    protected function _construct(){
-        $this->_init('BDC\SimpleNews\Model\News', 'BDC\SimpleNews\Model\Resource\News');
-    }
-}
+      ```
+      <?php
+      namespace BDC\SimpleNews\Model\Resource\News;
 
-```
+      use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+      class Collection extends AbstractCollection {
+          /**
+           * Define model & resource model
+           */
+          protected function _construct(){
+              $this->_init('BDC\SimpleNews\Model\News', 'BDC\SimpleNews\Model\Resource\News');
+          }
+      }
+
+      ```
+
+  </details>
+
+
 #### <a name="Step2A10Note1">Note:  Collection </a>
 Collections are used when we want to fetch multiple rows from our table. Meaning collections
 - group of models. Collections can be used when we want to
@@ -620,21 +633,25 @@ http://example.com/<router_name>/<controller_name>/<action_name>
 
 The Router is used to assign a URL to a corresponding controller and action. In this module, we need to create a route for frontend area. So we need to add this file:
 
-Create  app/code/BDC/SimpleNews/etc/frontend/routes.xml and insert this following code into it:
+- Create  [etc/frontend/routes.xml](etc/frontend/routes.xml):
 
+  <details><summary>Source</summary>
 
-~~~
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/
-App/etc/routes.xsd">
-    <router id="standard">
-        <route id="news" frontName="news">
-            <module name="BDC_SimpleNews" />
-        </route>
-    </router>
-</config>
-~~~
+      ~~~
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/
+      App/etc/routes.xsd">
+          <router id="standard">
+              <route id="news" frontName="news">
+                  <module name="BDC_SimpleNews" />
+              </route>
+          </router>
+      </config>
+      ~~~
+
+  </details>
+
 
 After define the route, the URL path to our module will be: `http://example.com/news/`
 
@@ -654,52 +671,55 @@ And the layout handle for this action is: helloworld_controller_action.xml So wi
 ### <a name="Step2A12">Step 2A.12: Create IndexController</a>
 
 
-- Create controller file: app/code/BDC/SimpleNews/Controller/Index/Index.php and insert this following code into it:
+- Create controller [Controller/Index/Index.php](Controller/Index/Index.php):
 
-```
-<?php
+  <details><summary>Source</summary>
+    ```
+      <?php
 
-namespace BDC\SimpleNews\Controller\Index;
+      namespace BDC\SimpleNews\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
-use BDC\SimpleNews\Model\NewsFactory;
+      use Magento\Framework\App\Action\Action;
+      use Magento\Framework\App\Action\Context;
+      use BDC\SimpleNews\Model\NewsFactory;
 
-class Index extends Action {
-    /**
-     * @var \BDC\SimpleNews\Model\NewsFactory
-     */
-    protected $_modelNewsFactory;
-    /**
-     * @param Context $context
-     * @param NewsFactory $modelNewsFactory
-     */
-    public function __construct(
-        Context $context,
-        NewsFactory $modelNewsFactory ) {
-        parent::__construct($context);
-        $this->_modelNewsFactory = $modelNewsFactory;
-    }
-    public function execute(){
-        /**
-         * When Magento get your model, it will generate a Factory class
-         * for your model at var/generaton folder and we can get your
-         * model by this way
-         */
-        $newsModel = $this->_modelNewsFactory->create();
+      class Index extends Action {
+          /**
+           * @var \BDC\SimpleNews\Model\NewsFactory
+           */
+          protected $_modelNewsFactory;
+          /**
+           * @param Context $context
+           * @param NewsFactory $modelNewsFactory
+           */
+          public function __construct(
+              Context $context,
+              NewsFactory $modelNewsFactory ) {
+              parent::__construct($context);
+              $this->_modelNewsFactory = $modelNewsFactory;
+          }
+          public function execute(){
+              /**
+               * When Magento get your model, it will generate a Factory class
+               * for your model at var/generaton folder and we can get your
+               * model by this way
+               */
+              $newsModel = $this->_modelNewsFactory->create();
 
-        // Load the item with ID is 1
-        $item = $newsModel->load(1);
-        var_dump($item->getData());
+              // Load the item with ID is 1
+              $item = $newsModel->load(1);
+              var_dump($item->getData());
 
-        // Get news collection
-        $newsCollection = $newsModel->getCollection();
-        // Load all data of collection
-        var_dump($newsCollection->getData());
-    }
-}
+              // Get news collection
+              $newsCollection = $newsModel->getCollection();
+              // Load all data of collection
+              var_dump($newsCollection->getData());
+          }
+      }
 
-```
+      ```
+  </details>
+
 After define the Controller, the URL path to our module will be: `http://example.com/news/` below data
 
 ![NewsDataFrontend](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/newsFrontendData.png)
