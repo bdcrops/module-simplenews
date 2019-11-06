@@ -265,12 +265,16 @@ You can also send requests to Magento using the SOAP and REST APIs. These two ar
 Magento 2 looks for configuration information for each module in that module’s etc directory. We need to create folder etc and add module.xml:
  - Create [etc/module.xml](/etc/module.xml) And the content for this file:
 
-~~~ xml
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="BDC_SimpleNews" setup_version="1.0.0" />
-</config>
-~~~
+   <details><summary>Source</summary>
+
+       ```
+       <?xml version="1.0"?>
+       <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+           <module name="BDC_SimpleNews" setup_version="1.0.0" />
+       </config>
+       ```
+   </details>
+
 In this file, we register a module with name `BDC_SimpleNews` and the version is `1.0.0`.
 
 #### Notes[u can skip]:
