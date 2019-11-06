@@ -428,97 +428,107 @@ Since in the old method, we used to write scripts in Install Schema or Upgrade s
 A schema patch contains custom schema modification instructions. These modifications can be complex.
 It is defined in a<Vendor>/<Module_Name>/Setup/Patch/Schema/<Patch_Name>.php file and implements \Magento\Setup\Model\Patch\SchemaPatchInterface.
 So to add data to the bdc_simplenews table create AddData.php file inside folder BDC/SimpleNews/Setup/Patch/Data and write the following code
-app/code/BDC/SimpleNews/Setup/Patch/Data/AddData.php
 
-```
-<?php
+- Create [Setup/Patch/Data/AddData.php](Setup/Patch/Data/AddData.php)
 
-namespace BDC\SimpleNews\Setup\Patch\Data;
+  <details><summary>Source</summary>
 
-use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Framework\Setup\Patch\PatchVersionInterface;
-use Magento\Framework\Module\Setup\Migration;
-use Magento\Framework\Setup\ModuleDataSetupInterface;
+      ```
+      <?php
 
-class AddData implements DataPatchInterface, PatchVersionInterface {
-    private $news;
-    public function __construct( \BDC\SimpleNews\Model\News $news ) {
-        $this->news = $news;
-    }
-    public function apply(){
-    	$newsData = [];
-    	$newsData['title'] = "BDC News Head1";
-    	$newsData['summary'] = "BDC News Summary";
-    	$newsData['description'] = "BDCrops Inc description evulation of bangladesh";
-    	//$newsData['status'] = 1;
+      namespace BDC\SimpleNews\Setup\Patch\Data;
 
-    	$this->news->addData($newsData);
-    	$this->news->getResource()->save($this->news);
+      use Magento\Framework\Setup\Patch\DataPatchInterface;
+      use Magento\Framework\Setup\Patch\PatchVersionInterface;
+      use Magento\Framework\Module\Setup\Migration;
+      use Magento\Framework\Setup\ModuleDataSetupInterface;
 
-    }
-    public static function getDependencies() {   return []; }
-    public static function getVersion() { return '2.0.0'; }
-    public function getAliases() {   return []; }
+      class AddData implements DataPatchInterface, PatchVersionInterface {
+          private $news;
+          public function __construct( \BDC\SimpleNews\Model\News $news ) {
+              $this->news = $news;
+          }
+          public function apply(){
+          	$newsData = [];
+          	$newsData['title'] = "BDC News Head1";
+          	$newsData['summary'] = "BDC News Summary";
+          	$newsData['description'] = "BDCrops Inc description evulation of bangladesh";
+          	//$newsData['status'] = 1;
 
-}
+          	$this->news->addData($newsData);
+          	$this->news->getResource()->save($this->news);
 
+          }
+          public static function getDependencies() {   return []; }
+          public static function getVersion() { return '2.0.0'; }
+          public function getAliases() {   return []; }
 
-```
+      }
+
+      ```
+  <details>
 
 ### <a name="Step2A8"> Step 2A.8: Create Model News for business Logic</a>
 
 We need to create these files to insert, update, delete and get data in the database.
-- Create model file: app/code/BDC/SimpleNews/Model/News.php and insert this following code into it:
-```
-<?php
-// These files to insert, update, delete and get data in the database.
-namespace BDC\SimpleNews\Model;
-use Magento\Framework\Model\AbstractModel;
+- Create model file: [Model/News.php](Model/News.php):
 
-class News extends AbstractModel{
-    /**
-     * News constructor.
-     * @param \Magento\Framework\Model\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
-     * @param array $data
-     */
-    public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
-        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        array $data = [] ) {
-        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
-    }
+  <details><summary>Source</summary>
 
-   /**
-    * (non-PHPdoc)
-    * @see \Magento\Framework\Model\AbstractModel::_construct()
-    */
-    public function _construct(){
-        $this->_init('BDC\SimpleNews\Model\Resource\News');
-    }
+      ```
+      <?php
+      // These files to insert, update, delete and get data in the database.
+      namespace BDC\SimpleNews\Model;
+      use Magento\Framework\Model\AbstractModel;
 
-    /**
-     * Loading news data
-     *
-     * @param   mixed $key
-     * @param   string $field
-     * @return  $this
-     */
-    public function load($key, $field = null) {
-    	if ($field === null) {
-    		$this->_getResource()->load($this, $key, 'id');
-    		return $this;
-    	}
-    	$this->_getResource()->load($this, $key, $field);
-    	return $this;
-    }
-}
+      class News extends AbstractModel{
+          /**
+           * News constructor.
+           * @param \Magento\Framework\Model\Context $context
+           * @param \Magento\Framework\Registry $registry
+           * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+           * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
+           * @param array $data
+           */
+          public function __construct(
+              \Magento\Framework\Model\Context $context,
+              \Magento\Framework\Registry $registry,
+              \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+              \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+              array $data = [] ) {
+              parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+          }
 
-```
+         /**
+          * (non-PHPdoc)
+          * @see \Magento\Framework\Model\AbstractModel::_construct()
+          */
+          public function _construct(){
+              $this->_init('BDC\SimpleNews\Model\Resource\News');
+          }
+
+          /**
+           * Loading news data
+           *
+           * @param   mixed $key
+           * @param   string $field
+           * @return  $this
+           */
+          public function load($key, $field = null) {
+            if ($field === null) {
+              $this->_getResource()->load($this, $key, 'id');
+              return $this;
+            }
+            $this->_getResource()->load($this, $key, $field);
+            return $this;
+          }
+      }
+
+      ```
+
+  <details>
+
+
 #### <a name="Step2A8Note1"> Note: basic concepts of models, resource models, and collections</a>
 CRUD Models in Magento 2 can manage data in database easily, you don’t need to write many line of code to create a CRUD. CRUD is stand for Create, Read, Update and Delete.
 The Magento ORM is used by the Repository implementations that are part of the Magento 2 service contracts. This is an important variation from Magento 1, as a module should no longer rely on other modules using a specific ORM, and instead of it use only the entity repositories. The service contracts will be covered in more details in the second part of the article.The Magento ORM is built around models, resource models, and resource collections. The Magento ORM elements are following:
