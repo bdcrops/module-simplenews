@@ -1,4 +1,4 @@
-# [Magento 2 Certified Professional Developer Plus](https://u.magento.com/magento-2-certified-professional-developer-plus)
+# [Magento 2 Certified Professional Developer Plus Plus](https://u.magento.com/magento-2-certified-professional-developer-plus)
 
 ***
 
