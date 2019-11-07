@@ -2912,7 +2912,7 @@ Create a crontab.xml file in the following file path and set a time schedule to 
 
       ```
   <details>
-  
+
 Here when defining the crontab for the module we need to define the group name too. Here group_name is the name of the cron group. The group name doesn’t have to be unique and we can run the cron for one group at a time.
 
 Here,
@@ -2982,22 +2982,24 @@ SELECT * FROM `cron_schedule` where `job_code` LIKE "%bdc%"
 Declare a new group and specify its configuration options (all of which run in the store’s view scope) through the cron_groups.xml file, located at:
 <your component base dir>/<vendorname>/module-<name>/etc/cron_groups.xml
 
-Create  app/code/BDC/SimpleNews/etc/cron_groups.xml and insert this following code into it:
+- Create [etc/cron_groups.xml](etc/cron_groups.xml):
+  <details><summary>Source</summary>
 
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:BlogTreat_CustomCron:etc/cron_groups.xsd">
-    <group id="bdc_crongroup">
-        <schedule_generate_every>1</schedule_generate_every>
-        <schedule_ahead_for>4</schedule_ahead_for>
-        <schedule_lifetime>2</schedule_lifetime>
-        <history_cleanup_every>10</history_cleanup_every>
-        <history_success_lifetime>60</history_success_lifetime>
-        <history_failure_lifetime>600</history_failure_lifetime>
-    </group>
-</config>
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:BlogTreat_CustomCron:etc/cron_groups.xsd">
+          <group id="bdc_crongroup">
+              <schedule_generate_every>1</schedule_generate_every>
+              <schedule_ahead_for>4</schedule_ahead_for>
+              <schedule_lifetime>2</schedule_lifetime>
+              <history_cleanup_every>10</history_cleanup_every>
+              <history_success_lifetime>60</history_success_lifetime>
+              <history_failure_lifetime>600</history_failure_lifetime>
+          </group>
+      </config>
 
-```
+      ```
+  </details>
 Where:
 
 - group_name – Name of the custom group.
