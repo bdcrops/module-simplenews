@@ -898,6 +898,44 @@ class ReadConfig
 
 It is quite easy, you only need to use getValue() method and add a second param with scope (here we use website scope). This will return the stored value for the current website.
 
+#### How to Use Configuration Files in Magento 2?
+There are 2 main places for storing configuration values In Magento 2: database (the core_config_data table) and XML files. The configurations, stored in the database can be changed via the administrator panel, while the data, located in the XML files are of a technical nature and can be changed only by a developer.
+
+It’s easy to use configuration files in Magento 2. Configuration files include:
+- app/etc/config.php — contains the declaration of all modules;
+- app/etc/env.php — describes the array, which contains the front end name for the back end panel, the data for connection to the database, the table prefixes, the current store mode, the types and statuses of the cache.
+These files are generated during the Magento 2 setup. You can change them directly editing the file. However, running terminal commands bin/magento is considered to be best practice.
+
+#### Utilize Configuration XML and Variables Scope in Magento 2?
+
+- etc/config.xml — contains default option values from Stores > Configuration in the admin panel menu. This menu can be configured at system.xml;
+- di.xml — contains configurations for the dependency injection;
+- etc/events.xml — a list of observers and events;
+- etc/routes.xml — a list of routers;
+- etc/config.xml — contains the default values for the module settings Stores > Configuration;
+- etc/acl.xml — adds module resources to a resource tree that allows you to configure access for different users.
+- etc/crontab.xml — adds and configures the task for the cronjob;
+- etc/module.xml — announces the name and the version of the module, as well as its dependencies on other modules;
+- etc/widget.xml — stores the widget settings;
+- etc/indexer.xml — announces a new kind of indexing. It specifies the view_id parameter, which points at the views described in - etc/mview.xml;
+etc/mview.xml —  describes the representations of all the indices described in etc/indexer.xml;
+- etc/webapi.xml — defines web API components, which service method to use and which resource to connect for a specific request;
+- etc/view.xml — contains the properties of product images;
+- etc/product_types.xml — describes types of products in a store;
+- etc/product_options.xml — describes the types of options, that can have products and classes to render them;
+- etc/extension_attributes.xml — a new ability to add a custom attribute appeared in Magento 2. This file describes the attribute, its type, which can be simple or complex and represent an interface;
+- etc/catalog_attributes.xml — groups attributes;
+- etc/adminhtml/system.xml — can only apply to the admin area, adds tabs to Stores > Configuration, describes sections and fields of a form;
+- etc/adminhtml/menu.xml — can only apply to the admin area, adds an item to the admin panel menu.
+
+#### The loading of configurations occurs in three stages:
+
+- Loading system-level configurations. Loading the files necessary to run Magento 2, such as config.php;
+- Loading global area configurations. Loading the files located in the app/etc/Magento 2 directory, such as di.xml, as well as the files related to the global scope and located directly in the etc/module folders.
+- Loading configurations for specific areas. Loading the files located in the folders etc/adminhtml or etc/frontend.
+Configuration files are connected according to their complete xPaths. Specific attributes are defined in the $idAttributes array as identifiers. After 2 files are connected, they contain all the nodes and values from the original files. The second XML file either adds or replaces the nodes of the first XML file.
+
+
 
 
 ### <a name="Step2B1">Step 2B1: Setup Module's Backend /System  configuration</a>
