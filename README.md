@@ -3559,6 +3559,20 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 ### <a name="Step2G2">Step2G2:DI Observer Implements</a>
 
+#### What is observers in Magento 2?
+
+Working with Magento 2 observers is one of many different ways of extending the core functionality of a Magento 2 powered eCommerce store. Thanks to Observers, you can run your custom codes in response to a specific Magento event or even with a custom event.
+You can choose other options such as extending and overriding the core modules, copying the core class to the local directory and put it in the same directory path it was in core directory and modify the core class directly. However, creating an observer is the number one choice
+
+#### How observers work
+Observers are used for catching the action which was triggered before or after events. In observers, you can set the required functionality or logic that is to be executed in response.
+
+Magento 2 observers can be created by lacing your class file under the Module-Root/Observer directory. Your observer class should implement the following:
+Magento\Framework\Event\ObserverInterface and define its execution function.
+
+#### How to use observers
+Make sure you have registered the new module to test it before, we will practice on this module.
+I will use my module SampleEvent. And then, I will use an observer to customize the product name on the product view page.
 
 
 - Edit [Helper/News.php](Helper/News.php):
@@ -3635,6 +3649,92 @@ Now  check var/log/bdc_debug.log  all log are write there
     }
     ```
   </details>
+
+#### AbstractModel Event:
+
+Usually, models extend the Magento\Framework\Model\AbstractModel class. It gives an ability to observe a predefined set of model events. And the model should have AbstractModel::_ eventPrefix attribute specified for observing events of a specific model. The attribute's value equals to "core_abstract" by default.
+
+Also, in models we have AbstractModel::_ eventObject attribute that gives an ability to specify a name of the current model’s instance for different model-specific events.
+
+A list of the global models events:
+
+- model_load_before - executes before each model is loader. Here we can get an access to the following event’s data.
+
+- $observer->getField() - gets currently processed model’s field name.
+
+- $observer->getValue() - gets currently processed model’s field value.
+
+- model_load_after - executes after each model loading.
+
+- model_save_after - executes after each model saving.
+
+- model_save_before - executes before each model saving.
+
+- clean_cache_by_tags - executes after model related cache tags are cleaned.
+
+- model_delete_before - executes before model is deleted.
+
+- model_delete_after - executes after model is deleted.
+
+- model_save_commit_after - executes after the models saving transaction is committed.
+
+- model_delete_commit_after - executes after the models saving transaction commit is deleted.
+
+In this mentioned events, we can get an access to the following data:
+
+$observer->getObject()
+
+List model-specific events:
+
+- {event_prefix}_load_before – executes before model with {event_prefix} is loaded.
+
+- {event_prefix}_load_after – executes after model with {event_prefix} is loaded.
+
+- {event_prefix}_save_before – executes before model with {event_prefix} is saved.
+
+- {event_prefix}_save_after – executes after model with {event_prefix} is saved.
+
+- {event_prefix}_delete_before – executes before model with {event_prefix} is deleted.
+
+- {event_prefix}_delete_after – executes after model with {event_prefix} is deleted.
+
+- {event_prefix}_save_commit_after – executes after model’s data with {event_prefix} is committed.
+
+- {event_prefix}_delete_commit_after – executes after model’s data commit with {event_prefix} is deleted.
+
+- {event_prefix}_clear – executes when a model object is being prepared for correct deleting by the garbage collector.
+
+Furthermore, we can get an access to the following event data from each of them:
+
+- $observer->getDataObject() – gets the current model reference.
+
+- $observer->get{event_object} – gets an event object for the current model.
+
+If you want to find an event in code, you can do this.
+
+Example: You need an event save_before or save after.
+
+- Create an event observer to hook in the event [model prefix]_ save_before. In here we will have observer variable, this variable could get the Model of model which we need to save data on it.
+
+- And then we can use setData(‘column_name’,[new value]) to adjust the data of a column before saving to the database.
+
+So why can we do that?
+
+What is Model Prefix: in object Model, we have a property, this is protected $_ eventPrefix; (You can see in the model, if you don’t have it, you can create it). It’s is a string type. Getting the value and join it with _ save_before, we will have an event name.
+
+EG: protected $ _ eventPrefix = 'abc'; => Event Observer = 'abc_save_before'.
+
+You can declare another event:
+
+- [prefix]_ load_before
+
+- [prefix]_ save_after
+
+- [prefix]_ load_after
+
+These events are default and always available with a model, If you want to use a custom event, you can use eventManager->dispatch(‘event_name’,$data);
+
+
 
 - OR [Model/News.php](Model/News.php) just add protected $_ eventPrefix = 'bdc_simplenews';
   This event eventPrefix is used by abstract model to generate events automatically.Finaly script look like below:
