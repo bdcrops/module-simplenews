@@ -810,6 +810,95 @@ public function execute()
 ### <a name="PartB">Part B: News Module for Back End </a>   [Go to Top](#top)
 
 
+### What is Scope?
+
+If your Magento installation has a hierarchy of websites, stores, or views, you can set the context, or “scope” of a configuration setting to apply to a specific part of the installation. The context of many database entities can also be assigned a specific scope to determine how it is used in the store hierarchy. To learn more, see: Product Scope and Price Scope.
+
+Some configuration settings such as postal code, have a [global] scope because the same value is used throughout the system. The [website] scope applies to any stores below that level in the hierarchy, including all stores and their views. Any item with the scope of [store view] can be set differently for each store view, which is typically used to support multiple languages.
+
+Unless the store is running in Single Store Mode, the scope of each configuration setting appears in small text below the field label. If your installation includes multiple websites, stores or views, you should always choose the Store View where the settings apply before making any changes.
+
+![](https://docs.magento.com/m2/ce/user_guide/images/images/scope-multisite.png)
+
+### What is Scope Settings?
+
+- Global	System-wide settings and resources that are available throughout the Magento installation.
+- Website	Settings and resources that are limited to the current website. Each website has a default store.
+- Store	Settings and resources that are limited to the current store. Each store has a default root category (main menu) and default store view.
+- Store View	Setting and resources that are limited to the current store view.
+
+#### write and get config values by scope?
+An important, but less good documented feature of Magento 2 is how to write and get config values by scope. You will find tons of code samples on how do this globally. Sometime you need to do different settings for different stores programmatically. So here is how this works.
+
+Magento saves all adminhtml settings in core_config table in your Magento database. There you can get values by its path, a string which indicates path to and a variable name. With this path, you can get or set values by Magento 2 core methods. For this you need to use:
+
+- \Magento\Framework\App\Config\Storage\WriteInterface
+to write config values to database
+- \Magento\Framework\App\Config\ScopeConfigInterface
+to read config values from database
+
+#### How  Write store config values by scope?
+
+The following sample code shows how to write store config values by scope:
+```
+class WriteConfig
+{
+    protected $_logger;
+    protected $_storeManager;
+    protected $_configWriter;
+
+    public function __construct(
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\App\Config\Storage\WriterInterface $configWriter,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
+    ){
+        $this->_logger = $logger;
+        $this->_configWriter = $configWriter;
+        $this->_storeManager = $storeManager;
+    }
+
+    public function setConfig($value)
+    {
+        //for all websites
+        $websites = $this->_storeManager->getWebsites();
+        $scope = "websites";
+        foreach($websites as $website) {
+            echo $website->getId().":\n";
+
+            $this->_configWriter->save('my_section/something/configvaluename', $value, $scope, $website->getId());
+        }
+
+        return $this;
+    }
+}
+```
+You just need to call setConfig() method with a given value. This method stores this value into a defined path for all websites. So it generates a new setting (line in core_config table) for each defined website. This is done by using third and fourth param on save method. You use a unique path, a value, a scope and the id of this scope. If you do not use scope, you will wirte the value to default (store id 0). You can store values to scopes “website” or “store“.
+
+#### How Read store config values by scope?
+
+Now it is time to read the data by store. You can do this with the following sample code:
+```
+class ReadConfig
+{
+    protected $_scopeConfig;
+
+    public function __construct(
+        \Magento\Framework\App\Helper\Context $context,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+    ){
+        $this->_scopeConfig = $scopeConfig;
+        parent::__construct($context);
+    }
+
+    public function getConfig() {
+        return $this->_scopeConfig->getValue("my_section/something/configvaluename", "websites");
+    }
+}
+```
+
+It is quite easy, you only need to use getValue() method and add a second param with scope (here we use website scope). This will return the stored value for the current website.
+
+
 
 ### <a name="Step2B1">Step 2B1: Setup Module's Backend /System  configuration</a>
 
@@ -1155,7 +1244,7 @@ The controller action for admin page will be added inside of the folder Controll
 
 - Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_grid_block.xml (Purpose: This file is used to declare the content of grid block) and insert this following code into it:
   <details><summary>Source</summary>
-  
+
       ```
       <?xml version="1.0"?>
 
