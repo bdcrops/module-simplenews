@@ -4177,45 +4177,45 @@ Around + getName() => aroundGetName();
 
 #### Plugin Implementation:
 
--  create app/code/BDC/SimpleNews/Plugin/Logger.php
+- create [Plugin/Logger.php](Plugin/Logger.php)
+  <details><summary>Source</summary>
 
-```
-<?php
+      ```
+      <?php
+      namespace BDC\SimpleNews\Plugin;
+      use BDC\SimpleNews\Console\Command\NewsCreate;
+      use Symfony\Component\Console\Input\InputInterface;
+      use Symfony\Component\Console\Output\OutputInterface;
 
-namespace BDC\SimpleNews\Plugin;
+      class Logger{
+          /**
+           * @var OutputInterface
+           */
+          private $output;
+          public function beforeRun(
+              NewsCreate $command,
+              InputInterface $input,
+              OutputInterface $output) {
+                  $output->writeln('beforeExecute');
+          }
+          public function aroundRun(
+              NewsCreate $command,
+              \Closure $proceed,
+              InputInterface $input,
+              OutputInterface $output) {
+                  $output->writeln('aroundExecute before call');
+                  $proceed->call($command, $input, $output);
+                  $output->writeln('aroundExecute after call');
+                  $this->output = $output;
+          }
 
-use BDC\SimpleNews\Console\Command\NewsCreate;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+          //public function afterRun(NewsCreate $command){
+              //$this->output->writeln('afterExecute');
+          //}
+      }
 
-class Logger{
-    /**
-     * @var OutputInterface
-     */
-    private $output;
-    public function beforeRun(
-        NewsCreate $command,
-        InputInterface $input,
-        OutputInterface $output) {
-            $output->writeln('beforeExecute');
-    }
-    public function aroundRun(
-        NewsCreate $command,
-        \Closure $proceed,
-        InputInterface $input,
-        OutputInterface $output) {
-            $output->writeln('aroundExecute before call');
-            $proceed->call($command, $input, $output);
-            $output->writeln('aroundExecute after call');
-            $this->output = $output;
-    }
-
-    //public function afterRun(NewsCreate $command){
-        //$this->output->writeln('afterExecute');
-    //}
-}
-
-```
+      ```
+  <details>
 
 - add code app/code/BDC/SimpleNews/etc/di.xml
 ```
@@ -4223,51 +4223,53 @@ class Logger{
         <plugin name="bdcLoggerp" type="BDC\SimpleNews\Plugin\Logger"/>
     </type>
 ```
-- Finally app/code/BDC/SimpleNews/etc/di.xml look like:
+- Finally [etc/di.xml](etc/di.xml) look like:
 
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-   <type name="Magento\Framework\Console\CommandList">
-       <arguments>
-           <argument name="commands" xsi:type="array">
-             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
-           </argument>
-       </arguments>
-   </type>
-  <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
-  <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
-  <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/> -->
+  <details><summary>Source</summary>
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+         <type name="Magento\Framework\Console\CommandList">
+             <arguments>
+                 <argument name="commands" xsi:type="array">
+                   <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+                 </argument>
+             </arguments>
+         </type>
+        <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
+        <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+        <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/> -->
 
-  <!-- <type name="Magento\Framework\Logger\Monolog">
-      <arguments>
-          <argument name="handlers"  xsi:type="array">
-              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
-          </argument>
-      </arguments>
-  </type> -->
+        <!-- <type name="Magento\Framework\Logger\Monolog">
+            <arguments>
+                <argument name="handlers"  xsi:type="array">
+                    <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+                </argument>
+            </arguments>
+        </type> -->
 
-  <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
-      <arguments>
-          <argument name="handlers"  xsi:type="array">
-              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
-          </argument>
-      </arguments>
-  </virtualType>
-  <type name="BDC\SimpleNews\Helper\News">
-       <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
-   </type>
+        <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
+            <arguments>
+                <argument name="handlers"  xsi:type="array">
+                    <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+                </argument>
+            </arguments>
+        </virtualType>
+        <type name="BDC\SimpleNews\Helper\News">
+             <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+         </type>
 
-   <type name="BDC\SimpleNews\Observer\Logger">
-        <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
-    </type>
+         <type name="BDC\SimpleNews\Observer\Logger">
+              <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+          </type>
 
-    <type name="BDC\SimpleNews\Console\Command\NewsCreate">
-            <plugin name="bdcLoggerp" type="BDC\SimpleNews\Plugin\Logger"/>
-        </type>
+          <type name="BDC\SimpleNews\Console\Command\NewsCreate">
+                  <plugin name="bdcLoggerp" type="BDC\SimpleNews\Plugin\Logger"/>
+              </type>
 
-</config>
-```
+      </config>
+      ```
+  </details>
 
 - Run
 
@@ -4284,7 +4286,7 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 
 ### <a name="Step2H1">Step2H1: Layout Configuration </a>
-- edit app/code/BDC/SimpleNews/view/frontend/layout/news_index_index.xml
+- edit [view/frontend/layout/news_index_index.xml](view/frontend/layout/news_index_index.xml)
 
 ```
 <block template="BDC_SimpleNews::list.phtml" class="BDC\SimpleNews\Block\NewsList" name="bdc_simplenews_block_news_list"/>
@@ -4298,7 +4300,7 @@ Change as below:
 </block>
 ```
 
-- Edit app/code/BDC/SimpleNews/view/frontend/templates/list.phtml
+- Edit [view/frontend/templates/list.phtml](view/frontend/templates/list.phtml)
 
 ```
 <?php echo $block->getLabel(); ?>
