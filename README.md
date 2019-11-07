@@ -3557,218 +3557,238 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/bdc_debug.png)
 
-### <a name="Step2G2">Step2G2:DI Observer Implements   </a>
-
-- Edit app/code/BDC/SimpleNews/Helper/News.php & insert code look like:
-```
-<?php
-namespace BDC\SimpleNews\Helper;
-
-use \Magento\Framework\App\Helper\Context;
-use \Magento\Store\Model\StoreManagerInterface;
-use \Magento\Framework\App\State;
-use \BDC\SimpleNews\Model\NewsFactory;
-use \Symfony\Component\Console\Input\Input;
-use \Psr\Log\LoggerInterface;
-use \Magento\Framework\Event\ManagerInterface;
-
-class News extends \Magento\Framework\App\Helper\AbstractHelper {
-    const KEY_TITLE = 'news-title';
-    const KEY_SUMMARY = 'news-summary';
-    const KEY_DESC = 'news-description';
-
-    protected $storeManager;
-    protected $state;
-    protected $newsFactory;
-    protected $data;
-    protected $newsId;
-    protected $logger;
-    protected $eventManager;
-    // $eventManager
+### <a name="Step2G2">Step2G2:DI Observer Implements</a>
 
 
-    public function __construct(
-        Context $context,
-        StoreManagerInterface $storeManager,
-        State $state,
-        NewsFactory $newsFactory,
-        LoggerInterface $logger,
-        ManagerInterface $eventManager) {
-            $this->storeManager = $storeManager;
-            $this->state = $state;
+
+- Edit [Helper/News.php](Helper/News.php):
+  <details><summary>Source</summary>
+
+    ```
+    <?php
+    namespace BDC\SimpleNews\Helper;
+
+    use \Magento\Framework\App\Helper\Context;
+    use \Magento\Store\Model\StoreManagerInterface;
+    use \Magento\Framework\App\State;
+    use \BDC\SimpleNews\Model\NewsFactory;
+    use \Symfony\Component\Console\Input\Input;
+    use \Psr\Log\LoggerInterface;
+    use \Magento\Framework\Event\ManagerInterface;
+
+    class News extends \Magento\Framework\App\Helper\AbstractHelper {
+        const KEY_TITLE = 'news-title';
+        const KEY_SUMMARY = 'news-summary';
+        const KEY_DESC = 'news-description';
+
+        protected $storeManager;
+        protected $state;
+        protected $newsFactory;
+        protected $data;
+        protected $newsId;
+        protected $logger;
+        protected $eventManager;
+        // $eventManager
+
+
+        public function __construct(
+            Context $context,
+            StoreManagerInterface $storeManager,
+            State $state,
+            NewsFactory $newsFactory,
+            LoggerInterface $logger,
+            ManagerInterface $eventManager) {
+                $this->storeManager = $storeManager;
+                $this->state = $state;
+                $this->logger = $logger;
+                $this->eventManager = $eventManager;
+                $this->newsFactory = $newsFactory;
+
+            parent::__construct($context);
+        }
+
+        public function setData(Input $input){
+            $this->data = $input;
+            return $this;
+        }
+
+        public function execute() {
+            $this->state->setAreaCode('frontend');
+            $news = $this->newsFactory->create();
+            $news->setTitle($this->data->getOption(self::KEY_TITLE))
+                ->setSummary($this->data->getOption(self::KEY_SUMMARY))
+                ->setDescription($this->data->getOption(self::KEY_DESC));
+            $news->save();
+            $this->logger->debug('DI: '.$news->getTitle());
+            // EventCode...
+            $this->eventManager->dispatch('bdc_simplenews_save_after', ['object' => $news]);
+            $this->newsId = $news->getId();
+
+            // if($this->data->getOption(self::KEY_SENDEMAIL)) {
+            //     $news->sendNewAccountEmail();
+            // }
+        }
+
+        public function getNewsId(){
+            return (int)$this->newsId;
+        }
+    }
+    ```
+  </details>
+
+- OR [Model/News.php](Model/News.php) just add protected $_ eventPrefix = 'bdc_simplenews';
+  This event eventPrefix is used by abstract model to generate events automatically.Finaly script look like below:
+  <details><summary>Source</summary>
+
+      ```
+      <?php
+
+      // These files to insert, update, delete and get data in the database.
+
+      namespace BDC\SimpleNews\Model;
+
+      use Magento\Framework\Model\AbstractModel;
+
+      class News extends AbstractModel{
+        protected $_eventPrefix = 'bdc_simplenews';
+          /**
+           * News constructor.
+           * @param \Magento\Framework\Model\Context $context
+           * @param \Magento\Framework\Registry $registry
+           * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+           * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
+           * @param array $data
+           */
+          public function __construct(
+              \Magento\Framework\Model\Context $context,
+              \Magento\Framework\Registry $registry,
+              \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+              \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+              array $data = []
+          ) {
+              parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+          }
+
+         /**
+          * (non-PHPdoc)
+          * @see \Magento\Framework\Model\AbstractModel::_construct()
+          */
+          public function _construct() {
+              $this->_init('BDC\SimpleNews\Model\Resource\News');
+          }
+
+          /**
+           * Loading news data
+           *
+           * @param   mixed $key
+           * @param   string $field
+           * @return  $this
+           */
+          public function load($key, $field = null) {
+          	if ($field === null) {
+          		$this->_getResource()->load($this, $key, 'id');
+          		return $this;
+          	}
+          	$this->_getResource()->load($this, $key, $field);
+          	return $this;
+          }
+      }
+      ```
+  </details>
+
+- Create [Observer/Logger.php](Observer/Logger.php)
+  <details><summary>Source</summary>
+
+    ```
+    <?php
+
+    namespace BDC\SimpleNews\Observer;
+
+    use Magento\Framework\Event\Observer;
+    use Magento\Framework\Event\ObserverInterface;
+    use Psr\Log\LoggerInterface;
+
+    class Logger implements ObserverInterface {
+        private $logger;
+
+        public function __construct(LoggerInterface $logger){
             $this->logger = $logger;
-            $this->eventManager = $eventManager;
-            $this->newsFactory = $newsFactory;
-
-        parent::__construct($context);
+        }
+        public function execute(Observer $observer){
+            $this->logger->debug("Observer:".
+                $observer->getEvent()->getObject()->getTitle()
+            );
+        }
     }
 
-    public function setData(Input $input){
-        $this->data = $input;
-        return $this;
-    }
+    ```
+  </details>
 
-    public function execute() {
-        $this->state->setAreaCode('frontend');
-        $news = $this->newsFactory->create();
-        $news->setTitle($this->data->getOption(self::KEY_TITLE))
-            ->setSummary($this->data->getOption(self::KEY_SUMMARY))
-            ->setDescription($this->data->getOption(self::KEY_DESC));
-        $news->save();
-        $this->logger->debug('DI: '.$news->getTitle());
-        // EventCode...
-        $this->eventManager->dispatch('bdc_simplenews_save_after', ['object' => $news]);
-        $this->newsId = $news->getId();
+- create [etc/events.xml](etc/events.xml)
+  <details><summary>Source</summary>
 
-        // if($this->data->getOption(self::KEY_SENDEMAIL)) {
-        //     $news->sendNewAccountEmail();
-        // }
-    }
+    ```
+    <?xml version="1.0"?>
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+        <event name="bdc_simplenews_save_after">
+            <observer name="bdcLogger" instance="BDC\SimpleNews\Observer\Logger" />
+        </event>
+    </config>
+    ```
+  </details>
 
-    public function getNewsId(){
-        return (int)$this->newsId;
-    }
-}
-
-```
-- OR app/code/BDC/SimpleNews/Model/News.php just add protected $_ eventPrefix = 'bdc_simplenews'; This event eventPrefix is used by abstract model to generate events automatically.
-Finaly script look like below:
-```
-<?php
-
-// These files to insert, update, delete and get data in the database.
-
-namespace BDC\SimpleNews\Model;
-
-use Magento\Framework\Model\AbstractModel;
-
-class News extends AbstractModel{
-  protected $_eventPrefix = 'bdc_simplenews';
-    /**
-     * News constructor.
-     * @param \Magento\Framework\Model\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
-     * @param array $data
-     */
-    public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
-        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        array $data = []
-    ) {
-        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
-    }
-
-   /**
-    * (non-PHPdoc)
-    * @see \Magento\Framework\Model\AbstractModel::_construct()
-    */
-    public function _construct() {
-        $this->_init('BDC\SimpleNews\Model\Resource\News');
-    }
-
-    /**
-     * Loading news data
-     *
-     * @param   mixed $key
-     * @param   string $field
-     * @return  $this
-     */
-    public function load($key, $field = null) {
-    	if ($field === null) {
-    		$this->_getResource()->load($this, $key, 'id');
-    		return $this;
-    	}
-    	$this->_getResource()->load($this, $key, $field);
-    	return $this;
-    }
-}
-
-```
-- Create app/code/BDC/SimpleNews/Observer/Logger.php
-```
-<?php
-
-namespace BDC\SimpleNews\Observer;
-
-use Magento\Framework\Event\Observer;
-use Magento\Framework\Event\ObserverInterface;
-use Psr\Log\LoggerInterface;
-
-class Logger implements ObserverInterface {
-    private $logger;
-
-    public function __construct(LoggerInterface $logger){
-        $this->logger = $logger;
-    }
-    public function execute(Observer $observer){
-        $this->logger->debug("Observer:".
-            $observer->getEvent()->getObject()->getTitle()
-        );
-    }
-}
-
-```
-- create app/code/BDC/SimpleNews/etc/events.xml
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="bdc_simplenews_save_after">
-        <observer name="bdcLogger" instance="BDC\SimpleNews\Observer\Logger" />
-    </event>
-</config>
-
-```
 - add code app/code/BDC/SimpleNews/etc/di.xml
-```
-<type name="BDC\SimpleNews\Observer\Logger">
-     <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
- </type>
-```
-- Finally app/code/BDC/SimpleNews/etc/di.xml look like:
+  <details><summary>Source</summary>
 
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-   <type name="Magento\Framework\Console\CommandList">
-       <arguments>
-           <argument name="commands" xsi:type="array">
-             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
-           </argument>
-       </arguments>
-   </type>
-  <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
-  <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
-  <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/> -->
+    ```
+    <type name="BDC\SimpleNews\Observer\Logger">
+         <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+     </type>
+    ```
+  </details>
+- Finally [etc/di.xml](etc/di.xml) look like:
+  <details><summary>Source</summary>
 
-  <!-- <type name="Magento\Framework\Logger\Monolog">
-      <arguments>
-          <argument name="handlers"  xsi:type="array">
-              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
-          </argument>
-      </arguments>
-  </type> -->
+    ```
+    <?xml version="1.0"?>
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+       <type name="Magento\Framework\Console\CommandList">
+           <arguments>
+               <argument name="commands" xsi:type="array">
+                 <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+               </argument>
+           </arguments>
+       </type>
+      <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
+      <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+      <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/> -->
 
-  <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
-      <arguments>
-          <argument name="handlers"  xsi:type="array">
-              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
-          </argument>
-      </arguments>
-  </virtualType>
-  <type name="BDC\SimpleNews\Helper\News">
-       <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
-   </type>
+      <!-- <type name="Magento\Framework\Logger\Monolog">
+          <arguments>
+              <argument name="handlers"  xsi:type="array">
+                  <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+              </argument>
+          </arguments>
+      </type> -->
 
-   <type name="BDC\SimpleNews\Observer\Logger">
-        <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
-    </type>
+      <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
+          <arguments>
+              <argument name="handlers"  xsi:type="array">
+                  <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+              </argument>
+          </arguments>
+      </virtualType>
+      <type name="BDC\SimpleNews\Helper\News">
+           <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+       </type>
 
-</config>
-```
+       <type name="BDC\SimpleNews\Observer\Logger">
+            <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+        </type>
+
+    </config>
+    ```
+  </details>
 
 - Run
 
