@@ -3402,6 +3402,27 @@ In Magento 2, the class definition use constructor signature to get information 
 - Compiling dependencies
 All information related to Magento 2 Dependency Injection are collected in a class and saved in files by a code complier tool. And then the ObjectManager will get this information to generate concrete objects in the application.
 
+#### Explain  Injection types used in Magento 2?
+
+Magento 2 Dependency Injection includes two types: Constructor Injection and Method Injection. You can see the following code snippet to learn more about both of them.
+
+- Constructor injection
+As the above example, $menuItemFactory and $menu are the dependencies that will be added to an object’s class through the constructor injection. Besides, remember that the constructor injection is required to declare all optional and required of an object.
+
+- Method injection
+About Method Injection, you will use it when an object makes clear a dependency in one of its methods. As if tracking in the referred instance, $command is the dependency passed into the class through the processCommand method.
+
+- Groups of Object
+In Magento 2, the object is divided into two groups: injectable and non-injectable (newable) objects. What are they?
+
+- Injectable Objects
+About the injectable Objects, you can call as services or objects which will show the dependencies in their constructors and are created by the object manager via the configuration in the di.xml file. And you can use these injectable objects to request other injectable services in the constructors.
+
+- Non-injectable Objects
+Non-injectable (Newable) Objects are a bit similar to the injectable objects when they also expose the dependencies in their constructors, however, the newables are allowed to request other newables objects like Entities, Value Objects. In addition, you cannot demand the newable objects for keeping a reference to an injectable object.
+
+This is the detialed information related to Magento 2 Dependency Injection design pattern. Wish you have a great time with it!
+
 
 #### How to Override core code  in Magento 2?
   By default, there are three different ways to override core functionalities.
@@ -3525,7 +3546,7 @@ All information related to Magento 2 Dependency Injection are collected in a cla
 
   Since your plugin class doesn’t replace the core class, in case there are many plugins hooked onto a target class, Magento 2 just executes them sequentially based on the sortOrder parameter in your file di.xml.  
 
-### <a name="Step2G1a">Step2G1a: Preference  which override all DEBUG log</a>
+### <a name="Step2G1a">Step2G1a: Preference:  which override all DEBUG log</a>
 
 #### Preference
 Class preferences basically do the same thing in Magento 2 that rewrites did in Magento 1. It states a preference for one class over another, which allows you to specify which class/type is selected by Magento’s object manager.
@@ -3540,7 +3561,7 @@ app/code/BDC/SimpleNews/etc/di.xml add below code  :
 ```
 <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/>
 ```
-### <a name="Step2G1b">Step2G1b:  OR  Arguments which override specific class Monolog </a>
+### <a name="Step2G1b">Step2G1b: Arguments Preference: which override specific class Monolog </a>
 
 #### Arguments Preference ?
 
@@ -3562,7 +3583,8 @@ Node Formats: <argument xsi:type="object">{typeName}</argument>
 </type>
 ```
 
-### <a name="Step2G1c">Step2G1c: OR virtualType which override specific class only work specific module </a>
+### <a name="Step2G1c">Step2G1c: VirtualType: which override specific class only work specific module </a>
+
 
 #### What are Virtual Types?
 
@@ -3570,6 +3592,58 @@ Within Magento 2, classes can depend on each other using constructor-based Depen
 
 Virtual Types are defined in a file di.xml which might be located in numerous places - for instance, the etc/ folder of your own module. Virtual Types are in essence new PHP classes (but actually they are not, they are just links), that extend upon their original class while overriding the original class its constructor arguments by adding those in the di.xml file.
 
+#### What are Virtual Types?
+Within Magento 2, classes can depend on each other using constructor-based Dependency Injection. And instead of only allowing static dependencies (class A injects class B), Magento offers a configuration system that allows one dependency to be replaced with another (class B is swapped out for class C). One of these configurations is Virtual Types.
+
+Virtual Types are defined in a file di.xml which might be located in numerous places - for instance, the etc/ folder of your own module. Virtual Types are in essence new PHP classes (but actually they are not, they are just links), that extend upon their original class while overriding the original class its constructor arguments by adding those in the di.xml file.
+
+#### Create a new PHP child class or a Virtual Type?
+Once you realize that a Virtual Types is nothing more than a new PHP child object (as if there was an actual class generating it), it makes you wonder why you should do this through XML. Maybe it is easier to simply create a new PHP class in your module and modify things there? The end result is the same: There is a new object of a new type. (Note that this new class still needs to be used somewhere else to become useful. Typically this is done by using an XML Type to modify the constructor arguments of yet another class and inject this new virtual class in it.)
+
+I personally favour new PHP classes over new Virtual Types. However, once the original class has a lengthy constructor, a new PHP class would require you to duplicate all parent dependencies in its own constructor and pass them on to its parent - and perhaps all of that trouble is only needed for replacing one of those dependencies. A Virtual Type is quicker: It requires some XML, yes, but it allows you to single out only that dependency that you actually need to be replaced. The more complex the original constructor, the better it is to use a Virtual Type. (That being said, the more complex the original constructor, the more this original constructor needs to be cleaned up - with references to SOLID.)
+
+####  Virtual Types with namespaces?
+
+Now let's go to the main point of this blog: Virtual Types are identical to PHP classes created on the fly by the Object Manager. And just like all PHP classes, we have specific rules to stick to and namespacing is one of them. So why not use namespaces?
+
+Let's take a dummy example without namespaces:
+```
+<virtualType name="bdcVirtualSomeClass" type="BDC\Example\Some\Class">
+</virtualType>
+```
+
+And now let's see a namespaced version:
+```
+<virtualType name="BDC\Example\Some\Class\Virtual" type="BDC\Example\Some\Class">
+</virtualType>
+```
+
+To me, the namespaced version looks a lot cleaner. Remember that defining this Virtual Type is only half of the story - if you don't intend to use it elsewhere, it just as well can be removed again. It only becomes useful once it is applied elsewhere, for instance using a Type:
+
+```
+<type name="Magento\Framework\Some\Existing\Class">
+    <arguments>
+        <argument name="someDep" xsi:type="object">BDC\Example\Some\Class\Virtual</argument>
+    </arguments>
+</type>
+```
+Once others start debugging the class Magento\Framework\Some\Existing\Class, they might bump into the someDep argument and now, thanks to namespaces, the name of this Virtual Type identifies exactly who put that dependency there. This is why we have namespaces.
+
+####  Namespace with Virtual in it?
+
+However, this might also become confusing if the Virtual Type actually looks too similar to a PHP class. I always tend to click through my PhpStorm environment with the generated/ folder excluded from my project. Once in a while, I bump into a class that is not there. And if Magento does not die at that moment, I assume it is something that is generated. Once the class has the word Factory or Proxy in it, this confirms my assumption. Wouldn't it make sense to also include the word Virtual in the namespaced name of a Virtual Type?
+
+This leads to the following classes that would suggest that the PHP class actually is a VirtualType:
+```
+BDC\Example\Some\Class\Virtual
+BDC\Example\Virtual\Some\Class
+BDC\Example\Some\ClassVirtual
+BDC\Example\VirtualType\Some\Class
+BDC\Example\Some\Class\VirtualType
+```
+Obviously, there are many more variations. But just make sure to add the word Virtual in there.
+
+#### In this Module We Implemented as
 
 ```
 <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
