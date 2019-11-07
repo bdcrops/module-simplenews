@@ -4697,6 +4697,152 @@ define(function () {
 ## <a name="PartI">PartI: Components Library/Customizing  UI 15% </a> [Go to Top](#top)
 
 
+#### Explain UI component  contains  child tags argument ,dataSource ,columns ?
+
+-Argument:  data_sources to use (which makes the links between your grid and the database) with the tag js_config.
+We also declare the spinner, that is the name of the tag "columns" that will be used in our grid. We then declare our buttons in the buttons tag with a name, a label, a class and a target url.
+
+- dataSource:  dataProvider (the object that will fetch our data in database). With a "class" tag to define the name of the object to be used. This object will be defined later in the di.xml (dependency node file).
+We give a name to our dataSource via the "name" attribute and then we give it the field to use as the id for the grid in the database ("primaryFieldName") and for the request ("requestFieldName"). We then define in "config" the component to use (here "Magento_Ui/js/grid/provider") and the identifier in our bdd "indexField" which here has the value "pfay_contacts_id".
+
+- columns: It was defined above in the "spinner" section of the "argument" section, here it is named listing_columns.
+This area will allow us to define our columns with the identifier to be used to find oneself, the type of fields and filters to use for the grid, the type of sorting that will be used and a label.
+
+####  Bookmarks?
+The bookmarks allows you to save the state of the listing which you modified with the element "columns_control" previously created. Here is how to integrate the "bookmark" in the "container" :
+```
+<bookmark name="bookmarks">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/bookmarks/bookmarks</item>
+            <item name="displayArea" xsi:type="string">dataGridActions</item>
+            <item name="storageConfig" xsi:type="array">
+                <item name="saveUrl" xsi:type="url" path="*/*/save"/>
+                <item name="deleteUrl" xsi:type="url" path="*/*/delete"/>
+                <item name="namespace" xsi:type="string">contact_test_listing</item>
+            </item>
+        </item>
+    </argument>
+</bookmark>
+```
+
+#### Pagination
+
+The pagination of the grid under magento2 is super well done and very easy to integrate, it is enough just to pay attention to the 2 paths "provider" and "selectProvider".
+Here is the code to insert:
+```
+ <paging name="listing_paging">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="storageConfig" xsi:type="array">
+                <!-- we put here the path to the bookmarks element -->
+                <item name="provider" xsi:type="string">contacts_test_listing.contacts_test_listing.listing_top.bookmarks</item>
+                <item name="namespace" xsi:type="string">current.paging</item>
+            </item>
+            <!-- we put here the path to the element pfay_contact_ids of contacts_test_columns  element -->
+            <item name="selectProvider" xsi:type="string">contacts_test_listing.contacts_test_listing.contacts_test_columns.pfay_contacts_id</item>
+            <item name="displayArea" xsi:type="string">bottom</item>
+        </item>
+    </argument>
+</paging>
+```
+
+#### Magento2 grid filters
+To be able to filter the table can sometimes be practical, for that a "filter" element can be added to the magento grid. Here's how to do it:
+```
+<filters name="listing_filters">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="storageConfig" xsi:type="array">
+                <item name="provider" xsi:type="string">contacts_test_listing.contacts_test_listing.listing_top.bookmarks</item>
+                <item name="namespace" xsi:type="string">curren.filters</item>
+            </item>
+            <item name="childDefaults" xsi:type="array">
+                <item name="provider" xsi:type="string">contacts_test_listing.contacts_test_listing.listing_top.listing_filters</item>
+                <item name="imports" xsi:type="array">
+                    <item name="visible" xsi:type="string">contacts_test_listing.contacts_test_listing.listing_top.bookmarks:current.columns.${ $.index }.visible</item>
+                </item>
+            </item>
+        </item>
+    </argument>
+</filters>
+```
+
+By default, it takes all the fields available on the grid, it knows how to filter with the "filter" item of your "columns" like these:
+
+ ici type text :
+  <item name="filter" xsi:type="string">text</item>
+
+ ici type textRange :
+  <item name="filter" xsi:type="string">textRange</item>
+
+#### Mass Actions under magento2
+You want to be able to select several lines of your grid to delete them all at once or do another specific processing on all the lines selected at the same time? The Mass Actions are made for this. First of all it will be necessary to add the inputs on the edge of our grid to be able to select the lines, so in "columns" add this before the "column":
+```
+<selectionsColumn name="ids">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <!-- define which field will be used as ID -->
+            <item name="indexField" xsi:type="string">pfay_contacts_id</item>
+        </item>
+    </argument>
+</selectionsColumn>
+```
+
+You now see the checkboxes on the side that allow you to select multiple lines. Here is how to integrate the selectbox which allows to select the action to be performed once we have selected our lines:
+```
+<massaction name="listing_massaction">
+  <argument name="data" xsi:type="array">
+      <item name="config" xsi:type="array">
+          <!-- we put here the path to the element pfay_contact_ids of contacts_test_columns  element -->
+          <item name="selectProvider" xsi:type="string">contacts_test_listing.contacts_test_listing.contacts_test_columns.ids</item>
+          <item name="displayArea" xsi:type="string">bottom</item>
+          <item name="indexField" xsi:type="string">pfay_contacts_id</item>
+      </item>
+  </argument>
+  <action name="delete">
+      <argument name="data" xsi:type="array">
+          <item name="config" xsi:type="array">
+              <item name="type" xsi:type="string">delete</item>
+              <item name="label" xsi:type="string" translate="true">Delete Selected</item>
+              <item name="url" xsi:type="url" path="*/*/massDelete"/>
+              <item name="confirm" xsi:type="array">
+                  <item name="title" xsi:type="string" translate="true">Delete all selected contacts</item>
+                  <item name="message" xsi:type="string" translate="true">Do you want to delete all the selected contacts?</item>
+              </item>
+          </item>
+      </argument>
+  </action>
+</massaction>
+```
+
+Here it is the same, we have to be careful on what we enter as a path for the "selectProvider" and we add the actions following each other. In order to prepare the next tutorial, we will create the MassDelete controller. This is where we will be redirected when we select our action (*/*/massDelete).
+
+#### Create a search field in admin magento2
+
+To create a search field on the magento admin, you must add an optional element in the container that will be called "filterSearch" like this: In  
+```
+<!-- Filter Search -->
+<filterSearch name="fulltext">
+  <argument name="data" xsi:type="array">
+      <item name="config" xsi:type="array">
+          <item name="provider" xsi:type="string">contacts_test_listing.contacts_test_listing_data_source</item>
+          <item name="chipsProvider" xsi:type="string">contacts_test_listing.contacts_test_listing.listing_top.listing_filters_chips</item>
+          <item name="storageConfig" xsi:type="array">
+              <item name="provider" xsi:type="string">contacts_test_listing.contacts_test_listing.listing_top.bookmarks</item>
+              <item name="namespace" xsi:type="string">current.search</item>
+          </item>
+      </item>
+  </argument>
+</filterSearch>
+```
+
+For the searchbar to work you have to update your table to add the index.
+
+
+
+
+
 ### <a name="Step2I1">Step2I1: Rendering Grid(collections & listing component configuration) </a>
 
 - 1.grid collections
