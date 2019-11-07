@@ -901,6 +901,7 @@ The system.xml is a configuration file which is used to create configuration fie
 - Create file [etc/acl.xml](etc/acl.xml)
   (Purpose: This file will create a role for your configuration section) and insert this following code into it:
   <details><summary>Source</summary>
+  
       ```
       <?xml version="1.0"?>
       <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
