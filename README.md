@@ -3991,7 +3991,16 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 ### <a name="Step2G3">Step2G3: DI Plugins (Interceptors) </a>
 
+
+#### Whate is Plugins?
 A plugin is a great way to expand or edit a public method’s behavior by using code before, after or around method. First of all, please get an object that provides permission to all public methods of the observed method’s class.
+Interception is a software design pattern that is used when we want to insert code dynamically without necessarily changing the original class behavior. The interception pattern in Magento 2 is implemented via plugins.
+Plugins are an amazing tool in Magento 2. They allow you to change the behavior of methods for classes without having to rewrite the classes as we did above.
+There are 3 different ways to use a plugin to change method behavior. You may have heard them on Sesame Street:
+    - Before
+    - After
+    - Around
+
 
 #### Limitations: Plugins can not be used on following:
 - Final methods
@@ -4011,10 +4020,31 @@ A plugin is a great way to expand or edit a public method’s behavior by using 
     </type>
 </config>
 ```
-You must specify these elements:
+
+#### Explain Plugin element attributes assigned in declaration ?
+
 - type name: A class or interface which the plugin observes.
 - plugin name: An arbitrary plugin name that identifies a plugin. Also used to merge the configurations for the plugin.
 - plugin type:  name of a plugin’s class or its virtual type. Use the following naming convention when you specify this element: \Vendor\Module\Plugin\<ClassName>.
+Under the type element, we define one or more plugins using the plugin element.
+
+More Details :
+- name – Using this attribute, you can provide a unique and recognizable name value that is specific to the plugin.
+
+- sortOrder – This attribute determines the order of execution when multiple plugins are observing the same method.
+
+- disabled – The default value of this attribute is set to false, but if it is set to true, it will disable the current plugin, and it will not get executed.
+
+- type – This attribute points to the class that we will be using to implement the before, after or around the listener.
+
+Assuming we are writing a plugin for a specific method, let’s choose a random method under Customer.php class, the getName() method.
+We define the before, after and around listeners for the getName() method by writing the naming conventions as follows.
+
+Before + getName() => beforeGetName();
+After + getName()  => afterGetName();
+Around + getName() => aroundGetName();
+
+
 #### The following elements are optional:
 
 - plugin sortOrder: Plugins that call the same method run them using this order.
