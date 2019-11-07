@@ -3557,7 +3557,24 @@ Now  check var/log/bdc_debug.log  all log are write there
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/bdc_debug.png)
 
-### <a name="Step2G2">Step2G2:DI Observer Implements</a>
+### <a name="Step2G2">Step2G2:DI Events & Observer Implements</a>
+
+[devdocs](https://devdocs.magento.com/guides/v2.3/extension-dev-guide/events-and-observers.html)
+
+#### Magento 2 Events
+Events are dispatched by Magento modules on the trigger of a specific action. Not only that, Magento also allows you to also create your own custom event that can be dispatched in your code. When the action is triggered, it will pass data to the relevant observer configured for the dispatched event.
+Magento 2 events can be dispatched using Magento\Framework\Event\Manager class and it can be obtained through the dependency injection by defining the dependency in your constructor.
+
+#### Magento 2 Observers
+Observers are used to catch the action which was triggered from events. In observers, you can set the required functionality or logic that is to be executed in response.
+
+Magento 2 observers can be created by lacing your class file under the Module-Root/Observer directory. Your observer class should implement the following;
+
+Magento\Framework\Event\ObserverInterface and define its execution function.
+
+Now let’s start with the execution!
+
+Let’s assume that you want to change the background color of your store if the customer is not logged in.
 
 #### What is observers in Magento 2?
 
@@ -3573,6 +3590,40 @@ Magento\Framework\Event\ObserverInterface and define its execution function.
 #### How to use observers
 Make sure you have registered the new module to test it before, we will practice on this module.
 I will use my module SampleEvent. And then, I will use an observer to customize the product name on the product view page.
+#### Some practices when using observer Magento 2:
+
+- Make your observer efficient: You should try to keep your observer small and efficient by avoiding complex computations if you can. Because having complex computations in your observer can slow down application processes.
+
+- Don’t include business logic: Your observer should not contain logic other than what is needed for it to run. Business logic should be encapsulated in other classes that your observer uses.
+
+- Declare observer in the appropriate scope:
+
++ For the frontend events, declare observers in etc/frontend/events.xml, this event will be only used in the frontend. You can't use this event in the backend.
+
++ For the backend events, declare observers in etc/adminhtml/events.xml, this event will be only used in the backend. This event can't be used in the frontend.
+
++ Use the global etc/events.xml file only when an event can occur on both the frontend and the backend.
+
++ You can put events.xml in etc > webapi_rest > events.xml while handling Rest API request.
+
++ You can put events.xml in etc > webapi_soap > events.xml while handling Soap API request.
+
++ You can put events.xml in etc > crontab > events.xml while handling scheduled jobs only.
+
++ You can put events.xml in etc > setup > events.xml while Magento or extensions are being installed or upgraded.
+
+#### Some perfect events in Magento 2:
+
+- Events in Magento controller:
+
++ controller_action_predispatch - executes before each controller dispatching.
+
++ controller_action_postdispatch_{full_action_name} - executes after a controller with specific  {full_action_name}.
+
++ controller_action_postdispatch_{route_name} - executes after each controller with specific {route_name}.
+
++ controller_action_postdispatch - executes after each controller dispatching.
+
 
 
 - Edit [Helper/News.php](Helper/News.php):
@@ -3837,7 +3888,14 @@ These events are default and always available with a model, If you want to use a
     ```
   </details>
 
-- add code app/code/BDC/SimpleNews/etc/di.xml
+
+#### Note: Explain observer  node defines the observer itself and its attributes?
+    - name – the observer registration name (it is important that the names do not coincide);
+    - instance – the class, which method will be executed when a specific even occurs;
+    - method – the method being executed.
+
+
+- add [etc/di.xml](etc/di.xml)
   <details><summary>Source</summary>
 
     ```
