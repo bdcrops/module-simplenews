@@ -805,50 +805,53 @@ public function execute()
 }
 ```
 
-
-
-### <a name="PartB">Part B: News Module for Back End </a>   [Go to Top](#top)
 ***
 
+### <a name="PartB">Part B: News Module for Back End </a>   [Go to Top](#top)
 
-### <a name="Step2B1">Step 2B.1: Setup Module's Backend /System  configuration</a>
 
 
-- Create file: app/code/BDC/SimpleNews/etc/adminhtml/system.xml (Purpose: This file will declare your configurations in Stores > Settings > Configuration section) and insert this following code into it:
+### <a name="Step2B1">Step 2B1: Setup Module's Backend /System  configuration</a>
 
-```
-<?xml version="1.0"?>
+- Create file[etc/adminhtml/system.xml](etc/adminhtml/system.xml)
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
-    <system>
-        <tab id="bdc" translate="label" sortOrder="1">
-            <label>BDC</label>
-        </tab>
-        <section id="simplenews" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Simple News</label>
-            <tab>bdc</tab>
-            <resource>BDC_SimpleNews::system_config</resource>
-            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>General Settings</label>
-                <field id="enable_in_frontend" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable in frontend</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="head_title" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Head title</label>
-                    <comment>Fill head title of news list page at here</comment>
-                    <validate>required-entry</validate>
-                </field>
-                <field id="lastest_news_block_position" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Lastest news block position</label>
-                    <source_model>BDC\SimpleNews\Model\System\Config\LastestNews\Position</source_model>
-                </field>
-            </group>
-        </section>
-    </system>
-</config>
+  (Purpose: This file will declare your configurations in Stores > Settings > Configuration section) and insert this following code into it:
 
-```
+  <details><summary>Source</summary>
+
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
+          <system>
+              <tab id="bdc" translate="label" sortOrder="1">
+                  <label>BDC</label>
+              </tab>
+              <section id="simplenews" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <label>Simple News</label>
+                  <tab>bdc</tab>
+                  <resource>BDC_SimpleNews::system_config</resource>
+                  <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                      <label>General Settings</label>
+                      <field id="enable_in_frontend" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                          <label>Enable in frontend</label>
+                          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                      </field>
+                      <field id="head_title" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                          <label>Head title</label>
+                          <comment>Fill head title of news list page at here</comment>
+                          <validate>required-entry</validate>
+                      </field>
+                      <field id="lastest_news_block_position" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                          <label>Lastest news block position</label>
+                          <source_model>BDC\SimpleNews\Model\System\Config\LastestNews\Position</source_model>
+                      </field>
+                  </group>
+              </section>
+          </system>
+      </config>
+      ```
+  </details>
+
 #### Note: [System configuration](https://inviqa.com/blog/how-use-system-configuration-and-helpers-magento-2) :
 
 System configuration values in Magento 2 are stored in the core_config_data database table, which is exactly the same as in Magento 1. But the xml config files differ.
@@ -862,90 +865,90 @@ The system.xml is a configuration file which is used to create configuration fie
 - How do you add a new tab to the Admin menu?
 
 
-### <a name="Step2B2">Step 2B.2:  Create a custom source model</a>
+### <a name="Step2B2">Step 2B2:Create a custom source model</a>
 
-- Create file: app/code/BDC/SimpleNews/Model/System/Config/LastestNews/Position.php and insert this following code into it:
+- Create file [Model/System/Config/LastestNews/Position.php](Model/System/Config/LastestNews/Position.php):
+  <details><summary>Source</summary>
 
-```
-<?php
+      ```
+      <?php
+      namespace BDC\SimpleNews\Model\System\Config\LastestNews;
+      use Magento\Framework\Option\ArrayInterface;
+      class Position implements ArrayInterface{
+          const LEFT      = 1;
+          const RIGHT     = 2;
+          const DISABLED  = 0;
 
-namespace BDC\SimpleNews\Model\System\Config\LastestNews;
+          /**
+           * Get positions of lastest news block
+           *
+           * @return array
+           */
+          public function toOptionArray(){
+              return [
+                  self::LEFT => __('Left'),
+                  self::RIGHT => __('Right'),
+                  self::DISABLED => __('Disabled')
+              ];
+          }
+      }
 
-use Magento\Framework\Option\ArrayInterface;
+      ```
+  </details>
 
-class Position implements ArrayInterface{
-    const LEFT      = 1;
-    const RIGHT     = 2;
-    const DISABLED  = 0;
+### <a name="Step2B3">Step 2B3:  Create a role for this config section</a>
 
-    /**
-     * Get positions of lastest news block
-     *
-     * @return array
-     */
-    public function toOptionArray(){
-        return [
-            self::LEFT => __('Left'),
-            self::RIGHT => __('Right'),
-            self::DISABLED => __('Disabled')
-        ];
-    }
-}
-
-```
-
-### <a name="Step2B3">Step 2B.3:  Create a role for this config section</a>
-
-- Create file: app/code/BDC/SimpleNews/etc/acl.xml (Purpose: This file will create a role for your configuration section) and insert this following code into it:
-
-```
-<?xml version="1.0"?>
-
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Acl/etc/acl.xsd">
-    <acl>
-        <resources>
-            <resource id="Magento_Backend::admin">
-                <resource id="Magento_Backend::stores">
-                    <resource id="Magento_Backend::stores_settings">
-                        <resource id="Magento_Config::config">
-                            <resource id="BDC_SimpleNews::system_config" title="Simple News Section" />
-                        </resource>
-                    </resource>
-                </resource>
-            </resource>
-        </resources>
-    </acl>
-</config>
-
-
-```
+- Create file [etc/acl.xml](etc/acl.xml)
+  (Purpose: This file will create a role for your configuration section) and insert this following code into it:
+  <details><summary>Source</summary>
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Acl/etc/acl.xsd">
+          <acl>
+              <resources>
+                  <resource id="Magento_Backend::admin">
+                      <resource id="Magento_Backend::stores">
+                          <resource id="Magento_Backend::stores_settings">
+                              <resource id="Magento_Config::config">
+                                  <resource id="BDC_SimpleNews::system_config" title="Simple News Section" />
+                              </resource>
+                          </resource>
+                      </resource>
+                  </resource>
+              </resources>
+          </acl>
+      </config>
+      ```
+  </details>
 
 #### Note:- 5.3 Define / identify basic terms and elements of ACL
 
 - How would you add a new ACL resource to a new entity?  
 - How do you manage the existing ACL hierarchy?  
 
-### <a name="Step2B4">Step 2B.4:  Set some default value for configuration options</a>
+### <a name="Step2B4">Step 2B4:  Set some default value for configuration options</a>
 
-- Create file: app/code/BDC/SimpleNews/etc/config.xml and insert this following code into it:
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
-    <default>
-        <simplenews>
-            <general>
-                <enable_in_frontend>1</enable_in_frontend>
-                <head_title>BDC - Simple News</head_title>
-                <lastest_news_position>1</lastest_news_position>
-            </general>
-        </simplenews>
-    </default>
-</config>
+- Create file[etc/config.xml](etc/config.xml) and insert this following code into it:
+  <details><summary>Source</summary>
 
-```
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
+          <default>
+              <simplenews>
+                  <general>
+                      <enable_in_frontend>1</enable_in_frontend>
+                      <head_title>BDC - Simple News</head_title>
+                      <lastest_news_position>1</lastest_news_position>
+                  </general>
+              </simplenews>
+          </default>
+      </config>
 
+      ```
+  </details>
 
 ### <a name="Step2B5">Step 2B.5:  Create a Helper Data class</a>
 
