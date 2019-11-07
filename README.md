@@ -38,21 +38,21 @@
 
 
 ### [Part B: News Module for Back End](#PartB)
-- [Step 2B.1: Setup Module's backend configuration](#Step2B1)
-- [Step 2B.2:  Create a custom source model](#Step2B2)
-- [Step 2B.3:  Create a role for this config section](#Step2B3)
-- [Step 2B.4:  Set some default value for configuration options](#Step2B4)
-- [Step 2B.5:  Create a Helper Data class](#Step2B5)
-- [Step 2B.6:  Create the menu for Magento backend](#Step2B6)
-- [Step 2B.7:  Create backend route file](#Step2B7)
-- [Step 2B.8:  Update the acl.xml to add more roles](#Step2B8)
-- [Step 2B.9:  Create layout for grid](#Step2B9)
-- [Step 2B.10:  Create layout for Grid Container](#Step2B10)
-- [Step 2B.11:  Create layout for ajax load](#Step2B11)
-- [Step 2B.12:  Create news status option file](#Step2B12)
-- [Step 2B.13:  Create News Block for backend](#Step2B13)
-- [Step 2B.14:  Create Grid block file for Ajax load](#Step2B14)
-- [Step 2B.15:  Create backend controller for child action class to extend](#Step2B15)
+- [Step 2B1: Setup Module's backend configuration](#Step2B1)
+- [Step 2B2:  Create a custom source model](#Step2B2)
+- [Step 2B3:  Create a role for this config section](#Step2B3)
+- [Step 2B4:  Set some default value for configuration options](#Step2B4)
+- [Step 2B5:  Create a Helper Data class](#Step2B5)
+- [Step 2B6:  Create the menu for Magento backend](#Step2B6)
+- [Step 2B7:  Create backend route file](#Step2B7)
+- [Step 2B8:  Update the acl.xml to add more roles](#Step2B8)
+- [Step 2B9:  Create layout for grid](#Step2B9)
+- [Step 2B10:  Create layout for Grid Container](#Step2B10)
+- [Step 2B11:  Create layout for ajax load](#Step2B11)
+- [Step 2B12:  Create news status option file](#Step2B12)
+- [Step 2B13:  Create News Block for backend](#Step2B13)
+- [Step 2B14:  Create Grid block file for Ajax load](#Step2B14)
+- [Step 2B15: Create backend controller for child action class to extend](#Step2B15)
 - [Step 2B.16:  Create Backend Action file Index.php](#Step2B16)
 - [Step 2B.17:  Create another Action for ajax](#Step2B17)
 - [Step 2B.18:  Create layout file simplenews_news_edit.xml for edit form](#Step2B18)
@@ -86,9 +86,9 @@
 - [Step 2C.15:  Frontend view for the module](#Step2C15)
 
 ### [Part D : News Console/Command](#PartD)
-- [Step 2D.1:  Adding a new command Dependency Injection](#Step2D1)
-- [Step 2D.2:  Adding a new command class](#Step2D3)
-- [Step 2D.3:  Adding a new command Helper class](#Step2D3)
+- [Step 2D1:  Adding a new command Dependency Injection](#Step2D1)
+- [Step 2D2:  Adding a new command class](#Step2D3)
+- [Step 2D3:  Adding a new command Helper class](#Step2D3)
 
 ### [Part E : Create/Set / Configure Custom Cron Jobs](#PartE)
 - [Step 2E.1:  Create crontab.xml ](#Step2E1)
@@ -670,11 +670,25 @@ And the layout handle for this action is: helloworld_controller_action.xml So wi
 
 ### <a name="Step2A12">Step 2A.12: Create IndexController</a>
 
+- Factory Object
+We are done with creating the database table, CRUD model, resource model and collection. So how to use them?
+
+In this part, we will talk about Factory Object for model. As you know in OOP, a factory method will be used to instantiate an object. In Magento, the Factory Object do the same thing.
+
+The Factory class name is the name of Model class and append with the ‘Factory’ word. So for our example, we will have PostFactory class. You must not create this class. Magento will create it for you. Whenever Magento’s object manager encounters a class name that ends in the word ‘Factory’, it will automatically generate the Factory class in the var/generation folder if the class does not already exist. You will see the factory class:
+
+```
+use BDC\SimpleNews\Model\NewsFactory;
+var/generation/<vendor_name>/<module_name>/Model/ClassFactory.php
+var/generation/BDC/SimpleNew/Model/NewsFactory.php
+```
+To instantiate a model object we will use automatic constructor dependency injection to inject a factory object, then use factory object to instantiate the model object.
+
 
 - Create controller [Controller/Index/Index.php](Controller/Index/Index.php):
 
   <details><summary>Source</summary>
-  
+
     ```
       <?php
 
@@ -2708,162 +2722,156 @@ class Right extends Lastest
 ## <a name="PartD"> Part D : News Console Command </a>  [Go to Top](#top)
 
 
-### <a name="Step2D1"> Step 2D.1: Adding a new command  Dependency Injection</a>
+### <a name="Step2D1"> Step 2D1: Adding a new command  Dependency Injection</a>
 
 Adding a new command to CLI is based on passing on the argument from the XML level to the class Magento\Framework\Console\CommandList. Dependency Injection comes in handy here. Let’s  
 
-Edit/Create  app/code/BDC/SimpleNews/etc/di.xml and insert this following code into it:
+- Edit/Create [etc/di.xml](etc/di.xml):
+  <details><summary>Source</summary>
 
-
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-   <type name="Magento\Framework\Console\CommandList">
-       <arguments>
-           <argument name="commands" xsi:type="array">
-             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
-           </argument>
-       </arguments>
-   </type>
-</config>
-
-```
+    ```
+    <?xml version="1.0"?>
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+       <type name="Magento\Framework\Console\CommandList">
+           <arguments>
+               <argument name="commands" xsi:type="array">
+                 <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+               </argument>
+           </arguments>
+       </type>
+    </config>
+    ```
+  </details>
 ### <a name="Step2D2"> Step 2D.2: Adding a new command  class</a>
 We add the object responsible for executing the script to the class Magento\Framework\Console\CommandList. The constructor of this class is simply an array where class objects are passed on in a similar manner as in the above example.
 
 Let’s proceed to the next step – creating a class for our new command and a helper responsible for adding a new user:
 
-Create  app/code/BDC/SimpleNews/Console/Command/NewsCreate.php and insert this following code into it:
+- Create  [Console/Command/NewsCreate.php](Console/Command/NewsCreate.php):
+  <details><summary>Source</summary>
 
-```
-<?php
-namespace BDC\SimpleNews\Console\Command;
+    ```
+    <?php
+    namespace BDC\SimpleNews\Console\Command;
 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use BDC\SimpleNews\Helper\News;
+    use Symfony\Component\Console\Command\Command;
+    use Symfony\Component\Console\Input\InputOption;
+    use Symfony\Component\Console\Input\InputInterface;
+    use Symfony\Component\Console\Output\OutputInterface;
+    use BDC\SimpleNews\Helper\News;
 
-class NewsCreate extends Command {
-    protected $newsHelper;
+    class NewsCreate extends Command {
+        protected $newsHelper;
 
-    public function __construct(News $newsHelper)
-    {
-        $this->newsHelper = $newsHelper;
-        parent::__construct();
+        public function __construct(News $newsHelper)
+        {
+            $this->newsHelper = $newsHelper;
+            parent::__construct();
+        }
+
+        protected function configure()
+        {
+            $this->setName('bdcrops:news:create')
+                ->setDescription('Create New News')
+                ->setDefinition($this->getOptionsList());
+        }
+
+        protected function execute(InputInterface $input, OutputInterface $output)
+        {
+            $output->writeln('<info>Creating new news...</info>');
+            $this->newsHelper->setData($input);
+            $this->newsHelper->execute();
+
+            $output->writeln('');
+            $output->writeln('<info>News created with the following data:</info>');
+            $output->writeln('<comment>News ID: ' . $this->newsHelper->getNewsId());
+            $output->writeln('<comment>Title: ' . $input->getOption(News::KEY_TITLE));
+            $output->writeln('<comment>Summary: ' . $input->getOption(News::KEY_SUMMARY));
+            $output->writeln('<comment>Description: ' . $input->getOption(News::KEY_DESC));
+
+           }
+
+        protected function getOptionsList(){
+            return [
+                new InputOption(News::KEY_TITLE, null, InputOption::VALUE_REQUIRED, '(Required) News Title'),
+                new InputOption(News::KEY_SUMMARY, null, InputOption::VALUE_REQUIRED, '(Required) News Summary'),
+                new InputOption(News::KEY_DESC, null, InputOption::VALUE_REQUIRED, '(Required) News Description'),
+
+                ];
+        }
     }
-
-    protected function configure()
-    {
-        $this->setName('bdcrops:news:create')
-            ->setDescription('Create New News')
-            ->setDefinition($this->getOptionsList());
-    }
-
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $output->writeln('<info>Creating new news...</info>');
-        $this->newsHelper->setData($input);
-        $this->newsHelper->execute();
-
-        $output->writeln('');
-        $output->writeln('<info>News created with the following data:</info>');
-        $output->writeln('<comment>News ID: ' . $this->newsHelper->getNewsId());
-        $output->writeln('<comment>Title: ' . $input->getOption(News::KEY_TITLE));
-        $output->writeln('<comment>Summary: ' . $input->getOption(News::KEY_SUMMARY));
-        $output->writeln('<comment>Description: ' . $input->getOption(News::KEY_DESC));
-
-       }
-
-    protected function getOptionsList(){
-        return [
-            new InputOption(News::KEY_TITLE, null, InputOption::VALUE_REQUIRED, '(Required) News Title'),
-            new InputOption(News::KEY_SUMMARY, null, InputOption::VALUE_REQUIRED, '(Required) News Summary'),
-            new InputOption(News::KEY_DESC, null, InputOption::VALUE_REQUIRED, '(Required) News Description'),
-
-            ];
-    }
-}
-
-
-```
+    ```
+  </details>
 
 ### <a name="Step2D3"> Step 2D.3: Helper  </a>
 
 
-Create  app/code/BDC/SimpleNews/Helper/News.php and insert this following code into it:
+- Create  [Helper/News.php](Helper/News.php):
 
-```
-<?php
-namespace BDC\SimpleNews\Helper;
+  <details><summary>Source</summary>
 
-use \Magento\Framework\App\Helper\Context;
-use \Magento\Store\Model\StoreManagerInterface;
-use \Magento\Framework\App\State;
-use \BDC\SimpleNews\Model\NewsFactory;
-use \Symfony\Component\Console\Input\Input;
+      ```
+      <?php
+      namespace BDC\SimpleNews\Helper;
 
-class News extends \Magento\Framework\App\Helper\AbstractHelper
-{
-    const KEY_TITLE = 'news-title';
-    const KEY_SUMMARY = 'news-summary';
-    const KEY_DESC = 'news-description';
+      use \Magento\Framework\App\Helper\Context;
+      use \Magento\Store\Model\StoreManagerInterface;
+      use \Magento\Framework\App\State;
+      use \BDC\SimpleNews\Model\NewsFactory;
+      use \Symfony\Component\Console\Input\Input;
+      use \Magento\Framework\App\Helper\AbstractHelper;
 
+      class News extends AbstractHelper {
+          const KEY_TITLE = 'news-title';
+          const KEY_SUMMARY = 'news-summary';
+          const KEY_DESC = 'news-description';
+          protected $storeManager;
+          protected $state;
+          protected $newsFactory;
+          protected $data;
+          protected $newsId;
 
-    protected $storeManager;
-    protected $state;
-    protected $newsFactory;
-    protected $data;
-    protected $newsId;
+          public function __construct(
+              Context $context,
+              StoreManagerInterface $storeManager,
+              State $state,
+              NewsFactory $newsFactory ) {
+              $this->storeManager = $storeManager;
+              $this->state = $state;
+              $this->newsFactory = $newsFactory;
 
-    public function __construct(
-        Context $context,
-        StoreManagerInterface $storeManager,
-        State $state,
-        NewsFactory $newsFactory
-    ) {
-        $this->storeManager = $storeManager;
-        $this->state = $state;
-        $this->newsFactory = $newsFactory;
+              parent::__construct($context);
+          }
 
-        parent::__construct($context);
-    }
+          public function setData(Input $input) {
+              $this->data = $input;
+              return $this;
+          }
 
-    public function setData(Input $input)
-    {
-        $this->data = $input;
-        return $this;
-    }
+          public function execute() {
+              $this->state->setAreaCode('frontend');
+              $news = $this->newsFactory->create();
+              $news
+                  ->setTitle($this->data->getOption(self::KEY_TITLE))
+                  ->setSummary($this->data->getOption(self::KEY_SUMMARY))
+                  ->setDescription($this->data->getOption(self::KEY_DESC))
 
-    public function execute()
-    {
-        $this->state->setAreaCode('frontend');
+                  ;
+              $news->save();
 
-        $news = $this->newsFactory->create();
-        $news
-            ->setTitle($this->data->getOption(self::KEY_TITLE))
-            ->setSummary($this->data->getOption(self::KEY_SUMMARY))
-            ->setDescription($this->data->getOption(self::KEY_DESC))
+              $this->newsId = $news->getId();
 
-            ;
-        $news->save();
+              // if($this->data->getOption(self::KEY_SENDEMAIL)) {
+              //     $news->sendNewAccountEmail();
+              // }
+          }
 
-        $this->newsId = $news->getId();
-
-        // if($this->data->getOption(self::KEY_SENDEMAIL)) {
-        //     $news->sendNewAccountEmail();
-        // }
-    }
-
-    public function getNewsId()
-    {
-        return (int)$this->newsId;
-    }
-}
-
-
-```
+          public function getNewsId() {
+              return (int)$this->newsId;
+          }
+      }
+      ```
+  </details>
 
 The execute() method adds a new user. If any data is incorrect at this stage (i.e. too short password), the script will stop and the console will show an Exception.
 
