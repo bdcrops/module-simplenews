@@ -935,8 +935,41 @@ etc/mview.xml —  describes the representations of all the indices described in
 - Loading configurations for specific areas. Loading the files located in the folders etc/adminhtml or etc/frontend.
 Configuration files are connected according to their complete xPaths. Specific attributes are defined in the $idAttributes array as identifiers. After 2 files are connected, they contain all the nodes and values from the original files. The second XML file either adds or replaces the nodes of the first XML file.
 
+#### Magento/Framework/Config provides the following interfaces for developers:
 
+- \Magento\Framework\Config\DataInterface — returns a value by key within the scope, connects the configuration data to an object;
+- \Magento\Framework\Config\ScopeInterface — identifies the current scope;
+- \Magento\Framework\Config\FileResolverInterface — identifies a set of files that must be read;
+- \Magento\Framework\Config\ReaderInterface — reads configuration data;
+- \Magento\Framework\Config\ConverterInterface — converts a DOM object to an array;
+- \Magento\Framework\Config\SchemaLocatorInterface — determines the path to validation schemes;
+- \Magento\Framework\Config\ValidationStateInterface — determines the current validation status.
 
+#### Class groups used to load XML:
+
+- Config is used to access the configuration values;
+- Reader is used to read the file;
+- SchemaLocator stores the path to the validation scheme.
+
+#### Magento 2 provides two types of validation for XML configuration files: validation before a merging and validation after a merging. It can be either the same or different schemes.
+
+To create a custom configuration file, you need to create the following elements:
+
+- XSD schema
+- Config PHP file
+- Config reader
+- Schema locator
+- Converter
+####  Explain product_types.xml module of Magento_Catalog as an example ?
+
+product_types.xml module of Magento_Catalog as an example of a custom configuration file. Each module can add its own product type using the product_types.xml file and these files will be validated and merged.
+
+- We will start with creating an XSD file. product_types.xsd validation scheme is used in Magento_Catalog before merging, product_types_merged.xsd is used for a merged XML file.
+- Create a PHP configuration file to access the data from the file. In our example it is Config.php. To provide access to data from the product_types.xml file, it implements the Magento\Catalog\Model\ProductType\ConfigInterface interface and all its methods.
+- In Config.php of the constructor, we need to get a reader class. In our case, it is Magento\Catalog\Model\ProductType\Config\Reader. This is a small class with the definition of the $_ idAttributes property. In the constructor of the $fileName variable, we define the name of the XML file.
+- Magento\Catalog\Model\ProductType\Config\SchemaLocator implements two methods: getSchema and getPerFileSchema and returns the path to merged XSD and ordinary XSD files. In the constructor, we define these paths in the properties of $_ schema and $_ perFileSchema.
+- Creating a converter class. In our example: Magento\Catalog\Model\ProductType\Config\Converter implements \Magento\Framework\Config\ConverterInterface and realizes the convert method, which converts the node’s DOM tree to an array.
+That is it concerning configuration XML, variables scope and configuration files in Magento 2.
 
 ### <a name="Step2B1">Step 2B1: Setup Module's Backend /System  configuration</a>
 
