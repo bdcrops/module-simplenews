@@ -355,11 +355,10 @@ End
 ***
 
 ### Tutorials Series
-- [amasty-next](https://amasty.com/blog/magento-2-certification-directory-structure/)
-- [techjeffyu](http://techjeffyu.com/?tag=Magento2)
 - [pierrefay](https://www.pierrefay.com/magento2-training/create-a-view.html)
 - [mageplaza](https://www.mageplaza.com/magento-2-module-development/)
 - [magestore](https://www.magestore.com/magento-2-tutorial/)
+- [techjeffyu](http://techjeffyu.com/?tag=Magento2)
 - [alanstorm](https://alanstorm.com/category/magento-2/)
 - [bizspice](https://www.bizspice.com/blog/category/magento-2-tips-and-tricks)
 - [amasty](https://amasty.com/docs/doku.php?id=magento_2)
@@ -372,4 +371,5 @@ End
 - [diazwatson](https://github.com/diazwatson/magecert2/blob/master/_pages/associate-developer/index.md)
 - [novikor](https://github.com/novikor/magento2certification/tree/master/app/code/M2C)
 - [pykettk](https://github.com/pykettk/magento2-associate-developer-certification)
-- https://www.magebay.com/docs/category/magento-2-knowledge-base/
+- [magebay](https://www.magebay.com/docs/category/magento-2-knowledge-base/)
+- [amasty-next](https://amasty.com/blog/magento-2-certification-directory-structure/)
