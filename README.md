@@ -3384,6 +3384,14 @@ In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead 
 
 ## <a name="PartG">PartG:Dependency Injection configuration </a> [Go to Top](#top)
 
+#### How to Override core code  in Magento 2?
+  By default, there are three different ways to override core functionalities.
+  1. Using preference
+  2. Using event\observer
+  3. Using a plugin
+
+#### Define Preference,Arguments, Virtual Types, Plugins ,Observers?
+
 - Preference:  One class over another, which allows you to specify which class/type is selected by Magento’s object manager.This means that you can override which method you want from the class, along with the methods that this class extends.
 - Arguments:
 - Virtual Types: way to inject different dependencies into existing classes without affecting other classes.
@@ -3391,100 +3399,119 @@ In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead 
 - Observers:
 
 ### <a name="Step2G1">Step2G1:DI Preference,Arguments & Virtual Types Implements  </a>
-We write  log after news item save .
 
-- Edit app/code/BDC/SimpleNews/Helper/News.php & insert code look like:
-```
-<?php
-namespace BDC\SimpleNews\Helper;
+  We write  log after news item save .
 
-use \Magento\Framework\App\Helper\Context;
-use \Magento\Store\Model\StoreManagerInterface;
-use \Magento\Framework\App\State;
-use \BDC\SimpleNews\Model\NewsFactory;
-use \Symfony\Component\Console\Input\Input;
-use \Psr\Log\LoggerInterface;
+- Edit [Helper/News.php](Helper/News.php) look like:
 
+  <details><summary>Source</summary>
 
-class News extends \Magento\Framework\App\Helper\AbstractHelper {
-    const KEY_TITLE = 'news-title';
-    const KEY_SUMMARY = 'news-summary';
-    const KEY_DESC = 'news-description';
+      ```
+      <?php
+      namespace BDC\SimpleNews\Helper;
 
-    protected $storeManager;
-    protected $state;
-    protected $newsFactory;
-    protected $data;
-    protected $newsId;
-    protected $logger;
+      use \Magento\Framework\App\Helper\Context;
+      use \Magento\Store\Model\StoreManagerInterface;
+      use \Magento\Framework\App\State;
+      use \BDC\SimpleNews\Model\NewsFactory;
+      use \Symfony\Component\Console\Input\Input;
+      use \Psr\Log\LoggerInterface;
 
 
-    public function __construct(
-        Context $context,
-        StoreManagerInterface $storeManager,
-        State $state,
-        NewsFactory $newsFactory,
-        LoggerInterface $logger ) {
-            $this->storeManager = $storeManager;
-            $this->state = $state;
-            $this->logger = $logger;
+      class News extends \Magento\Framework\App\Helper\AbstractHelper {
+          const KEY_TITLE = 'news-title';
+          const KEY_SUMMARY = 'news-summary';
+          const KEY_DESC = 'news-description';
 
-            $this->newsFactory = $newsFactory;
-
-        parent::__construct($context);
-    }
-
-    public function setData(Input $input){
-        $this->data = $input;
-        return $this;
-    }
-
-    public function execute() {
-        $this->state->setAreaCode('frontend');
-        $news = $this->newsFactory->create();
-        $news->setTitle($this->data->getOption(self::KEY_TITLE))
-            ->setSummary($this->data->getOption(self::KEY_SUMMARY))
-            ->setDescription($this->data->getOption(self::KEY_DESC));
-        $news->save();
-        $this->logger->debug('DI: '.$news->getTitle());
-
-    }
-
-    public function getNewsId(){
-        return (int)$this->newsId;
-    }
-}
+          protected $storeManager;
+          protected $state;
+          protected $newsFactory;
+          protected $data;
+          protected $newsId;
+          protected $logger;
 
 
-```
+          public function __construct(
+              Context $context,
+              StoreManagerInterface $storeManager,
+              State $state,
+              NewsFactory $newsFactory,
+              LoggerInterface $logger ) {
+                  $this->storeManager = $storeManager;
+                  $this->state = $state;
+                  $this->logger = $logger;
 
-- Create app/code/BDC/SimpleNews/Helper/BdcDebug.php Insert :
-```
-<?php
-namespace BDC\SimpleNews\Helper;
+                  $this->newsFactory = $newsFactory;
 
-use Monolog\Logger;
-use Magento\Framework\Logger\Handler\Base;
+              parent::__construct($context);
+          }
 
-class BdcDebug extends Base{
-    /**
-     * @var string
-     */
-    protected $fileName = '/var/log/bdc_debug.log';
+          public function setData(Input $input){
+              $this->data = $input;
+              return $this;
+          }
 
-    /**
-     * @var int
-     */
-    protected $loggerType = Logger::DEBUG;
-}
+          public function execute() {
+              $this->state->setAreaCode('frontend');
+              $news = $this->newsFactory->create();
+              $news->setTitle($this->data->getOption(self::KEY_TITLE))
+                  ->setSummary($this->data->getOption(self::KEY_SUMMARY))
+                  ->setDescription($this->data->getOption(self::KEY_DESC));
+              $news->save();
+              $this->logger->debug('DI: '.$news->getTitle());
 
-```
-- as preference which override all DEBUG log
+          }
+
+          public function getNewsId(){
+              return (int)$this->newsId;
+          }
+      }
+
+      ```
+  </details>
+
+- Create [Helper/BdcDebug.php](Helper/BdcDebug.php) Insert :
+
+  <details><summary>Source</summary>
+
+      ```
+      <?php
+      namespace BDC\SimpleNews\Helper;
+
+      use Monolog\Logger;
+      use Magento\Framework\Logger\Handler\Base;
+
+      class BdcDebug extends Base{
+          /**
+           * @var string
+           */
+          protected $fileName = '/var/log/bdc_debug.log';
+
+          /**
+           * @var int
+           */
+          protected $loggerType = Logger::DEBUG;
+      }
+
+      ```
+  </details>
+
+### <a name="Step2G1a">Step2G1a: Preference  which override all DEBUG log</a>
+
+#### Preference
+Class preferences basically do the same thing in Magento 2 that rewrites did in Magento 1. It states a preference for one class over another, which allows you to specify which class/type is selected by Magento’s object manager.
+This means that you can override which method you want from the class, along with the methods that this class extends.
+
+#### Using class preference I am going to rewrite:
+    - Model class
+    - Block Class
+    - Controller Class
+
 app/code/BDC/SimpleNews/etc/di.xml add below code  :
 ```
 <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/>
 ```
-- OR  Arguments which override specific class Monolog
+### <a name="Step2G1b">Step2G1b:  OR  Arguments which override specific class Monolog </a>
 
 ```
 <type name="Magento\Framework\Logger\Monolog">
@@ -3496,7 +3523,7 @@ app/code/BDC/SimpleNews/etc/di.xml add below code  :
 </type>
 ```
 
-- OR virtualType which override specific class only work specific module
+### <a name="Step2G1c">Step2G1c: OR virtualType which override specific class only work specific module </a>
 
 ```
 <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
@@ -3510,41 +3537,44 @@ app/code/BDC/SimpleNews/etc/di.xml add below code  :
      <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
  </type>
 ```
-- Finaly app/code/BDC/SimpleNews/etc/di.xml look like ;
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-   <type name="Magento\Framework\Console\CommandList">
-       <arguments>
-           <argument name="commands" xsi:type="array">
-             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
-           </argument>
-       </arguments>
-   </type>
-  <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
-  <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
-  <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/> -->
+- Finaly [etc/di.xml](etc/di.xml) look like ;
+  <details><summary>Source</summary>
 
-  <!-- <type name="Magento\Framework\Logger\Monolog">
-      <arguments>
-          <argument name="handlers"  xsi:type="array">
-              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
-          </argument>
-      </arguments>
-  </type> -->
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+         <type name="Magento\Framework\Console\CommandList">
+             <arguments>
+                 <argument name="commands" xsi:type="array">
+                   <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+                 </argument>
+             </arguments>
+         </type>
+        <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
+        <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+        <!-- <preference type="BDC\SimpleNews\Helper\BdcDebug" for="Magento\Framework\Logger\Handler\Debug"/> -->
 
-  <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
-      <arguments>
-          <argument name="handlers"  xsi:type="array">
-              <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
-          </argument>
-      </arguments>
-  </virtualType>
-  <type name="BDC\SimpleNews\Helper\News">
-       <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
-   </type>
-</config>
-```
+        <!-- <type name="Magento\Framework\Logger\Monolog">
+            <arguments>
+                <argument name="handlers"  xsi:type="array">
+                    <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+                </argument>
+            </arguments>
+        </type> -->
+
+        <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
+            <arguments>
+                <argument name="handlers"  xsi:type="array">
+                    <item name="debug" xsi:type="object">BDC\SimpleNews\Helper\BdcDebug</item>
+                </argument>
+            </arguments>
+        </virtualType>
+        <type name="BDC\SimpleNews\Helper\News">
+             <arguments>  <argument name="logger" xsi:type="object">bdcLogger</argument> </arguments>
+         </type>
+      </config>
+      ```
+    </details>
 
 - Run
 
