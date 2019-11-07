@@ -3384,6 +3384,25 @@ In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead 
 
 ## <a name="PartG">PartG:Dependency Injection configuration </a> [Go to Top](#top)
 
+#### What is Dependency injection Magento 2?
+
+Magento 2 Dependency injection is used to replace the Magento 1.x Mage class when you convert to work with Magento 2. The Dependency injection design pattern creates an external environment where you can inject dependencies into an object. Thanks to that, there is no longer to create the objects manually. Namely, as when object A calls object or value B, this means B is a dependency of A.
+
+#### What is Dependency Inversion Principle Magento 2?
+If you are working with Magento 2 Dependency Injection, you should take look at Magento 2 Dependency Inversion Principle because this principle will restrict the direct working between the high level and low level classes. At that time, the interaction will implement via an interface of the low level classes as an abstract layer.
+
+Specifically, the di.xml file takes responsibility for mapping an interface dependency to a preferred implementation class. It can be said that with Magento 2 Dependency Inversion Principle, the dependency of the coding will be reduced significantly due to the abstract layer.
+
+- Object manager - Dependency Injection Container
+Object Manager is called as Dependency Injection Container, Magento 2 service class which contains and handle the dependencies between the objects. During the class construction, the object manager injects the appropriate dependency as defined in the di.xml file.
+
+- Constructor signature dependencies
+In Magento 2, the class definition use constructor signature to get information (type and number of dependencies).
+
+- Compiling dependencies
+All information related to Magento 2 Dependency Injection are collected in a class and saved in files by a code complier tool. And then the ObjectManager will get this information to generate concrete objects in the application.
+
+
 #### How to Override core code  in Magento 2?
   By default, there are three different ways to override core functionalities.
   1. Using preference
