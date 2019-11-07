@@ -3496,6 +3496,16 @@ In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead 
       ```
   </details>
 
+#### What is the difference between Preference and Plugin?
+
+  Although both of them are used for overriding the core modules, the way to use them is completely different.
+
+  With Preference, it must extend a core class. Preference can rewrite function. When you declare a Preference, your new class is expected to be a complete implementation of the class you want to override.
+
+  While a plugin allows you to execute your functions before, after or around (before & after) the core function is executed. It's NOT really rewritten function like Preference.
+
+  Since your plugin class doesn’t replace the core class, in case there are many plugins hooked onto a target class, Magento 2 just executes them sequentially based on the sortOrder parameter in your file di.xml.  
+
 ### <a name="Step2G1a">Step2G1a: Preference  which override all DEBUG log</a>
 
 #### Preference
@@ -3513,6 +3523,16 @@ app/code/BDC/SimpleNews/etc/di.xml add below code  :
 ```
 ### <a name="Step2G1b">Step2G1b:  OR  Arguments which override specific class Monolog </a>
 
+#### Arguments Preference ?
+
+Argument types:object
+Node Formats: <argument xsi:type="object">{typeName}</argument>
+
+<argument xsi:type="object" shared="{shared}">{typeName}</argument>
+
+
+- Creates an instance of typeName type and passes it in as an argument. You can pass any class name, interface name, or virtual type as typeName.
+
 ```
 <type name="Magento\Framework\Logger\Monolog">
     <arguments>
@@ -3524,6 +3544,13 @@ app/code/BDC/SimpleNews/etc/di.xml add below code  :
 ```
 
 ### <a name="Step2G1c">Step2G1c: OR virtualType which override specific class only work specific module </a>
+
+#### What are Virtual Types?
+
+Within Magento 2, classes can depend on each other using constructor-based Dependency Injection. And instead of only allowing static dependencies (class A injects class B), Magento offers a configuration system that allows one dependency to be replaced with another (class B is swapped out for class C). One of these configurations is Virtual Types.
+
+Virtual Types are defined in a file di.xml which might be located in numerous places - for instance, the etc/ folder of your own module. Virtual Types are in essence new PHP classes (but actually they are not, they are just links), that extend upon their original class while overriding the original class its constructor arguments by adding those in the di.xml file.
+
 
 ```
 <virtualType name="bdcLogger" type="Magento\Framework\Logger\Monolog">
