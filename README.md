@@ -4699,8 +4699,8 @@ define(function () {
 
 ### <a name="Step2I1">Step2I1: Rendering Grid(collections & listing component configuration) </a>
 
-1.grid collections
-2.listing component configuration
+- 1.grid collections
+- 2.listing component configuration
 
 - Create [Controller/Adminhtml/Index/Index.php](Controller/Adminhtml/Index/Index.php)
 
