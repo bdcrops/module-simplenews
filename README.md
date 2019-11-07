@@ -286,12 +286,13 @@ All Magento 2 module must be registered in the Magento system through the magent
 In this step, we need to create this file:
 - Create  [registration.php](registration.php) and insert this following code into it:
   <details><summary>Source</summary>
-    ~~~
+
+    ```
     \Magento\Framework\Component\ComponentRegistrar::register(
         \Magento\Framework\Component\ComponentRegistrar::MODULE,
         'BDC_SimpleNews', __DIR__
     );
-    ~~~
+    ``` 
   </details>
 
 Modules in vendor folder would update using composer And all the modules in app/code would not be updated through composer That's why when you need to override any module you add it in app/code
