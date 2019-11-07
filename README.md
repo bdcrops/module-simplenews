@@ -23,18 +23,18 @@
 ###  [PartA: News Module Basic (Architecture & Customization)](#PartA)
 
 
-- [Step 2A.1: Create a directory for the module like above format](#Step2A1)
-- [Step 2A.2: Declare module by using configuration file module.xml](#Step2A2)
-- [Step 2A.3: Register module by registration.php & composer.json](#Step2A3)
-- [Step 2A.4: Configure declarative schema (create table etc/db_schema.xml)](#Step2A4)
-- [Step 2A.5: Schema whitelist (etc/db_schema_whitelist.json) ](#Step2A15)
-- [Step 2A.6: Enable the module](#Step2A6)
-- [Step 2A.7: Develop data & schema patches(Installing & upgrading data)](#Step2A7)
-- [Step 2A.8: Create Model News for business Logic](#Step2A8)
-- [Step 2A.9: Create Model's ResourceModel to handle real database transaction](#Step2A9)
-- [Step 2A.10: Create Model's collection class](#Step2A10)
-- [Step 2A.11: Setup the frontend route](#Step2A11)
-- [Step 2A.12: Create IndexController](#Step2A12)
+- [Step 2A1: Create a directory for the module like above format](#Step2A1)
+- [Step 2A2: Declare module by using configuration file module.xml](#Step2A2)
+- [Step 2A3: Register module by registration.php & composer.json](#Step2A3)
+- [Step 2A4: Configure declarative schema (create table etc/db_schema.xml)](#Step2A4)
+- [Step 2A5: Schema whitelist (etc/db_schema_whitelist.json) ](#Step2A15)
+- [Step 2A6: Enable the module](#Step2A6)
+- [Step 2A7: Develop data & schema patches(Installing & upgrading data)](#Step2A7)
+- [Step 2A8: Create Model News for business Logic](#Step2A8)
+- [Step 2A9: Create Model's ResourceModel to handle real database transaction](#Step2A9)
+- [Step 2A10: Create Model's collection class](#Step2A10)
+- [Step 2A11: Setup the frontend route](#Step2A11)
+- [Step 2A12: Create IndexController](#Step2A12)
 
 
 ### [Part B: News Module for Back End](#PartB)
@@ -53,37 +53,37 @@
 - [Step 2B13:  Create News Block for backend](#Step2B13)
 - [Step 2B14:  Create Grid block file for Ajax load](#Step2B14)
 - [Step 2B15: Create backend controller for child action class to extend](#Step2B15)
-- [Step 2B.16:  Create Backend Action file Index.php](#Step2B16)
-- [Step 2B.17:  Create another Action for ajax](#Step2B17)
-- [Step 2B.18:  Create layout file simplenews_news_edit.xml for edit form](#Step2B18)
-- [Step 2B.19:  Create the layout for create form](#Step2B19)
-- [Step 2B.20:  Create a form container block](#Step2B20)
-- [Step 2B.21:  create a block for the left-side tabs](#Step2B21)
-- [Step 2B.22:  Create a block for Form information](#Step2B22)
-- [Step 2B.23:  Create a block to declare the fields for the edit form](#Step2B23)
-- [Step 2B.24:  Create a controller action for create a new News](#Step2B24)
-- [Step 2B.25:  Create Edit Action for the Edit form](#Step2B25)
-- [Step 2B.26:  A Save Action for the edit form](#Step2B26)
-- [Step 2B.27:  Delete Action for the edit Form](#Step2B27)
-- [Step 2B.28:  The mass delete action the grid list](#Step2B28)
-- [Step 2B.29:  Backend Menu and Grid List](#Step2B29)
+- [Step 2B16:  Create Backend Action file Index.php](#Step2B16)
+- [Step 2B17:  Create another Action for ajax](#Step2B17)
+- [Step 2B18:  Create layout file simplenews_news_edit.xml for edit form](#Step2B18)
+- [Step 2B19:  Create the layout for create form](#Step2B19)
+- [Step 2B20:  Create a form container block](#Step2B20)
+- [Step 2B21:  create a block for the left-side tabs](#Step2B21)
+- [Step 2B22:  Create a block for Form information](#Step2B22)
+- [Step 2B23:  Create a block to declare the fields for the edit form](#Step2B23)
+- [Step 2B24:  Create a controller action for create a new News](#Step2B24)
+- [Step 2B25:  Create Edit Action for the Edit form](#Step2B25)
+- [Step 2B26:  A Save Action for the edit form](#Step2B26)
+- [Step 2B27:  Delete Action for the edit Form](#Step2B27)
+- [Step 2B28:  The mass delete action the grid list](#Step2B28)
+- [Step 2B29:  Backend Menu and Grid List](#Step2B29)
 
 ### [Part C : News Module for Front End](#PartC)
-- [Step 2C.1:  Create Layout file for page handle](#Step2C1)
-- [Step 2C.2:  Create another layout file by update the previous layout](#Step2C2)
-- [Step 2C.3:  Create Block NewList file](#Step2C3)
-- [Step 2C.4:  Create frontend template file list.phtml](#Step2C4)
-- [Step 2C.5:  Create an abstract class by extending Magento Core Action class](#Step2C5)
-- [Step 2C.6:  Update Index Controller by extends the abstract class 'New.php'](#Step2C6)
-- [Step 2C.7:  Create a layout file for news detail page](#Step2C7)
-- [Step 2C.8:  Create News view action](#Step2C8)
-- [Step 2C.9:  create view news block](#Step2C9)
-- [Step 2C.10:  Create news view template file](#Step2C10)
-- [Step 2C.11:  Create CSS file for styling the frontend Page](#Step2C11)
-- [Step 2C.12:  Create Latest New Block](#Step2C12)
-- [Step 2C.13:  Create a Block for positioning the latest news: Left or Right](#Step2C13)
-- [Step 2C.14:  Create the template file for Latest News](#Step2C14)
-- [Step 2C.15:  Frontend view for the module](#Step2C15)
+- [Step 2C1:  Create Layout file for page handle](#Step2C1)
+- [Step 2C2:  Create another layout file by update the previous layout](#Step2C2)
+- [Step 2C3:  Create Block NewList file](#Step2C3)
+- [Step 2C4:  Create frontend template file list.phtml](#Step2C4)
+- [Step 2C5:  Create an abstract class by extending Magento Core Action class](#Step2C5)
+- [Step 2C6:  Update Index Controller by extends the abstract class 'New.php'](#Step2C6)
+- [Step 2C7:  Create a layout file for news detail page](#Step2C7)
+- [Step 2C8:  Create News view action](#Step2C8)
+- [Step 2C9:  create view news block](#Step2C9)
+- [Step 2C10:  Create news view template file](#Step2C10)
+- [Step 2C11:  Create CSS file for styling the frontend Page](#Step2C11)
+- [Step 2C12:  Create Latest New Block](#Step2C12)
+- [Step 2C13:  Create a Block for positioning the latest news: Left or Right](#Step2C13)
+- [Step 2C14:  Create the template file for Latest News](#Step2C14)
+- [Step 2C15:  Frontend view for the module](#Step2C15)
 
 ### [Part D : News Console/Command](#PartD)
 - [Step 2D1:  Adding a new command Dependency Injection](#Step2D1)
@@ -280,7 +280,7 @@ In this file, we register a module with name `BDC_SimpleNews` and the version is
 #### Notes[u can skip]:
 - Magento 2 need  Two Mandatory File to  run/activate Module etc/module.xml & registration.php
 
-### <a name="Step2A3"> Step 2A.3: Register module by registration.php</a>
+### <a name="Step2A3"> Step 2A3: Register module by registration.php</a>
 
 All Magento 2 module must be registered in the Magento system through the magento ComponentRegistrar class. This file will be placed in module root directory.
 In this step, we need to create this file:
@@ -330,7 +330,7 @@ Modules in vendor folder would update using composer And all the modules in app/
       ```
   </details>
 
-### <a name="Step2A4">Step 2A.4: Configure declarative schema (create table  schema Installation file)</a>
+### <a name="Step2A4">Step 2A4: Configure declarative schema (create table  schema Installation file)</a>
 
 - Create [etc/db_schema.xml](etc/db_schema.xml) &  insert this following code into it:
 
@@ -358,7 +358,7 @@ Modules in vendor folder would update using composer And all the modules in app/
 #### Note:
 [Tutarials module-declarative](https://github.com/bdcrops/module-declarative)
 
-### <a name="Step2A5">Step 2A.5: Schema whitelist (etc/db_schema_whitelist.json) </a>
+### <a name="Step2A5">Step 2A5: Schema whitelist (etc/db_schema_whitelist.json) </a>
 
 You will not be able to run a declarative mode without creating a schema whitelist.
 Note: it is recommended to generate a new whitelist for every release for the double-check purposes.Before running the upgrade command you need to add your schema to db_whitelist_schema.json file by running the following command.
@@ -378,7 +378,7 @@ Now, there are db_whitelist_schema.json file will be create in /vendor/module/et
 
 
 
-### <a name="Step2A6">Step 2A.6: Enable the module</a>
+### <a name="Step2A6">Step 2A6: Enable the module</a>
 
 
 By finish above step, you have created an empty module. Now we will enable it in Magento environment.Before enable the module, we must check to make sure Magento has recognize our module or not by enter the following at the command line:
@@ -421,7 +421,7 @@ Also  you can check Database Table from PhpMyAdmin or Your Favorite tools:
 
 
 
-### <a name="Step2A7">Step 2A.7:  Develop data and schema patches (Insert data Installing and upgrading data)</a>
+### <a name="Step2A7">Step 2A7:  Develop data and schema patches (Insert data Installing and upgrading data)</a>
 
 
 Since in the old method, we used to write scripts in Install Schema or Upgrade schema when a table was created, but now in the new version, this will be done through Patch system.A data patch is a class that contains data modification instructions. It is defined in a <Namespace>/<Module_Name> /Setup/Patch/Data/<Patch_Name>.php file and implements \Magento\Setup\Model\Patch\DataPatchInterface.
@@ -468,7 +468,7 @@ So to add data to the bdc_simplenews table create AddData.php file inside folder
       ```
   <details>
 
-### <a name="Step2A8"> Step 2A.8: Create Model News for business Logic</a>
+### <a name="Step2A8"> Step 2A8: Create Model News for business Logic</a>
 
 We need to create these files to insert, update, delete and get data in the database.
 
@@ -545,7 +545,7 @@ The ORM gives you a possibility to create, load, update, and delete data in a da
 Models are like a black box which provides a layer of abstraction on top of the resource models. The fetching, extraction, and manipulation of data occur through models. As a rule of thumb, every entity we create (i.e. every table we create in our database) should have its own model class. Every model extends the Magento\Framework\Model\AbstractModelclass, which inherits the \Magento\Framework\DataObjectclass, hence, we can call the setDataand getData functions on our model, to get or set the data of a model respectively. class only has one method, _ construct(), when we call the _ init()method, and pass the resource model’s name as its paramete
 
 
-### <a name="Step2A9">Step 2A.9: Create Model's ResourceModel to handle real database transaction</a>
+### <a name="Step2A9">Step 2A9: Create Model's ResourceModel to handle real database transaction</a>
 
 - Create resource model [Model/Resource/News.php](Model/Resource/News.php):
 
@@ -579,7 +579,7 @@ Every CRUD resource model class extends the Magento\Framework\Model\ResourceMode
 For a basic model like ours, the only thing a resource model must do is call the _ init method from _ construct. The _ init method for a resource model accepts two arguments. The first is the name of the database table (bdc_simplenews), and the second is the ID column for the model (id). While it’s beyond the scope of this article, Magento 2’s active record implementation contains no method for linking tables via primary keys. How to use multiple database tables is up to each individual module developer, and a resource model will typically contain the SQL generating methods needed to fetch information from related tables.
 
 
-### <a name="Step2A10">Step 2A.10: Create Model's collection class</a>
+### <a name="Step2A10">Step 2A10: Create Model's collection class</a>
 
 - Create collection [Model/Resource/News/Collection.php](Model/Resource/News/Collection.php ):
 
@@ -623,7 +623,7 @@ We create a new Magento 2 block an inject \Magento\Catalog\Model\ResourceModel\P
 - filter by attribute values
 It is possible to filter your collection by loaded attribute values. For example all products with price small than 1000 $. My example use setPageSize() to only load a given number of products.
 
-### <a name="Step2A11">Step 2A.11: Setup the frontend route</a>
+### <a name="Step2A11">Step 2A11: Setup the frontend route</a>
 
 In the Magento system, a request URL has the following format:
 
@@ -668,7 +668,7 @@ And the layout handle for this action is: helloworld_controller_action.xml So wi
 
 
 
-### <a name="Step2A12">Step 2A.12: Create IndexController</a>
+### <a name="Step2A12">Step 2A12: Create IndexController</a>
 
 - Factory Object
 We are done with creating the database table, CRUD model, resource model and collection. So how to use them?
@@ -1471,7 +1471,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B13"> Step 2B.13:  Create News Block for backend</a>
+### <a name="Step2B13"> Step 2B13:  Create News Block for backend</a>
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News.php (Purpose: This is the block file of grid container) and insert this following code into it:
 
   <details><summary>Source</summary>
@@ -1500,7 +1500,7 @@ The controller action for admin page will be added inside of the folder Controll
   </details>
 
 
-### <a name="Step2B14">Step 2B.14:  Create Status </a>
+### <a name="Step2B14">Step 2B14:  Create Status </a>
 - Create file: app/code/BDC/SimpleNews/Model/System/Config/Status.php (Purpose: check) and insert this following code into it:
 
   <details><summary>Source</summary>
@@ -1531,7 +1531,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B15">Step 2B.15:  Create a backend controller file for child action class to extend</a>
+### <a name="Step2B15">Step 2B15:  Create a backend controller file for child action class to extend</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News.php (Purpose: I use this file as a root controller and the action classes will be extended this controller) and insert this following code into it:
 
@@ -1560,7 +1560,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B16">Step 2B.16:  Create Backend Action file Index.php</a>
+### <a name="Step2B16">Step 2B16:  Create Backend Action file Index.php</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Index.php (Purpose: This is the index action) and insert this following code into it:
 
@@ -1594,7 +1594,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B17">Step 2B.17:  Create another Action for ajax</a>
+### <a name="Step2B17">Step 2B17:  Create another Action for ajax</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Grid.php (Purpose: This is the grid action which is used for loading grid by ajax) and insert this following code into it:
 
@@ -1644,7 +1644,7 @@ The controller action for admin page will be added inside of the folder Controll
     ```
   </details>
 
-### <a name="Step2B19">Step 2B.19:  Create the layout for create form</a>
+### <a name="Step2B19">Step 2B19:  Create the layout for create form</a>
 
 - Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_create.xml and insert this following code into it:
   <details><summary>Source</summary>
@@ -1660,7 +1660,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B20"> Step 2B.20:  Create a form container block</a>
+### <a name="Step2B20"> Step 2B20:  Create a form container block</a>
 
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit.php (Purpose: This is the block file of form container) and insert this following code into it:
 
@@ -1993,7 +1993,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B23">Step 2B.23:  Create a block to declare the fields for the edit form</a>
+### <a name="Step2B23">Step 2B23:  Create a block to declare the fields for the edit form</a>
 - Create file: app/code/BDC/SimpleNews/Block/Adminhtml/News/Edit/Tab/Info.php (Purpose: This file will declare fields in form) and insert this following code into it:
 
   <details><summary>Source</summary>
@@ -2103,7 +2103,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B24">Step 2B.24:  Create a controller action for create a new News</a>
+### <a name="Step2B24">Step 2B24:  Create a controller action for create a new News</a>
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/NewAction.php (Purpose: This is the new action) and insert this following code into it:
 
   <details><summary>Source</summary>
@@ -2131,7 +2131,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B25">Step 2B.25:  Create Edit Action for the Edit form</a>
+### <a name="Step2B25">Step 2B25:  Create Edit Action for the Edit form</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Edit.php (Purpose: This is the edit action for editing news page) and insert this following code into it:
 
@@ -2183,7 +2183,7 @@ The controller action for admin page will be added inside of the folder Controll
         ```
   </details>
 
-### <a name="Step2B26">Step 2B.26:  A Save Action for the edit form</a>
+### <a name="Step2B26">Step 2B26:  A Save Action for the edit form</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Save.php (Purpose: This is the save action) and insert this following code into it:
 
@@ -2235,7 +2235,7 @@ The controller action for admin page will be added inside of the folder Controll
       ```
   </details>
 
-### <a name="Step2B27">Step 2B.27:  Delete Action for the edit Form</a>
+### <a name="Step2B27">Step 2B27:  Delete Action for the edit Form</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/Adminhtml/News/Delete.php (Purpose: This is the delete action) and insert this following code into it:
 
@@ -2332,7 +2332,7 @@ The controller action for admin page will be added inside of the folder Controll
 ![EditNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/EditNews.png)
 
 
-### <a name="Step2B29">Step 2B.29:  Backend Menu and Grid List</a>
+### <a name="Step2B29">Step 2B29:  Backend Menu and Grid List</a>
 
 ![allNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/allNews.png)
 
@@ -2348,7 +2348,7 @@ The controller action for admin page will be added inside of the folder Controll
 
 ***
 
-### <a name="Step2C1">Step 2C.1:  Create Layout file for page handle</a>
+### <a name="Step2C1">Step 2C1:  Create Layout file for page handle</a>
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_news.xml (we will use this layout file as default in our module) and insert this following code into it:
 ```
@@ -2374,7 +2374,7 @@ xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framewo
 
 ```
 
-### <a name="Step2C2">Step 2C.2:  Create another layout file by update the previous layout</a>
+### <a name="Step2C2">Step 2C2:  Create another layout file by update the previous layout</a>
 - Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_index_index.xml (this file will declare blocks for using in the news list page) and insert this following code into it:
 ```
 <?xml version="1.0"?>
@@ -2390,7 +2390,7 @@ xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framewo
 ```
 
 
-### <a name="Step2C3">Step 2C.3:  Create Block News List file</a>
+### <a name="Step2C3">Step 2C3:  Create Block News List file</a>
 
 - Create file: app/code/BDC/SimpleNews/Block/NewsList.php (this file will set the news data collection and declare pagination for them) and insert this following code into it:
 ```
@@ -2463,7 +2463,7 @@ class NewsList extends Template
 
 ```
 
-### <a name="Step2C4">Step 2C.4:  Create frontend template file list.phtml</a>
+### <a name="Step2C4">Step 2C4:  Create frontend template file list.phtml</a>
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/templates/list.phtml (this file will set the news data collection and declare pagination for them) and insert this following code into it:
 ```
@@ -2505,7 +2505,7 @@ class NewsList extends Template
 ```
 
 
-### <a name="Step2C5">Step 2C.5:  Create an abstract class by extending Magento Core Action class</a>
+### <a name="Step2C5">Step 2C5:  Create an abstract class by extending Magento Core Action class</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/News.php and insert this following code into it:
 ```
@@ -2547,7 +2547,7 @@ class NewsList extends Template
 ```
 
 
-### <a name="Step2C6">Step 2C.6:  Update Index Controller by extends the abstract class 'New.php'</a>
+### <a name="Step2C6">Step 2C6:  Update Index Controller by extends the abstract class 'New.php'</a>
 
 - update/Edit file: app/code/BDC/SimpleNews/Controller/Index/Index.php and insert this following code into it:
 
@@ -2578,7 +2578,7 @@ class Index extends News
 ```
 
 
-### <a name="Step2C7"> Step 2C.7:  Create a layout file for news detail page</a>
+### <a name="Step2C7"> Step 2C7:  Create a layout file for news detail page</a>
 - Create file: app/code/BDC/SimpleNews/view/frontend/web/css/style.css and insert this following code into it:
 ```
 .simplenews > ul {
@@ -2621,7 +2621,7 @@ class Index extends News
 ![frontEndNews](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/frontEndNews.png)
 
 
-### <a name="Step2C8"> Step 2C.8:  Create News view action</a>
+### <a name="Step2C8"> Step 2C8:  Create News view action</a>
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/layout/news_index_view.xml and insert this following code into it:
 ```
@@ -2641,7 +2641,7 @@ xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framewo
 ```
 
 
-### <a name="Step2C9"> Step 2C.9:  create view news block</a>
+### <a name="Step2C9"> Step 2C9:  create view news block</a>
 
 - Create file: app/code/BDC/SimpleNews/Controller/Index/View.php and insert this following code into it:
 
@@ -2700,7 +2700,7 @@ class View extends News
 ```
 
 
-### <a name="Step2C10"> Step 2C.10:  Create news view template file</a>
+### <a name="Step2C10"> Step 2C10:  Create news view template file</a>
 
 - Create file: app/code/BDC/SimpleNews/Block/View.php (this file will get the news data) and insert this following code into it:
 ```
@@ -2758,7 +2758,7 @@ class View extends News
 ```
 
 
-### <a name="Step2C11">Step 2C.11:  Create View file for News details the frontend Page</a>
+### <a name="Step2C11">Step 2C11:  Create View file for News details the frontend Page</a>
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/templates/view.phtml (this file will set the news data collection and declare pagination for them) and insert this following code into it
 ```
@@ -2774,7 +2774,7 @@ class View extends News
 ![FrontendNewsDetails](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/FrontendNewsDetails.png)
 
 
-### <a name="Step2C12">Step 2C.12:  Create Latest New Block</a>
+### <a name="Step2C12">Step 2C12:  Create Latest New Block</a>
 
 - Open file: app/code/BDC/SimpleNews/view/frontend/layout/news_news.xml (we will add 2 blocks to the page body) and insert this following code into it:
 ```
@@ -2801,7 +2801,7 @@ xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framewo
 ```
 
 
-### <a name="Step2C13"> Step 2C.13:  Create a Block for positioning the latest news: Left or Right</a>
+### <a name="Step2C13"> Step 2C13:  Create a Block for positioning the latest news: Left or Right</a>
 - Create file: app/code/BDC/SimpleNews/Block/Lastest.php (this file will get the news data) and insert this following code into it:
 
 ```
@@ -2866,7 +2866,7 @@ class Lastest extends Template
 ```
 
 
-### <a name="Step2C14"> Step 2C.14:  Create the template file for Latest News</a>
+### <a name="Step2C14"> Step 2C14:  Create the template file for Latest News</a>
 
 - Create file: app/code/BDC/SimpleNews/Block/Lastest/Left.php (This file will check the left position and set template file) and insert this following code into it:
 
@@ -2917,7 +2917,7 @@ class Right extends Lastest
 ```
 
 
-### <a name="Step2C15">Step 2C.15:  Frontend view for the module</a>
+### <a name="Step2C15">Step 2C15:  Frontend view for the module</a>
 
 - Create file: app/code/BDC/SimpleNews/view/frontend/templates/lastest.phtml (This file will display 5 lastest news on the page) and insert this following code into it:
 ```
@@ -3613,7 +3613,7 @@ In this case we need to add BDC_SimpleNews::news to webapi.xml resource instead 
 
 #### What is Dependency injection Magento 2?
 
-Magento 2 Dependency injection is used to replace the Magento 1.x Mage class when you convert to work with Magento 2. The Dependency injection design pattern creates an external environment where you can inject dependencies into an object. Thanks to that, there is no longer to create the objects manually. Namely, as when object A calls object or value B, this means B is a dependency of A.
+Magento 2 Dependency injection is used to replace the Magento 1.x Mage class when you convert to work with Magento 2. The Dependency injection design pattern creates an external environment where you can inject dependencies into an object. Thanks to that, there is no longer to create the objects manually. Namely, as when object A calls object or value B, this means B is a dependency of A
 
 #### What is Dependency Inversion Principle Magento 2?
 If you are working with Magento 2 Dependency Injection, you should take look at Magento 2 Dependency Inversion Principle because this principle will restrict the direct working between the high level and low level classes. At that time, the interaction will implement via an interface of the low level classes as an abstract layer.
