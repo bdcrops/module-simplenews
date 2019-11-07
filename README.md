@@ -2742,7 +2742,7 @@ Adding a new command to CLI is based on passing on the argument from the XML lev
     </config>
     ```
   </details>
-### <a name="Step2D2"> Step 2D.2: Adding a new command  class</a>
+### <a name="Step2D2"> Step 2D2: Adding a new command  class</a>
 We add the object responsible for executing the script to the class Magento\Framework\Console\CommandList. The constructor of this class is simply an array where class objects are passed on in a similar manner as in the above example.
 
 Let’s proceed to the next step – creating a class for our new command and a helper responsible for adding a new user:
@@ -2803,7 +2803,7 @@ Let’s proceed to the next step – creating a class for our new command and a 
     ```
   </details>
 
-### <a name="Step2D3"> Step 2D.3: Helper  </a>
+### <a name="Step2D3"> Step 2D3: Helper  </a>
 
 
 - Create  [Helper/News.php](Helper/News.php):
@@ -2875,7 +2875,7 @@ Let’s proceed to the next step – creating a class for our new command and a 
 
 The execute() method adds a new user. If any data is incorrect at this stage (i.e. too short password), the script will stop and the console will show an Exception.
 
-### <a name="Step2D4"> Step 2D.4: Results  </a>
+### <a name="Step2D4"> Step 2D4: Results  </a>
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/checkCliList.png)
 
@@ -2891,24 +2891,28 @@ php bin/magento bdcrops:news:create --news-title="Matin Cli News" --news-summary
 
 ## <a name="PartE">Part E : Set / Configure Custom Cron Jobs </a>  [Go to Top](#top)
 
-### <a name="Step2E1">Step 2E.1:Create crontab.xml </a>
+### <a name="Step2E1">Step 2E1:Create crontab.xml </a>
 
 Create a crontab.xml file in the following file path and set a time schedule to run the custom cron code which is defined  default.
 
-Create  app/code/BDC/SimpleNews/etc/crontab.xml and insert this following code into it:
+- Create [etc/crontab.xml](etc/crontab.xml):
 
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
-    <group id="bdc_crongroup">
-        <job name="bdcAddNews" instance="BDC\SimpleNews\Cron\AddNews" method="execute">
-            <!-- <config_path>bdc/general/cron_expression</config_path> -->
-            <schedule>* * * * *</schedule>
-        </job>
-    </group>
-</config>
+  <details><summary>Source</summary>
 
-```
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+          <group id="bdc_crongroup">
+              <job name="bdcAddNews" instance="BDC\SimpleNews\Cron\AddNews" method="execute">
+                  <!-- <config_path>bdc/general/cron_expression</config_path> -->
+                  <schedule>* * * * *</schedule>
+              </job>
+          </group>
+      </config>
+
+      ```
+  <details>
+  
 Here when defining the crontab for the module we need to define the group name too. Here group_name is the name of the cron group. The group name doesn’t have to be unique and we can run the cron for one group at a time.
 
 Here,
@@ -2932,31 +2936,32 @@ schedule: is a schedule in cron format.
 ### <a name="Step2E2">Step 2E.2:Defined to run the execute method of class</a>
 
 This file contains the custom cron code and which will be executed while the cron runs in Magento 2.
+- Create  [Cron/AddNews.php](Cron/AddNews.php):
 
-Create  app/code/BDC/SimpleNews/Cron/AddNews.php and insert this following code into it:
+  <details><summary>Source</summary>
 
-```
-<?php
+      ```
+      <?php
+      namespace BDC\SimpleNews\Cron;
 
-namespace BDC\SimpleNews\Cron;
+      use BDC\SimpleNews\Model\NewsFactory;
+      //use BDC\SimpleNews\Model\Config;
+      class AddNews {
+          private $newsFactory;
+          public function __construct(NewsFactory $newsFactory) {
+              $this->newsFactory = $newsFactory;
+          }
+          public function execute(){
+              $this->newsFactory->create()
+                  ->setTitle('Scheduled News')
+                  ->setSummary('Scheduled News setSummary ' . date('Ymd'))
+                  ->setDescription('Scheduled News setDescription ' . date('Ymd'))
+                  ->save();
+          }
+      }
 
-use BDC\SimpleNews\Model\NewsFactory;
-//use BDC\SimpleNews\Model\Config;
-class AddNews {
-    private $newsFactory;
-    public function __construct(NewsFactory $newsFactory) {
-        $this->newsFactory = $newsFactory;
-    }
-    public function execute(){
-        $this->newsFactory->create()
-            ->setTitle('Scheduled News')
-            ->setSummary('Scheduled News setSummary ' . date('Ymd'))
-            ->setDescription('Scheduled News setDescription ' . date('Ymd'))
-            ->save();
-    }
-}
-
-```
+      ```
+    </details>
 
 ### <a name="Step2E3">Step 2E.3: Run all cron jobs </a>
 After completing the above steps run the below SSH command in your Magento 2 installed root directory to run the Magento 2 cron jobs
