@@ -901,7 +901,7 @@ The system.xml is a configuration file which is used to create configuration fie
 - Create file [etc/acl.xml](etc/acl.xml)
   (Purpose: This file will create a role for your configuration section) and insert this following code into it:
   <details><summary>Source</summary>
-  
+
       ```
       <?xml version="1.0"?>
       <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -951,190 +951,204 @@ The system.xml is a configuration file which is used to create configuration fie
       ```
   </details>
 
-### <a name="Step2B5">Step 2B.5:  Create a Helper Data class</a>
+### <a name="Step2B5">Step 2B5:  Create a Helper Data class</a>
 
-- Create file: app/code/BDC/SimpleNews/Helper/Data.php and insert this following code into it:
+- Create file: [Helper/Data.php](Helper/Data.php) and insert this following code into it:
+  <details><summary>Source</summary>
 
-```
-<?php
+    ```
+    <?php
 
-namespace BDC\SimpleNews\Helper;
+    namespace BDC\SimpleNews\Helper;
 
-use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Helper\Context;
-use Magento\Store\Model\ScopeInterface;
+    use Magento\Framework\App\Helper\AbstractHelper;
+    use Magento\Framework\App\Config\ScopeConfigInterface;
+    use Magento\Framework\App\Helper\Context;
+    use Magento\Store\Model\ScopeInterface;
 
-class Data extends AbstractHelper {
-   const XML_PATH_ENABLED      = 'simplenews/general/enable_in_frontend';
-   const XML_PATH_HEAD_TITLE   = 'simplenews/general/head_title';
-   const XML_PATH_LASTEST_NEWS = 'simplenews/general/lastest_news_block_position';
+    class Data extends AbstractHelper {
+     const XML_PATH_ENABLED      = 'simplenews/general/enable_in_frontend';
+     const XML_PATH_HEAD_TITLE   = 'simplenews/general/head_title';
+     const XML_PATH_LASTEST_NEWS = 'simplenews/general/lastest_news_block_position';
 
-   /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    protected $_scopeConfig;
+     /**
+       * @var \Magento\Framework\App\Config\ScopeConfigInterface
+       */
+      protected $_scopeConfig;
 
-    /**
-     * @param Context $context
-     * @param ScopeConfigInterface $scopeConfig
-     */
-    public function __construct(
-       Context $context,
-       ScopeConfigInterface $scopeConfig ) {
-       parent::__construct($context);
-       $this->_scopeConfig = $scopeConfig;
+      /**
+       * @param Context $context
+       * @param ScopeConfigInterface $scopeConfig
+       */
+      public function __construct(
+         Context $context,
+         ScopeConfigInterface $scopeConfig ) {
+         parent::__construct($context);
+         $this->_scopeConfig = $scopeConfig;
+      }
+
+     /**
+       * Check for module is enabled in frontend
+       *
+       * @return bool
+       */
+     public function isEnabledInFrontend($store = null){
+        return $this->_scopeConfig->getValue(
+           self::XML_PATH_ENABLED,
+           ScopeInterface::SCOPE_STORE
+        );
+     }
+
+     /**
+       * Get head title for news list page
+       *
+       * @return string
+       */
+     public function getHeadTitle() {
+        return $this->_scopeConfig->getValue(
+           self::XML_PATH_HEAD_TITLE,
+           ScopeInterface::SCOPE_STORE
+        );
+     }
+
+     /**
+       * Get lastest news block position (Left, Right, Disabled)
+       *
+       * @return int
+       */
+     public function getLastestNewsBlockPosition() {
+        return $this->_scopeConfig->getValue(
+           self::XML_PATH_LASTEST_NEWS,
+           ScopeInterface::SCOPE_STORE
+        );
+     }
     }
 
-   /**
-     * Check for module is enabled in frontend
-     *
-     * @return bool
-     */
-   public function isEnabledInFrontend($store = null){
-      return $this->_scopeConfig->getValue(
-         self::XML_PATH_ENABLED,
-         ScopeInterface::SCOPE_STORE
-      );
-   }
-
-   /**
-     * Get head title for news list page
-     *
-     * @return string
-     */
-   public function getHeadTitle() {
-      return $this->_scopeConfig->getValue(
-         self::XML_PATH_HEAD_TITLE,
-         ScopeInterface::SCOPE_STORE
-      );
-   }
-
-   /**
-     * Get lastest news block position (Left, Right, Disabled)
-     *
-     * @return int
-     */
-   public function getLastestNewsBlockPosition() {
-      return $this->_scopeConfig->getValue(
-         self::XML_PATH_LASTEST_NEWS,
-         ScopeInterface::SCOPE_STORE
-      );
-   }
-}
-
-```
+    ```
+  </details>
 
 #### Note: What are Helpers?
 Helpers are the classes that we can use throughout the Magento website to provide different features. Magento 2 Helpers can be used in Controllers, Blocks, Models, Views and even in other Helper classes.
 Helpers are the elements that are global and always available. We can use the Helpers in any class through Dependency Injection.
 
 
-### <a name="Step2B6">Step 2B.6:  Create the menu for Magento backend</a>
+### <a name="Step2B6">Step 2B6:  Create the menu for Magento backend</a>
 
-Create file: app/code/BDC/SimpleNews/etc/adminhtml/menu.xml (Purpose: The menu item of your module will be declared here) and insert this following code into it:
+- Create file: [etc/adminhtml/menu.xml](etc/adminhtml/menu.xml) (Purpose: The menu item of your module will be declared here) and insert this following code into it:
 
-```
-<?xml version="1.0"?>
+  <details><summary>Source</summary>
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
-    <menu>
-        <add id="BDC_SimpleNews::main_menu" title="Simple News"
-            module="BDC_SimpleNews" sortOrder="20"
-            resource="BDC_SimpleNews::simplenews" />
-        <add id="BDC_SimpleNews::add_news" title="Add News"
-            module="BDC_SimpleNews" sortOrder="1" parent="BDC_SimpleNews::main_menu"
-            action="simplenews/news/new" resource="BDC_SimpleNews::manage_news" />
-        <add id="BDC_SimpleNews::manage_news" title="Manage News"
-            module="BDC_SimpleNews" sortOrder="2" parent="BDC_SimpleNews::main_menu"
-            action="simplenews/news/index" resource="BDC_SimpleNews::manage_news" />
-        <add id="BDC_SimpleNews::configuration" title="Configurations"
-            module="BDC_SimpleNews" sortOrder="3" parent="BDC_SimpleNews::main_menu"
-            action="adminhtml/system_config/edit/section/simplenews"
-            resource="BDC_SimpleNews::configuration" />
-    </menu>
-</config>
-
-```
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+      <menu>
+          <add id="BDC_SimpleNews::main_menu" title="Simple News"
+              module="BDC_SimpleNews" sortOrder="20"
+              resource="BDC_SimpleNews::simplenews" />
+          <add id="BDC_SimpleNews::add_news" title="Add News"
+              module="BDC_SimpleNews" sortOrder="1" parent="BDC_SimpleNews::main_menu"
+              action="simplenews/news/new" resource="BDC_SimpleNews::manage_news" />
+          <add id="BDC_SimpleNews::manage_news" title="Manage News"
+              module="BDC_SimpleNews" sortOrder="2" parent="BDC_SimpleNews::main_menu"
+              action="simplenews/news/index" resource="BDC_SimpleNews::manage_news" />
+          <add id="BDC_SimpleNews::configuration" title="Configurations"
+              module="BDC_SimpleNews" sortOrder="3" parent="BDC_SimpleNews::main_menu"
+              action="adminhtml/system_config/edit/section/simplenews"
+              resource="BDC_SimpleNews::configuration" />
+      </menu>
+      </config>
+      ```
+  </details>
 
 ![MenuLinkAdmin](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/adminhtmlMenu.png)
 
 
-### <a name="Step2B7">Step 2B.7:  Create backend route file</a>
+### <a name="Step2B7">Step 2B7:  Create backend route file</a>
 
-- Create file: app/code/BDC/SimpleNews/etc/adminhtml/routes.xml (Purpose: The router of your module for backend will be declared here) and insert this following code into it:
+- Create file [etc/adminhtml/routes.xml](etc/adminhtml/routes.xml) (Purpose: The router of your module for backend will be declared here) and insert this following code into it:
 
-```
-<?xml version="1.0"?>
+  <details><summary>Source</summary>
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/
-Framework/App/etc/routes.xsd">
-    <router id="admin">
-        <route id="simplenews" frontName="simplenews">
-            <module name="BDC_SimpleNews" />
-        </route>
-    </router>
-</config>
+      ```
+      <?xml version="1.0"?>
 
-```
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/
+      Framework/App/etc/routes.xsd">
+          <router id="admin">
+              <route id="simplenews" frontName="simplenews">
+                  <module name="BDC_SimpleNews" />
+              </route>
+          </router>
+      </config>
+
+      ```
+  </details>
+
 #### Note:
 - Admin Route: This route will be same as the frontend route but you must declare it in adminhtml folder with router id is admin. /etc/adminhtml/routes.xml
 The url of the admin page is the same structure with frontend page, but the admin_area name will be added before route_frontName to recognize this is a admin router. For example, the url of admin cms page:
 http://example.com/index.php/admin/simplenews/controller/action
 The controller action for admin page will be added inside of the folder Controller/Adminhtml. For example for above url: {namespace}/{module}/Controller/Adminhtml/{Controller}/{Action}.php
 
-### <a name="Step2B8">Step 2B.8:  Update the acl.xml to add more roles</a>
+### <a name="Step2B8">Step 2B8:  Update the acl.xml to add more roles</a>
 
-- Open this file: app/code/BDC/SimpleNews/etc/acl.xml and modify the source code into here like this:
-```
-<?xml version="1.0"?>
+- Open this file [etc/acl.xml](etc/acl.xml) and modify the source code into here like this:
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/
-Framework/Acl/etc/acl.xsd">
-    <acl>
-        <resources>
-            <resource id="Magento_Backend::admin">
-                <resource id="BDC_SimpleNews::simplenews" title="Simple News" sortOrder="100">
-                    <resource id="BDC_SimpleNews::add_news" title="Add News" sortOrder="1" />
-                    <resource id="BDC_SimpleNews::manage_news" title="Manage News" sortOrder="2" />
-                    <resource id="BDC_SimpleNews::configuration" title="Configurations" sortOrder="3" />
-                </resource>
-                <resource id="Magento_Backend::stores">
-                    <resource id="Magento_Backend::stores_settings">
-                        <resource id="Magento_Config::config">
-                            <resource id="BDC_SimpleNews::system_config" title="Simple News Section" />
+  <details><summary>Source</summary>
+
+      ```
+      <?xml version="1.0"?>
+
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/
+      Framework/Acl/etc/acl.xsd">
+        <acl>
+            <resources>
+                <resource id="Magento_Backend::admin">
+                    <resource id="BDC_SimpleNews::simplenews" title="Simple News" sortOrder="100">
+                        <resource id="BDC_SimpleNews::add_news" title="Add News" sortOrder="1" />
+                        <resource id="BDC_SimpleNews::manage_news" title="Manage News" sortOrder="2" />
+                        <resource id="BDC_SimpleNews::configuration" title="Configurations" sortOrder="3" />
+                    </resource>
+                    <resource id="Magento_Backend::stores">
+                        <resource id="Magento_Backend::stores_settings">
+                            <resource id="Magento_Config::config">
+                                <resource id="BDC_SimpleNews::system_config" title="Simple News Section" />
+                            </resource>
                         </resource>
                     </resource>
                 </resource>
-            </resource>
-        </resources>
-    </acl>
-</config>
+            </resources>
+        </acl>
+      </config>
 
-```
+      ```
+  </details>
 
-### <a name="Step2B9">Step 2B.9:  Create layout for grid</a>
+### <a name="Step2B9">Step 2B9:  Create layout for grid</a>
 
 
-- Create file: app/code/BDC/SimpleNews/view/adminhtml/layout/simplenews_news_index.xml (Purpose: This file is used to declare grid container block) and insert this following code into it:
+- Create file: [view/adminhtml/layout/simplenews_news_index.xml](view/adminhtml/layout/simplenews_news_index.xml) (Purpose: This file is used to declare grid container block) and insert this following code into it:
 
-```
-<?xml version="1.0"?>
+  <details><summary>Source</summary>
 
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
-   <update handle="formkey"/>
-   <update handle="simplenews_news_grid_block"/>
-   <body>
-       <referenceContainer name="content">
-           <block class="BDC\SimpleNews\Block\Adminhtml\News"
-               name="bdc_simplenews_news.grid.container" />
-       </referenceContainer>
-   </body>
-</page>
+    ```
+    <?xml version="1.0"?>
 
-```
+    <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <update handle="formkey"/>
+     <update handle="simplenews_news_grid_block"/>
+     <body>
+         <referenceContainer name="content">
+             <block class="BDC\SimpleNews\Block\Adminhtml\News"
+                 name="bdc_simplenews_news.grid.container" />
+         </referenceContainer>
+     </body>
+    </page>
+
+    ```
+  </details>
 
 ### <a name="Step2B10">Step 2B.10:  Create layout for Grid Container</a>
 
