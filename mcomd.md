@@ -133,5 +133,5 @@ connector
 
 
 ## Ref
-
-[omsdocs](https://omsdocs.magento.com/en/getting-started/)
+- [magestore](https://www.magestore.com/magento-2-tutorial/category/magento-2-order-management/)
+- [omsdocs](https://omsdocs.magento.com/en/getting-started/)

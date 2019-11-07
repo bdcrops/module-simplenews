@@ -4726,7 +4726,7 @@ The bookmarks allows you to save the state of the listing which you modified wit
 </bookmark>
 ```
 
-#### Pagination
+#### Pagination?
 
 The pagination of the grid under magento2 is super well done and very easy to integrate, it is enough just to pay attention to the 2 paths "provider" and "selectProvider".
 Here is the code to insert:
@@ -4747,7 +4747,7 @@ Here is the code to insert:
 </paging>
 ```
 
-#### Magento2 grid filters
+#### Magento2 grid filters?
 To be able to filter the table can sometimes be practical, for that a "filter" element can be added to the magento grid. Here's how to do it:
 ```
 <filters name="listing_filters">
@@ -4776,7 +4776,7 @@ By default, it takes all the fields available on the grid, it knows how to filte
  ici type textRange :
   <item name="filter" xsi:type="string">textRange</item>
 
-#### Mass Actions under magento2
+#### Mass Actions under magento2?
 You want to be able to select several lines of your grid to delete them all at once or do another specific processing on all the lines selected at the same time? The Mass Actions are made for this. First of all it will be necessary to add the inputs on the edge of our grid to be able to select the lines, so in "columns" add this before the "column":
 ```
 <selectionsColumn name="ids">
@@ -4818,7 +4818,7 @@ You now see the checkboxes on the side that allow you to select multiple lines. 
 
 Here it is the same, we have to be careful on what we enter as a path for the "selectProvider" and we add the actions following each other. In order to prepare the next tutorial, we will create the MassDelete controller. This is where we will be redirected when we select our action (*/*/massDelete).
 
-#### Create a search field in admin magento2
+#### Create a search field in admin magento2?
 
 To create a search field on the magento admin, you must add an optional element in the container that will be called "filterSearch" like this: In  
 ```
