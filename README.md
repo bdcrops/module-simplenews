@@ -3058,6 +3058,16 @@ class Right extends Lastest
 
 ## <a name="PartD"> Part D : News Console Command </a>  [Go to Top](#top)
 
+#### Write  of command line  a interface features?
+
+- Installing Magento (and related tasks such as creating or updating the database schema, creating the deployment configuration, and so on)
+- Clearing the cache
+- Managing indexes, including reindexing
+- Creating translation dictionaries and translation packages
+- Generating non-existent classes such as factories and interceptors for plug-ins, generating the dependency injection configuration for the object manager
+- Deploying static view files
+- Creating CSS from LESS
+- Before we start, please take some minutes to know about the naming in Magento 2 CLI.
 
 ### <a name="Step2D1"> Step 2D1: Adding a new command  Dependency Injection</a>
 
@@ -5568,7 +5578,7 @@ http://www.magento.lan/cadmin/simplenews/
 
 ## <a name="PartJ">PartJ: Customer/Others </a> [Go to Top](#top)
 
-### <a name="Step2J1">Step2J1:Magento 2 Indexing & Reindex </a>
+### <a name="Step2J1">Step2J1:Create  Indexing & Reindex </a>
 
 #### What is Indexing?
 Magento transforms data such as products, categories, and so on, to improve the performance of your storefront. As data changes, the transformed data must be updated—or reindexed. Magento has a very sophisticated architecture that stores lots of merchant data (including catalog data, prices, users, stores, and so on) in many database tables. To optimize storefront performance, Magento accumulates data into special tables using indexers.
@@ -5577,7 +5587,7 @@ For example, suppose you change the price of an item from $8.99 to $6.99. Magent
 
 Without indexing, Magento would have to calculate the price of every product on the fly—taking into account shopping cart price rules, bundle pricing, discounts, tier pricing, and so on. Loading the price for a product would take a long time, possibly resulting in cart abandonment.
 
-#### implementation 
+#### implementation
 
 - Create [etc/indexer.xml](etc/indexer.xml)
 - Create [etc/mview.xml](etc/mview.xml)
