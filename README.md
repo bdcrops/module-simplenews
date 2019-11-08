@@ -1195,6 +1195,17 @@ Helpers are the elements that are global and always available. We can use the He
 
 ### <a name="Step2B6">Step 2B6:  Create the menu for Magento backend</a>
 
+####
+  <add id="BDC_SimpleNews::news" title="Manage Posts" module="BDC_SimpleNews" sortOrder="10" action="bdc_simplenews/news" resource="BDC_SimpleNews::news" parent="BDC_SimpleNews::helloworld"/> Let’s explain some attributes:id , title, module, parent ,action, resource?
+
+  - id attribute is the identifier for this note. It’s a unique string and should follow the format: {Vendor_ModuleName}::{menu_description}.
+  - title attribute is the text which will be shown on the menu bar.
+  - module attribute is defined the module which this menu is belong to.
+  - sortOrder attribute is defined the position of the menu. Lower value will display on top of menu.
+  - parent attribute is an Id of other menu node. It will tell Magento that this menu is a child of another menu. In this example, we have parent=”Mageplaza_HelloWorld::helloworld”, so we - know this menu “Manage Posts” is a child of “Hello World” menu and it will show inside of Hello World menu.
+  - action attribute will define the url of the page which this menu link to. As we talk above, the url will be followed this format {router_name}{controller_folder}{action_name}. - In this example, this menu will link to the module HelloWorld, controller Post and action Index
+  - resource attribute is used to defined the ACL rule which the admin user must have in order to see and access this menu. We will find more detail about ACL in other topic.
+
 - Create file: [etc/adminhtml/menu.xml](etc/adminhtml/menu.xml) (Purpose: The menu item of your module will be declared here) and insert this following code into it:
 
   <details><summary>Source</summary>
@@ -1270,13 +1281,13 @@ As a module developer, ACL rules present a few interesting challenges. First, th
 
 Despite being required fields, there are no hard and fast rules as to how a module developer should setup and structure their own rules. Also, a module developer will likely want additional rules that are specific to their module. This article can’t answer these hard questions for you, but we will show you how to check the current user against a specific ACL rule, look up ID values for existing rules, and how to create your own tree of ACL rules.
 
-#### Explain Magento_Backend::admin,Id Title?
+#### Explain Magento_Backend::admin,Id Title, sortOrder?
 
  - Magento_Backend::admin: Our resource will be placed as child of Magento_Backend::admin. Each resource will have an Id, title and sortOrder attribute:
 
 - Id: attribute is the identify of this resource. You can use this when define resource in Admin menu, configuration and limit access to your module controller. This is a unique string and should be in this format: Vendor_ModuleName::resource_name.
 - Title: attribute is the label of this resource when showing in resource tree.
-sortOrder attribute define the position of this resource in tree.
+- sortOrder: attribute define the position of this resource in tree.
 
 - Open this file [etc/acl.xml](etc/acl.xml) and modify the source code into here like this:
 
