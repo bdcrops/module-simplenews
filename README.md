@@ -1,4 +1,4 @@
-
+- [
 # Magento 2 SimpleNews module  
 
 **Magento 2 Module development** or **Magento 2 SimpleNews Module**  Create a full-fledged Module Step by Step. You could just follow my code to create this module from the scratch. Or you can directly download the compressed tar file and install it and play it.  
@@ -5570,6 +5570,22 @@ http://www.magento.lan/cadmin/simplenews/
 
 ### <a name="Step2J1">Step2J1:Magento 2 Indexing & Reindex </a>
 
+#### What is Indexing?
+Magento transforms data such as products, categories, and so on, to improve the performance of your storefront. As data changes, the transformed data must be updated—or reindexed. Magento has a very sophisticated architecture that stores lots of merchant data (including catalog data, prices, users, stores, and so on) in many database tables. To optimize storefront performance, Magento accumulates data into special tables using indexers.
+
+For example, suppose you change the price of an item from $8.99 to $6.99. Magento must reindex the price change to display it on your storefront.
+
+Without indexing, Magento would have to calculate the price of every product on the fly—taking into account shopping cart price rules, bundle pricing, discounts, tier pricing, and so on. Loading the price for a product would take a long time, possibly resulting in cart abandonment.
+
+#### implementation 
+
+- Create [etc/indexer.xml](etc/indexer.xml)
+- Create [etc/mview.xml](etc/mview.xml)
+- Create  [Model/Indexer/Test.php](Model/Indexer/Test.php)
+- Run Reindex by command
+Run reindex by command line
+
+php bin/magento indexer:reindex
 
 
 
