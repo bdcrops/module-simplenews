@@ -974,6 +974,35 @@ That is it concerning configuration XML, variables scope and configuration files
 
 ### <a name="Step2B1">Step 2B1: Setup Module's Backend /System  configuration</a>
 
+#### What is System  configuration?
+The system.xml is a configuration file which is used to create configuration fields in Magento 2 System Configuration. You will need this if your module has some settings which the admin needs to set. You can go to Store -> Setting -> Configuration to check how it look like.The magento 2 system configuration page is divided logically in few parts: Tabs, Sections, Groups, Fields.
+
+#### Set default value
+Each field in system.xml after create will not have any value. When you call them, you will receive ‘null’ result. So for the module, we will need to set the default value for the field and you will call the value without go to config, set value and save it. This default value will be saved in config.xml which is located in etc folder. Let’s create it for this simple configuration:
+
+File: [app/code/BDC/SampleNews/etc/config.xml](etc/config.xml)
+
+```
+<default>
+    <section>
+        <group>
+            <field>{value}</field>
+        </group>
+    </section>
+</default>
+```
+#### Get value from configuration
+First all of let’s save value and flush cache, then you can get saved value from database.
+In the system.xml, we have added 2 fields: enable and display_text. So the path should be:
+helloworld/general/enable
+helloworld/general/display_text
+Simple calling:ex
+```
+$this->scopeConfig->getValue('helloworld/general/enable', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$this->scopeConfig->getValue('helloworld/general/display_text', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+```
+
+
 - Create file[etc/adminhtml/system.xml](etc/adminhtml/system.xml)
 
   (Purpose: This file will declare your configurations in Stores > Settings > Configuration section) and insert this following code into it:
@@ -1196,7 +1225,7 @@ Helpers are the elements that are global and always available. We can use the He
 ### <a name="Step2B6">Step 2B6:  Create the menu for Magento backend</a>
 
 ####
-  <add id="BDC_SimpleNews::news" title="Manage Posts" module="BDC_SimpleNews" sortOrder="10" action="bdc_simplenews/news" resource="BDC_SimpleNews::news" parent="BDC_SimpleNews::helloworld"/> Let’s explain some attributes:id , title, module, parent ,action, resource?
+  <add id="BDC_SimpleNews::news" title="Manage Posts" module="BDC_SimpleNews" sortOrder="10" action="bdc_simplenews/news" resource="BDC_SimpleNews::news" parent="BDC_SimpleNews::helloworld"/> Let’s explain some attributes:id , title, module, parent ,action, resource ?
 
   - id attribute is the identifier for this note. It’s a unique string and should follow the format: {Vendor_ModuleName}::{menu_description}.
   - title attribute is the text which will be shown on the menu bar.
@@ -4730,6 +4759,29 @@ define(function () {
 
 
 ## <a name="PartI">PartI: Components Library/Customizing  UI 15% </a> [Go to Top](#top)
+
+
+#### how to create an Admin Grid in Magento 2 backend?
+As you know, Magento 2 Grid is a kind of table which listing the items in your database table and provide you some features like: sort, filter, delete, update item, etc. The helloWorld for this is the grid of products, grid of customer.Magento 2 provide two ways to create Admin Grid:
+- Using Layout  
+- Using Component.
+We will find out the detail for both of them. Before we continue please follow this articles to create a simple module with admin menu, router which we will use to learn about grid.
+
+#### How to Create Create Admin Grid using Component?
+- Declare resource in dependency injection file Now we will create di.xml file which will connect to the Model to get the data for our grid. File: app/code/BDC/SampleNews/etc/di.xml
+
+- Create layout file For the action bdc_simplenews/news/index, we will create a layout file name bdc_samplenews_news_index.xml
+
+- Create component layout file As declaration in layout file, we will create a component file bdc_samplenews_news_listing.xml
+
+#### How to Create Admin Grid using Layout?
+
+You have just find how to add a Magento 2 Grid by using Component. Now we will see how to do it by using normal layout/block file.
+
+- Create block for this grid File: app/code/BDC/SampleNews/Block/Adminhtml/News.php
+- Create layout file Now we will need a layout file to connect with Grid Block and render the grid. Let’s create this file:app/code/BDC/SampleNews/view/adminhtml/layout/bdc_samplenews_news_index.xml
+
+- Create layout file Now we will need a layout file to connect with Grid Block and render the grid. Let’s create this file: app/code/BDC/SampleNews/view/adminhtml/layout/bdc_samplenews_news_index.xml
 
 
 #### Explain UI component  contains  child tags argument ,dataSource ,columns ?
