@@ -3451,6 +3451,7 @@ As I mentioned earlier, I will authenticate REST API through Token authenticatio
 #### How Get Modules Using REST API in Magento 2?<?php
 You can fetch almost everything using Magento 2 REST API. The List of REST APIs for Magento EE and CE is a good guide on this topic.To demonstrate the API, I am going to get all the installed modules on a Magento 2 store. Here is the script:
   <details><summary>Source</summary>
+  
       ```
       <?php
       //API URL for authentication
