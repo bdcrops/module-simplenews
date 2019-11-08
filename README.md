@@ -4457,9 +4457,15 @@ There are 3 different ways to use a plugin to change method behavior. You may ha
     - Before
     - After
     - Around
+#### What is Benefits of Magento 2 Plugin?
+For a module developer as you, Magento 2 Interception plugin allows:
 
+- Forwarding any method call that is used on an object manager controlled object and taken programmatic action
+- Modifying the return value of any method call that is used on an object manager controlled object
+- Modifying the arguments of any method call that is used on an object manager controlled object
+Proceeding similarly when other modules are in progress of the same method in the same or predictable way.
 
-#### Limitations: Plugins can not be used on following:
+#### What is  Limitations of  Plugins can not be used ?
 - Final methods
 - Final classes
 - Non-public methods
@@ -5558,6 +5564,22 @@ http://www.magento.lan/cadmin/simplenews/
 - Add new field 'base_tax_amount' on table sales_order_grid(add filed PhpMyAdmin)
 
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/ExtendingXML.png)
+
+
+## <a name="PartJ">PartJ: Customer/Others </a> [Go to Top](#top)
+
+### <a name="Step2J1">Step2J1:Magento 2 Indexing & Reindex </a>
+
+
+
+
+
+
+### <a name="Step2J2">Step2J2: </a>
+### <a name="Step2J3">Step2J3 </a>
+### <a name="Step2J4">Step2J4: </a>
+### <a name="Step2J5">Step2J5: </a>
+### <a name="Step2J6">Step2J6: </a>
 
 ***
 ## Ref   [Go to Top](#top)

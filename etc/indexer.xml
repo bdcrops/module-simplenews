@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="bdc_samplenews_indexer" view_id="bdc_samplenews_indexer" class="BDC\SampleNews\Model\Indexer\Test">
+        <title translate="true">BDC SampleNews Indexer</title>
+        <description translate="true">SampleNews of custom indexer</description>
+    </indexer>
+</config>
