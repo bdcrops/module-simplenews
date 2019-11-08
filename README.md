@@ -98,13 +98,13 @@
 - [Step 2E.5:  Run new cron group cron jobs ](#Step2E5)
 
 ### [Part F : Create  REST WEB API](#PartF)
-- [Step2F.1: Web API Routes/Configuration](#Step2F1)
-- [Step2F.2: Define Interface– etc/di.xml](#Step2F2)
-- [Step2F.3: Declare API Interface](#Step2F3)
-- [Step2F.4: Declare Data API Interface](#Step2F4)
-- [Step2F.5: Create Model](#Step2F5)
-- [Step2F.6: Communicating with new API call](#Step2F6)
-- [Step2F.7: Adding ACL Web API](#Step2F7)
+- [Step2F1: Web API Routes/Configuration](#Step2F1)
+- [Step2F2: Define Interface– etc/di.xml](#Step2F2)
+- [Step2F3: Declare API Interface](#Step2F3)
+- [Step2F4: Declare Data API Interface](#Step2F4)
+- [Step2F5: Create Model](#Step2F5)
+- [Step2F6: Communicating with new API call](#Step2F6)
+- [Step2F7: Adding ACL Web API](#Step2F7)
 
 ### [PartG: Dependency Injection configuration ](#PartG)
 - [Step2G.1: DI Preference,Arguments & Virtual Types Implements](#Step2G1)
@@ -3450,39 +3450,40 @@ Now, create a new user for the newly created role through these steps:
 As I mentioned earlier, I will authenticate REST API through Token authentication. This means that I will pass a username and password in the initial connection and receive the token . This token will be saved in a variable, which will be passed in the header for further calls.
 #### How Get Modules Using REST API in Magento 2?<?php
 You can fetch almost everything using Magento 2 REST API. The List of REST APIs for Magento EE and CE is a good guide on this topic.To demonstrate the API, I am going to get all the installed modules on a Magento 2 store. Here is the script:
+  <details><summary>Source</summary>
+      ```
+      <?php
+      //API URL for authentication
+      $apiURL="http://www.magento.lan/rest/V1/news/admin/token";
+      //parameters passing with URL
+      $data = array("username" => "apiaccess", "password" => "api@123");
+      $data_string = json_encode($data);
+      $ch = curl_init($apiURL);
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($data_string)));
+      $token = curl_exec($ch);
+      //decoding generated token and saving it in a variable
+      $token=  json_decode($token);
+      //******************************************//
+      //Using above token into header
+      $headers = array("Authorization: Bearer ".$token);
+      //API URL to get all Magento 2 modules
+      $requestUrl='http://www.magento.lan/rest/V1/news';
+      $ch = curl_init($requestUrl);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $result = curl_exec($ch);
+      //decoding result
+      $result=  json_decode($result);
+      //printing result
+      print_r($result);
 
-```
-<?php
-//API URL for authentication
-$apiURL="http://www.magento.lan/rest/V1/news/admin/token";
-//parameters passing with URL
-$data = array("username" => "apiaccess", "password" => "api@123");
-$data_string = json_encode($data);
-$ch = curl_init($apiURL);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Content-Length: ".strlen($data_string)));
-$token = curl_exec($ch);
-//decoding generated token and saving it in a variable
-$token=  json_decode($token);
-//******************************************//
-//Using above token into header
-$headers = array("Authorization: Bearer ".$token);
-//API URL to get all Magento 2 modules
-$requestUrl='http://www.magento.lan/rest/V1/news';
-$ch = curl_init($requestUrl);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$result = curl_exec($ch);
-//decoding result
-$result=  json_decode($result);
-//printing result
-print_r($result);
+      ```
+  </details>
 
-```
-
-### <a name="Step2F1">Step2F.1: Web API Routes/Configuration – etc/webapi.xml </a>
+### <a name="Step2F1">Step2F1: Web API Routes/Configuration – etc/webapi.xml </a>
 
 #### What is Web API?
 A Web API is an application programming interface for either a web server or a web browser. It is a web development concept, usually limited to a web application's client-side (including any web frameworks being used), and thus usually does not include web server or browser implementation details such as SAPIs or APIs unless publicly accessible by a remote web application.
@@ -3519,6 +3520,7 @@ Register web service on Magento Admin following general steps to set up  to enab
 routes are defined in etc/webapi.xml within a module, and although the structure of the definition xml is directed by the requirements of the REST API, the SOAP API uses the same definitions.
 
 The following shows the route configuration for fetching a CMS block, as defined in BDC_SimpleNews::etc/webapi.xml:
+
 ```
 <routes> <route url="/V1/news" method="GET">
         <service class="BDC\SimpleNews\Api\NewsRepositoryInterface" method="getList"/>
@@ -3528,21 +3530,26 @@ The following shows the route configuration for fetching a CMS block, as defined
 ```
 
 #### Implementation News webapi.xml
+
 - Create [app/code/BDC/SimpleNews/etc/webapi.xml](/etc/webapi.xml)  
-```
-<?xml version="1.0"?>
-<routes>
-    <route url="/V1/news" method="GET">
-        <service class="BDC\SimpleNews\Api\NewsRepositoryInterface" method="getList"/>
-        <resources> <resource ref="anonymous"/> </resources>
-    </route>
-</routes>
-```
+  <details><summary>Source</summary>
+
+      ```
+      <?xml version="1.0"?>
+      <routes>
+          <route url="/V1/news" method="GET">
+              <service class="BDC\SimpleNews\Api\NewsRepositoryInterface" method="getList"/>
+              <resources> <resource ref="anonymous"/> </resources>
+          </route>
+      </routes>
+      ```
+  </details>
+
 In the route tag the url attribute defines the route as /V1/cmsBlock/:blockId where the :blockId part represents an id parameter to be supplied. The method attribute defines the HTTP verb the route uses as ‘GET’ (other available verbs are PUT, POST and DELETE).
 
 In the service tag the class attribute associates the service contract Magento\Cms\Api\BlockRepositoryInterface with the route, and the method attribute defines the method to call upon the object provided by the service contract.
 
-### <a name="Step2F2">Step2F.2: Define Interface – etc/di.xml   </a>
+### <a name="Step2F2">Step2F2: Define Interface – etc/di.xml   </a>
 
 #### What is repository?
 Repositories give service requestors the ability to perform create, read, update, and delete (CRUD) operations on entities or a list of entities. A repository is an example of a service contract, and its implementation is part of the domain layer.
@@ -3554,33 +3561,36 @@ app/code/BDC/SimpleNews/etc/di.xml
 
 
 #### Implementation
-Edit/Create [app/code/BDC/SimpleNews/etc/di.xml](etc/di.xml) and insert this following code into it:
+- Edit/Create [app/code/BDC/SimpleNews/etc/di.xml](etc/di.xml) and insert this following code into it:
 
 ```
 <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
 <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
 
 ```
-  Final file look like as below:
+- Final file look like as below:
 
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-   <type name="Magento\Framework\Console\CommandList">
-       <arguments>
-           <argument name="commands" xsi:type="array">
-             <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
-           </argument>
-       </arguments>
-   </type>
-  <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
-  <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
+  <details><summary>Source</summary>
 
-</config>
+      ```
+      <?xml version="1.0"?>
+      <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+         <type name="Magento\Framework\Console\CommandList">
+             <arguments>
+                 <argument name="commands" xsi:type="array">
+                   <item name="bdc_simplenews_create" xsi:type="object">BDC\SimpleNews\Console\Command\NewsCreate</item>
+                 </argument>
+             </arguments>
+         </type>
+        <preference type="BDC\SimpleNews\Model\News" for="BDC\SimpleNews\Api\Data\NewsInterface"/>
+        <preference type="BDC\SimpleNews\Model\NewsRepository" for="BDC\SimpleNews\Api\NewsRepositoryInterface"/>
 
-```
+      </config>
 
-### <a name="Step2F3">Step2F.3:Declare API Interface – Api/NewsRepositoryInterface.php </a>
+      ```
+  </details>
+
+### <a name="Step2F3">Step2F3:Declare API Interface – Api/NewsRepositoryInterface.php </a>
 
 #### What is Repository Interface?
 An interface defines the repository with all logical read and write operations for a specific entity. You can see an example of such a repository interface in the diagram. The interface gets implemented by one or more classes that provide data store specific implementations of each interface method
@@ -3600,23 +3610,25 @@ A service contract must define data interfaces, which preserve data integrity, a
 
 
 #### Implementation
-Create [app/code/BDC/SimpleNews/Api/NewsRepositoryInterface.php](Api/NewsRepositoryInterface.php)
-```
-<?php
+- Create [Api/NewsRepositoryInterface.php](Api/NewsRepositoryInterface.php)
+  <details><summary>Source</summary>
 
-namespace BDC\SimpleNews\Api;
+    ```
+    <?php
 
-interface NewsRepositoryInterface {
-    /**
-     * @return \BDC\SimpleNews\Api\Data\NewsInterface[]
-     */
-    public function getList();
-}
+    namespace BDC\SimpleNews\Api;
 
-```
+    interface NewsRepositoryInterface {
+        /**
+         * @return \BDC\SimpleNews\Api\Data\NewsInterface[]
+         */
+        public function getList();
+    }
 
+    ```
+  </details>
 
-### <a name="Step2F4">Step2F.4:Data Interface – Api/Data/NewsInterface.php    </a>
+### <a name="Step2F4">Step2F4:Data Interface – Api/Data/NewsInterface.php    </a>
 
 #### What is Interface class PHP?
 An interface allows unrelated classes to implement the same set of methods, regardless of their positions in the class inheritance hierarchy. An interface enables you to model multiple inheritance because a class can implement more than one interface whereas it can extend only one class.
@@ -3626,59 +3638,67 @@ An interface allows unrelated classes to implement the same set of methods, rega
 Define data interfaces in the Api/Data subdirectory for a module.Ex. data interfaces for the Customer module are in the /app/code/Magento/Customer/Api/Data subdirectory.
 
 Now, we need to create an interface and model, please note that you need to take care of the comments as well.
-Create [app/code/BDC/SimpleNews/Api/Data/NewsInterface.php](Api/Data/NewsInterface.php) & insert this following code into it:
+- Create [app/code/BDC/SimpleNews/Api/Data/NewsInterface.php](Api/Data/NewsInterface.php) & insert this following code into it:
 
-```
-<?php
+  <details><summary>Source</summary>
 
-namespace BDC\SimpleNews\Api\Data;
+      ```
+      <?php
 
-interface NewsInterface {
-    /**
-     * @return string
-     */
-    public function getTitle();
+      namespace BDC\SimpleNews\Api\Data;
 
-    /**
-     * @return string|null
-     */
-    public function getSummary();
+      interface NewsInterface {
+        /**
+         * @return string
+         */
+        public function getTitle();
 
-    /**
-     * @return string|null
-     */
-    public function getDescription();
-}
+        /**
+         * @return string|null
+         */
+        public function getSummary();
 
-```
-### <a name="Step2F5">Step2F.5: Create Model – Model/NewsRepository.php  </a>
+        /**
+         * @return string|null
+         */
+        public function getDescription();
+      }
+
+      ```
+  </details>
+
+### <a name="Step2F5">Step2F5: Create Model – Model/NewsRepository.php  </a>
 
 #### What task done by Model NewsRepository?
 
 Get Collection in  means showing the items in your store when  run the command. With the code snippet in this topic, request the specific number of the news as you need. Let’s start calling the news in  Magento 2  now!
 
 #### Implementation
-Create [app/code/BDC/SimpleNews/Model/NewsRepository.php](Model/NewsRepository.php) & insert this following code into it:
-```
-<?php
-namespace BDC\SimpleNews\Model;
+- Create [app/code/BDC/SimpleNews/Model/NewsRepository.php](Model/NewsRepository.php) & insert this following code into it:
 
-use BDC\SimpleNews\Api\NewsRepositoryInterface;
-use BDC\SimpleNews\Model\Resource\News\CollectionFactory;
+  <details><summary>Source</summary>
 
-class NewsRepository implements NewsRepositoryInterface {
-    private $collectionFactory;
-    public function __construct(CollectionFactory $collectionFactory){
-        $this->collectionFactory = $collectionFactory;
-    }
-    public function getList() {
-        return $this->collectionFactory->create()->getItems();
-    }
-}
+      ```
+      <?php
+      namespace BDC\SimpleNews\Model;
 
-```
+      use BDC\SimpleNews\Api\NewsRepositoryInterface;
+      use BDC\SimpleNews\Model\Resource\News\CollectionFactory;
 
-### <a name="Step2F6">Step2F.6: Communicating with new API call  </a>
+      class NewsRepository implements NewsRepositoryInterface {
+        private $collectionFactory;
+        public function __construct(CollectionFactory $collectionFactory){
+            $this->collectionFactory = $collectionFactory;
+        }
+        public function getList() {
+            return $this->collectionFactory->create()->getItems();
+        }
+      }
+
+      ```
+  </details>
+
+### <a name="Step2F6">Step2F6: Communicating with new API call  </a>
 
 #### Accessing routes
 As mentioned above, the configuration is conveniently used by both the REST and SOAP APIs. However, the means of accessing resources differs quite a lot.The full REST resource URL is the easiest to determine as it just needs prefixing with ‘http://www.yourdomain.com/rest/’, so in the example above, assuming the news needed has an entity id of 1, the resource url would be ‘http://www.yourdomain.com/rest/V1/news/1’.
@@ -3713,7 +3733,7 @@ object(stdClass)#2 (1) {
 
 
 
-### <a name="Step2F7">Step2F.7: Adding ACL Web API  </a>
+### <a name="Step2F7">Step2F7: Adding ACL Web API  </a>
 
 
 If we don’t set anonymous in resource of webapi.xml, we need to set existing Magento resource or create our own. We can do that by adding acl.xml to etc.
