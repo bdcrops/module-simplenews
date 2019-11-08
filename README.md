@@ -292,7 +292,7 @@ In this step, we need to create this file:
         \Magento\Framework\Component\ComponentRegistrar::MODULE,
         'BDC_SimpleNews', __DIR__
     );
-    ``` 
+    ```
   </details>
 
 Modules in vendor folder would update using composer And all the modules in app/code would not be updated through composer That's why when you need to override any module you add it in app/code
@@ -1254,6 +1254,29 @@ http://example.com/index.php/admin/simplenews/controller/action
 The controller action for admin page will be added inside of the folder Controller/Adminhtml. For example for above url: {namespace}/{module}/Controller/Adminhtml/{Controller}/{Action}.php
 
 ### <a name="Step2B8">Step 2B8:  Update the acl.xml to add more roles</a>
+
+#### How to add/Create our module to ACL role?
+ As in the Admin Menu and System Configuration article, you saw that we alway have a resource attribute when create it. Now we will register that resources to the system, so Magento can realize and let us set a role for them. To register the resource, we use the acl.xml file which located in
+ ```
+ app/code/{namespace}/{module}/etc/acl.xml
+ ```
+#### ACL Rules for Developers?
+As a module developer, ACL rules present a few interesting challenges. First, there are several places that you, as a module developer, are expected to add ACL rule checks to your module. A few examples
+
+- Every URL endpoint/controller in the admin application must implement an _ isAllowed method that determines if a user can access the URL endpoint.
+- Every Menu Item in the left hand navigation also has a specific ACL rule that controls whether or not the menu displays for the logged in user. This is often the same rule from _ isAllowed)
+
+- Every configuration field in System -> Configuration has a specific ACL rule that controls whether or not the menu displays
+
+Despite being required fields, there are no hard and fast rules as to how a module developer should setup and structure their own rules. Also, a module developer will likely want additional rules that are specific to their module. This article can’t answer these hard questions for you, but we will show you how to check the current user against a specific ACL rule, look up ID values for existing rules, and how to create your own tree of ACL rules.
+
+#### Explain Magento_Backend::admin,Id Title?
+
+ - Magento_Backend::admin: Our resource will be placed as child of Magento_Backend::admin. Each resource will have an Id, title and sortOrder attribute:
+
+- Id: attribute is the identify of this resource. You can use this when define resource in Admin menu, configuration and limit access to your module controller. This is a unique string and should be in this format: Vendor_ModuleName::resource_name.
+- Title: attribute is the label of this resource when showing in resource tree.
+sortOrder attribute define the position of this resource in tree.
 
 - Open this file [etc/acl.xml](etc/acl.xml) and modify the source code into here like this:
 
