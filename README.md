@@ -624,11 +624,36 @@ We create a new Magento 2 block an inject \Magento\Catalog\Model\ResourceModel\P
 - filter by attribute values
 It is possible to filter your collection by loaded attribute values. For example all products with price small than 1000 $. My example use setPageSize() to only load a given number of products.
 
-### <a name="Step2A11">Step 2A11: Setup the frontend route</a>
+### <a name="Step2A11">Step 2A11: Request Flow Processing- Frontend Route</a>
 
-In the Magento system, a request URL has the following format:
+#### Create custom route on Frontend route?
 
+We will find how to create a frontend route, admin route and how to use route to rewrite controller.
+- Routes.xml
+To register a frontend route, we must create a routes.xml file:
+File: app/code/BDC/SampleNews/etc/frontend/routes.xml
+```
+<!--Use router 'standard' for frontend route-->
+    <router id="standard">
+        <!--Define a custom route with id and frontName-->
+        <route frontName="samplenews" id="samplenews">
+            <!--The module which this route match to-->
+            <module name="BDC_SampleNews"/>
+        </route>
+    </router>
+```
+Please look into the code, you will see it’s very simple to register a route. You must use the standard router for the frontend. This route will have a child which define the module for it and 2 attributes:
+
+The id attribute is a unique string which will identify this route. You will use this string to declare the layout handle for the action of this module
+The frontName attribute is also a unique string which will be shown on the url request. For example, if you declare a route like this:
+ <route frontName="samplenews" id="samplenews">
+The url to this module should be:
+
+http://example.com/index.php/samplenews/controller/action
+And the layout handle for this action is: samplenews_controller_action.xml So with this example path, you must create the action class in this folder:
 ~~~
+{namespace}/{module}/Controller/{Controller}/{Action}.php
+
 http://example.com/<router_name>/<controller_name>/<action_name>
 ~~~
 
@@ -665,7 +690,7 @@ After define the route, the URL path to our module will be: `http://example.com/
 1. The id attribute is a unique string which will identify this route. You will use this string to declare the layout handle for the action of this module
 2. The frontName attribute is also a unique string which will be shown on the url request. For example, if you declare a route like this: <route frontName="news" id="news"> The url to this module should be:
 http://example.com/index.php/nwes/controller/action
-And the layout handle for this action is: helloworld_controller_action.xml So with this example path, you must create the action class in this folder: {namespace}/{module}/Controller/{Controller}/{Action}.php
+And the layout handle for this action is: samplenews_controller_action.xml So with this example path, you must create the action class in this folder: {namespace}/{module}/Controller/{Controller}/{Action}.php
 
 
 
@@ -994,12 +1019,12 @@ File: [app/code/BDC/SampleNews/etc/config.xml](etc/config.xml)
 #### Get value from configuration
 First all of let’s save value and flush cache, then you can get saved value from database.
 In the system.xml, we have added 2 fields: enable and display_text. So the path should be:
-helloworld/general/enable
-helloworld/general/display_text
+samplenews/general/enable
+samplenews/general/display_text
 Simple calling:ex
 ```
-$this->scopeConfig->getValue('helloworld/general/enable', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-$this->scopeConfig->getValue('helloworld/general/display_text', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$this->scopeConfig->getValue('samplenews/general/enable', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$this->scopeConfig->getValue('samplenews/general/display_text', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 ```
 
 
@@ -1225,14 +1250,14 @@ Helpers are the elements that are global and always available. We can use the He
 ### <a name="Step2B6">Step 2B6:  Create the menu for Magento backend</a>
 
 ####
-  <add id="BDC_SimpleNews::news" title="Manage Posts" module="BDC_SimpleNews" sortOrder="10" action="bdc_simplenews/news" resource="BDC_SimpleNews::news" parent="BDC_SimpleNews::helloworld"/> Let’s explain some attributes:id , title, module, parent ,action, resource ?
+  <add id="BDC_SimpleNews::news" title="Manage Posts" module="BDC_SimpleNews" sortOrder="10" action="bdc_simplenews/news" resource="BDC_SimpleNews::news" parent="BDC_SimpleNews::samplenews"/> Let’s explain some attributes:id , title, module, parent ,action, resource ?
 
   - id attribute is the identifier for this note. It’s a unique string and should follow the format: {Vendor_ModuleName}::{menu_description}.
   - title attribute is the text which will be shown on the menu bar.
   - module attribute is defined the module which this menu is belong to.
   - sortOrder attribute is defined the position of the menu. Lower value will display on top of menu.
-  - parent attribute is an Id of other menu node. It will tell Magento that this menu is a child of another menu. In this example, we have parent=”Mageplaza_HelloWorld::helloworld”, so we - know this menu “Manage Posts” is a child of “Hello World” menu and it will show inside of Hello World menu.
-  - action attribute will define the url of the page which this menu link to. As we talk above, the url will be followed this format {router_name}{controller_folder}{action_name}. - In this example, this menu will link to the module HelloWorld, controller Post and action Index
+  - parent attribute is an Id of other menu node. It will tell Magento that this menu is a child of another menu. In this example, we have parent=”BDC_SampleNews::samplenews”, so we - know this menu “Manage Posts” is a child of “Hello World” menu and it will show inside of Hello World menu.
+  - action attribute will define the url of the page which this menu link to. As we talk above, the url will be followed this format {router_name}{controller_folder}{action_name}. - In this example, this menu will link to the module SampleNews, controller Post and action Index
   - resource attribute is used to defined the ACL rule which the admin user must have in order to see and access this menu. We will find more detail about ACL in other topic.
 
 - Create file: [etc/adminhtml/menu.xml](etc/adminhtml/menu.xml) (Purpose: The menu item of your module will be declared here) and insert this following code into it:
@@ -1265,7 +1290,28 @@ Helpers are the elements that are global and always available. We can use the He
 ![MenuLinkAdmin](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/adminhtmlMenu.png)
 
 
-### <a name="Step2B7">Step 2B7:  Create backend route file</a>
+### <a name="Step2B7">Step 2B7: Request Flow Processing / Create backend route file</a>
+
+#### How to Create Admin route ?
+This route will be same as the frontend route but you must declare it in adminhtml folder with router id is admin.
+File: app/code/BDC/SampleNews/etc/adminhtml/routes.xml
+
+The url of the admin page is the same structure with frontend page, but the admin_area name will be added before route_frontName to recognize this is a admin router. For example, the url of admin cms page:
+
+http://example.com/index.php/admin/bdc_samplenews/controller/action
+The controller action for admin page will be added inside of the folder Controller/Adminhtml. For example for above url:
+```
+{namespace}/{module}/Controller/Adminhtml/{Controller}/{Action}.php
+
+<!--Use router 'admin' for admin route -->
+    <router id="admin">
+        <!--Define a custom route with id and frontName -->
+        <route id="bdc_samplenews" frontName="bdc_samplenews">
+            <!--The module which this route match to-->
+            <module name="BDC_SampleNews"/>
+        </route>
+    </router>
+  ```
 
 - Create file [etc/adminhtml/routes.xml](etc/adminhtml/routes.xml) (Purpose: The router of your module for backend will be declared here) and insert this following code into it:
 
@@ -4762,7 +4808,7 @@ define(function () {
 
 
 #### how to create an Admin Grid in Magento 2 backend?
-As you know, Magento 2 Grid is a kind of table which listing the items in your database table and provide you some features like: sort, filter, delete, update item, etc. The helloWorld for this is the grid of products, grid of customer.Magento 2 provide two ways to create Admin Grid:
+As you know, Magento 2 Grid is a kind of table which listing the items in your database table and provide you some features like: sort, filter, delete, update item, etc. The samplenews for this is the grid of products, grid of customer.Magento 2 provide two ways to create Admin Grid:
 - Using Layout  
 - Using Component.
 We will find out the detail for both of them. Before we continue please follow this articles to create a simple module with admin menu, router which we will use to learn about grid.
