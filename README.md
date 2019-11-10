@@ -196,17 +196,17 @@ You can also send requests to Magento using the SOAP and REST APIs. These two ar
 - Cron: We use the directory to store the files, which are later executed on the Cron launching.
 - CustomerData: directory contains PHP files responsible for processing information for sections. Magento 2 has a special functionality, which allows for processing, updating and transferring the information asynchronously.
 - etc: Configuration XML files  module defines itself & its parts (routes, models, blocks, observers, and cron jobs) within this folder, also be used by non-core modules to override the functionality of core modules.
-    - etc/acl.xml
-    - etc/adminhtml/menu.xml
-    - etc/adminhtml/system.xml
+    - [etc/acl.xml](etc/acl.xml)
+    - [etc/adminhtml/menu.xml](etc/adminhtml/menu.xml)
+    - [etc/adminhtml/system.xml](etc/adminhtml/system.xml)
     - etc/{area}/routes.xml
     - etc/{area}/events.xml
     - etc/crontab/events.xml
     - etc/config.xml
     - etc/cron_groups.xml
     - etc/crontab.xml
-    - etc/db_schema.xml
-    - etc/di.xml
+    - [etc/db_schema.xml](etc/db_schema.xml)
+    - [etc/di.xml](etc/di.xml)
     - etc/events.xml
     - etc/module.xml
     - etc/setup/events.xml
@@ -701,7 +701,7 @@ We are done with creating the database table, CRUD model, resource model and col
 
 In this part, we will talk about Factory Object for model. As you know in OOP, a factory method will be used to instantiate an object. In Magento, the Factory Object do the same thing.
 
-The Factory class name is the name of Model class and append with the ‘Factory’ word. So for our example, we will have PostFactory class. You must not create this class. Magento will create it for you. Whenever Magento’s object manager encounters a class name that ends in the word ‘Factory’, it will automatically generate the Factory class in the var/generation folder if the class does not already exist. You will see the factory class:
+The Factory class name is the name of Model class and append with the ‘Factory’ word. So for our example, we will have NewsFactory class. You must not create this class. Magento will create it for you. Whenever Magento’s object manager encounters a class name that ends in the word ‘Factory’, it will automatically generate the Factory class in the var/generation folder if the class does not already exist. You will see the factory class:
 
 ```
 use BDC\SimpleNews\Model\NewsFactory;
@@ -709,6 +709,51 @@ var/generation/<vendor_name>/<module_name>/Model/ClassFactory.php
 var/generation/BDC/SimpleNew/Model/NewsFactory.php
 ```
 To instantiate a model object we will use automatic constructor dependency injection to inject a factory object, then use factory object to instantiate the model object.
+
+#### Magento 2 Registry & Register?
+Magento 2 authorizes you to register global variable that supports the static registry method. Magento 1, as well as Magento 2, authorize you to register global variable that supports the static registry method.
+To implement that, maybe you used to work with Mage::register() and Mage::registry() in Magento 1, but now in Magento 2 platform, there is a difference in running the registry. You will be required to apply \Magento\Framework\Registry, that accepts the settings and the registry of the restored data. However, first of all, you need to learn how to create or use the own custom registry and also show you how to retrieve global Magento 2 registry objects like current product, category, cms page, cms block, etc.
+And that is lucky because all of them will be referred here. The topic today will help you be familiar with Magento 2 registry objects.
+
+#### How to get and set custom attribute in registry / register
+
+```
+/**
+  * @var \Magento\Framework\Registry
+  */
+
+ protected $_registry;
+ /**
+ * ...
+ * ...
+ * @param \Magento\Framework\Registry $registry,
+ */
+public function __construct(
+    ...,
+    ...,
+    \Magento\Framework\Registry $registry,
+    ...) {
+    $this->_registry = $registry;
+    ...
+    ...
+}
+
+ /**
+ * Setting custom variable in registry to be used
+ *
+ */
+public function setCustomVariable() {
+     $this->registry->register('custom_var', 'Added Value');
+}
+
+/**
+ * Retrieving custom variable from registry
+ * @return string
+ */
+public function getCustomVariable() {
+     return $this->registry->registry('custom_var');
+}
+```
 
 
 - Create controller [Controller/Index/Index.php](Controller/Index/Index.php):
@@ -848,12 +893,12 @@ Unless the store is running in Single Store Mode, the scope of each configuratio
 
 ### What is Scope Settings?
 
-- Global	System-wide settings and resources that are available throughout the Magento installation.
-- Website	Settings and resources that are limited to the current website. Each website has a default store.
-- Store	Settings and resources that are limited to the current store. Each store has a default root category (main menu) and default store view.
-- Store View	Setting and resources that are limited to the current store view.
+- Global:	System-wide settings and resources that are available throughout the Magento installation.
+- Website:	Settings and resources that are limited to the current website. Each website has a default store.
+- Store:	Settings and resources that are limited to the current store. Each store has a default root category (main menu) and default store view.
+- Store View:	Setting and resources that are limited to the current store view.
 
-#### write and get config values by scope?
+#### How to write & get config values by scope?
 An important, but less good documented feature of Magento 2 is how to write and get config values by scope. You will find tons of code samples on how do this globally. Sometime you need to do different settings for different stores programmatically. So here is how this works.
 
 Magento saves all adminhtml settings in core_config table in your Magento database. There you can get values by its path, a string which indicates path to and a variable name. With this path, you can get or set values by Magento 2 core methods. For this you need to use:
@@ -867,8 +912,7 @@ to read config values from database
 
 The following sample code shows how to write store config values by scope:
 ```
-class WriteConfig
-{
+class WriteConfig {
     protected $_logger;
     protected $_storeManager;
     protected $_configWriter;
@@ -876,15 +920,13 @@ class WriteConfig
     public function __construct(
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\App\Config\Storage\WriterInterface $configWriter,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
-    ){
+        \Magento\Store\Model\StoreManagerInterface $storeManager ){
         $this->_logger = $logger;
         $this->_configWriter = $configWriter;
         $this->_storeManager = $storeManager;
     }
 
-    public function setConfig($value)
-    {
+    public function setConfig($value) {
         //for all websites
         $websites = $this->_storeManager->getWebsites();
         $scope = "websites";
@@ -932,7 +974,7 @@ It’s easy to use configuration files in Magento 2. Configuration files include
 - app/etc/env.php — describes the array, which contains the front end name for the back end panel, the data for connection to the database, the table prefixes, the current store mode, the types and statuses of the cache.
 These files are generated during the Magento 2 setup. You can change them directly editing the file. However, running terminal commands bin/magento is considered to be best practice.
 
-#### Utilize Configuration XML and Variables Scope in Magento 2?
+#### Explain Utilize Configuration XML and Variables Scope in Magento 2?
 
 - etc/config.xml — contains default option values from Stores > Configuration in the admin panel menu. This menu can be configured at system.xml;
 - di.xml — contains configurations for the dependency injection;
@@ -954,14 +996,16 @@ etc/mview.xml —  describes the representations of all the indices described in
 - etc/adminhtml/system.xml — can only apply to the admin area, adds tabs to Stores > Configuration, describes sections and fields of a form;
 - etc/adminhtml/menu.xml — can only apply to the admin area, adds an item to the admin panel menu.
 
-#### The loading of configurations occurs in three stages:
+#### Explain loading of configurations occurs in three stages?
 
 - Loading system-level configurations. Loading the files necessary to run Magento 2, such as config.php;
 - Loading global area configurations. Loading the files located in the app/etc/Magento 2 directory, such as di.xml, as well as the files related to the global scope and located directly in the etc/module folders.
 - Loading configurations for specific areas. Loading the files located in the folders etc/adminhtml or etc/frontend.
 Configuration files are connected according to their complete xPaths. Specific attributes are defined in the $idAttributes array as identifiers. After 2 files are connected, they contain all the nodes and values from the original files. The second XML file either adds or replaces the nodes of the first XML file.
 
-#### Magento/Framework/Config provides the following interfaces for developers:
+#### What interfaces provides Magento/Framework/Config for developers?
+
+Magento/Framework/Config provides the following interfaces for developers:
 
 - \Magento\Framework\Config\DataInterface — returns a value by key within the scope, connects the configuration data to an object;
 - \Magento\Framework\Config\ScopeInterface — identifies the current scope;
@@ -977,8 +1021,9 @@ Configuration files are connected according to their complete xPaths. Specific a
 - Reader is used to read the file;
 - SchemaLocator stores the path to the validation scheme.
 
-#### Magento 2 provides two types of validation for XML configuration files: validation before a merging and validation after a merging. It can be either the same or different schemes.
+#### How many types of validation for XML configuration ?
 
+Magento 2 provides two types of validation for XML configuration files: validation before a merging and validation after a merging. It can be either the same or different schemes.
 To create a custom configuration file, you need to create the following elements:
 
 - XSD schema
@@ -986,6 +1031,7 @@ To create a custom configuration file, you need to create the following elements
 - Config reader
 - Schema locator
 - Converter
+
 ####  Explain product_types.xml module of Magento_Catalog as an example ?
 
 product_types.xml module of Magento_Catalog as an example of a custom configuration file. Each module can add its own product type using the product_types.xml file and these files will be validated and merged.
@@ -1004,10 +1050,8 @@ The system.xml is a configuration file which is used to create configuration fie
 
 ![](doc/themes14-1.png)
 
-#### Set default value
-Each field in system.xml after create will not have any value. When you call them, you will receive ‘null’ result. So for the module, we will need to set the default value for the field and you will call the value without go to config, set value and save it. This default value will be saved in config.xml which is located in etc folder. Let’s create it for this simple configuration:
-
-File: [app/code/BDC/SampleNews/etc/config.xml](etc/config.xml)
+#### How to Set default value?
+Each field in system.xml after create will not have any value. When you call them, you will receive ‘null’ result. So for the module, we will need to set the default value for the field and you will call the value without go to config, set value and save it. This default value will be saved in config.xml which is located in etc folder. Let’s create it for this simple configuration:  [etc/config.xml](etc/config.xml)
 
 ```
 <default>
@@ -1018,7 +1062,7 @@ File: [app/code/BDC/SampleNews/etc/config.xml](etc/config.xml)
     </section>
 </default>
 ```
-#### Get value from configuration
+#### How to Get value from configuration ?
 First all of let’s save value and flush cache, then you can get saved value from database.
 In the system.xml, we have added 2 fields: enable and display_text. So the path should be:
 samplenews/general/enable
@@ -1031,8 +1075,7 @@ $this->scopeConfig->getValue('samplenews/general/display_text', \Magento\Store\M
 
 
 - Create file[etc/adminhtml/system.xml](etc/adminhtml/system.xml)
-
-  (Purpose: This file will declare your configurations in Stores > Settings > Configuration section) and insert this following code into it:
+  Purpose: This file will declare your configurations in Stores > Settings > Configuration section) and insert this following code into it:
 
   <details><summary>Source</summary>
 
@@ -1082,7 +1125,7 @@ The system.xml is a configuration file which is used to create configuration fie
 - How do you add a new tab to the Admin menu?
 
 
-### <a name="Step2B2">Step 2B2:Create a custom source model</a>
+### <a name="Step2B2">Step 2B2:Create Custom Source Model</a>
 
 - Create file [Model/System/Config/LastestNews/Position.php](Model/System/Config/LastestNews/Position.php):
   <details><summary>Source</summary>
@@ -1113,7 +1156,7 @@ The system.xml is a configuration file which is used to create configuration fie
       ```
   </details>
 
-### <a name="Step2B3">Step 2B3:  Create a role for this config section</a>
+### <a name="Step2B3">Step 2B3: Create ACL Role for Config Section</a>
 
 - Create file [etc/acl.xml](etc/acl.xml)
   (Purpose: This file will create a role for your configuration section) and insert this following code into it:
@@ -1172,17 +1215,18 @@ The system.xml is a configuration file which is used to create configuration fie
 
 
 #### Why need to Create Helper?
-Magento 2, the Helper can be called in controllers, models, views and even in other helpers
-
+Magento 2, the Helper can be called in controllers, models, views and even in other helpers.
 Helpers can be considered as global and always available elements. They can even be created as single objects’ instances. Besides, they can be called everywhere once you inject them in the class. Helpers are mainly created to offer methods for the most common functionalities. For instance, you can use helpers to build logs in the application of Magento.
 Magento 2 Helper Class includes various functions and methods which are used commonly throughout the application. All the methods which have been declared as Helpers can be called anywhere including file, model, block, controller class or from another helper in Magento 2.
 
 #### What is Helper?
-In the early version of Magento 2, a Helper Factory is available, which enables developers to instantiate helper methods. Besides, you can use the below code to use ObjectManager to instantiate the Helper Factory.
 
+In the early version of Magento 2, a Helper Factory is available, which enables developers to instantiate helper methods. Besides, you can use the below code to use ObjectManager to instantiate the Helper Factory.
+```
 $object_manager = \Magento\Core\Model\ObjectManager::getInstance();
 $helper_factory = $object_manager->get('\Magento\Core\Model\Factory\Helper');
 $helper = $helper_factory->get('\Magento\Core\Helper\Data');
+```
 However, this code still exist some problems. Luckly, a better concept has been introducted which is Dependency Injection in Magento 2.
 
 Using this concept, the environment will create and provide you an object instead of instantiating it. For instance, if a class is written like the following:
@@ -1271,22 +1315,23 @@ Via this concept, high-value loose coupling modules together concept is provided
     ```
   </details>
 
-#### Note: What are Helpers?
-Helpers are the classes that we can use throughout the Magento website to provide different features. Magento 2 Helpers can be used in Controllers, Blocks, Models, Views and even in other Helper classes.
-Helpers are the elements that are global and always available. We can use the Helpers in any class through Dependency Injection.
+
 
 
 ### <a name="Step2B6">Step 2B6:  Create the menu for Magento backend</a>
 
-####
-  <add id="BDC_SimpleNews::news" title="Manage Posts" module="BDC_SimpleNews" sortOrder="10" action="bdc_simplenews/news" resource="BDC_SimpleNews::news" parent="BDC_SimpleNews::samplenews"/> Let’s explain some attributes:id , title, module, parent ,action, resource ?
+####  Expalin some attributes:id , title, module, parent ,action, resource ? asBelow Code:
+  ```
+  <add id="BDC_SimpleNews::news" title="Manage News" module="BDC_SimpleNews" sortOrder="10" action="bdc_simplenews/news" resource="BDC_SimpleNews::news" parent="BDC_SimpleNews::samplenews"/>
+  ```
+
 
   - id attribute is the identifier for this note. It’s a unique string and should follow the format: {Vendor_ModuleName}::{menu_description}.
   - title attribute is the text which will be shown on the menu bar.
   - module attribute is defined the module which this menu is belong to.
   - sortOrder attribute is defined the position of the menu. Lower value will display on top of menu.
-  - parent attribute is an Id of other menu node. It will tell Magento that this menu is a child of another menu. In this example, we have parent=”BDC_SampleNews::samplenews”, so we - know this menu “Manage Posts” is a child of “Hello World” menu and it will show inside of Hello World menu.
-  - action attribute will define the url of the page which this menu link to. As we talk above, the url will be followed this format {router_name}{controller_folder}{action_name}. - In this example, this menu will link to the module SampleNews, controller Post and action Index
+  - parent attribute is an Id of other menu node. It will tell Magento that this menu is a child of another menu. In this example, we have parent=”BDC_SampleNews::samplenews”, so we - know this menu “Manage News” is a child of “Hello World” menu and it will show inside of Hello World menu.
+  - action attribute will define the url of the page which this menu link to. As we talk above, the url will be followed this format {router_name}{controller_folder}{action_name}. - In this example, this menu will link to the module SampleNews, controller News and action Index
   - resource attribute is used to defined the ACL rule which the admin user must have in order to see and access this menu. We will find more detail about ACL in other topic.
 
 - Create file: [etc/adminhtml/menu.xml](etc/adminhtml/menu.xml) (Purpose: The menu item of your module will be declared here) and insert this following code into it:
@@ -1342,7 +1387,8 @@ The controller action for admin page will be added inside of the folder Controll
     </router>
   ```
 
-- Create file [etc/adminhtml/routes.xml](etc/adminhtml/routes.xml) (Purpose: The router of your module for backend will be declared here) and insert this following code into it:
+- Create file [etc/adminhtml/routes.xml](etc/adminhtml/routes.xml)
+  Purpose: The router of your module for backend will be declared here insert this following code into it:
 
   <details><summary>Source</summary>
 
@@ -1365,8 +1411,9 @@ The controller action for admin page will be added inside of the folder Controll
 #### Note:
 - Admin Route: This route will be same as the frontend route but you must declare it in adminhtml folder with router id is admin. /etc/adminhtml/routes.xml
 The url of the admin page is the same structure with frontend page, but the admin_area name will be added before route_frontName to recognize this is a admin router. For example, the url of admin cms page:
-http://example.com/index.php/admin/simplenews/controller/action
-The controller action for admin page will be added inside of the folder Controller/Adminhtml. For example for above url: {namespace}/{module}/Controller/Adminhtml/{Controller}/{Action}.php
+```
+http://example.com/index.php/admin/simplenews/controller/action  {namespace}/{module}/Controller/Adminhtml/{Controller}/{Action}.php
+```
 
 ### <a name="Step2B8">Step 2B8:  Update the acl.xml to add more roles</a>
 
@@ -1895,10 +1942,10 @@ Despite being required fields, there are no hard and fast rules as to how a modu
         {
             $this->_formScripts[] = "
                 function toggleEditor() {
-                    if (tinyMCE.getInstanceById('post_content') == null) {
-                        tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                    if (tinyMCE.getInstanceById('news_content') == null) {
+                        tinyMCE.execCommand('mceAddControl', false, 'news_content');
                     } else {
-                        tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                        tinyMCE.execCommand('mceRemoveControl', false, 'news_content');
                     }
                 };
             ";
@@ -2006,10 +2053,10 @@ Despite being required fields, there are no hard and fast rules as to how a modu
           {
               $this->_formScripts[] = "
                   function toggleEditor() {
-                      if (tinyMCE.getInstanceById('post_content') == null) {
-                          tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                      if (tinyMCE.getInstanceById('news_content') == null) {
+                          tinyMCE.execCommand('mceAddControl', false, 'news_content');
                       } else {
-                          tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                          tinyMCE.execCommand('mceRemoveControl', false, 'news_content');
                       }
                   };
               ";
@@ -2117,10 +2164,10 @@ Despite being required fields, there are no hard and fast rules as to how a modu
           {
               $this->_formScripts[] = "
                   function toggleEditor() {
-                      if (tinyMCE.getInstanceById('post_content') == null) {
-                          tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                      if (tinyMCE.getInstanceById('news_content') == null) {
+                          tinyMCE.execCommand('mceAddControl', false, 'news_content');
                       } else {
-                          tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                          tinyMCE.execCommand('mceRemoveControl', false, 'news_content');
                       }
                   };
               ";
@@ -2227,10 +2274,10 @@ Despite being required fields, there are no hard and fast rules as to how a modu
         {
             $this->_formScripts[] = "
                 function toggleEditor() {
-                    if (tinyMCE.getInstanceById('post_content') == null) {
-                        tinyMCE.execCommand('mceAddControl', false, 'post_content');
+                    if (tinyMCE.getInstanceById('news_content') == null) {
+                        tinyMCE.execCommand('mceAddControl', false, 'news_content');
                     } else {
-                        tinyMCE.execCommand('mceRemoveControl', false, 'post_content');
+                        tinyMCE.execCommand('mceRemoveControl', false, 'news_content');
                     }
                 };
             ";
@@ -3451,7 +3498,7 @@ Magento 2 API framework allows developers to create new services for communicati
 At the moment, Magento 2 uses the following three authentication methods as is described in Magento 2 REST API documentation.
 - OAuth 1.0a authentication for third-party applications.
 - Tokens to authenticate mobile applications.
-- Admins and customers authentication with login credentials.
+- Admins & customers authentication with login credentials.
 According to the Magento 2 API documentation, these authentication methods can only access the resources assigned to them. Magento 2 API framework first checks whether the call has appropriate authorization to perform the request. The API framework also supports field filtering of API responses to preserve cellular bandwidth.
 Developers use Magento 2 APIs for a wide range of tasks. For instance, you can create a shopping app and integrate it with your Magento 2 store. You can also build a web app which your employee could use to help customers make purchases. With the help of APIs, you can integrate your Magento 2 store with CRMs, ERPs or POS systems.
 #### How Using Magento 2 REST API?
@@ -3475,8 +3522,10 @@ Now, create a new user for the newly created role through these steps:
 - Enter the required information including User Name, First and Last Name, Email, Password, etc.
 - Now, on the left side, click User Role and select the newly created role.
 - Once done, click the Save User
+
 #### How Magento 2 REST API Authentication?
 As I mentioned earlier, I will authenticate REST API through Token authentication. This means that I will pass a username and password in the initial connection and receive the token . This token will be saved in a variable, which will be passed in the header for further calls.
+
 #### How Get Modules Using REST API in Magento 2?
 You can fetch almost everything using Magento 2 REST API. The List of REST APIs for Magento EE and CE is a good guide on this topic.To demonstrate the API, I am going to get all the installed modules on a Magento 2 store. Here is the script:
   <details><summary>Source</summary>
@@ -4165,11 +4214,11 @@ I will use my module SampleEvent. And then, I will use an observer to customize 
 
 + controller_action_predispatch - executes before each controller dispatching.
 
-+ controller_action_postdispatch_{full_action_name} - executes after a controller with specific  {full_action_name}.
++ controller_action_newsdispatch_{full_action_name} - executes after a controller with specific  {full_action_name}.
 
-+ controller_action_postdispatch_{route_name} - executes after each controller with specific {route_name}.
++ controller_action_newsdispatch_{route_name} - executes after each controller with specific {route_name}.
 
-+ controller_action_postdispatch - executes after each controller dispatching.
++ controller_action_newsdispatch - executes after each controller dispatching.
 
 
 
@@ -5341,7 +5390,7 @@ http://www.magento.lan/cadmin/simplenews/
 
           public function execute(){
               $this->newsFactory->create()
-                  ->setData($this->getRequest()->getPostValue()['general'])->save();
+                  ->setData($this->getRequest()->getNewsValue()['general'])->save();
               return $this->resultRedirectFactory->create()->setPath('simplenews/index/index');
           }
       }
