@@ -1002,6 +1002,8 @@ That is it concerning configuration XML, variables scope and configuration files
 #### What is System  configuration?
 The system.xml is a configuration file which is used to create configuration fields in Magento 2 System Configuration. You will need this if your module has some settings which the admin needs to set. You can go to Store -> Setting -> Configuration to check how it look like.The magento 2 system configuration page is divided logically in few parts: Tabs, Sections, Groups, Fields.
 
+![](doc/themes14-1.png)
+
 #### Set default value
 Each field in system.xml after create will not have any value. When you call them, you will receive ‘null’ result. So for the module, we will need to set the default value for the field and you will call the value without go to config, set value and save it. This default value will be saved in config.xml which is located in etc folder. Let’s create it for this simple configuration:
 
