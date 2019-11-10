@@ -1,4 +1,4 @@
-- [
+
 # Magento 2 SimpleNews module  
 
 **Magento 2 Module development** or **Magento 2 SimpleNews Module**  Create a full-fledged Module Step by Step. You could just follow my code to create this module from the scratch. Or you can directly download the compressed tar file and install it and play it.  
@@ -1167,6 +1167,33 @@ The system.xml is a configuration file which is used to create configuration fie
   </details>
 
 ### <a name="Step2B5">Step 2B5:  Create a Helper Data class</a>
+
+
+#### Why need to Create Helper?
+Magento 2, the Helper can be called in controllers, models, views and even in other helpers
+
+Helpers can be considered as global and always available elements. They can even be created as single objects’ instances. Besides, they can be called everywhere once you inject them in the class. Helpers are mainly created to offer methods for the most common functionalities. For instance, you can use helpers to build logs in the application of Magento.
+Magento 2 Helper Class includes various functions and methods which are used commonly throughout the application. All the methods which have been declared as Helpers can be called anywhere including file, model, block, controller class or from another helper in Magento 2.
+
+#### What is Helper?
+In the early version of Magento 2, a Helper Factory is available, which enables developers to instantiate helper methods. Besides, you can use the below code to use ObjectManager to instantiate the Helper Factory.
+
+$object_manager = \Magento\Core\Model\ObjectManager::getInstance();
+$helper_factory = $object_manager->get('\Magento\Core\Model\Factory\Helper');
+$helper = $helper_factory->get('\Magento\Core\Helper\Data');
+However, this code still exist some problems. Luckly, a better concept has been introducted which is Dependency Injection in Magento 2.
+
+Using this concept, the environment will create and provide you an object instead of instantiating it. For instance, if a class is written like the following:
+```
+class Helper{
+   public function __contruct(Helper $xyz){
+       $this->xyz= $xyz;
+   }
+}
+```
+In the Helper class constructor, an object of Helper class is auto-created and assigned the reference, $xyz. This is Dependency Injection.
+
+Via this concept, high-value loose coupling modules together concept is provided by Magento 2. If you want to inject it into a specific class, just add an object to the constructor of it. However, you need to remember that you cannot inject one dependency twice.
 
 - Create file: [Helper/Data.php](Helper/Data.php) and insert this following code into it:
   <details><summary>Source</summary>
@@ -3448,10 +3475,10 @@ Now, create a new user for the newly created role through these steps:
 - Once done, click the Save User
 #### How Magento 2 REST API Authentication?
 As I mentioned earlier, I will authenticate REST API through Token authentication. This means that I will pass a username and password in the initial connection and receive the token . This token will be saved in a variable, which will be passed in the header for further calls.
-#### How Get Modules Using REST API in Magento 2?<?php
+#### How Get Modules Using REST API in Magento 2?
 You can fetch almost everything using Magento 2 REST API. The List of REST APIs for Magento EE and CE is a good guide on this topic.To demonstrate the API, I am going to get all the installed modules on a Magento 2 store. Here is the script:
   <details><summary>Source</summary>
-  
+
       ```
       <?php
       //API URL for authentication
@@ -5618,22 +5645,45 @@ Run reindex by command line
 
 php bin/magento indexer:reindex
 
-
-
-
-
 ### <a name="Step2J2">Step2J2: </a>
 ### <a name="Step2J3">Step2J3 </a>
 ### <a name="Step2J4">Step2J4: </a>
 ### <a name="Step2J5">Step2J5: </a>
 ### <a name="Step2J6">Step2J6: </a>
 
+## <a name="PartK">PartK: Products Collection </a> [Go to Top](#top)
+
+### <a name="Step2K1">Step2K1:Get New Products Collection </a>
+### <a name="Step2K1">Step2K1:Get Best Sellers Collection </a>
+### <a name="Step2K1">Step2K1:Get Most Viewed Product Collection </a>
+### <a name="Step2K1">Step2K1:Get Featured Product Collection </a>
+### <a name="Step2K1">Step2K1:Get On Sale Products Collection </a>
+### <a name="Step2K1">Step2K1:Get Get Recent Viewed Products Collection </a>
+### <a name="Step2K1">Step2K1:Get Wishlist Products Collection </a>
+### <a name="Step2K1">Step2K1:Get Rating Collection </a>
+### <a name="Step2K1">Step2K1:Get Review Collection </a>
+
+
+
+
+
+
+
+
+
+
 ***
 ## Ref   [Go to Top](#top)
 ***
 https://devdocs.magento.com/guides/v2.3/extension-dev-guide/declarative-schema/
 
-https://onilab.com/blog/declarative-schema-magento-2-3-and-higher/
+https://onilab.com/blog/declarative-schema-magento-2-3-and-higherProducts Collection: Get Wishlist,Recent Viewed, Get On Sale, Get Review, Rating Collection
+Get Best Sellers Collection
+Get Featured Product Collection
+Get Most Viewed Product Collection
+Get New Products Collection
+Get On Sale Products Collection
+Get Recent Viewed Products Collection Get Wishlist Products Collection/
 
 https://www.mage-world.com/blog/create-a-module-with-custom-database-table-in-magento-2.html
 
