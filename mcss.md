@@ -221,10 +221,11 @@ native functionality? []()
 
 #### 5.1 Demonstrate how to use products
 - Demonstrate the ability to create and use product videos. [docs](https://docs.magento.com/m2/ce/user_guide/catalog/product-video.html), [magenticians](https://magenticians.com/add-video-to-product-in-magento-2/), [mageplaza](https://www.mageplaza.com/kb/how-to-upload-product-videos-in-magento-2.html), [inchoo](https://inchoo.net/magento-2/adding-videos-product-page-magento2/), [shoppimon](https://www.shoppimon.com/2017/02/add-videos-to-product-pages-magento/)
-- What determines whether a product is visible on the storefront? []()
-- What determines whether a product can be sold on the storefront (saleable)? []()
+- What determines whether a product is visible on the storefront? [docs](https://docs.magento.com/m2/ce/user_guide/catalog/product-video.html), [magenticians](https://magenticians.com/add-video-to-product-in-magento-2/), [mageplaza](https://www.mageplaza.com/kb/how-to-upload-product-videos-in-magento-2.html), [inchoo](https://inchoo.net/magento-2/adding-videos-product-page-magento2/), [shoppimon](https://www.shoppimon.com/2017/02/add-videos-to-product-pages-magento/)
+- What determines whether a product can be sold on the storefront (saleable)? [docs](https://docs.magento.com/m2/b2b/user_guide/catalog/inventory-product-stock-options.html), [docs](https://docs.magento.com/m2/ce/user_guide/catalog/product-scope.html)
 #### 5.2 Demonstrate ability to use different product types
-- What are product types in Magento Commerce? []()
+- What are product types in Magento Commerce? [docs](https://docs.magento.com/m2/ee/user_guide/catalog/product-types.html), [mageworx](https://www.mageworx.com/wiki/cat/magento-2-product/)
+
 #### 5.3 Demonstrate ability to use categories
 - How can products and categories be added? []()
 - What is the visual merchandiser? []()

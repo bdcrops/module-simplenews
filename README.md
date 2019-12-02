@@ -3499,6 +3499,7 @@ At the moment, Magento 2 uses the following three authentication methods as is d
 - OAuth 1.0a authentication for third-party applications.
 - Tokens to authenticate mobile applications.
 - Admins & customers authentication with login credentials.
+
 According to the Magento 2 API documentation, these authentication methods can only access the resources assigned to them. Magento 2 API framework first checks whether the call has appropriate authorization to perform the request. The API framework also supports field filtering of API responses to preserve cellular bandwidth.
 Developers use Magento 2 APIs for a wide range of tasks. For instance, you can create a shopping app and integrate it with your Magento 2 store. You can also build a web app which your employee could use to help customers make purchases. With the help of APIs, you can integrate your Magento 2 store with CRMs, ERPs or POS systems.
 #### How Using Magento 2 REST API?
@@ -4611,13 +4612,14 @@ More Details :
 
 Assuming we are writing a plugin for a specific method, let’s choose a random method under Customer.php class, the getName() method.
 We define the before, after and around listeners for the getName() method by writing the naming conventions as follows.
-
+```
 Before + getName() => beforeGetName();
 After + getName()  => afterGetName();
 Around + getName() => aroundGetName();
+```
 
 
-#### The following elements are optional:
+#### Write The Optional Elements Plugins?
 
 - plugin sortOrder: Plugins that call the same method run them using this order.
 - plugin disabled:  To disable a plugin, set this element to true. The default value is false.
@@ -4665,7 +4667,6 @@ Around + getName() => aroundGetName();
               //$this->output->writeln('afterExecute');
           //}
       }
-
       ```
   <details>
 
@@ -4678,6 +4679,7 @@ Around + getName() => aroundGetName();
 - Finally [etc/di.xml](etc/di.xml) look like:
 
   <details><summary>Source</summary>
+
       ```
       <?xml version="1.0"?>
       <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
@@ -4800,7 +4802,7 @@ Here, It loads the [jquery] as soon as the require define()’d is called.
 baseUrl applied on all the files which defined with name starting with a slash”/”, have any url like “http://” or having .js extension.example:
 ```
 var config = {
-	"baseUrl": "webkul/test"
+	"baseUrl": "bdcrops/test"
 };
 
 require( ["sample/sample1", "https://code.jquery.com/jquery-3.1.1.min.js", "sample2.js"],
@@ -4808,7 +4810,7 @@ require( ["sample/sample1", "https://code.jquery.com/jquery-3.1.1.min.js", "samp
     }
 );
 ```
-Here, samplemodule is reffered to webkul/test/sample/sample1.js,
+Here, samplemodule is reffered to bdcrops/test/sample/sample1.js,
 “https://code.jquery.com/jquery-3.1.1.min.js” is loaded from the url which is specified
 and sample2.js is loaded from the same directory.
 
@@ -4817,7 +4819,7 @@ Path have the same properties as the baseUrl.If the path is started from “/”
 
 ```
 var config = {
-	"baseUrl": "webkul/test",
+	"baseUrl": "bdcrops/test",
 	"paths": {
         "sample": "web/js"
     },
@@ -4828,7 +4830,7 @@ require( ["sample/sample1"],
     }
 );
 ```
-Now, samplemodule is reffered to the file at path “webkul/test/web/js/sample1.js”
+Now, samplemodule is reffered to the file at path “bdcrops/test/web/js/sample1.js”
 
 - config: Is used when you want to pass some configurations to all the modules.
 These values are the common for all the modules.example:
@@ -4851,20 +4853,21 @@ Now in your js file you can access this value by using :console.log(require.s.co
 #### What is RequireJS “mixin”?
 A Magento 2 RequireJS “mixin” allows you to programmatically listen for the initial instantiation of any RequireJS module and manipulate that module before returning it.
 
-### overwriting  JS component using map
+### How to overwriting  JS component using map?
 
 - requireJS configuration
 create app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
 
 - copy validation lib to mododule
-lib/web/mage/validation.js ==>app/code/BDC/SimpleNews/view/frontend/web/js/validation.js
+lib/web/mage/validation.js ==>[app/code/BDC/SimpleNews/view/frontend/web/js/validation.js](view/frontend/web/js/validation.js)
  Change massages about 1684 line as
  ```
  $.validator.messages = $.extend($.validator.messages, {
      required: $.mage.__('This is a required field Custome.'),
  ```
 - overwriting  JS component using map
-app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
+[app/code/BDC/SimpleNews/view/frontend/requirejs-config.js](view/frontend/requirejs-config.js)
+
 ```
 var config = {
     'map': {
@@ -4880,9 +4883,10 @@ var config = {
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/RequireJsValidationJS.png)
 ![](https://github.com/bdcrops/BDC_SimpleNews/blob/master/doc/RequireJsLoginsms.png)
 
-### overwriting  JS component using mixin
+#### How to overwriting  JS component using mixin?
 
 - app/code/BDC/SimpleNews/view/frontend/requirejs-config.js
+
 ```
 var config = {
     'map': {
@@ -4920,6 +4924,9 @@ define(function () {
 
 
 ## <a name="PartI">PartI: Components Library/Customizing  UI 15% </a> [Go to Top](#top)
+
+![](doc/GridViewNewsListAdmin.png)
+
 
 
 #### how to create an Admin Grid in Magento 2 backend?
@@ -5119,18 +5126,18 @@ For the searchbar to work you have to update your table to add the index.
 - Create [Model/Resource/News/Grid/Collection.php](Model/Resource/News/Grid/Collection.php)
 
   <details><summary>Source</summary>
+
       ```
       <?php
-
       namespace BDC\SimpleNews\Model\Resource\News\Grid;
 
       use Magento\Framework\Data\Collection\Db\FetchStrategyInterface as FetchStrategy;
       use Magento\Framework\Data\Collection\EntityFactoryInterface as EntityFactory;
       use Magento\Framework\Event\ManagerInterface as EventManager;
       use Psr\Log\LoggerInterface as Logger;
+      use  Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
-      class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult
-      {
+      class Collection extends SearchResult {
           public function __construct(
               EntityFactory $entityFactory,
               Logger $logger,
@@ -5155,6 +5162,7 @@ For the searchbar to work you have to update your table to add the index.
 - Edit [etc/di.xml](etc/di.xml)
 
   <details><summary>Source</summary>
+
     ```
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
@@ -5728,13 +5736,7 @@ php bin/magento indexer:reindex
 ***
 https://devdocs.magento.com/guides/v2.3/extension-dev-guide/declarative-schema/
 
-https://onilab.com/blog/declarative-schema-magento-2-3-and-higherProducts Collection: Get Wishlist,Recent Viewed, Get On Sale, Get Review, Rating Collection
-Get Best Sellers Collection
-Get Featured Product Collection
-Get Most Viewed Product Collection
-Get New Products Collection
-Get On Sale Products Collection
-Get Recent Viewed Products Collection Get Wishlist Products Collection/
+https://onilab.com/blog/declarative-schema-magento-2-3-and-higherProducts  
 
 https://www.mage-world.com/blog/create-a-module-with-custom-database-table-in-magento-2.html
 
