@@ -227,23 +227,27 @@ native functionality? []()
 - What are product types in Magento Commerce? [docs](https://docs.magento.com/m2/ee/user_guide/catalog/product-types.html), [mageworx](https://www.mageworx.com/wiki/cat/magento-2-product/)
 
 #### 5.3 Demonstrate ability to use categories
-- How can products and categories be added? []()
-- What is the visual merchandiser? []()
-- How can the visual merchandiser be used? []()
-- Demonstrate the ability to manage categories. []()
-- How can multiple websites with independent category trees be created? []()
-#### 5.4 Demonstrate ability to use product attributes
-- What are attribute sets? []()
-- What are the consequences of a few large attribute sets vs. many small attribute sets?  []()
-- What is the effect of using many configurable attributes with a product? []()
-- What is the effect of store scope vs. global scope attributes? []()
-- What are possible strategies to use fewer product attributes? []()
+- How can products and categories be added? [docs](https://docs.magento.com/m2/ee/user_guide/catalog/category-create.html), [magenticians](https://magenticians.com/magento-2-add-new-category-product/)
+- What is the visual merchandiser? [docs](https://docs.magento.com/m2/ee/user_guide/marketing/visual-merchandiser.html)
+- How can the visual merchandiser be used? [store](https://store.magenest.com/blog/magento-commerce-visual-merchandiser/)
+- Demonstrate the ability to manage categories. [trellis](https://trellis.co/blog/managing-categories-in-magento-2/), [matridtech](https://www.matridtech.net/magento2-support/how-to-add-or-manage-categories-in-magento2//)
+- How can multiple websites with independent category trees be created?
+[firebearstudio](https://firebearstudio.com/blog/magento-2-page-hierarchy-import-export.html)https://devdocs.magento.com/guides/v2.3/config-guide/multi-site/ms_over.html)
+
+ #### 5.4 Demonstrate ability to use product attributes
+- What are attribute sets? [docs](https://docs.magento.com/m2/ce/user_guide/stores/attribute-sets.html), [mageworx](https://www.mageworx.com/wiki/magento-2-attribute-sets/
+)
+- What are the consequences of a few large attribute sets vs. many small attribute sets?  [magecom](https://magecom.net/attributes-and-attribute-set-planning-creation-in-magento-2/)
+- What is the effect of using many configurable attributes with a product? [paulnrogers](https://paulnrogers.com/understanding-simple-products-versus-configurable-products-magento/), [docs](https://docs.magento.com/m2/ce/user_guide/catalog/product-create-configurable.html), [mageplaza](https://www.mageplaza.com/kb/how-create-configurable-product-magento-2.html)
+- What is the effect of store scope vs. global scope attributes? [docs](https://docs.magento.com/m2/ce/user_guide/configuration/scope.html), [magestore](https://www.magestore.com/magento-2-tutorial/3259-2/), [cadence](https://www.cadence-labs.com/2018/03/magento-2-use-default-value-store-view-scope-fix/)
+- What are possible strategies to use fewer product attributes? [magecom](https://magecom.net/attributes-and-attribute-set-planning-creation-in-magento-2/), [amasty](https://amasty.com/blog/why-product-attributes-in-magento-2-are-important/)
+
 #### 5.5 Demonstrate ability to scale catalogs
-- How to deal with large catalogs?  []()
-- High SKU catalogs?  []()
-- High volume sales?  []()
+- How to deal with large catalogs?  [magemonkeys](https://www.magemonkeys.com/can-magento-handle-very-huge-products-catalog/), [quora](https://www.quora.com/Can-Magento-2-handle-a-large-catalog-of-500K-products-and-3K-categories)
+- High SKU catalogs?  [amasty](https://amasty.com/blog/improve-magento-2-performance-with-flat-catalog/)
+- High volume sales?  [magestore](https://www.magestore.com/magento-2-tutorial/magento-2-how-to-configure-catalog-search/), [aionhill](https://aionhill.com/how-many-products-can-magento-handle)
 #### 5.6 Demonstrate ability to configure inventory management
-- Inventory management?  []()
+- Inventory management?  [magenticians](https://magenticians.com/magento-2-inventory-management/), [boostmyshop](https://www.boostmyshop.eu/erp-inventory-magento-2.html), [mageworx](https://www.mageworx.com/wiki/magento-2-stock-inventory/), [docs](https://docs.magento.com/m2/ce/user_guide/catalog/inventory.html)
 
 [GoToTop](#Magento-2-Certified-Solution-Specialist)
 
