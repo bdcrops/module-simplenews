@@ -641,6 +641,7 @@ product page, from the wishlist, by clicking Reorder, and during quotes merge? [
 
 
 ### Tutorials Series [Go to Top](#top)
+- [belvg guide](https://belvg.com/tutorial/magento-2-certified-professional-developer-guide-section-1)
 - [pierrefay](https://www.pierrefay.com/magento2-training/create-a-view.html)
 - [mageplaza](https://www.mageplaza.com/magento-2-module-development/)
 - [magestore](https://www.magestore.com/magento-2-tutorial/)
