@@ -3,7 +3,7 @@
 
 ***
 
-### Exam topics and the approximate percentage covered in the test:
+### <a name="top">Exam topics and the approximate percentage covered in the test: </a>
 
 - [1.Magento Architecture & Customization Techniques 18%](#Architecture)
 - [2.Request Flow Processing 12%](#RequestFlow)
@@ -22,7 +22,7 @@
 ## Topics and Objectives
 ***
 
-### <a name="Architecture">1. Magento Architecture and Customization Techniques 18%</a>
+### <a name="Architecture">1. Magento Architecture and Customization Techniques 18%</a> [Go to Top](#top)
 
 #### 1.1 Describe Magento’s module-based architecture
 
@@ -164,7 +164,7 @@
 [belvg](https://belvg.com/blog/how-to-manage-the-cache-types-in-magento-2.html)
 
 
-### <a name="RequestFlow"> 2 Request Flow Processing 12%</a>
+### <a name="RequestFlow"> 2 Request Flow Processing 12%</a> [Go to Top](#top)
 
 #### 2.1 Utilize modes and application initialization
 
@@ -269,7 +269,7 @@ and capture output data regardless of the controller?
 - In which situations would you create a new block or a new template? [exam-notes](https://github.com/magento-notes/magento2-exam-notes/blob/master/2.%20Request%20Flow%20Processing/4.%20Determine%20the%20layout%20initialization%20process.md),[belvg](https://belvg.com/blog/how-to-use-blocks-in-magento-2-development.html)
 
 
-### <a name="MagentoUI"> 3 Customizing the Magento UI 10%</a>
+### <a name="MagentoUI"> 3 Customizing the Magento UI 10%</a> [Go to Top](#top)
 
 #### 3.1 Demonstrate ability to utilize themes and the template structure
 
@@ -354,7 +354,7 @@ and capture output data regardless of the controller?
 
 
 
-### <a name="Databases"> 4 Working with Databases in Magento 7%</a>
+### <a name="Databases"> 4 Working with Databases in Magento 7%</a> [Go to Top](#top)
 
 [dballl](https://github.com/bdcrops/module-declarative/blob/master/db.md)
 
@@ -409,7 +409,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 [declarative](https://github.com/bdcrops/module-declarative)
 
 
-### <a name="EAV">5 Using the Entity-Attribute-Value (EAV) Model 8%</a>
+### <a name="EAV">5 Using the Entity-Attribute-Value (EAV) Model 8%</a> [Go to Top](#top)
 
 [dballl](https://github.com/bdcrops/module-declarative/blob/master/db.md)
 
@@ -450,7 +450,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 - What is the difference between adding a new attribute and modifying an existing one?
 
 
-### <a name="Adminhtml">6 Developing with Adminhtml 10%</a>
+### <a name="Adminhtml">6 Developing with Adminhtml 10%</a> [Go to Top](#top)
 
 #### 6.1 Describe common structure/architecture
 
@@ -516,7 +516,7 @@ adding a new attribute, a new field in the database, or a new related entity? [d
 - How can you do that programmatically?
 
 
-## <a name="Catalog"> 7 Customizing the Catalog 12%</a>
+## <a name="Catalog"> 7 Customizing the Catalog 12%</a> [Go to Top](#top)
 
 ### 7.1 Demonstrate ability to use products and product types
 - Identify/describe standard product types (simple, configurable, bundled, etc.)? [magestore](https://blog.magestore.com/magento-product-types-magento-tutorial/)
@@ -552,7 +552,7 @@ of the product? [magestore](https://www.magestore.com/magento-2-tutorial/magento
 - How do they impact performance? []()
 - How would you debug problems with catalog price rules? []()
 
-## <a name="Checkout"> 8 Customizing the Checkout Process 13%</a>
+## <a name="Checkout"> 8 Customizing the Checkout Process 13%</a> [Go to Top](#top)
 
 ### 8.1 Demonstrate ability to use quote, quote item, address & shopping cart rules in checkout
 
@@ -594,7 +594,7 @@ product page, from the wishlist, by clicking Reorder, and during quotes merge? [
 - What are the different payment flows? [devdocs](https://devdocs.magento.com/guides/v2.3/payments-integrations/payment-gateway/payment-gateway-intro.html),
 [devdocs](https://devdocs.magento.com/guides/v2.3/payments-integrations/bk-payments-integrations.html),[mageplaza](https://www.mageplaza.com/devdocs/magento-2-create-payment-method/)
 
-### <a name="Sales"> 9 Sales Operations 5%</a>
+### <a name="Sales"> 9 Sales Operations 5%</a> [Go to Top](#top)
 
 ### 9.1 Demonstrate ability to customize sales operations
 
@@ -611,7 +611,7 @@ product page, from the wishlist, by clicking Reorder, and during quotes merge? [
 - Which refund types are available, and how are they used? [magestore](https://www.magestore.com/magento-2-tutorial/magento-2-credit-memo/), [magento](https://docs.magento.com/m2/ce/user_guide/sales/credit-memo-create.html), [mage2](https://mage2.pro/t/topic/709)
 
 
-### <a name="Customer"> 10 [Customer Management](https://github.com/bdcrops/module-contactpreferences) 5%</a>
+### <a name="Customer"> 10 [Customer Management](https://github.com/bdcrops/module-contactpreferences) 5%</a> [Go to Top](#top)
 
 #### 10.1 Demonstrate ability to customize My Account
 
@@ -640,7 +640,7 @@ product page, from the wishlist, by clicking Reorder, and during quotes merge? [
 ***
 
 
-### Tutorials Series
+### Tutorials Series [Go to Top](#top)
 - [pierrefay](https://www.pierrefay.com/magento2-training/create-a-view.html)
 - [mageplaza](https://www.mageplaza.com/magento-2-module-development/)
 - [magestore](https://www.magestore.com/magento-2-tutorial/)
